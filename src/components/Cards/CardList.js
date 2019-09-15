@@ -6,7 +6,6 @@ import fp from 'lodash/fp'
 import VacancyCard from './VacancyCard'
 import ResumeCard from './Resume'
 import CompanyCard from './CompanyCard'
-import VacancyBigCard from './VacancyBigCard'
 import VacancyCustomCard from './VacancyCustomCard'
 import ApplicantBigCard from './ApplicantBigCard'
 import ApplicantCard from './ApplicantCard'
@@ -61,13 +60,6 @@ const CardList = props => {
                     marginBottom={true}
                     data={item}
                   />
-                )}
-                {isVacancyBig && (
-                  <VacancyBigCard
-                    marginBottom={true}
-                    smooth={smooth}
-                    small={small}
-                    data={item} />
                 )}
                 {isVacancyCustom && (
                   <VacancyCustomCard

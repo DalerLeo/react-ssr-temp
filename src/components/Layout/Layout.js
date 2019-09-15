@@ -10,13 +10,9 @@ import { getStaticPagesList } from 'routes/static-page/actions'
 import s from './Layout.css'
 import toastifyStyles from 'react-toastify/dist/ReactToastify.css'
 import { crossBrowserify, fallbacksStyle } from 'constants/styles'
-import Header from 'components/Header'
 import HeaderSimple from 'components/Header/HeaderSimple'
 import FooterContainer from 'components/Footer/FooterContainer'
-import Cart from 'components/Cart'
 import GlobalLoading from 'components/Utils/GlobalLoading'
-import LiveChat from 'components/LiveChat'
-import ChatDialog from 'components/ChatDialog'
 import DataLayout from './DataLayout'
 
 const enhance = compose(
@@ -52,8 +48,6 @@ const Layout = props => {
   const {
     classes,
     children,
-    search,
-    home,
     pathname,
     query,
     simple,
@@ -77,7 +71,6 @@ const Layout = props => {
       [classes.wrapper]: !simple,
       [classes.simpleWrapper]: simple
     })}>
-      {showCart && <Cart userData={userData} isEmployer={isEmployer}/>}
 
       <GlobalLoading/>
 
@@ -91,18 +84,11 @@ const Layout = props => {
         toastClassName={classes.toast}
       />
 
-      <ChatDialog userData={userData}/>
-      {isEmployer && employerManager && <LiveChat/>}
-
       {simple
         ? <HeaderSimple
           query={query}
         />
-        : <Header
-          pathname={{ pathname, query }}
-          search={search}
-          home={home}
-        />}
+        : <div>Header</div>}
       <div className={classes.content}>
         {React.cloneElement(children, {
           pathname,

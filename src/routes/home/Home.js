@@ -31,11 +31,9 @@ import T from 'components/T'
 import TW from 'components/TW'
 import Link from 'components/Link'
 import Container from 'components/Container'
-import Vacancies from 'components/HomePage/Vacancies'
 import NewsFeed from 'components/HomePage/NewsFeed'
 import BigSearch from 'components/BigSearch'
 import { BigBanner } from 'components/Banners'
-import Companies from 'components/HomePage/Companies'
 
 const enhance = compose(
   withState('allPositions', 'setAllPositions', false),
@@ -375,12 +373,6 @@ const Home = props => {
             </div>
           </Col>
           <Col className={classes.topOnes} xs={18}>
-            {!isAuth && (
-              <Vacancies
-                data={isVacancy ? vacancyList : appList}
-                {...mainTab}
-              />
-            )}
             {isEmployer && (
               <React.Fragment>
                 <Title isStatic={true} text={'main_search_by_resume'}/>
@@ -397,14 +389,8 @@ const Home = props => {
             {isApplicant && (
               <React.Fragment>
                 <Title isStatic={true} text={'main_new_vacancy'}/>
-                <CardList
-                  type={VACANCY}
-                  data={vacancyList}
-                  moreText={<T>button_more_vacancy</T>}
-                  link={'/results?type=vacancy'}/>
               </React.Fragment>
             )}
-            <Companies {...companyTab} data={employerList}/>
             <NewsFeed data={articlesList}/>
             <BigBanner/>
           </Col>

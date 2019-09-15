@@ -26,7 +26,6 @@ import generateClassName from 'helpers/generateClassName'
 import createHistory from 'history/createMemoryHistory'
 import {startListener} from 'redux-first-routing'
 import History from './HistoryProvider'
-import {userInfoFetch} from './routes/user/actions'
 import * as sprintf from 'sprintf'
 
 const SUCCESS = 200
@@ -115,7 +114,7 @@ app.get('*', async (req, res, next) => {
         payload: Promise.resolve({token}),
         type: actionTypes.LOGIN
       }))
-      .then(() => dispatch(userInfoFetch(token)))
+      .then(() => dispatch(() => Promise.resolve('promise')))
       .catch(error => {
         const status = fp.get('response.status', error)
         if (status === 404 || status === 401) {

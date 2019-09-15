@@ -8,10 +8,8 @@ import { crossBrowserify, ROLL_UP_FADE_IN } from 'constants/styles'
 import Container from 'components/Container'
 import Filter from './Filter'
 import {
-  CardList,
   VACANCY_BIG,
-  APP_BIG,
-  COMPANY
+  APP_BIG
 } from 'components/Cards'
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
@@ -99,11 +97,6 @@ const SearchResults = (props) => {
     isAuth
   } = props
 
-  const types = {
-    'vacancy': VACANCY_BIG,
-    'resume': APP_BIG
-  }
-
   const resultsText = {
     'vacancy': 'main_vacancy',
     'resume': 'main_specialists',
@@ -155,20 +148,7 @@ const SearchResults = (props) => {
                   filter={resultFilter}
                 />}
               </div>
-              {type === 'employer'
-                ? <CardList
-                  type={COMPANY}
-                  data={resultList}
-                  filter={resultFilter}
-                  marginBottom={20}
-                />
-                : <CardList
-                  favBtn={true}
-                  filter={resultFilter}
-                  type={types[type]}
-                  data={resultList}
-                  msgCount={true}
-                />}
+
               <Pagination smooth={true} filter={resultFilter}/>
             </div>
           </Col>

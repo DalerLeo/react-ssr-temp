@@ -27,10 +27,6 @@ import {
 import dateFormat from 'helpers/dateFormat'
 import withHistory from 'helpers/withHistory'
 import t, { getTranslate } from 'helpers/translate'
-import {
-  resumeFavCreate,
-  resumeFavDelete
-} from 'routes/resume-details/actions'
 import Message from 'icons/Message'
 import Link from 'components/Link'
 import { Button, GREY, FavTextButton } from 'components/Button'
@@ -45,10 +41,7 @@ const mapStateToProps = state => ({
 
 const enhance = compose(
   withHistory,
-  connect(mapStateToProps, {
-    resumeFavCreate,
-    resumeFavDelete
-  }),
+  connect(mapStateToProps),
   injectSheet({
     applicant: {
       backgroundColor: '#fff',
@@ -263,8 +256,8 @@ const ApplicantBigCard = props => {
               id={id}
               isFavorite={isFavorite}
               onSuccess={setFavorite}
-              onAdd={props.resumeFavCreate}
-              onRemove={props.resumeFavDelete}
+              onAdd={() => null}
+              onRemove={() => null}
               onClick={isAuth ? null : onOpenLoginDialog}
             />
           )}

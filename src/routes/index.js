@@ -32,96 +32,6 @@ const routes = {
       load: () => import(/* webpackChunkName: 'setting' */ './setting')
     },
     {
-      path: ROUTE.USER_STAFF_CREATE_URL,
-      load: () => import(/* webpackChunkName: 'employer-staff-create' */ './employer-staff-create')
-    },
-    {
-      path: ROUTE.SERVICES_URL,
-      children: [
-        {
-          path: '/:child',
-          load: () => import(/* webpackChunkName: 'services' */ './services')
-        }
-      ]
-    },
-    {
-      path: ROUTE.VACANCY_URL,
-      children: [
-        {
-          path: ROUTE.CREATE_URL,
-          load: () => import(/* webpackChunkName: 'vacancy-create' */ './vacancy-create')
-        },
-        {
-          path: ROUTE.VIEW_URL,
-          load: () => import(/* webpackChunkName: 'vacancy-create' */ './vacancy-create')
-        },
-        {
-          path: ROUTE.DETAIL_URL,
-          load: () => import(/* webpackChunkName: 'vacancy-details' */ './vacancy-details')
-        }
-      ]
-    },
-    {
-      path: ROUTE.RESUME_URL,
-      children: [
-        {
-          path: '',
-          load: () => import(/* webpackChunkName: 'resume' */ './resume')
-        },
-        {
-          path: ROUTE.CREATE_URL,
-          load: () => import(/* webpackChunkName: 'resume-create' */ './resume-create')
-        },
-        {
-          path: ROUTE.VIEW_URL,
-          load: () => import(/* webpackChunkName: 'resume-create' */ './resume-create')
-        },
-        {
-          path: ROUTE.DETAIL_URL,
-          load: () => import(/* webpackChunkName: 'resume-details' */ './resume-details')
-        }
-      ]
-    },
-    {
-      path: ROUTE.APPLICANT_URL,
-      children: [
-        {
-          path: '/:child',
-          children: [
-            {
-              path: '',
-              load: () => import(/* webpackChunkName: 'user' */ './user')
-            },
-            // Resume details for Edit & View
-            {
-              path: '/:id/:actionName',
-              load: () => import(/* webpackChunkName: 'resume-create' */ './resume-create')
-            }
-          ]
-
-        }
-      ]
-    },
-    {
-      path: ROUTE.EMPLOYER_URL,
-      children: [
-        {
-          path: '/:child',
-          children: [
-            {
-              path: '',
-              load: () => import(/* webpackChunkName: 'user' */ './user')
-            },
-            // VACANCY details for Edit & View
-            {
-              path: '/:id/:actionName',
-              load: () => import(/* webpackChunkName: 'resume-create' */ './vacancy-create')
-            }
-          ]
-        }
-      ]
-    },
-    {
       path: ROUTE.ARTICLES_URL,
       children: [
         {
@@ -134,40 +44,6 @@ const routes = {
         }
 
       ]
-    },
-    {
-      path: ROUTE.COMPANIES_URL,
-      children: [
-        {
-          path: '',
-          action: require('./companies').default
-        },
-        {
-          path: '/:id',
-          action: require('./company-details').default
-        }
-      ]
-    },
-    {
-      path: ROUTE.EVENTS_URL,
-      children: [
-        {
-          path: '',
-          action: require('./events').default
-        },
-        {
-          path: '/:id',
-          action: require('./event-details').default
-        }
-      ]
-    },
-    {
-      path: ROUTE.FAQ_URL,
-      action: require('./faq').default
-    },
-    {
-      path: ROUTE.SUBSCRIPTION_URL,
-      action: require('./subscription').default
     },
     {
       path: ROUTE.STATIC_PAGE_URL,

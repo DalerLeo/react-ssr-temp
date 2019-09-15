@@ -4,7 +4,6 @@ import { compose } from 'recompose'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import injectSheet from 'react-jss'
-import classNames from 'classnames'
 import {
   BLACK_COLOR,
   crossBrowserify,
@@ -12,12 +11,8 @@ import {
 } from 'constants/styles'
 import withHistory from 'helpers/withHistory'
 import hexToRgb from 'helpers/hexToRgb'
-import { logoutAction } from 'routes/user/actions'
-import LeftIcon from 'react-icons/lib/md/keyboard-arrow-left'
-import T from 'components/T'
+
 import Container from 'components/Container'
-import LogoTitle from 'components/Title/LogoTitle'
-import DropdownList from './DropdownList'
 
 const enhance = compose(
   withHistory,
@@ -25,7 +20,7 @@ const enhance = compose(
     isAuth: fp.get('login.data.token', state),
     userData: fp.get('user.data', state) || {},
     authLoading: fp.get('login.loading', state)
-  }), { logoutAction }),
+  })),
 
   injectSheet({
     headerContainer: {
@@ -69,44 +64,19 @@ const enhance = compose(
 
 const HeaderSimple = props => {
   const {
-    classes,
-    history,
-    isAuth,
-    userData,
-    query
+    classes
   } = props
 
-  const goBack = () => query.re ? history.push(query.re) : history.goBack()
   return (
     <div className={classes.headerContainer}>
       <Container>
-        <div className={classes.header}>
-          <div className={classes.back} onClick={goBack}>
-            <LeftIcon/>
-            <T>button_back</T>
-          </div>
-
-          <LogoTitle simple/>
-
-          <div className={classNames(classes.item, classes.auth)}>
-            {isAuth &&
-            <DropdownList
-              user={userData}
-              logout={props.logoutAction}
-            />}
-          </div>
-        </div>
+        Header Simple
       </Container>
     </div>
   )
 }
 HeaderSimple.propTypes = {
-  classes: PropTypes.object,
-  history: PropTypes.object.isRequired,
-  query: PropTypes.object.isRequired,
-  isAuth: PropTypes.any,
-  logoutAction: PropTypes.func.isRequired,
-  userData: PropTypes.object.isRequired
+  classes: PropTypes.object
 
 }
 export default enhance(HeaderSimple)

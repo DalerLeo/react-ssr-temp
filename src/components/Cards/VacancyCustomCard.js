@@ -24,7 +24,6 @@ import Link from 'components/Link'
 import Dropdown from 'components/Dropdown'
 import RenderOrNull from 'components/Utils/RenderOrNull'
 import CompanyAddress from 'components/Cards/CompanyAddress'
-import VacancyArchiveDialog from 'routes/vacancy-create/VacancyArchive'
 import queryToParams from 'helpers/queryToParams'
 
 const enhance = compose(
@@ -265,13 +264,6 @@ const Resume = props => {
       </div>
 
       <RenderOrNull value={openArchiveDialog}>
-        <VacancyArchiveDialog
-          open={openArchiveDialog}
-          handleClose={onCloseArchive}
-          fetchOnSuccess={'list'}
-          vacancy={vacancyId}
-          withServices={!fp.isEmpty(activeServices)}
-        />
       </RenderOrNull>
     </div>
   )

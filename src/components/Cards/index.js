@@ -1,4 +1,3 @@
-import Company from './VacancyBigCard'
 import CardList from './CardList'
 import CardLoadingList from './CardLoadingList'
 import {
@@ -14,7 +13,7 @@ import {
 } from './constants'
 
 export {
-  Company,
+
   CardList,
   CardLoadingList,
   VACANCY,
