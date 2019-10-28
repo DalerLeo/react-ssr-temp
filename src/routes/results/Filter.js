@@ -33,7 +33,6 @@ import {
   MARITAL_STATUS_LIST
 } from 'constants/backend'
 import toSnakeCase from 'helpers/toSnakeCase'
-import BigSearch from 'components/BigSearch'
 import T from 'components/T'
 import TW from 'components/TW'
 import RenderOrNull from 'components/Utils/RenderOrNull'
@@ -326,12 +325,6 @@ const Filter = (props) => {
   return (
     <div className={classes.wrapper}>
       <div className={classes.searchWrapper}>
-        <BigSearch
-          type={'medium'}
-          onSearch={onSearch}
-          withExtended={false}
-          initialValues={{ type: 'vacancy', search: initialValues.text }}
-        />
       </div>
 
       {!isCatalogue &&
