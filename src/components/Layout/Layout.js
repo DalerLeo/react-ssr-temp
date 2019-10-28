@@ -24,9 +24,9 @@ const enhance = compose(
       ...fallbacksStyle('display', 'flex'),
       ...crossBrowserify('flexDirection', 'column'),
       ...crossBrowserify('justifyContent', 'space-between'),
-      paddingTop: '130px',
       position: 'relative',
-      minHeight: '100vh'
+      minHeight: '100vh',
+      background: '#f9fafb'
     },
     content: {
       ...crossBrowserify('flexGrow', '1')
@@ -56,15 +56,12 @@ const Layout = props => {
     isApplicant,
     isAuth,
     actionSuccess,
-    showCart,
     ...otherProps
   } = props
 
   if (otherProps.isServer) {
     otherProps.store.dispatch(getStaticPagesList())
   }
-
-  const employerManager = loGet(userData, 'manager')
 
   return (
     <div className={classNames({
@@ -88,7 +85,7 @@ const Layout = props => {
         ? <HeaderSimple
           query={query}
         />
-        : <div>Header</div>}
+        : <div />}
       <div className={classes.content}>
         {React.cloneElement(children, {
           pathname,
