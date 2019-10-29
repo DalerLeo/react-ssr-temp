@@ -2,32 +2,29 @@ import _ from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
-import injectSheet from 'react-jss'
-import classNames from 'classnames'
+import styled, { css } from 'styled-components'
 import withHistory from 'helpers/withHistory'
+
+const LinkUI = styled.a`
+    &:focus {
+      text-decoration: none
+    }
+    ${props => props.absolute && css`
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    `}
+`
+const enhance = compose(
+  withHistory
+)
 
 const isLeftClickEvent = (event) => {
   return event.button === Number('0')
 }
-
-const enhance = compose(
-  withHistory,
-  injectSheet({
-    link: {
-      '&:focus': {
-        textDecoration: 'none'
-      }
-    },
-    linkAbsolute: {
-      position: 'absolute',
-      top: '0',
-      bottom: '0',
-      left: '0',
-      right: '0',
-      zIndex: '2'
-    }
-  })
-)
 
 const toString = (to) => {
   return _.isObject(to) ? `${to.pathname}/?${to.search}` : to
@@ -40,14 +37,10 @@ const isModifiedEvent = (event) => {
 const Link = props => {
   const {
     to,
-    target,
-    classes,
     history,
     children,
     smooth,
     style,
-    absolute,
-    className,
     ...otherProps
   } = props
 
@@ -74,17 +67,13 @@ const Link = props => {
     return null
   }
   return (
-    <a
+    <LinkUI
       {...otherProps}
-      className={classNames(className, {
-        [classes.link]: true,
-        [classes.linkAbsolute]: absolute
-      })}
       href={toString(to)}
       style={style}
       onClick={handleClick}>
       {children}
-    </a>
+    </LinkUI>
   )
 }
 

@@ -7,7 +7,7 @@ import logoPositions from 'components/Title/logoPositions'
 /* eslint-disable react/no-danger */
 
 const Html = props => {
-  const { title, description, styles, scripts, app, children, sheets } = props
+  const { title, description, styles, scripts, app, children, sheets, styleTags } = props
   return (
     <html className="no-js" lang="en">
       <head>
@@ -24,7 +24,7 @@ const Html = props => {
         <link rel="apple-touch-icon" href="/icon.png"/>
         <link rel="stylesheet" href="/antd.min.css"/>
         <link rel="stylesheet" href="/normalize.css"/>
-
+        {styleTags}
         <style dangerouslySetInnerHTML={{ __html: styled }}/>
         {styles.map(style =>
           <style
@@ -35,7 +35,6 @@ const Html = props => {
         )}
         {sheets && <style id="server-react-jss" type="text/css" dangerouslySetInnerHTML={{ __html: sheets.toString() }}/>}
         <script dangerouslySetInnerHTML={{ __html: `var initialState = ${props.store && JSON.stringify(props.store.getState())}` }}/>
-        <script dangerouslySetInnerHTML={{ __html: `var logoPosition = ${JSON.stringify(logoPositions[Math.floor(Math.random() * logoPositions.length)])}` }}/>
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: children }}/>
@@ -60,6 +59,7 @@ Html.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   store: PropTypes.object.isRequired,
+  styleTags: PropTypes.array,
   styles: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
