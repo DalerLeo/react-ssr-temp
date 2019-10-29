@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import Container from 'components/Container'
 import TopHeader from './TopHeader'
 import Logo from 'icons/Logo'
+import Profile from 'icons/Profile'
+import ShoppingBag from 'icons/ShoppingBag'
 
 const HeaderStyled = styled.div`
+  align-items: center;
   display: flex;
   padding: 14px 150px;
   height: 78px;
@@ -15,7 +17,6 @@ const LogoBlock = styled.div`
 `
 const SearchBlock = styled.div`
   margin-left: 145px;
-  margin-top: -10px;
 `
 
 const SearchField = styled.input`
@@ -37,10 +38,16 @@ const SearchButton = styled.button`
   outline: 0;
   cursor: pointer;
 `
+const MyProfile = styled.div`
+  font-size: 16px;
+  line-height: 164.57%;
+  color: #FFFFFF;
+  margin-left: 79px;
+  cursor: pointer;
+`
 const Header = () => {
   return (
     <div>
-
       <TopHeader/>
       <HeaderStyled>
         <LogoBlock>
@@ -52,6 +59,14 @@ const Header = () => {
             Найти
           </SearchButton>
         </SearchBlock>
+        <MyProfile>
+          <Profile/>
+          Мой профиль
+        </MyProfile>
+        <MyProfile>
+          <ShoppingBag/>
+          Корзина
+        </MyProfile>
       </HeaderStyled>
     </div>
   )
