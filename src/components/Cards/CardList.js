@@ -3,22 +3,7 @@ import PropTypes from 'prop-types'
 import Row from 'antd/lib/row'
 import Col from 'antd/lib/col'
 import fp from 'lodash/fp'
-import VacancyCard from './VacancyCard'
-import ResumeCard from './Resume'
-import CompanyCard from './CompanyCard'
-import VacancyCustomCard from './VacancyCustomCard'
-import ApplicantBigCard from './ApplicantBigCard'
-import ApplicantCard from './ApplicantCard'
 import MoreButton from 'components/MoreButton'
-import {
-  COMPANY,
-  VACANCY,
-  VACANCY_BIG,
-  RESUME,
-  APP_BIG,
-  APP,
-  VACANCY_CUSTOM
-} from './index'
 import CardLoadingList from './CardLoadingList'
 
 const CardList = props => {
@@ -29,23 +14,13 @@ const CardList = props => {
     span,
     marginBottom,
     onMore,
-    small,
     filter,
-    smooth,
     link,
-    moreText,
-    ...others
+    moreText
   } = props
 
   const page = filter && filter.getParam('page')
   const hasMore = filter && filter.hasMoreItems()
-  const isVacancy = type === VACANCY
-  const isCompany = type === COMPANY
-  const isApp = type === APP
-  const isVacancyBig = type === VACANCY_BIG
-  const isVacancyCustom = type === VACANCY_CUSTOM
-  const isAppBig = type === APP_BIG
-  const isResume = type === RESUME
 
   return (
     <React.Fragment>
@@ -55,49 +30,7 @@ const CardList = props => {
             const id = fp.get('id', item)
             return (
               <Col key={id} xs={span} style={{ marginBottom }}>
-                {isVacancy && (
-                  <VacancyCard
-                    marginBottom={true}
-                    data={item}
-                  />
-                )}
-                {isVacancyCustom && (
-                  <VacancyCustomCard
-                    {...others}
-                    marginBottom={true}
-                    data={item} />
-                )}
-                {isCompany && (
-                  <CompanyCard
-                    small={small}
-                    data={item}
-                    isFav={others.isFav}
-                  />
-                )}
-                {isAppBig && (
-                  <ApplicantBigCard
-                    {...others}
-                    marginBottom={true}
-                    smooth={smooth}
-                    small={small}
-                    data={item} />
-                )}
-                {isApp && (
-                  <ApplicantCard
-                    marginBottom={true}
-                    smooth={smooth}
-                    small={small}
-                    data={item} />
-                )}
-                {isResume && (
-                  <ResumeCard
-                    marginBottom={true}
-                    smooth={smooth}
-                    small={small}
-                    bottomBtn={true}
-                    main={true}
-                    data={item} />
-                )}
+
               </Col>
             )
           }, fp.get('data', data))}
