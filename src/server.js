@@ -27,9 +27,9 @@ import createHistory from 'history/createMemoryHistory'
 import {startListener} from 'redux-first-routing'
 import History from './HistoryProvider'
 import * as sprintf from 'sprintf'
-import { ServerStyleSheet } from 'styled-components'
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
-const sheet = new ServerStyleSheet()
+const styledSheet = new ServerStyleSheet()
 const SUCCESS = 200
 
 setObservableConfig({
@@ -153,7 +153,7 @@ app.get('*', async (req, res, next) => {
     const sheets = new SheetsRegistry()
     const data = {...route}
     data.children = ReactDOM.renderToString(
-      sheet.collectStyles(
+        <StyleSheetManager sheet={styledSheet.instance}>
       <Provider store={store}>
         <History.Provider value={history}>
           <JssProvider registry={sheets} generateClassName={generateClassName} >
@@ -161,9 +161,8 @@ app.get('*', async (req, res, next) => {
           </JssProvider>
         </History.Provider>
       </Provider>
-      )
+        </StyleSheetManager>
     )
-    const styleTags = sheet.getStyleElement()
     data.styles = [{id: 'css', cssText: [...css].join('')}]
 
     const scripts = new Set()
@@ -183,13 +182,14 @@ app.get('*', async (req, res, next) => {
       apiUrl: config.api.clientUrl
     }
 
+    const styleTags = styledSheet.getStyleElement()
     const html = ReactDOM.renderToStaticMarkup(<Html store={store} styleTags={styleTags}  sheets={sheets} {...data} />)
     res.status(route.status || SUCCESS)
     res.send(`<!doctype html>${html}`)
   } catch (err) {
     next(err)
   } finally {
-    sheet.seal()
+    styledSheet.seal()
   }
 })
 
