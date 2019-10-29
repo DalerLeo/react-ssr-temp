@@ -153,15 +153,15 @@ app.get('*', async (req, res, next) => {
     const sheets = new SheetsRegistry()
     const data = {...route}
     data.children = ReactDOM.renderToString(
-        <StyleSheetManager sheet={styledSheet.instance}>
-      <Provider store={store}>
-        <History.Provider value={history}>
-          <JssProvider registry={sheets} generateClassName={generateClassName} >
-            <App context={context}>{route.component}</App>
-          </JssProvider>
-        </History.Provider>
-      </Provider>
-        </StyleSheetManager>
+      <StyleSheetManager sheet={styledSheet.instance}>
+        <Provider store={store}>
+          <History.Provider value={history}>
+            <JssProvider registry={sheets} generateClassName={generateClassName} >
+              <App context={context}>{route.component}</App>
+            </JssProvider>
+          </History.Provider>
+        </Provider>
+      </StyleSheetManager>
     )
     data.styles = [{id: 'css', cssText: [...css].join('')}]
 
