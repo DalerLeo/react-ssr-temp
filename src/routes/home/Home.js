@@ -16,7 +16,7 @@ const ProductListBlock = styled.div`
 `
 const HeaderMenu = styled.div`
   display: flex;
-  margin-top: 24px;
+  padding-top: 120px;
 `
 const products = [
   {

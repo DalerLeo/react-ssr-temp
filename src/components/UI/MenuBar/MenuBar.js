@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { path, find, propEq } from 'ramda'
 import styled from 'styled-components'
 import MenuBarIcon from 'icons/MenuBar'
-
+import Modal from 'components/UI/Modal'
+import list from './contants'
 const MenubarHeader = styled.div`
     display: flex;
     width: 267px;
@@ -20,48 +22,35 @@ const MenubarText = styled.div`
 const MenuItems = styled.div`
     font-size: 14px;
     line-height: 129.96%;
-    margin: 11px 20px;
+    padding: 6px 20px;
     cursor: pointer;
+    :hover{
+      color: #2EBB8A;
+      background: #EAFAF1;
+    }
 `
+
 const MenuBar = () => {
+  const [open, setMenuOpen] = useState(false)
+  const subCategories = find(propEq('id', open), list)
   return (
-    <div>
+    <div onMouseLeave={() => setMenuOpen(false)}>
       <MenubarHeader>
         <MenuBarIcon />
         <MenubarText>
-                Каталог товаров
+          Каталог товаров
         </MenubarText>
       </MenubarHeader>
-      <MenuItems>
-            Овощи
-      </MenuItems>
-      <MenuItems>
-            Фрукты
-      </MenuItems>
-      <MenuItems>
-      Молочные продукты
-      </MenuItems>
-      <MenuItems>
-      Мясные продукты
-      </MenuItems>
-      <MenuItems>
-      Хлебобулочные изделия
-      </MenuItems>
-      <MenuItems>
-      Полуфабрикаты
-      </MenuItems>
-      <MenuItems>
-      Консервы
-      </MenuItems>
-      <MenuItems>
-      Бакалея
-      </MenuItems>
-      <MenuItems>
-      Диетические продукты
-      </MenuItems>
-      <MenuItems>
-      Детское питание
-      </MenuItems>
+      {list.map((type, key) => {
+        return (
+          <MenuItems
+            onMouseEnter={() => setMenuOpen(type.id)}
+            key={key}>
+            {type.name}
+          </MenuItems>
+        )
+      })}
+      {open && <Modal subCategories={subCategories}/>}
     </div>
   )
 }
