@@ -9,6 +9,8 @@ import ProductsTitle from 'components/UI/ProductsTitle'
 import ShowMore from 'components/UI/ShowMore'
 import MenuBar from 'components/UI/MenuBar'
 import Carusel from 'components/UI/Carusel'
+import products from './cons'
+
 import useFetchList from '../../hooks/useFetchList'
 import {getEmployerList} from './actions'
 const ProductListBlock = styled.div`
@@ -17,50 +19,9 @@ const ProductListBlock = styled.div`
 `
 const HeaderMenu = styled.div`
   display: flex;
-  margin-top: 24px;
+  padding-top: 120px;
 `
-const products = [
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: true
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: false
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: false
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: true
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something ',
-    sale: false
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: true
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: false
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: true
-  }
-]
+
 const Home = props => {
   return (
     <div>

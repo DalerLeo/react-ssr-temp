@@ -6,7 +6,7 @@ const AddBannerBlock = styled.div`
     margin-top: 60px;
 `
 const AddBannerStyled = styled.img`
-    width: 1140px;
+    width: 100%;
 `
 
 const AddBanner = () => {
