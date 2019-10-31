@@ -9,6 +9,8 @@ import MenuBarIcon from 'icons/MenuBar'
 
 const HeaderBlock = styled.div`
   position: fixed;
+  right: 0;
+  left: 0;
   z-index: 9999;
 `
 const HeaderStyled = styled.div`
@@ -25,6 +27,7 @@ const SearchBlock = styled.div`
   width: 440px;
   display: flex;
   margin-left: ${props => props.scrollY > 100 ? '0px' : '-163px'};
+  z-index: 1;
 `
 
 const SearchField = styled.input`

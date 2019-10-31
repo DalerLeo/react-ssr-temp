@@ -9,6 +9,7 @@ import ProductsTitle from 'components/UI/ProductsTitle'
 import ShowMore from 'components/UI/ShowMore'
 import MenuBar from 'components/UI/MenuBar'
 import Carusel from 'components/UI/Carusel'
+import products from './cons'
 
 const ProductListBlock = styled.div`
   display: flex;
@@ -18,48 +19,7 @@ const HeaderMenu = styled.div`
   display: flex;
   padding-top: 120px;
 `
-const products = [
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: true
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: false
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: false
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: true
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something ',
-    sale: false
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: true
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: false
-  },
-  {
-    price: 123000,
-    content: 'Something Something Something Something Something Something Something',
-    sale: true
-  }
-]
+
 const Home = props => {
   return (
     <div>

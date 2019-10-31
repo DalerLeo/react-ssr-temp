@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { path } from 'ramda'
+import { path, find, propEq } from 'ramda'
 import { Card } from 'components/Cards'
 import Button from 'components/UI/Button'
 import Image from 'components/UI/Image'
 import Price from 'components/UI/Price'
 import ProductContent from 'components/UI/ProductContent'
 import SalePrice from '../UI/SalePrice/SalePrice'
-import img1 from 'images/25.png'
 
 const StyledCard = styled(Card)`
   border-right: 1px solid #E1E1E1;
@@ -41,20 +40,22 @@ const ButtonPosition = styled.div`
 `
 
 const mapChild = item => {
+  const name = path(['name'], item)
   const price = path(['price'], item)
-  const content = path(['content'], item)
-  const sale = path(['sale'], item)
+  const images = path(['images'], item)
+  const isPrimary = find(propEq('is_primary', true))(images)
+  const image = path(['file'], isPrimary)
   return (
     <StyledCard>
       <ImagePosition>
-        <Image src={img1} alt="image"/>
+        <Image src={image} alt="image"/>
       </ImagePosition>
       <PricePosition>
         <Price price={price}/>
-        {sale && <SalePrice>25 000</SalePrice>}
+        {true && <SalePrice>25 000</SalePrice>}
       </PricePosition>
       <ProductContentPosition>
-        <ProductContent content={content}/>
+        <ProductContent content={name}/>
       </ProductContentPosition>
       <ButtonPosition>
         <Button label="В корзину"/>
@@ -64,7 +65,9 @@ const mapChild = item => {
 }
 const ProductCardList = (props) => {
   const { products } = props
-  return products.map(mapChild)
+  const results = path(['results'], products)
+  console.warn(results)
+  return results.map(mapChild)
 }
 
 export default ProductCardList
