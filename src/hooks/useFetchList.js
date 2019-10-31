@@ -1,10 +1,11 @@
 import { pick, pipe, equals } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
-import useHistory from '../hooks/useHistory'
 import { getDataFromState, getParamsFormHistory } from '../utils/get'
 import { DEFAULT_PICK_PARAMS } from '../utils/isEquals'
 import toSnakeCase from '../utils/toSnakeCase'
 import useCompareEffect from './useCompareEffect'
+import { useContext } from 'react'
+import History from '../HistoryProvider'
 
 export const getListParams = (history, keys) =>
   pipe(
@@ -23,7 +24,7 @@ const useFetchList = (params) => {
   } = params
 
   const dispatch = useDispatch()
-  const history = useHistory()
+  const history = useContext(History)
 
   const searchParams = getListParams(history, pickParams)
 

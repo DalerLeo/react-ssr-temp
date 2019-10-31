@@ -9,7 +9,8 @@ import ProductsTitle from 'components/UI/ProductsTitle'
 import ShowMore from 'components/UI/ShowMore'
 import MenuBar from 'components/UI/MenuBar'
 import Carusel from 'components/UI/Carusel'
-
+import useFetchList from '../../hooks/useFetchList'
+import {getEmployerList} from './actions'
 const ProductListBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
