@@ -103,6 +103,7 @@ app.get('*', async (req, res, next) => {
     const token = req.cookies.token
     const lang = req.cookies.lang || 'ru'
 
+/*
     // If exist and valid token initialize store with TOKEN
     token && await fetch(API.API_URL + API.CHECK_TOKEN + token)
       .then((response) => {
@@ -126,6 +127,7 @@ app.get('*', async (req, res, next) => {
           dispatch({type: `${actionTypes.USER_INFO}_CLEAR`})
         }
       })
+*/
 
     lang && dispatch({
       payload: lang,

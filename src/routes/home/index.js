@@ -13,11 +13,6 @@ import {
 async function action (props) {
   const { store, isServer } = props
   if (isServer) {
-    await store.dispatch(getProfessionsList())
-    await store.dispatch(getRegionsList('region'))
-    await store.dispatch(getVacancyList())
-    await store.dispatch(getEmployerList())
-    await store.dispatch(fetchPopularVacancyList())
   }
   return {
     title: 'Главная',

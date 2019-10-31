@@ -34,7 +34,7 @@ const MenuBar = () => {
   const [open, setMenuOpen] = useState(false)
   const subCategories = find(propEq('id', open), list)
   return (
-    <div onMouseLeave={() => setMenuOpen(false)}>
+    <div style={{position: 'relative'}} onMouseLeave={() => setMenuOpen(false)}>
       <MenubarHeader>
         <MenuBarIcon />
         <MenubarText>

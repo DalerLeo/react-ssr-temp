@@ -1,4 +1,4 @@
-export const API_HOST = 'apimyjob.wienerdeming.com'
+export const API_HOST = 'apilochin.ritm.uz'
 export const API_ROOT = 'api'
 export const API_VERSION = 'v1'
 export const API_PROTOCOL = 'http'

@@ -5,8 +5,8 @@ import { path } from 'ramda'
 
 const ModalStyled = styled.div`
     position: absolute;
-    top: 2.7%;
-    left: 29%;
+    top: 0;
+    left: 100%;
     width: 800px;
     height: 500px;
     background-color: white;
@@ -22,20 +22,19 @@ const MenuList = styled.div`
     color: #2E384C;
     margin: 30px 35px;
 `
-const MenuListItams = styled.div`
+const MenuListItems = styled.div`
   padding: 6px 0;
 `
 const Modal = (props) => {
   const { subCategories } = props
 
   const subChilds = path(['children'], subCategories)
-
   return (
     <ModalStyled>
       <MenuList>
         <b>{subChilds[1].parent.name}</b>
         {subChilds.map((subChild, id) => (
-          <MenuListItams>{subChild.name}</MenuListItams>
+          <MenuListItems>{subChild.name}</MenuListItems>
         ))}
       </MenuList>
     </ModalStyled>

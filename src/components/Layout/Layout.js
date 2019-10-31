@@ -60,7 +60,7 @@ const Layout = props => {
   } = props
 
   if (otherProps.isServer) {
-    otherProps.store.dispatch(getStaticPagesList())
+//    otherProps.store.dispatch(getStaticPagesList())
   }
 
   return (

@@ -66,7 +66,6 @@ const mapChild = item => {
 const ProductCardList = (props) => {
   const { products } = props
   const results = path(['results'], products)
-  console.warn(results)
   return results.map(mapChild)
 }
 
