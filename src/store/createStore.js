@@ -7,7 +7,7 @@ import { createLogger } from 'redux-logger'
 
 export default (history, initialState, logger) => {
   const middleware = [
-    promiseMiddleware(),
+    promiseMiddleware,
     thunkMiddleware,
     routerMiddleware(history)
   ]

@@ -11,6 +11,8 @@ import MenuBar from 'components/UI/MenuBar'
 import Carusel from 'components/UI/Carusel'
 import products from './cons'
 
+import useFetchList from '../../hooks/useFetchList'
+import {getEmployerList} from './actions'
 const ProductListBlock = styled.div`
   display: flex;
   flex-wrap: wrap;

@@ -14,6 +14,7 @@ import withHistory from 'helpers/withHistory'
 import excludeKeys from 'helpers/excludeKeys'
 import { getStateData, isEmployer, isApplicant } from 'helpers/get'
 import queryToParams from 'helpers/queryToParams'
+
 import {
   generalStatsFetch,
   getProfessionsList,

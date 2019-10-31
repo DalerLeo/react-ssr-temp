@@ -27,9 +27,8 @@ import createHistory from 'history/createMemoryHistory'
 import {startListener} from 'redux-first-routing'
 import History from './HistoryProvider'
 import * as sprintf from 'sprintf'
-import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
+import { ServerStyleSheet } from 'styled-components'
 
-const styledSheet = new ServerStyleSheet()
 const SUCCESS = 200
 
 setObservableConfig({
@@ -71,6 +70,7 @@ app.use(bodyParser.json())
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
 app.get('*', async (req, res, next) => {
+  const styledSheet = new ServerStyleSheet()
   try {
     const initialEntries = [req.path + queryToParams(req.query)]
     const history = createHistory({initialEntries})
@@ -152,16 +152,17 @@ app.get('*', async (req, res, next) => {
 
     const sheets = new SheetsRegistry()
     const data = {...route}
+
     data.children = ReactDOM.renderToString(
-      <StyleSheetManager sheet={styledSheet.instance}>
-        <Provider store={store}>
-          <History.Provider value={history}>
-            <JssProvider registry={sheets} generateClassName={generateClassName} >
-              <App context={context}>{route.component}</App>
-            </JssProvider>
-          </History.Provider>
-        </Provider>
-      </StyleSheetManager>
+      styledSheet.collectStyles(
+      <Provider store={store}>
+        <History.Provider value={history}>
+          <JssProvider registry={sheets} generateClassName={generateClassName} >
+            <App context={context}>{route.component}</App>
+          </JssProvider>
+        </History.Provider>
+      </Provider>
+      )
     )
     data.styles = [{id: 'css', cssText: [...css].join('')}]
 
