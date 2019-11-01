@@ -13,4 +13,3 @@ export default props => {
     </SvgIcon>
   )
 }
-src/store/createStore.js
