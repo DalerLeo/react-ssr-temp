@@ -13,6 +13,7 @@ import products from './cons'
 
 import useFetchList from '../../hooks/useFetchList'
 import {getEmployerList} from './actions'
+
 const ProductListBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -23,6 +24,10 @@ const HeaderMenu = styled.div`
 `
 
 const Home = props => {
+  const productData = useFetchList({
+    action: getEmployerList,
+    stateName: 'productList'
+  })
   return (
     <div>
       <Header />
