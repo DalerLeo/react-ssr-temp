@@ -1,18 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from 'components/UI/Header'
-import ProductCardList from 'components/Cards/ProductCardList'
-import Container from 'components/Container'
-import PopularCategories from 'components/UI/PopularCategories'
-import AddBanner from 'components/UI/AddBanner'
-import ProductsTitle from 'components/UI/ProductsTitle'
-import ShowMore from 'components/UI/ShowMore'
-import MenuBar from 'components/UI/MenuBar'
-import Carusel from 'components/UI/Carusel'
+import Header from '../../components/UI/Header'
+import ProductCardList from '../../components/Cards/ProductCardList'
+import Container from '../../components/Container'
+import PopularCategories from '../../components/UI/PopularCategories'
+import AddBanner from '../../components/UI/AddBanner'
+import ProductsTitle from '../../components/UI/ProductsTitle'
+import ShowMore from '../../components/UI/ShowMore'
+import MenuBar from '../../components/UI/MenuBar'
+import Carusel from '../../components/UI/Carusel'
 import useFetchList from '../../hooks/useFetchList'
 import products from './cons'
 
-import { getEmployerList } from './actions'
 
 const ProductListBlock = styled.div`
   display: flex;

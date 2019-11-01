@@ -11,11 +11,11 @@ import {updateMeta} from './DOMUtils'
 import router from './router'
 import * as Rx from 'rxjs'
 import {setObservableConfig} from 'recompose'
-import smoothScrollTo from 'helpers/smoothScrollTo'
+import smoothScrollTo from 'utils/smoothScrollTo'
 import createStore from './store/createStore'
 import {startListener} from 'redux-first-routing'
 import generateClassName from 'helpers/generateClassName'
-import {getCartItems} from 'helpers/storage'
+import {getCartItems} from 'utils/storage'
 
 const initialState = {
   ...window.initialState,
@@ -56,10 +56,6 @@ const scrollPositionsHistory = {}
 
 // Re-render the app when window.location changes
 async function onLocationChange (location, action, onHotUpdate) {
-
-  // GET USER DATA
-  //  token && await store.dispatch(userInfoFetch(token))
-
 
   // Remember the latest scroll position for the previous location
   scrollPositionsHistory[currentLocation.key] = {

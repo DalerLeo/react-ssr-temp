@@ -1,15 +1,15 @@
-/* eslint-disable global-require */
 /* eslint-disable capitalized-comments */
 /* eslint-disable no-inline-comments */
 /* eslint-disable no-undef */
-import * as ROUTE from 'constants/routes'
-import * as actionTypes from 'constants/actionTypes'
+import * as ROUTE from '../constants/routes'
+import * as actionTypes from '../constants/actionTypes'
 
 const setLoader = (loading) => ({
   type: actionTypes.ASYNC_LOADING,
   data: '',
   loading: loading
 })
+
 const routes = {
   path: '',
 
@@ -20,28 +20,17 @@ const routes = {
       action: require('./home').default
     },
     {
-      path: ROUTE.SEARCH_URL,
-      load: () => import(/* webpackChunkName: 'search' */ './search')
-    },
-    {
-      path: ROUTE.SEARCH_RESULTS_URL,
-      action: require('./results').default
-    },
-    {
-      path: ROUTE.USER_SETTING_URL,
-      load: () => import(/* webpackChunkName: 'setting' */ './setting')
-    },
-    {
       path: ROUTE.ARTICLES_URL,
       children: [
         {
           path: '',
           load: () => import(/* webpackChunkName: 'articles' */ './articles')
         },
-        {
+
+        /*        {
           path: '/:id',
-          load: () => import(/* webpackChunkName: 'article-details' */ './article-details')
-        }
+          load: () => import(/!* webpackChunkName: 'article-details' *!/ './article-details')
+        } */
 
       ]
     },
@@ -53,10 +42,6 @@ const routes = {
           load: () => import(/* webpackChunkName: 'static-page' */ './static-page')
         }
       ]
-    },
-    {
-      path: ROUTE.CONTACT_URL,
-      load: () => import(/* webpackChunkName: 'contact-us' */ './contact-us')
     },
     // Wildcard routes, e.g. { path: '(.*)', ... } (must go last)
     {
@@ -76,7 +61,7 @@ const routes = {
     props.store.dispatch(setLoader(false))
 
     // Provide default values for title, description etc.
-    route.title = `${route.title || 'Untitled Page'} - MyJob.uz`
+    route.title = `${route.title || 'Untitled Page'}`
     route.description = route.description || ''
 
     return route

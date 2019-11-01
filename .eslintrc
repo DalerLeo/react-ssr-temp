@@ -160,10 +160,6 @@
       "cb",
       "callback"
     ],
-    "quotes": [
-      "error",
-      "single"
-    ],
     "key-spacing": "off",
     "keyword-spacing": "error",
     "line-comment-position": "error",

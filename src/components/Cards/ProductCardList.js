@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { path, find, propEq } from 'ramda'
-import { Card } from 'components/Cards'
-import Button from 'components/UI/Button'
-import Image from 'components/UI/Image'
-import Price from 'components/UI/Price'
-import ProductContent from 'components/UI/ProductContent'
+import { Card } from '../../components/Cards'
+import Button from '../../components/UI/Button'
+import Image from '../../components/UI/Image'
+import Price from '../../components/UI/Price'
+import ProductContent from '../../components/UI/ProductContent'
 import SalePrice from '../UI/SalePrice/SalePrice'
 
 const StyledCard = styled(Card)`

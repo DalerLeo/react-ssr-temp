@@ -1,4 +1,4 @@
-import { MAIN_COLOR } from 'constants/styles'
+import { MAIN_COLOR } from '../../constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectSHeet from 'react-jss'

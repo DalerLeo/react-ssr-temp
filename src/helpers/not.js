@@ -1,1 +1,0 @@
-export default flag => !flag

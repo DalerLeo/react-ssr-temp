@@ -1,5 +1,5 @@
-import translations from 'constants/translations'
 import fp from 'lodash/fp'
+import translations from '../constants/translations'
 
 export const getTranslate = (obj, lang, objName = 'name') => {
   const name = objName + fp.capitalize(lang)

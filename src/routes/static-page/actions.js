@@ -1,8 +1,8 @@
-import * as API from 'constants/api'
-import * as actionTypes from 'constants/actionTypes'
 import fp from 'lodash/fp'
 import sprintf from 'sprintf'
-import axios from 'helpers/axiosHelper'
+import * as API from '../../constants/api'
+import * as actionTypes from '../../constants/actionTypes'
+import axios from '../../utils/axios'
 
 export const getStaticPagesList = () => {
   return (dispatch, getState) => {

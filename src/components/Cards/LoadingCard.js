@@ -7,7 +7,7 @@ import {
   BLACK_COLOR,
   FADE_IN_ANIMATE,
   ANCHOR_DISABLED
-} from 'constants/styles'
+} from '../../constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
@@ -217,7 +217,6 @@ const LoadingCard = props => {
 
 LoadingCard.propTypes = {
   classes: PropTypes.object,
-  data: PropTypes.number.isRequired,
   type: PropTypes.oneOf([
     RESUME,
     SEARCH,

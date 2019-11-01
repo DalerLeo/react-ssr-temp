@@ -1,8 +1,8 @@
 import {
   BLACK_COLOR,
   WHITE_COLOR
-} from 'constants/styles'
-import { hexToRgb } from 'helpers'
+} from '../../constants/styles'
+import { hexToRgb } from '../../helpers'
 
 const styles = {
   wrapper: {

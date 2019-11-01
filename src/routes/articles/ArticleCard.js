@@ -5,8 +5,8 @@ import {
   BLACK_COLOR,
   ANCHOR_DISABLED,
   maxLineClamp
-} from 'constants/styles'
-import { ARTICLES_ITEM_URL } from 'constants/routes'
+} from '../../constants/styles'
+import { ARTICLES_ITEM_URL } from '../../constants/routes'
 import _ from 'lodash'
 import React from 'react'
 import sprintf from 'sprintf'
@@ -14,11 +14,8 @@ import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
-import hexToRgb from 'helpers/hexToRgb'
-import dateFormat from 'helpers/dateFormat'
-import Link from 'components/Link'
-import T from 'components/T'
-import TW from 'components/TW'
+import hexToRgb from '../../helpers/hexToRgb'
+import Link from '../../components/Link'
 
 const enhance = compose(
   injectSheet({
@@ -116,8 +113,6 @@ const ArticleCard = props => {
   const image = _.get(data, 'photo.file')
   const isArticle = _.get(data, 'type') === 'article'
   const link = _.get(data, 'link')
-  const date = _.get(data, 'createdDate')
-  const tagName = isArticle ? 'main_article' : 'main_news'
   return (
     <Link
       smooth={smooth}
@@ -137,11 +132,8 @@ const ArticleCard = props => {
             [classes.tagNoImage]: !image,
             [classes.article]: isArticle
           })}
-          ><T>{tagName}</T>
-          </div>
-          <div className={classes.date}>
-            <TW>{lang => dateFormat(date, false, lang)}</TW>
-          </div>
+          />
+          <div className={classes.date} />
           <div className={classes.title}>{title}</div>
           <div className={classes.description}>{description}</div>
         </div>

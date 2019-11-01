@@ -4,8 +4,8 @@ import {
   WHITE_COLOR,
   crossBrowserify,
   fallbacksStyle, BLACK_COLOR
-} from 'constants/styles'
-import hexToRgb from 'helpers/hexToRgb'
+} from '../../constants/styles'
+import hexToRgb from '../../helpers/hexToRgb'
 
 const styles = {
   container: {

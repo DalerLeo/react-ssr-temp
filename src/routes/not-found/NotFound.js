@@ -1,10 +1,9 @@
-import { MAIN_COLOR } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
-import My404 from 'icons/404'
-import Link from 'components/Link'
-import T from 'components/T'
+import { MAIN_COLOR } from '../../constants/styles'
+import My404 from '../../icons/404'
+import Link from '../../components/Link'
 
 const withStyles = injectSheet({
   wrapper: {
@@ -41,8 +40,8 @@ const NotFound = props => {
       <div className={classes.errorCode}>
         <My404 /><span>404</span>
       </div>
-      <div className={classes.errorText}><T>page_not_found_text</T></div>
-      <Link to="/" className={classes.goHome}><T>page_not_found_go_home</T></Link>
+      <div className={classes.errorText} />
+      <Link to="/" className={classes.goHome} />
     </div>
   )
 }

@@ -21,12 +21,10 @@ import * as Rx from 'rxjs'
 import {setObservableConfig} from 'recompose'
 import createStore from './store/createStore'
 import queryToParams from './helpers/queryToParams'
-import fetch from 'node-fetch'
 import generateClassName from 'helpers/generateClassName'
 import createHistory from 'history/createMemoryHistory'
 import {startListener} from 'redux-first-routing'
 import History from './HistoryProvider'
-import * as sprintf from 'sprintf'
 import { ServerStyleSheet } from 'styled-components'
 
 const SUCCESS = 200
@@ -86,48 +84,9 @@ app.get('*', async (req, res, next) => {
       styles.forEach(style => css.add(style._getCss()))
     }
     const dispatch = store.dispatch
-    if (req.query.uid && req.query.token) {
-      await fetch(sprintf(API.API_URL + API.USER_ACTIVATION, req.query.uid, req.query.token))
-        .then(data => {
-          const status = fp.get('status', data)
-          dispatch({
-            type: actionTypes.USER_ACTIVATION,
-            data: status,
-            loading: false
-          })
-        })
-    }
-    let isAuth = false
 
     // Get TOKEN / LANGUAGE from header
-    const token = req.cookies.token
     const lang = req.cookies.lang || 'ru'
-
-/*
-    // If exist and valid token initialize store with TOKEN
-    token && await fetch(API.API_URL + API.CHECK_TOKEN + token)
-      .then((response) => {
-        if (response.status === 404) {
-          return Promise.reject({ response })
-        }
-        isAuth = true
-        return Promise.resolve(response)
-      })
-      .then(() => dispatch({
-        payload: Promise.resolve({token}),
-        type: actionTypes.LOGIN
-      }))
-      .then(() => dispatch(() => Promise.resolve('promise')))
-      .catch(error => {
-        const status = fp.get('response.status', error)
-        if (status === 404 || status === 401) {
-          isAuth = false
-          res.clearCookie('token')
-          dispatch({type: `${actionTypes.LOGIN}_CLEAR`})
-          dispatch({type: `${actionTypes.USER_INFO}_CLEAR`})
-        }
-      })
-*/
 
     lang && dispatch({
       payload: lang,
