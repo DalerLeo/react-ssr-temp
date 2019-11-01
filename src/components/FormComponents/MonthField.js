@@ -1,16 +1,18 @@
+import {
+  FIELD_BORDER_STYLE
+} from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
-import {
-  FIELD_BORDER_STYLE
-} from 'constants/styles'
 import Label from 'components/FormComponents/FieldLabel'
 import RenderOrNull from 'components/Utils/RenderOrNull'
 import Label2 from 'components/FormComponents/FieldLabel/FieldLabel2'
 import DatePicker from 'antd/lib/date-picker'
+
 const { MonthPicker } = DatePicker
 import locale from 'antd/lib/date-picker/locale/en_US'
+
 const enhance = compose(
   injectSheet({
     wrapper: {},
@@ -62,13 +64,13 @@ const DateField = (props) => {
   return (
     <div className={classes.wrapper}>
       <RenderOrNull value={label2}>
-        <Label required={required} label={label}/>
+        <Label required={required} label={label} />
       </RenderOrNull>
       <RenderOrNull value={label2}>
-        <Label2 label={label2}/>
+        <Label2 label={label2} />
       </RenderOrNull>
       <MonthPicker
-        month
+        month={true}
         value={input.value}
         onChange={input.onChange}
         placeholder="дд/мм/гг"

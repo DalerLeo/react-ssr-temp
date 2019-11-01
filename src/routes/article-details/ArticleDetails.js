@@ -1,10 +1,10 @@
+import { DATE_COLOR } from 'constants/styles'
 import fpGet from 'lodash/fp/get'
 import fpMap from 'lodash/fp/map'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose, withState } from 'recompose'
 import injectSheet from 'react-jss'
-import { DATE_COLOR } from 'constants/styles'
 import dateFormat from 'helpers/dateFormat'
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
@@ -61,17 +61,17 @@ const ArticleDetails = props => {
     <Container>
       <div className={classes.wrapper}>
         <div className={classes.header}>
-          <Title margin={0} text={title}/>
+          <Title margin={0} text={title} />
           <div className={classes.date}><T>main_published_date</T> {createdDate}</div>
         </div>
         <div className={classes.content}>
           <HtmlContent>{content}</HtmlContent>
         </div>
-        <Title margin={'30px 0 22px 0'} text={'Похожие статьи'}/>
-        <Row type={'flex'} gutter={20}>
+        <Title margin="30px 0 22px 0" text="Похожие статьи" />
+        <Row type="flex" gutter={20}>
           {fpMap(item => (
             <Col key={item.id} span={8}>
-              <ArticleCard smooth={true} id={item.id} data={item}/>
+              <ArticleCard smooth={true} id={item.id} data={item} />
             </Col>
           ), list)}
         </Row>

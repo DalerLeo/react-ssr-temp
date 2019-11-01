@@ -1,7 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
 import {
   BORDER_COLOR,
   crossBrowserify,
@@ -9,6 +5,10 @@ import {
   FIELD_BORDER_STYLE,
   TEXT_COLOR_DEFAULT
 } from 'constants/styles'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import Spinner from 'icons/Spinner'
 import Label from 'components/FormComponents/FieldLabel/FieldLabel2'
@@ -84,7 +84,7 @@ const TextField = (props) => {
 
   return (
     <div className={classes.wrapper}>
-      <Label label={label}/>
+      <Label label={label} />
       <div className={classes.inputWrapper}>
         {prefix && <div className={classes.prefix}>{prefix}</div>}
         <TextArea
@@ -94,7 +94,7 @@ const TextField = (props) => {
           disabled={disabled || loading}
           {...defaultProps}
         />
-        {loading && <div className={classes.loading}><Spinner/></div>}
+        {loading && <div className={classes.loading}><Spinner /></div>}
       </div>
     </div>
   )

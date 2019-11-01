@@ -1,3 +1,9 @@
+import {
+  crossBrowserify,
+  fallbacksStyle,
+  LABEL_COLOR,
+  MAIN_COLOR
+} from 'constants/styles'
 import loMap from 'lodash/map'
 import fp from 'lodash/fp'
 import React, { useEffect } from 'react'
@@ -7,22 +13,16 @@ import { Field, reduxForm } from 'redux-form'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import { hexToRgb } from 'helpers'
-import {
-  crossBrowserify,
-  fallbacksStyle,
-  LABEL_COLOR,
-  MAIN_COLOR
-} from 'constants/styles'
 import t from 'helpers/translate'
 import T from 'components/T'
 import TW from 'components/TW'
 import Container from 'components/Container'
 import Title from 'components/Title'
 import { Button, GREY } from 'components/Button'
+import { TextField } from 'components/FormComponents'
 import ApplicantForm from './components/ApplicantForm'
 import EmployerForm from './components/EmployerForm'
 import ConfirmDelete from './components/ConfirmDelete'
-import { TextField } from 'components/FormComponents'
 
 const borderStyle = `1px solid ${hexToRgb('#979797', '0.3')}`
 const styles = {
@@ -163,12 +163,12 @@ const Setting = ({ isEmployer, ...props }) => {
 
   const authFields = (
     <div className={classes.authField}>
-      <Title medium isStatic={true} margin="0 0 15px 0" text='main_auth_data'/>
+      <Title medium={true} isStatic={true} margin="0 0 15px 0" text="main_auth_data" />
       <div className={classes.field}>
         <Field
           component={TextField}
-          name={'email'}
-          label2={'Email'}
+          name="email"
+          label2="Email"
         />
         <div className={classes.hint}><T>company_email_hint</T></div>
       </div>
@@ -177,14 +177,14 @@ const Setting = ({ isEmployer, ...props }) => {
           <div className={classNames(classes.field, classes.passwordField)}>
             <Field
               component={TextField}
-              name={'password'}
-              type={'password'}
+              name="password"
+              type="password"
               label2={t('login_password', lang)}
             />
             <Field
               component={TextField}
-              type={'password'}
-              name={'passwordConfirm'}
+              type="password"
+              name="passwordConfirm"
               label2={t('login_password_confirm', lang)}
             />
           </div>
@@ -196,7 +196,7 @@ const Setting = ({ isEmployer, ...props }) => {
   return (
     <Container>
       <div className={classes.wrapper}>
-        <Title isStatic={true} margin={'0 0 20px'} text={'menu_my_settings'}/>
+        <Title isStatic={true} margin="0 0 20px" text="menu_my_settings" />
         <form onSubmit={handleSubmit}>
           <div className={classes.settingWrap}>
             {isEmployer
@@ -212,24 +212,25 @@ const Setting = ({ isEmployer, ...props }) => {
             <div className={classes.actButton}>
               <Button
                 style={{ marginRight: '25px', padding: '0 64px' }}
-                text={'button_cancel'}
-                type={'medium'}
+                text="button_cancel"
+                type="medium"
                 bordered={true}
                 color={GREY}
                 onClick={() => history.goBack()}
               />
               <Button
                 style={{ padding: '0 60px' }}
-                text={'button_save_changes'}
-                type={'medium'}
-                submitType={'submit'}
+                text="button_save_changes"
+                type="medium"
+                submitType="submit"
                 loading={employerUpdateLoading || applicantUpdateLoading}
               />
             </div>
           </div>
           <div
             className={classes.deleteAccount}
-            onClick={blockUserDialog.handleOpen}>
+            onClick={blockUserDialog.handleOpen}
+          >
             <span>Удалить аккаунт</span>
           </div>
         </form>

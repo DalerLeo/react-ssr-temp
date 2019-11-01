@@ -20,8 +20,8 @@ const BLOCK_TYPES = [
     */
 
   // NEEDED BLOCK TYPES
-  { label: <FormatUl/>, style: 'unordered-list-item' },
-  { label: <FormatOl/>, style: 'ordered-list-item' }
+  { label: <FormatUl />, style: 'unordered-list-item' },
+  { label: <FormatOl />, style: 'ordered-list-item' }
 ]
 
 export default BLOCK_TYPES

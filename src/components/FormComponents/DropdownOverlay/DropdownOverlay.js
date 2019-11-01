@@ -1,3 +1,4 @@
+import { crossBrowserify, PRIMARY_COLOR, WHITE_COLOR } from 'constants/styles'
 import _ from 'lodash'
 import React from 'react'
 import { compose } from 'recompose'
@@ -7,7 +8,6 @@ import PropTypes from 'prop-types'
 import Menu from 'antd/lib/menu'
 import { Field } from 'redux-form'
 import { Checkbox, RadioGroup, Radio } from 'components/FormComponents'
-import { crossBrowserify, PRIMARY_COLOR, WHITE_COLOR } from 'constants/styles'
 
 const enhance = compose(
   injectSheet({
@@ -76,11 +76,12 @@ const DropdownOverlay = (props) => {
   if (type === 'radio') {
     return (
       <Menu className={classNames(classes.menu, classes.radioMenu)}>
-        <Menu.Item key={'radio'}>
+        <Menu.Item key="radio">
           <Field
             name={name}
             component={RadioGroup}
-            onChange={setVisible}>
+            onChange={setVisible}
+          >
             {_.map(items, item => {
               const value = _.get(item, 'key')
               const label = _.get(item, 'label')

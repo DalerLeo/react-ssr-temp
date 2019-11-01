@@ -28,22 +28,22 @@ const PopularCategories = () => {
   return (
     <PopularBlock>
       <PopularStyled>
-        <PopularImage src={img1} alt="image"/>
+        <PopularImage src={img1} alt="image" />
       </PopularStyled>
       <PopularStyled>
-        <PopularImage src={img1} alt="image"/>
+        <PopularImage src={img1} alt="image" />
       </PopularStyled>
       <PopularStyled>
-        <PopularImage src={img1} alt="image"/>
+        <PopularImage src={img1} alt="image" />
       </PopularStyled>
       <PopularStyled>
-        <PopularImage src={img1} alt="image"/>
+        <PopularImage src={img1} alt="image" />
       </PopularStyled>
       <PopularStyled>
-        <PopularImage src={img1} alt="image"/>
+        <PopularImage src={img1} alt="image" />
       </PopularStyled>
       <PopularStyled>
-        <PopularImage src={img1} alt="image"/>
+        <PopularImage src={img1} alt="image" />
       </PopularStyled>
     </PopularBlock>
   )

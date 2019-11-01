@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
-import classNames from 'classnames'
 import {
   crossBrowserify,
   fallbacksStyle,
   MAIN_COLOR
 } from 'constants/styles'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
+import classNames from 'classnames'
 import { hexToRgb } from 'helpers'
 
 const enhance = compose(

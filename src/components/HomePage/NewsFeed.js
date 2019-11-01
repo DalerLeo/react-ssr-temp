@@ -1,12 +1,3 @@
-import _ from 'lodash'
-import fp from 'lodash/fp'
-import React, { useRef } from 'react'
-import sprintf from 'sprintf'
-import PropTypes from 'prop-types'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
-import classNames from 'classnames'
-import Link from 'components/Link'
 import {
   crossBrowserify,
   fallbacksStyle,
@@ -17,6 +8,15 @@ import {
   MAIN_BORDER
 } from 'constants/styles'
 import { ARTICLES_URL, ARTICLES_ITEM_URL } from 'constants/routes'
+import _ from 'lodash'
+import fp from 'lodash/fp'
+import React, { useRef } from 'react'
+import sprintf from 'sprintf'
+import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
+import classNames from 'classnames'
+import Link from 'components/Link'
 import hexToRgb from 'helpers/hexToRgb'
 import Carousel from 'antd/lib/carousel'
 import ChevronLeft from 'icons/ChevronLeft'
@@ -155,16 +155,20 @@ const NewsFeed = props => {
 
   return (
     <div className={classes.wrapper}>
-      <Title text={<T>main_compilation</T>}/>
+      <Title text={<T>main_compilation</T>} />
       {showButtons &&
-      <button className={classNames(classes.nav, classes.prev)} onClick={() => {
-        const slider = _.get(sliderRef, 'current.innerSlider')
-        return slider.slickPrev()
-      }}><ChevronLeft/></button>}
+      <button
+        className={classNames(classes.nav, classes.prev)} onClick={() => {
+          const slider = _.get(sliderRef, 'current.innerSlider')
+          return slider.slickPrev()
+        }}
+      ><ChevronLeft />
+      </button>}
       <Carousel
         ref={sliderRef}
         className={classes.carousel}
-        {...sliderConfig}>
+        {...sliderConfig}
+      >
         {_.map(newsList, item => {
           const id = _.get(item, 'id')
           const title = _.get(item, 'title')
@@ -174,7 +178,7 @@ const NewsFeed = props => {
           return (
             <Link to={sprintf(ARTICLES_ITEM_URL, id)} key={id} className={classes.itemWrapper}>
               <div className={classes.item}>
-                <div className={classes.image} style={{ backgroundImage: image ? `url(${image}` : '' }} alt="image"/>
+                <div className={classes.image} style={{ backgroundImage: image ? `url(${image}` : '' }} alt="image" />
                 <div className={classNames(classes.text, { [classes.link]: link })}>
                   <div className={classes.title}>{title}</div>
                   <div className={classes.description}>{description}</div>
@@ -185,14 +189,17 @@ const NewsFeed = props => {
         })}
       </Carousel>
       {showButtons &&
-      <button className={classNames(classes.nav, classes.next)} onClick={() => {
-        const slider = _.get(sliderRef, 'current.innerSlider')
-        return slider.slickNext()
-      }}><ChevronRight/></button>}
+      <button
+        className={classNames(classes.nav, classes.next)} onClick={() => {
+          const slider = _.get(sliderRef, 'current.innerSlider')
+          return slider.slickNext()
+        }}
+      ><ChevronRight />
+      </button>}
       <MoreButton
         onClick={null}
         link={ARTICLES_URL}
-        text={'button_more_news'}
+        text="button_more_news"
       />
     </div>
   )

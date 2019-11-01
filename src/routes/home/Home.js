@@ -9,10 +9,11 @@ import ProductsTitle from 'components/UI/ProductsTitle'
 import ShowMore from 'components/UI/ShowMore'
 import MenuBar from 'components/UI/MenuBar'
 import Carusel from 'components/UI/Carusel'
+import useFetchList from '../../hooks/useFetchList'
 import products from './cons'
 
-import useFetchList from '../../hooks/useFetchList'
-import {getEmployerList} from './actions'
+import { getEmployerList } from './actions'
+
 const ProductListBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -29,15 +30,15 @@ const Home = props => {
       <Container>
         <HeaderMenu>
           <MenuBar />
-          <Carusel></Carusel>
+          <Carusel />
         </HeaderMenu>
         <ProductsTitle title="Популярные товары" />
         <ProductListBlock>
-          <ProductCardList products={products}/>
+          <ProductCardList products={products} />
         </ProductListBlock>
         <ProductsTitle title="Новинки" pagination={true} />
         <ProductListBlock>
-          <ProductCardList products={products}/>
+          <ProductCardList products={products} />
         </ProductListBlock>
         <ProductsTitle title="Популярные категории" />
         <PopularCategories />
@@ -46,7 +47,7 @@ const Home = props => {
         <PopularCategories />
         <ProductsTitle title="Лучшие товары за месяц" />
         <ProductListBlock>
-          <ProductCardList products={products}/>
+          <ProductCardList products={products} />
         </ProductListBlock>
         <ShowMore />
       </Container>

@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import loMap from 'lodash/map'
-import fp from 'lodash/fp'
-import injectSheet from 'react-jss'
 import {
   crossBrowserify,
   fallbacksStyle,
   MAIN_COLOR
 } from 'constants/styles'
+import React from 'react'
+import PropTypes from 'prop-types'
+import loMap from 'lodash/map'
+import fp from 'lodash/fp'
+import injectSheet from 'react-jss'
 import { getTranslate } from 'helpers/translate'
 import CollapsedIcon from 'react-icons/lib/md/add'
 import ExpandedIcon from 'react-icons/lib/md/remove'
@@ -131,11 +131,12 @@ const Faq = props => {
                     return (
                       <span>
                         {isActive
-                          ? <ExpandedIcon className={classes.panelIcon}/>
-                          : <CollapsedIcon className={classes.panelIcon}/>}
+                          ? <ExpandedIcon className={classes.panelIcon} />
+                          : <CollapsedIcon className={classes.panelIcon} />}
                       </span>
                     )
-                  }}>
+                  }}
+                >
                   {loMap(questions, item => {
                     const id = fp.get('id', item)
                     const question = fp.get('questionRu', item)
@@ -144,7 +145,8 @@ const Faq = props => {
                       <Panel
                         key={parent + id}
                         className={classes.panel}
-                        header={question}>
+                        header={question}
+                      >
                         {answer}
                       </Panel>
                     )

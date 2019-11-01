@@ -1,3 +1,4 @@
+import { crossBrowserify } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
@@ -8,7 +9,6 @@ import toBoolean from 'helpers/toBoolean'
 import T from 'components/T'
 import fp from 'lodash/fp'
 import ArrowDown from 'react-icons/lib/md/keyboard-arrow-down'
-import { crossBrowserify } from 'constants/styles'
 
 const enhance = compose(
   withHistory,
@@ -36,14 +36,16 @@ const OrderingFilter = props => {
   return (
     <div
       onClick={() => history.replace(filter.sortingURL(value))}
-      className={classes.ordering}>
+      className={classes.ordering}
+    >
       <span>
         <T>{name}</T>
         <ArrowDown className={classNames({
           [classes.False]: filter.getSortingType(value) === false,
           [classes.Null]: fp.isNull(filter.getSortingType(value)),
           [classes.True]: toBoolean(filter.getSortingType(value))
-        })}/>
+        })}
+        />
       </span>
     </div>
 

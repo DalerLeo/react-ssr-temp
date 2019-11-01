@@ -1,9 +1,9 @@
+import * as API from 'constants/api'
+import * as actionTypes from 'constants/actionTypes'
 import fp from 'lodash/fp'
 import axios from 'helpers/axiosHelper'
 import toSnakeCase from 'helpers/toSnakeCase'
 import sprintf from 'sprintf'
-import * as API from 'constants/api'
-import * as actionTypes from 'constants/actionTypes'
 import { convertEmptyValuesToNull } from 'helpers/convert'
 
 export const applicantUpdateAction = (data, id) => {

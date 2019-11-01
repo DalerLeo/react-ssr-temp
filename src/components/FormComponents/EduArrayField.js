@@ -1,23 +1,23 @@
-import React from 'react'
-import { compose } from 'recompose'
-import fp from 'lodash/fp'
-import injectSheet from 'react-jss'
-import { Field } from 'redux-form'
-import PropTypes from 'prop-types'
-import SearchFieldConfig from './SearchFieldConfig'
-import TextField from './TextField/TextField'
 import * as API from 'constants/api'
 import {
   crossBrowserify,
   fallbacksStyle,
   fieldArrayStyles, ONE
 } from 'constants/styles'
-import t from 'helpers/translate'
 import { EDUCATION_LIST } from 'constants/backend'
+import React from 'react'
+import { compose } from 'recompose'
+import fp from 'lodash/fp'
+import injectSheet from 'react-jss'
+import { Field } from 'redux-form'
+import PropTypes from 'prop-types'
+import t from 'helpers/translate'
 import T from 'components/T'
 import Title from 'components/Title'
-import { Checkbox, CustomDateField } from './index'
 import DeleteIcon from 'icons/Delete'
+import TextField from './TextField/TextField'
+import SearchFieldConfig from './SearchFieldConfig'
+import { Checkbox, CustomDateField } from './index'
 
 const enhance = compose(
   injectSheet({
@@ -50,8 +50,9 @@ const EduArrayField = (props) => {
       <Title
         isStatic={true}
         medium={true}
-        margin={'0 0 30px'}
-        text={extra ? 'main_extra_education' : 'main_education'}/>
+        margin="0 0 30px"
+        text={extra ? 'main_extra_education' : 'main_education'}
+      />
       <div>
         {fields.map((field, index) => {
           const present = fp.get('present', fields.get(index))
@@ -76,58 +77,55 @@ const EduArrayField = (props) => {
                   name={`${field}.country`}
                   component={SearchFieldConfig}
                   api={API.REGIONS_LIST}
-                  itemName={'nameRu'}
+                  itemName="nameRu"
                   params={{ type: 'region' }}
-                  label2={'Город обучения'}
+                  label2="Город обучения"
                 />
               </div>}
               {!hideFields &&
-              <React.Fragment>
-                <div className={classes.fields}>
-                  <Field
-                    name={`${field}.institution`}
-                    label2={t('resume_institution', lang)}
-                    component={SearchFieldConfig}
-                    api={API.INSTITUTION_LIST}
-                    disableOpenOnFocus={true}
-                    onBlur={(event, univer) => {
-                      onUniverCreate({
-                        univer,
-                        country,
-                        fieldName: field,
-                        type
-                      })
-                    }}
-                  />
-                </div>
-                {!extra && <div className={classes.fields}>
-                  <Field
-                    name={`${field}.faculty`}
-                    component={TextField}
-                    label2={t('resume_faculty', lang)}
-                  />
-                </div>}
-                <div className={classes.fields}>
-                  <Field
-                    name={`${field}.speciality`}
-                    component={TextField}
-                    label2={t('resume_specialty', lang)}
-                  />
-                </div>
-              </React.Fragment>}
+              <>'               '<div className={classes.fields}>
+                <Field
+                  name={`${field}.institution`}
+                  label2={t('resume_institution', lang)}
+                  component={SearchFieldConfig}
+                  api={API.INSTITUTION_LIST}
+                  disableOpenOnFocus={true}
+                  onBlur={(event, univer) => {
+                    onUniverCreate({
+                      univer,
+                      country,
+                      fieldName: field,
+                      type
+                    })
+                  }}
+                />
+                                 </div>'               '{!extra && <div className={classes.fields}>
+                <Field
+                                     name={`${field}.faculty`}
+                                     component={TextField}
+                                     label2={t('resume_faculty', lang)}
+                                   />
+                                                </div>}'               '<div className={classes.fields}>
+                <Field
+                                                    name={`${field}.speciality`}
+                                                    component={TextField}
+                                                    label2={t('resume_specialty', lang)}
+                                                  />
+                                      </div>'             '
+              </>}
               <div className={classes.time}>
                 <Field
                   name={`${field}.fromDate`}
                   component={CustomDateField}
                   label={t('resume_start_edu', lang)}
-                  type={'month'}
+                  type="month"
                 />
                 {!present && (
                   <Field
                     name={`${field}.toDate`}
                     component={CustomDateField}
                     label={t('resume_end_edu', lang)}
-                    type={'month'}
+                    type="month"
                   />
                 )}
               </div>
@@ -139,7 +137,7 @@ const EduArrayField = (props) => {
               />
               {fields.length > ONE &&
               <div className={classes.deleteBtn} onClick={() => fields.remove(index)}>
-                <DeleteIcon/>
+                <DeleteIcon />
               </div>}
             </div>
           )

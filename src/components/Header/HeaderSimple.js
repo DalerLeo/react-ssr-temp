@@ -1,14 +1,14 @@
+import {
+  BLACK_COLOR,
+  crossBrowserify,
+  fallbacksStyle
+} from 'constants/styles'
 import fp from 'lodash/fp'
 import React from 'react'
 import { compose } from 'recompose'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import injectSheet from 'react-jss'
-import {
-  BLACK_COLOR,
-  crossBrowserify,
-  fallbacksStyle
-} from 'constants/styles'
 import withHistory from 'helpers/withHistory'
 import hexToRgb from 'helpers/hexToRgb'
 

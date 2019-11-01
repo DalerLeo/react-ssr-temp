@@ -1,7 +1,7 @@
+import { FIELD_BORDER_STYLE } from 'constants/styles'
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
-import { FIELD_BORDER_STYLE } from 'constants/styles'
 import TextArea from 'antd/lib/input/TextArea'
 import Dialog from 'components/Dialog'
 import Title from 'components/Title'
@@ -42,20 +42,21 @@ const ConfirmDelete = props => {
     <Dialog
       open={open}
       handleClose={handleClose}
-      width={600}>
+      width={600}
+    >
       <div className={classes.wrapper}>
-        <Title text={'Подтвердите действие'} medium={true}/>
+        <Title text="Подтвердите действие" medium={true} />
         <TextArea
           autosize={{ minRows: 2, maxRows: 10 }}
-          placeholder={'Укажите причину (необязательно)'}
+          placeholder="Укажите причину (необязательно)"
           className={classes.textArea}
           onChange={event => setCommentText(event.target.value)}
         />
         <div className={classes.button}>
           <Button
             onClick={() => handleSubmit(commentText)}
-            text={'button_simple_del'}
-            type={'medium'}
+            text="button_simple_del"
+            type="medium"
           />
         </div>
       </div>

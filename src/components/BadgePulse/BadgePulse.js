@@ -1,7 +1,7 @@
+import { crossBrowserify } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
-import { crossBrowserify } from 'constants/styles'
 
 const withStyles = injectSheet({
   badge: {
@@ -21,7 +21,7 @@ const withStyles = injectSheet({
 
 const BadgePulse = props => {
   const { classes, positions } = props
-  return <div className={classes.badge} style={{ ...positions }}/>
+  return <div className={classes.badge} style={{ ...positions }} />
 }
 
 BadgePulse.propTypes = {

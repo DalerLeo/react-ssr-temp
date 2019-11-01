@@ -6,9 +6,7 @@ import withLanguage from 'helpers/withLanguage'
 
 const T = ({ children, lang, dispatch, ...props }) => {
   return (
-    <React.Fragment>
-      {sprintf(t(children, lang), props)}
-    </React.Fragment>
+    <>'     '{sprintf(t(children, lang), props)}'   '</>
   )
 }
 

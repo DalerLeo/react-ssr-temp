@@ -1,7 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
 import {
   BORDER_COLOR,
   crossBrowserify,
@@ -9,6 +5,10 @@ import {
   FIELD_BORDER_STYLE,
   TEXT_COLOR_DEFAULT
 } from 'constants/styles'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import Label from 'components/FormComponents/FieldLabel'
 import Label2 from 'components/FormComponents/FieldLabel/FieldLabel2'
@@ -115,14 +115,15 @@ const TextField = (props) => {
 
   return (
     <div style={{ width }} className={classes.wrapper}>
-      <Label label={label}/>
-      <Label2 label={label2}/>
+      <Label label={label} />
+      <Label2 label={label2} />
       <div
         className={classNames({
           [classes.inputWrapper]: true,
           [wrapperClass]: true,
           [classes.overflow]: overflow
-        })}>
+        })}
+      >
         {prefix && <div className={classes.prefix}>{prefix}</div>}
         <input
           type={type}

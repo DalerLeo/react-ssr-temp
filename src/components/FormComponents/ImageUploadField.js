@@ -1,3 +1,10 @@
+import * as PATH from 'constants/api'
+import {
+  crossBrowserify,
+  fallbacksStyle,
+  FIELD_BORDER_STYLE,
+  MAIN_COLOR
+} from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import fp from 'lodash/fp'
@@ -6,13 +13,6 @@ import { connect } from 'react-redux'
 import injectSheet from 'react-jss'
 import axios from 'helpers/axiosHelper'
 import t from 'helpers/translate'
-import * as PATH from 'constants/api'
-import {
-  crossBrowserify,
-  fallbacksStyle,
-  FIELD_BORDER_STYLE,
-  MAIN_COLOR
-} from 'constants/styles'
 import EditIcon from 'icons/EditPen'
 import ProfilePic from 'components/ProfilePic'
 import TW from 'components/TW'
@@ -100,14 +100,14 @@ const ImageUploadField = props => {
   return (
     <div className={classes.imageWrap}>
       <div>
-        <ProfilePic image={fp.get('value.file', input)} type={'mini'}/>
+        <ProfilePic image={fp.get('value.file', input)} type="mini" />
       </div>
-      <input className={classes.input} onChange={onInputChange} type="file" id={'fileInput'}/>
+      <input className={classes.input} onChange={onInputChange} type="file" id="fileInput" />
       <TW>
         {lang => (
           <label htmlFor="fileInput" title={t('button_simple_edit', lang)}>
             <div className={classes.actionBtn}>
-              <EditIcon/>
+              <EditIcon />
             </div>
           </label>
         )}

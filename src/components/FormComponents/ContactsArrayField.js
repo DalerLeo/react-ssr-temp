@@ -1,15 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
-import CloseIcon from 'react-icons/lib/md/close'
-import { Field } from 'redux-form'
 import {
   crossBrowserify,
   fallbacksStyle,
   MAIN_COLOR
 } from 'constants/styles'
 import { SOCIAL_LIST } from 'constants/backend'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
+import CloseIcon from 'react-icons/lib/md/close'
+import { Field } from 'redux-form'
 import t from 'helpers/translate'
 import SearchFieldConfig from './SearchFieldConfig'
 import TextField from './TextField'
@@ -61,35 +61,33 @@ const ContactsArrayField = (props) => {
 
   const onRemove = (index) => fields.remove(index)
   return (
-    <React.Fragment>
-      <div className={classes.socialTitle}>
-        <Label label={t('applicant_alt_communicate', lang)}/>
-        <span onClick={handleTouchTap} className={classes.addBtn}>{t('button_simple_add', lang)}</span>
-      </div>
-      {fields.map((item, index) => {
-        return (
-          <div key={index} className={classes.contact}>
-            <Field
-              isStatic={true}
-              name={`${item}.key`}
-              component={SearchFieldConfig}
-              items={SOCIAL_LIST}
-              width={'236px'}
-              margin={'0 14px 0 0'}
-              onlySelect={true}
-            />
-            <Field
-              name={`${item}.name`}
-              component={TextField}
-              width={'338px'}
-            />
-            <div onClick={() => onRemove(index)} style={deleteStyle}>
-              <CloseIcon style={{ width: '22px', height: '22px' }}/>
-            </div>
+    <>'     '<div className={classes.socialTitle}>
+      <Label label={t('applicant_alt_communicate', lang)} />
+      <span onClick={handleTouchTap} className={classes.addBtn}>{t('button_simple_add', lang)}</span>
+             </div>'     '{fields.map((item, index) => {
+      return (
+        <div key={index} className={classes.contact}>
+          <Field
+            isStatic={true}
+            name={`${item}.key`}
+            component={SearchFieldConfig}
+            items={SOCIAL_LIST}
+            width="236px"
+            margin="0 14px 0 0"
+            onlySelect={true}
+          />
+          <Field
+            name={`${item}.name`}
+            component={TextField}
+            width="338px"
+          />
+          <div onClick={() => onRemove(index)} style={deleteStyle}>
+            <CloseIcon style={{ width: '22px', height: '22px' }} />
           </div>
-        )
-      })}
-    </React.Fragment>
+        </div>
+      )
+    })}'   '
+    </>
   )
 }
 

@@ -1,9 +1,9 @@
+import { COLOR_RED } from 'constants/styleConstants'
 import React from 'react'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { COLOR_RED } from 'constants/styleConstants'
 
 const enhance = compose(
   injectSheet({

@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import Carousel from 'antd/lib/carousel'
+import classNames from 'classnames'
 import ArrowLeft from '../../icons/ArrowLeft'
 import ArrowRight from '../../icons/ArrowRight'
-import classNames from 'classnames'
 import hexToRgb from '../../helpers/hexToRgb'
 import { BLACK_COLOR } from '../../constants/styles'
 
@@ -29,7 +29,7 @@ export default class TopCompaniesSlider extends Component {
     const { classes, settings } = this.props
     return (
       <div className={classes.companies}>
-        <ArrowLeft onClick={this.previous} className={classNames(classes.arrow, classes.leftArrow)} style={carouselNavStyles}/>
+        <ArrowLeft onClick={this.previous} className={classNames(classes.arrow, classes.leftArrow)} style={carouselNavStyles} />
         <Carousel ref={c => this.slider = c} {...settings}>
           {_.map(_.range(Number('6')), (item, index) => {
             const image = _.get(item, 'image')
@@ -38,14 +38,14 @@ export default class TopCompaniesSlider extends Component {
             return (
               <div key={index}>
                 <div className={classes.carouselItem}>
-                  <div className={classes.image} style={{ backgroundImage: 'url(' + image + ')' }}/>
+                  <div className={classes.image} style={{ backgroundImage: 'url(' + image + ')' }} />
                   <div className={classes.title}>{kind} {name}</div>
                 </div>
               </div>
             )
           })}
         </Carousel>
-        <ArrowRight onClick={this.next} className={classNames(classes.arrow, classes.rightArrow)} style={carouselNavStyles}/>
+        <ArrowRight onClick={this.next} className={classNames(classes.arrow, classes.rightArrow)} style={carouselNavStyles} />
       </div>
     )
   }

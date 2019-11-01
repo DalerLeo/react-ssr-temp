@@ -1,8 +1,8 @@
+import { crossBrowserify, MAIN_COLOR } from 'constants/styles'
 import React from 'react'
 import { compose } from 'recompose'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
-import { crossBrowserify, MAIN_COLOR } from 'constants/styles'
 import { connect } from 'react-redux'
 import fp from 'lodash/fp'
 import hexToRgb from 'helpers/hexToRgb'
@@ -107,7 +107,7 @@ const GlobalLoading = ({ loading, classes }) => {
     return (
       <div className={classes.loadWrap}>
         <div className={classes.linearActivity}>
-          <div className={classes.indeterminate}/>
+          <div className={classes.indeterminate} />
         </div>
       </div>
     )
@@ -115,7 +115,7 @@ const GlobalLoading = ({ loading, classes }) => {
   if (!TRUE) {
     return (
       <div style={loadWrap}>
-        <div style={loaderStyle}/>
+        <div style={loaderStyle} />
       </div>
     )
   }

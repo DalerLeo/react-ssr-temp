@@ -1,3 +1,4 @@
+import { SEARCH_RESULTS_URL } from 'constants/routes'
 import _ from 'lodash'
 import fp from 'lodash/fp'
 import {
@@ -9,7 +10,6 @@ import {
 } from 'recompose'
 import { connect } from 'react-redux'
 import { getFormValues } from 'redux-form'
-import { SEARCH_RESULTS_URL } from 'constants/routes'
 import withHistory from 'helpers/withHistory'
 import excludeKeys from 'helpers/excludeKeys'
 import { getStateData, isEmployer, isApplicant } from 'helpers/get'

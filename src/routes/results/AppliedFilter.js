@@ -1,3 +1,5 @@
+import { EXPERIENCES_LIST, EMPLOYMENT_TYPE } from 'constants/backend'
+import { crossBrowserify, MAIN_COLOR } from 'constants/styles'
 import React from 'react'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
@@ -9,8 +11,6 @@ import fp from 'lodash/fp'
 import isEmpty from 'lodash/isEmpty'
 import hexToRgb from 'helpers/hexToRgb'
 import { arrayObjToObj } from 'helpers/get'
-import { EXPERIENCES_LIST, EMPLOYMENT_TYPE } from 'constants/backend'
-import { crossBrowserify, MAIN_COLOR } from 'constants/styles'
 import MdClose from 'react-icons/lib/md/close'
 
 const Chip = ({ classes, children, onClear }) => children ? (
@@ -18,7 +18,8 @@ const Chip = ({ classes, children, onClear }) => children ? (
     {children}
     <MdClose
       onClick={onClear}
-      style={{ marginLeft: '7px', cursor: 'pointer' }}/>
+      style={{ marginLeft: '7px', cursor: 'pointer' }}
+    />
   </div>
 ) : null
 
@@ -113,7 +114,8 @@ const AppliedFilter = props => {
               <Chip
                 key={JSON.stringify(value)}
                 classes={classes}
-                onClear={() => onClear({ fieldName, value })}>
+                onClear={() => onClear({ fieldName, value })}
+              >
                 {fp.get(value, arrayData)}
               </Chip>
             )
@@ -124,7 +126,8 @@ const AppliedFilter = props => {
           <Chip
             key={item}
             classes={classes}
-            onClear={() => onClear({ fieldName, value: item })}>
+            onClear={() => onClear({ fieldName, value: item })}
+          >
             {fp.get(item, data)}
           </Chip>
         )

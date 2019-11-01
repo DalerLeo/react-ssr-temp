@@ -1,10 +1,3 @@
-import _ from 'lodash'
-import React from 'react'
-import sprintf from 'sprintf'
-import PropTypes from 'prop-types'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
-import classNames from 'classnames'
 import {
   FIELD_BORDER_COLOR,
   DATE_COLOR,
@@ -14,6 +7,13 @@ import {
   maxLineClamp
 } from 'constants/styles'
 import { ARTICLES_ITEM_URL } from 'constants/routes'
+import _ from 'lodash'
+import React from 'react'
+import sprintf from 'sprintf'
+import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
+import classNames from 'classnames'
 import hexToRgb from 'helpers/hexToRgb'
 import dateFormat from 'helpers/dateFormat'
 import Link from 'components/Link'
@@ -125,17 +125,20 @@ const ArticleCard = props => {
       className={classNames({
         [classes.itemWrapper]: true,
         [classes.noImageWrapper]: !image
-      })}>
+      })}
+    >
       <div className={classes.item}>
         {image && (
-          <div className={classes.image} style={{ backgroundImage: `url(${image}` }}/>
+          <div className={classes.image} style={{ backgroundImage: `url(${image}` }} />
         )}
         <div className={classNames(classes.text, { [classes.link]: link })}>
           <div className={classNames({
             [classes.tag]: true,
             [classes.tagNoImage]: !image,
             [classes.article]: isArticle
-          })}><T>{tagName}</T></div>
+          })}
+          ><T>{tagName}</T>
+          </div>
           <div className={classes.date}>
             <TW>{lang => dateFormat(date, false, lang)}</TW>
           </div>

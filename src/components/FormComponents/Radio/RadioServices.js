@@ -1,4 +1,8 @@
 /* eslint-disable react/prop-types */
+import {
+  crossBrowserify,
+  MAIN_COLOR,
+  PRIMARY_COLOR } from 'constants/styles'
 import React from 'react'
 import fp from 'lodash/fp'
 import loMap from 'lodash/map'
@@ -6,10 +10,6 @@ import { compose } from 'recompose'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
-import {
-  crossBrowserify,
-  MAIN_COLOR,
-  PRIMARY_COLOR } from 'constants/styles'
 import AntRadio from 'antd/lib/radio'
 import T from 'components/T'
 import numberFormat from 'helpers/numberFormat'
@@ -120,7 +120,8 @@ const Radio = props => {
   return (
     <AntRadio
       className={classNames(classes.radio, className)}
-      {...defaultProps}>
+      {...defaultProps}
+    >
       {label}
       <div className={classes.content}>
         <div className={classes.info}>
@@ -130,7 +131,7 @@ const Radio = props => {
           </div>}
           {info}
         </div>
-        <div className={classes.line}/>
+        <div className={classes.line} />
         <div className={classes.bonuses}>
           {loMap(bonuses, (item, index) => {
             const bonusCount = fp.get('bonus', item)

@@ -2,8 +2,8 @@ import { createStore, applyMiddleware } from 'redux'
 import { routerMiddleware } from 'redux-first-routing'
 import thunkMiddleware from 'redux-thunk'
 import promiseMiddleware from 'redux-promise-middleware'
-import rootReducer from '../reducers'
 import { createLogger } from 'redux-logger'
+import rootReducer from '../reducers'
 
 export default (history, initialState, logger) => {
   const middleware = [

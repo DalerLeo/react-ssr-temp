@@ -5,7 +5,7 @@ const withHistory = (Component) => {
   return (props) => {
     return (
       <HistoryProvider.Consumer>
-        {value => <Component {...props} history={value}/>}
+        {value => <Component {...props} history={value} />}
       </HistoryProvider.Consumer>
     )
   }

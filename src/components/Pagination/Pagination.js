@@ -1,3 +1,4 @@
+import { WHITE_COLOR, MAIN_COLOR } from 'constants/styles'
 import React from 'react'
 import injectSheet from 'react-jss'
 import withHistory from 'helpers/withHistory'
@@ -7,7 +8,7 @@ import curryRight from 'lodash/curryRight'
 import { compose, lifecycle } from 'recompose'
 import PropTypes from 'prop-types'
 import PaginationAnt from 'antd/lib/pagination/Pagination'
-import { WHITE_COLOR, MAIN_COLOR } from 'constants/styles'
+
 const reff = React.createRef()
 const withStyles = {
   showMore: {

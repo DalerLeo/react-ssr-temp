@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
-import classNames from 'classnames'
 import {
   crossBrowserify,
   BLACK_COLOR,
   ANCHOR_DISABLED
 } from 'constants/styles'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
+import classNames from 'classnames'
 import hexToRgb from 'helpers/hexToRgb'
 import Link from 'components/Link'
 import T from 'components/T'
@@ -47,10 +47,11 @@ const MoreButton = ({ ...props }) => {
   return (
     <Link to={link} style={style} className={classes.wrapper}>
       <button
-        type={'button'}
+        type="button"
         className={classNames(classes.button, className)}
         onClick={onClick}
-        {...props}>
+        {...props}
+      >
         <T>{text}</T>
       </button>
     </Link>

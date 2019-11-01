@@ -1,7 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
 import {
   crossBrowserify,
   WHITE_COLOR,
@@ -10,8 +6,14 @@ import {
   BLACK_COLOR,
   MAIN_COLOR
 } from 'constants/styles'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import hexToRgb from 'helpers/hexToRgb'
+import Spinner from 'icons/Spinner'
+import T from 'components/T'
 import {
   YELLOW,
   GREY,
@@ -22,8 +24,6 @@ import {
   COLD,
   REGRET_BORDERED
 } from './index'
-import Spinner from 'icons/Spinner'
-import T from 'components/T'
 
 const enhance = compose(
   injectSheet({
@@ -207,9 +207,10 @@ const Button = props => {
       })}
       type={submitType}
       style={style}
-      {...defaultProps}>
+      {...defaultProps}
+    >
       {textIsString ? <T>{text}</T> : text || children}
-      {loading && <Spinner className={classes.loader}/>}
+      {loading && <Spinner className={classes.loader} />}
     </button>
   )
 }

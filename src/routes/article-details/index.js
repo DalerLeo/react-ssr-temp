@@ -2,8 +2,8 @@
 import React from 'react'
 import loToInteger from 'lodash/toInteger'
 import { getServerTitle } from 'helpers/dom'
-import { articleItemFetch } from './actions'
 import Layout from 'components/Layout'
+import { articleItemFetch } from './actions'
 import ArticleDetailContainer from './ArticleDetailContainer'
 
 async function action (props) {
@@ -20,7 +20,7 @@ async function action (props) {
     }),
     component: (
       <Layout {...props} store={store}>
-        <ArticleDetailContainer id={id} isServer={isServer}/>
+        <ArticleDetailContainer id={id} isServer={isServer} />
       </Layout>
     )
   }

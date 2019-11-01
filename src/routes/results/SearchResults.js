@@ -1,21 +1,21 @@
+import { crossBrowserify, ROLL_UP_FADE_IN } from 'constants/styles'
 import fp from 'lodash/fp'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
 import hexToRgb from 'helpers/hexToRgb'
-import { crossBrowserify, ROLL_UP_FADE_IN } from 'constants/styles'
 import Container from 'components/Container'
-import Filter from './Filter'
 import {
   VACANCY_BIG,
   APP_BIG
 } from 'components/Cards'
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
-import OrderingFilter from './OrderingFilter'
 import Pagination from 'components/Pagination'
 import T from 'components/T'
+import OrderingFilter from './OrderingFilter'
+import Filter from './Filter'
 
 const enhance = compose(
   injectSheet({
@@ -108,7 +108,7 @@ const SearchResults = (props) => {
   return (
     <div className={classes.wrapper}>
       <Container className={classes.container}>
-        <Row type={'flex'}>
+        <Row type="flex">
           <Col xs={7} className={classes.leftSide}>
             <Filter
               isAuth={isAuth}
@@ -129,7 +129,7 @@ const SearchResults = (props) => {
           <Col xs={17}>
             <div className={classes.results}>
               {loading
-                ? <div className={classes.titleLoader}/>
+                ? <div className={classes.titleLoader} />
                 : <div className={classes.resultTitle}>
                   <span>{resultFilter.getCounts()}</span>
                   <span><T>{resultsText[type]}</T></span>
@@ -137,19 +137,19 @@ const SearchResults = (props) => {
                 </div>}
               <div className={classes.sorting}>
                 <OrderingFilter
-                  name={'search_sort_by_date'}
-                  value={'date'}
+                  name="search_sort_by_date"
+                  value="date"
                   filter={resultFilter}
                 />
                 {type !== 'employer' &&
                 <OrderingFilter
-                  name={'search_sort_by_salary'}
-                  value={'salary'}
+                  name="search_sort_by_salary"
+                  value="salary"
                   filter={resultFilter}
                 />}
               </div>
 
-              <Pagination smooth={true} filter={resultFilter}/>
+              <Pagination smooth={true} filter={resultFilter} />
             </div>
           </Col>
         </Row>

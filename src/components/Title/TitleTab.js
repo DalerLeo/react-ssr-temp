@@ -1,9 +1,9 @@
+import { BLACK_COLOR, fallbacksStyle, MAIN_BORDER, MAIN_COLOR } from 'constants/styles'
 import fp from 'lodash/fp'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
-import { BLACK_COLOR, fallbacksStyle, MAIN_BORDER, MAIN_COLOR } from 'constants/styles'
 import classNames from 'classnames'
 import loMap from 'lodash/map'
 import hexToRgb from 'helpers/hexToRgb'
@@ -68,7 +68,8 @@ const TitleTab = props => {
           [classes.medium]: medium,
           [classes.active]: value === title.value
         })}
-        {...defaultProps}>
+        {...defaultProps}
+      >
         {isTranslated ? title.label : <T>{title.label}</T>}
         {Boolean(badge) && <span className={classes.badge}>+{badge}</span>}
       </span>

@@ -1,9 +1,3 @@
-import fp from 'lodash/fp'
-import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
-import { compose, withHandlers } from 'recompose'
-import injectSheet from 'react-jss'
-import classNames from 'classnames'
 import {
   crossBrowserify,
   fallbacksStyle,
@@ -12,6 +6,12 @@ import {
   ZERO,
   ONE
 } from 'constants/styles'
+import fp from 'lodash/fp'
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { compose, withHandlers } from 'recompose'
+import injectSheet from 'react-jss'
+import classNames from 'classnames'
 import Minus from 'icons/Minus'
 import Plus from 'icons/Plus'
 
@@ -75,12 +75,12 @@ const CounterField = props => {
 
   useEffect(() => {
     input.onChange(ONE)
-  }, [])
+  }, [input])
 
   return (
     <div className={classNames(classes.wrapper, className)}>
       <nav className={classes.controller} onClick={defaultProps.onSubstract}>
-        <Minus/>
+        <Minus />
       </nav>
       <input
         {...input}
@@ -88,7 +88,7 @@ const CounterField = props => {
         className={classes.input}
       />
       <nav className={classes.controller} onClick={defaultProps.onAdd}>
-        <Plus/>
+        <Plus />
       </nav>
     </div>
   )

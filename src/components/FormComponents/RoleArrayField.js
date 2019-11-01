@@ -2,11 +2,12 @@ import React from 'react'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
 import { Field } from 'redux-form'
-import TextField from './TextField'
-import SearchFieldConfig from './SearchFieldConfig'
 import * as API from '../../constants/api'
 import hexToRgb from '../../helpers/hexToRgb'
 import { crossBrowserify, fallbacksStyle } from '../../constants/styles'
+import SearchFieldConfig from './SearchFieldConfig'
+import TextField from './TextField'
+
 const LABEL_COLOR = '#2d2d2d'
 
 const enhance = compose(
@@ -73,7 +74,7 @@ const RoleArrayField = (props) => {
                 <Field
                   name={`${role}.text`}
                   component={TextField}
-                  type={'text'}
+                  type="text"
                 />
               </div>
               <div>
@@ -90,7 +91,8 @@ const RoleArrayField = (props) => {
       })}
       <div
         className={classes.addRole}
-        onClick={() => handleTouchTap()}>
+        onClick={() => handleTouchTap()}
+      >
         <span>+</span> Добавить роль
       </div>
     </div>

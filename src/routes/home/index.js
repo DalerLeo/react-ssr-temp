@@ -1,7 +1,7 @@
 /* eslint-disable func-style */
 import React from 'react'
-import HomeContainer from './HomeContainer'
 import Layout from 'components/Layout'
+import HomeContainer from './HomeContainer'
 import {
   getProfessionsList,
   getRegionsList,
@@ -18,7 +18,7 @@ async function action (props) {
     title: 'Главная',
     component: (
       <Layout {...props} home={true}>
-        <HomeContainer/>
+        <HomeContainer />
       </Layout>
     )
   }

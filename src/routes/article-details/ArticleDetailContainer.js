@@ -6,12 +6,12 @@ import {
 } from 'recompose'
 import fp from 'lodash/fp'
 import { connect } from 'react-redux'
-import ArticleDetails from './ArticleDetails'
-import { articleItemFetch } from './actions'
-import { articleListFetch } from '../articles/actions'
 import { getItemStateData, getStateData } from 'helpers/get'
 import { setPageTitle } from 'helpers/dom'
 import setGlobalLoader from 'helpers/setGlobalLoader'
+import { articleListFetch } from '../articles/actions'
+import { articleItemFetch } from './actions'
+import ArticleDetails from './ArticleDetails'
 
 const mapStateToProps = (state) => {
   return {

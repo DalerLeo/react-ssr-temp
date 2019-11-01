@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import TopHeader from './TopHeader'
 import Logo from 'icons/Logo'
 import Profile from 'icons/Profile'
 import ShoppingBag from 'icons/ShoppingBag'
 import useWindowScroll from '@react-hook/window-scroll'
 import MenuBarIcon from 'icons/MenuBar'
+import TopHeader from './TopHeader'
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -83,31 +83,31 @@ const Header = () => {
   const scrollY = useWindowScroll(60)
   return (
     <HeaderBlock>
-      <TopHeader/>
+      <TopHeader />
       <HeaderStyled>
         <LogoBlock>
-          <Logo/>
+          <Logo />
         </LogoBlock>
         <MenubarHeader scrollY={scrollY}>
           <LogoStyled>
-            <MenuBarIcon/>
+            <MenuBarIcon />
           </LogoStyled>
           <MenubarText>
             Каталог товаров
           </MenubarText>
         </MenubarHeader>
         <SearchBlock scrollY={scrollY}>
-          <SearchField placeholder="Я хочу найти..."/>
+          <SearchField placeholder="Я хочу найти..." />
           <SearchButton>
             Найти
           </SearchButton>
         </SearchBlock>
         <MyProfile>
-          <Profile/>
+          <Profile />
           Мой профиль
         </MyProfile>
         <MyProfile>
-          <ShoppingBag/>
+          <ShoppingBag />
           Корзина
         </MyProfile>
       </HeaderStyled>

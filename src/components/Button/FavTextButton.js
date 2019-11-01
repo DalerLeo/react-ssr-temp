@@ -1,12 +1,12 @@
+import { fallbacksStyle, crossBrowserify } from 'constants/styles'
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
-import { fallbacksStyle, crossBrowserify } from 'constants/styles'
 import Spinner from 'icons/Spinner'
-import { Button, WHITE } from './index'
 import Fav from 'icons/Favorite'
 import T from 'components/T'
+import { Button, WHITE } from './index'
 
 const withStyles = injectSheet({
   favButton: {
@@ -48,17 +48,19 @@ const FavTextButton = props => {
 
   return (
     <Button
-      type={'small'}
+      type="small"
       color={WHITE}
       className={classes.favButton}
       onClick={handleClick}
-      bordered={true}>
+      bordered={true}
+    >
       {loading
-        ? <Spinner className={classes.loader}/>
+        ? <Spinner className={classes.loader} />
         : <Fav className={classNames({
           [classes.favIcon]: true,
           [classes.favIconActive]: isFavorite
-        })}/>}
+        })}
+          />}
       <T>{isFavorite ? 'button_remove_favorite' : 'button_add_favorite'}</T>
     </Button>
   )

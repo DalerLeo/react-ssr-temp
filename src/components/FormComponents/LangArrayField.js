@@ -1,16 +1,16 @@
+import * as API from 'constants/api'
+import { crossBrowserify, fallbacksStyle, MAIN_COLOR, ONE } from 'constants/styles'
+import { LANG_LEVEL_LIST } from 'constants/backend'
 import React from 'react'
 import { compose } from 'recompose'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
 import { Field } from 'redux-form'
-import * as API from 'constants/api'
-import { crossBrowserify, fallbacksStyle, MAIN_COLOR, ONE } from 'constants/styles'
-import { LANG_LEVEL_LIST } from 'constants/backend'
 import hexToRgb from 'helpers/hexToRgb'
 import t from 'helpers/translate'
-import SearchFieldConfig from './SearchFieldConfig'
 import T from 'components/T'
 import TW from 'components/TW'
+import SearchFieldConfig from './SearchFieldConfig'
 
 const enhance = compose(
   injectSheet({
@@ -70,22 +70,20 @@ const LangArrayField = (props) => {
               <div className={classes.lang}>
                 <TW>
                   {lang => (
-                    <React.Fragment>
-                      <Field
-                        name={`${item}.language`}
-                        component={SearchFieldConfig}
-                        api={API.LANGUAGES_LIST}
-                        label2={t('resume_language', lang)}
-                        type={'text'}
-                      />
-                      <Field
-                        name={`${item}.level`}
-                        component={SearchFieldConfig}
-                        label2={t('resume_language_level', lang)}
-                        isStatic={true}
-                        items={LANG_LEVEL_LIST}
-                      />
-                    </React.Fragment>
+                    <>'                     '<Field
+                      name={`${item}.language`}
+                      component={SearchFieldConfig}
+                      api={API.LANGUAGES_LIST}
+                      label2={t('resume_language', lang)}
+                      type="text"
+                    />'                     '<Field
+                                               name={`${item}.level`}
+                                               component={SearchFieldConfig}
+                                               label2={t('resume_language_level', lang)}
+                                               isStatic={true}
+                                               items={LANG_LEVEL_LIST}
+                                                                      />'                   '
+                    </>
                   )}
                 </TW>
               </div>

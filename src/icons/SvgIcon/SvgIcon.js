@@ -1,8 +1,8 @@
+import { crossBrowserify } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
-import { crossBrowserify } from 'constants/styles'
 
 const withStyles = injectSheet({
   icon: {
@@ -15,8 +15,9 @@ const SvgIcon = ({ classes, className, children, ...props }) => {
   return (
     <svg
       className={classNames(classes.icon, className)}
-      fill={'currentColor'}
-      {...props}>
+      fill="currentColor"
+      {...props}
+    >
       {children}
     </svg>
   )

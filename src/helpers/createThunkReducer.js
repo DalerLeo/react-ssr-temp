@@ -1,6 +1,6 @@
-import createReducer from './createReducer'
 import loGet from 'lodash/get'
 import loPick from 'lodash/pick'
+import createReducer from './createReducer'
 
 const defaultState = {
   data: null,

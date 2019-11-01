@@ -3,8 +3,8 @@ import { compose } from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
 
-import { ANCHOR_DISABLED, MAIN_COLOR, NAV_BACKGROUND } from '../../constants/styles'
 import PropTypes from 'prop-types'
+import { ANCHOR_DISABLED, MAIN_COLOR, NAV_BACKGROUND } from '../../constants/styles'
 
 /* eslint-disable standard/computed-property-even-spacing */
 const enhance = compose(

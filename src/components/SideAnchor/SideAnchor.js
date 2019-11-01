@@ -1,3 +1,4 @@
+import { MAIN_COLOR, ZERO } from 'constants/styles'
 import loReplace from 'lodash/replace'
 import fp from 'lodash/fp'
 import React, { useRef, useState, useEffect } from 'react'
@@ -5,7 +6,6 @@ import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
-import { MAIN_COLOR, ZERO } from 'constants/styles'
 import withHistory from 'helpers/withHistory'
 import t from 'helpers/translate'
 import Affix from 'antd/lib/affix'
@@ -101,7 +101,7 @@ const SideNav = props => {
 
   useEffect(() => {
     setActiveAnchor(listFirstHref)
-  }, [list])
+  }, [list, listFirstHref])
 
   useEffect(() => {
     listener()
@@ -109,9 +109,9 @@ const SideNav = props => {
     return () => {
       window.removeEventListener('scroll', listener)
     }
-  }, [])
+  }, [listener])
 
-  const handleClick = (href, custom) => {
+  const handleClick = useCallback((href, custom) => {
     const scrollVal = window.pageYOffset
     const element = document.getElementById(href)
     const isFirst = href === listFirstHref
@@ -123,13 +123,13 @@ const SideNav = props => {
         behavior: 'smooth'
       })
     }
-  }
+  })
 
   useEffect(() => {
     if (locationHash) {
       handleClick(loReplace(locationHash, '#', ''), true)
     }
-  }, [locationHash])
+  }, [handleClick, locationHash])
 
   return (
     <div ref={sideNavRef} className={classes.sideNav}>
@@ -151,7 +151,8 @@ const SideNav = props => {
                 title={title}
                 className={classNames(classes.navigationLink, {
                   [classes.navigationLinkActive]: isActive
-                })}>
+                })}
+              >
                 {title}
               </div>
             )

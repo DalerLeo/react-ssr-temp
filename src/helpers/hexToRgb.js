@@ -1,4 +1,5 @@
 import _ from 'lodash'
+
 const hexToRgb = (hex, opacity) => {
   const ONE = 1
   const TWO = 2

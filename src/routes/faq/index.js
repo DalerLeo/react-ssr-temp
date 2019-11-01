@@ -9,7 +9,7 @@ function action (props) {
     title: 'F.A.Q.',
     component: (
       <Layout {...props} store={store}>
-        <FaqContainer/>
+        <FaqContainer />
       </Layout>
     )
   }

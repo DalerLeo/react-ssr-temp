@@ -1,7 +1,7 @@
+import { MAIN_COLOR } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectSHeet from 'react-jss'
-import { MAIN_COLOR } from 'constants/styles'
 
 const withStyles = injectSHeet({
   content: {

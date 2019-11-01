@@ -1,6 +1,6 @@
-import fpGet from 'lodash/fp/get'
 import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
+import fpGet from 'lodash/fp/get'
 import toSnakeCase from 'helpers/toSnakeCase'
 import axios from 'helpers/axiosHelper'
 

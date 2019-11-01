@@ -32,17 +32,15 @@ const StaticPage = props => {
           ? <div>Loading...</div>
           : <TW>
             {lang => (
-              <React.Fragment>
-                <Title
-                  className={classes.pageTitle}
-                  text={getTranslate(pageData, lang)}
-                />
-                <div className={classes.content}>
-                  <HtmlContent>
-                    {getTranslate(pageData, lang, 'body')}
-                  </HtmlContent>
-                </div>
-              </React.Fragment>
+              <>'               '<Title
+                className={classes.pageTitle}
+                text={getTranslate(pageData, lang)}
+              />'               '<div className={classes.content}>
+                                   <HtmlContent>
+                  {getTranslate(pageData, lang, 'body')}
+                </HtmlContent>
+                                                    </div>'             '
+              </>
             )}
           </TW>}
       </div>

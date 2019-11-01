@@ -1,13 +1,13 @@
-import _ from 'lodash'
-import React from 'react'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
 import {
   crossBrowserify,
   fallbacksStyle,
   MAIN_COLOR,
   WHITE_COLOR
 } from 'constants/styles'
+import _ from 'lodash'
+import React from 'react'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import AntCheckbox from 'antd/lib/checkbox'
@@ -90,7 +90,8 @@ const Checkbox = (defProps) => {
         {...defProps}
         className={classNames(classes.checkbox, className)}
         checked={checked || toBoolean(_.get(input, 'value'))}
-        onChange={onChange || _.get(input, 'onChange')}>
+        onChange={onChange || _.get(input, 'onChange')}
+      >
         {children || <span style={_.get(input, 'value') ? checkedStyle : {}}>{label}</span>}
       </AntCheckbox>
     </div>

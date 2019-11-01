@@ -1,8 +1,8 @@
+import { BLACK_COLOR } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
-import { BLACK_COLOR } from 'constants/styles'
 import classNames from 'classnames'
 import T from 'components/T'
 
@@ -47,12 +47,14 @@ const Title = props => {
     ...defaultProps
   } = props
   return (
-    <h2 className={classNames(className, {
-      [classes.title]: true,
-      [classes.small]: small,
-      [classes.medium]: medium,
-      [classes.isProfile]: isProfile
-    })} {...defaultProps} style={{ fontSize, margin }}>
+    <h2
+      className={classNames(className, {
+        [classes.title]: true,
+        [classes.small]: small,
+        [classes.medium]: medium,
+        [classes.isProfile]: isProfile
+      })} {...defaultProps} style={{ fontSize, margin }}
+    >
       {isStatic ? <T>{text}</T> : text}
     </h2>
   )

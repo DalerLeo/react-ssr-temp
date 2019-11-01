@@ -1,3 +1,8 @@
+import {
+  crossBrowserify,
+  fallbacksStyle, LABEL_COLOR,
+  MAIN_COLOR
+} from 'constants/styles'
 import React, { useEffect } from 'react'
 import {
   compose,
@@ -9,11 +14,6 @@ import injectSheet from 'react-jss'
 import fp from 'lodash/fp'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import {
-  crossBrowserify,
-  fallbacksStyle, LABEL_COLOR,
-  MAIN_COLOR
-} from 'constants/styles'
 import axios from 'helpers/axiosHelper'
 import toSnakeCase from 'helpers/toSnakeCase'
 import t, { getTranslate } from 'helpers/translate'
@@ -21,13 +21,13 @@ import caughtCancel from 'helpers/caughtCancel'
 import hexToRgb from 'helpers/hexToRgb'
 import CloseIcon from 'react-icons/lib/md/close'
 import MdSearch from 'react-icons/lib/md/search'
-import Label2 from '../FieldLabel/FieldLabel2'
 import T from 'components/T'
 import Title from 'components/Title'
 import Dialog from 'components/Dialog'
 import { Button, GREY } from 'components/Button'
 import TextSimpleField from 'components/FormComponents/TextField/TextSimpleField'
 import { Checkbox } from 'components/FormComponents'
+import Label2 from '../FieldLabel/FieldLabel2'
 import CheckboxGroup from '../CheckboxGroup/CheckboxWrap'
 
 const handleData = (dispatch, api, otherParams) => {
@@ -333,7 +333,7 @@ const ModelSelectField = props => {
       return fp.includes(searchQuery, stringify)
     }, clonedData)
     dispatch({ data: filteredData })
-  }, [text])
+  }, [clonedData, dispatch, searchQuery, text])
 
   const onCheckAll = isChecked => {
     if (isChecked) {
@@ -355,7 +355,7 @@ const ModelSelectField = props => {
 
   return (
     <div className={classNames(classes.wrapper, className)}>
-      <Label2 label={label} required={required}/>
+      <Label2 label={label} required={required} />
       <div className={classes.chosenSpheres}>
         {parentsOnly
           ? isSelectedAll
@@ -365,7 +365,7 @@ const ModelSelectField = props => {
                   <T>main_all_spheres</T>
                   <span className={classes.count}>{allResumesCount}</span>
                 </div>
-                <CloseIcon onClick={() => onCheckAll(false)}/>
+                <CloseIcon onClick={() => onCheckAll(false)} />
               </div>
             </div>
             : fp.map(item => {
@@ -379,7 +379,7 @@ const ModelSelectField = props => {
                       {name}
                       {resumeCount && <span className={classes.count}>{resumeCount}</span>}
                     </div>
-                    <CloseIcon onClick={() => onRemoveParent(id)}/>
+                    <CloseIcon onClick={() => onRemoveParent(id)} />
                   </div>
                 </div>
               )
@@ -393,7 +393,7 @@ const ModelSelectField = props => {
               <div key={parentId} className={classes.sphereWrap}>
                 <div className={classes.sphere}>
                   {parentName}
-                  <CloseIcon onClick={() => onRemoveItem(parentId)}/>
+                  <CloseIcon onClick={() => onRemoveItem(parentId)} />
                 </div>
                 {!isFull &&
                 <div className={classes.childSpheres}>
@@ -403,7 +403,7 @@ const ModelSelectField = props => {
                     return (
                       <div key={childrenId} className={classNames(classes.sphere, classes.childSphere)}>
                         {childrenName}
-                        <CloseIcon onClick={() => onRemoveItem(parentId, childrenId)}/>
+                        <CloseIcon onClick={() => onRemoveItem(parentId, childrenId)} />
                       </div>
                     )
                   }, children)}
@@ -414,23 +414,26 @@ const ModelSelectField = props => {
       </div>
       <div
         onClick={() => onOpen(true)}
-        className={classes.notSelected}>{selectLabel}</div>
+        className={classes.notSelected}
+      >{selectLabel}
+      </div>
 
       <Dialog
         open={open}
         className={classes.dialog}
         handleClose={() => onOpen(false)}
         iconClass={classes.iconClass}
-        width={900}>
+        width={900}
+      >
         <div className={classes.content}>
           <Title
-            fontSize={'20px'}
-            margin={'0 0 16px 0'}
+            fontSize="20px"
+            margin="0 0 16px 0"
             text={t('main_sphere', lang)}
           />
 
           <TextSimpleField
-            prefix={<MdSearch/>}
+            prefix={<MdSearch />}
             onChange={({ target }) => dispatch({ text: target.value })}
             placeholder={t('main_fast_search', lang)}
           />
@@ -438,11 +441,12 @@ const ModelSelectField = props => {
             {loading && <div>Loading...</div>}
             {parentsOnly &&
             <Checkbox
-              label={''}
+              label=""
               className={classes.checkAll}
               checked={isSelectedAll}
               indeterminate={isIndeterminate}
-              onChange={event => onCheckAll(event.target.checked)}>
+              onChange={event => onCheckAll(event.target.checked)}
+            >
               <span>
                 <T>main_all_spheres</T>
                 <span className={classes.count}>{allResumesCount}</span>
@@ -466,7 +470,7 @@ const ModelSelectField = props => {
           </div>
           <div className={classes.actionButtons}>
             <Button
-              text={'button_cancel'}
+              text="button_cancel"
               onClick={() => onOpen(false)}
               color={GREY}
               type="medium"
@@ -474,7 +478,7 @@ const ModelSelectField = props => {
             <Button
               onClick={() => onComplete(selectedDataFull)}
               style={{ padding: '0 58px' }}
-              text={'button_select'}
+              text="button_select"
               type="medium"
             />
           </div>

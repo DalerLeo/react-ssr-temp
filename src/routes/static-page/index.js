@@ -9,7 +9,7 @@ async function action (props) {
     title: 'Статичная страница',
     component: (
       <Layout {...props} store={store}>
-        <StaticPageContainer params={params}/>
+        <StaticPageContainer params={params} />
       </Layout>
     )
   }

@@ -7,7 +7,7 @@ export default props => {
     title: 'Свяжитесь с нами',
     component: (
       <Layout {...props}>
-        <ContactUs/>
+        <ContactUs />
       </Layout>
     )
   }

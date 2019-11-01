@@ -1,3 +1,4 @@
+import { crossBrowserify } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
@@ -5,7 +6,6 @@ import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import Modal from 'antd/lib/modal/Modal'
 import MdClose from 'react-icons/lib/md/close'
-import { crossBrowserify } from 'constants/styles'
 
 const enhance = compose(
   injectSheet({
@@ -130,14 +130,16 @@ const Dialog = (props) => {
       footer={null}
       zIndex={1000}
       width={fullScreen ? '100%' : width}
-      {...otherProps}>
+      {...otherProps}
+    >
 
       {children}
 
       <div
         className={classNames(classes.closeIcon, iconClassName)}
-        onClick={handleClose}>
-        <MdClose/>
+        onClick={handleClose}
+      >
+        <MdClose />
       </div>
     </Modal>
   )

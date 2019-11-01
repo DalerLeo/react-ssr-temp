@@ -1,8 +1,8 @@
 /* eslint-disable func-style */
 import React from 'react'
 import { getStateToken } from 'helpers/getCookieToken'
-import SettingContainer from './SettingContainer'
 import Layout from 'components/Layout'
+import SettingContainer from './SettingContainer'
 
 function action (props) {
   const { store } = props
@@ -15,7 +15,7 @@ function action (props) {
     title: 'Настройки профиля',
     component: (
       <Layout {...props} store={store}>
-        <SettingContainer/>
+        <SettingContainer />
       </Layout>
     )
   }

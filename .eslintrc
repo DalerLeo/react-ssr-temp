@@ -3,13 +3,22 @@
   "settings": {
     "version": "16.3.1"
   },
-  "extends": "standard",
+  "extends": [
+    "standard",
+    "standard-react",
+    "plugin:import/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
   "plugins": [
     "standard",
     "promise",
     "react",
     "babel",
-    "immutable"
+    "immutable",
+    "import",
+    "react-hooks"
+
   ],
   "rules": {
     "react/jsx-uses-react": "error",
@@ -135,7 +144,6 @@
     "brace-style": "error",
     "camelcase": "error",
     "capitalized-comments": "error",
-    "comma-dangle": "error",
     "comma-spacing": "error",
     "comma-style": "error",
     "computed-property-spacing": "error",
@@ -152,18 +160,11 @@
       "cb",
       "callback"
     ],
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
     "quotes": [
       "error",
       "single"
     ],
-    "key-spacing": "error",
+    "key-spacing": "off",
     "keyword-spacing": "error",
     "line-comment-position": "error",
     "linebreak-style": [
@@ -197,7 +198,20 @@
     "one-var-declaration-per-line": "error",
     "operator-assignment": "error",
     "operator-linebreak": "error",
-    "padded-blocks": "error"
+    "padded-blocks": "error",
+    "react/jsx-indent": [2, 2],
+    "react/jsx-boolean-value": [2, "always"],
+    "jsx-quotes": [2, "prefer-double"],
+    "max-len": [2, 120, 2],
+    "object-curly-spacing": [2, "always"],
+    "indent": [2, 2],
+    "comma-dangle": "off",
+    "import/order": [2, {"groups": ["builtin", "external", "parent", "sibling", "index"]}],
+    "import/newline-after-import": ["error"],
+    "import/no-unresolved": "off",
+    "import/no-extraneous-dependencies": ["error"],
+    "react-hooks/rules-of-hooks": ["error"],
+    "react-hooks/exhaustive-deps": ["warn"]
   },
   "parserOptions": {
     "ecmaFeatures": {

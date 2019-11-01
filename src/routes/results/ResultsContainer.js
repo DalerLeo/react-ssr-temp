@@ -7,7 +7,6 @@ import {
 } from 'recompose'
 import { connect } from 'react-redux'
 import { getFormValues } from 'redux-form'
-import SearchResults from './SearchResults'
 import withHistory from 'helpers/withHistory'
 import toast from 'helpers/toast'
 import { splitToArray, joinArray } from 'helpers/joinSplitValues'
@@ -17,10 +16,11 @@ import {
   getRegionsList
 } from 'routes/home/actions'
 import { languageListAction, getDriverLicenseList } from 'routes/action-common'
-import { getSearchResults, saveSearchAction } from './actions'
 import { getStateData, compareFilterByProps } from 'helpers/get'
 import setGlobalNotify from 'helpers/setGlobalNotify'
 import excludeKeys from 'helpers/excludeKeys'
+import { getSearchResults, saveSearchAction } from './actions'
+import SearchResults from './SearchResults'
 
 const ONE = 1
 const mapStateToProps = (state) => {

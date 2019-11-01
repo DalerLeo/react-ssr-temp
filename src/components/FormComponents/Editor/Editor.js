@@ -1,3 +1,4 @@
+import { crossBrowserify, BORDER_STYLE } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
@@ -16,16 +17,15 @@ import {
 } from 'draft-js'
 import { Field } from 'redux-form'
 import { stateToHTML } from 'draft-js-export-html'
-import { crossBrowserify, BORDER_STYLE } from 'constants/styles'
-import BlockStyleControls from './BlockStyleControls'
-import InlineStyleControls from './InlineStyleControls'
 import 'draft-js/dist/Draft.css'
 import './Editor.css'
-import Label from '../FieldLabel/FieldLabel2'
 import AttachIcon from 'react-icons/lib/md/attach-file'
-import FileSimpleUploadField from '../ImageUploadField'
 import ToolTip from 'components/Tooltip'
 import fp from 'lodash/fp'
+import FileSimpleUploadField from '../ImageUploadField'
+import Label from '../FieldLabel/FieldLabel2'
+import InlineStyleControls from './InlineStyleControls'
+import BlockStyleControls from './BlockStyleControls'
 
 const enhance = compose(
   injectSheet({
@@ -185,8 +185,8 @@ class TextEditor extends React.Component {
 
     const getBlockStyle = (block) => {
       switch (block.getType()) {
-        case 'blockquote': return 'RichEditor-blockquote'
-        default: return null
+      case 'blockquote': return 'RichEditor-blockquote'
+      default: return null
       }
     }
 
@@ -203,12 +203,13 @@ class TextEditor extends React.Component {
     const hidePlaceholder = !contentState.hasText() && contentState.getBlockMap().first().getType() !== 'unstyled'
     return (
       <div>
-        <Label label={label} error={isError} required={required}/>
+        <Label label={label} error={isError} required={required} />
         <div className={classes.wrapper}>
           <div className={classNames({
             [classes.controls]: true,
             [classes.controlShow]: true
-          })}>
+          })}
+          >
             {button}
             <BlockStyleControls
               editorState={editorState}
@@ -219,18 +220,20 @@ class TextEditor extends React.Component {
               onToggle={toggleInlineStyle}
             />
             {file && (
-              <ToolTip position={'bottom'} text={'Загрузить файл'}>
+              <ToolTip position="bottom" text="Загрузить файл">
                 <Field
-                  name={'file'}
-                  label={<AttachIcon style={{ height: '20px' }}/>}
+                  name="file"
+                  label={<AttachIcon style={{ height: '20px' }} />}
                   component={FileSimpleUploadField}
                 />
               </ToolTip>
             )}
           </div>
-          <div className={classNames(classes.editor, {
-            'RichEditor-hidePlaceholder': hidePlaceholder
-          })} onClick={this.focus}>
+          <div
+            className={classNames(classes.editor, {
+              'RichEditor-hidePlaceholder': hidePlaceholder
+            })} onClick={this.focus}
+          >
             <Editor
               ref={this.editor}
               placeholder={placeholder}

@@ -1,3 +1,11 @@
+import {
+  BLACK_COLOR,
+  crossBrowserify,
+  fallbacksStyle,
+  MAIN_COLOR,
+  GREY_BORDER_STYLE
+} from 'constants/styles'
+import * as ROUTE from 'constants/routes'
 import fp from 'lodash/fp'
 import loMap from 'lodash/map'
 import React from 'react'
@@ -7,14 +15,6 @@ import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
 import { compose } from 'recompose'
 import classNames from 'classnames'
-import {
-  BLACK_COLOR,
-  crossBrowserify,
-  fallbacksStyle,
-  MAIN_COLOR,
-  GREY_BORDER_STYLE
-} from 'constants/styles'
-import * as ROUTE from 'constants/routes'
 import hexToRgb from 'helpers/hexToRgb'
 import PhoneSimple from 'react-icons/lib/md/phone'
 import Download from 'react-icons/lib/md/file-download'
@@ -201,7 +201,7 @@ const Footer = props => {
           condition: isEmployer
         },
         {
-          title: <span className={classes.iconMenu}><Download/> <T>footer_offer</T></span>,
+          title: <span className={classes.iconMenu}><Download /> <T>footer_offer</T></span>,
           url: '',
           color: true
         }
@@ -235,7 +235,7 @@ const Footer = props => {
       url: '',
       childs: [
         { title: 'contact_form_title', url: ROUTE.CONTACT_URL, isStatic: true },
-        { title: <span className={classes.iconMenu}><PhoneSimple/>+998 71 123-45-67</span> },
+        { title: <span className={classes.iconMenu}><PhoneSimple />+998 71 123-45-67</span> },
         { title: 'myjob@info.uz' }
       ]
     }
@@ -246,7 +246,7 @@ const Footer = props => {
       <Container>
         <div className={classes.navigation}>
           <div className={classes.menu}>
-            <LogoTitle simple/>
+            <LogoTitle simple={true} />
           </div>
           {loMap(menuItems, (item, index) => {
             const title = fp.get('title', item)
@@ -271,7 +271,8 @@ const Footer = props => {
                           className={classNames({
                             [classes.childMenu]: true,
                             [classes.color]: color
-                          })}>
+                          })}
+                        >
                           {childIsStatic ? <T>{childTitle}</T> : childTitle}
                         </Link>
                       )
@@ -282,7 +283,8 @@ const Footer = props => {
                         className={classNames({
                           [classes.childMenu]: true,
                           [classes.color]: color
-                        })}>
+                        })}
+                      >
                         {childIsStatic ? <T>{childTitle}</T> : childTitle}
                       </span>
                     )
@@ -295,7 +297,7 @@ const Footer = props => {
         <div className={classes.copyrightWrap}>
           <div className={classes.copyright}>© {moment().format('YYYY')} Myjob.uz. <T>footer_copyright</T></div>
           <div className={classes.copyDesc}><T>footer_copyright_desc</T></div>
-          <UsersOnline/>
+          <UsersOnline />
         </div>
       </Container>
     </div>

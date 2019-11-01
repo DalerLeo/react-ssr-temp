@@ -1,8 +1,8 @@
+import { STATIC_PAGE_ITEM_URL } from 'constants/routes'
 import React from 'react'
 import loMerge from 'lodash/merge'
 import sprintf from 'sprintf'
 import * as TR from './appTranslations'
-import { STATIC_PAGE_ITEM_URL } from 'constants/routes'
 
 const otherTranslations = loMerge(
   TR.commonTranslations,
@@ -19,7 +19,7 @@ const otherTranslations = loMerge(
 )
 
 const getTermsLink = text => {
-  return <a target={'_blank'} href={sprintf(STATIC_PAGE_ITEM_URL, 'userterms')}>{text}</a>
+  return <a target="_blank" href={sprintf(STATIC_PAGE_ITEM_URL, 'userterms')}>{text}</a>
 }
 
 const translations = {

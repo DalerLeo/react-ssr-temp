@@ -1,3 +1,10 @@
+import {
+  fallbacksStyle,
+  BLACK_COLOR,
+  LABEL_COLOR,
+  MAIN_COLOR,
+  WHITE_COLOR
+} from 'constants/styles'
 import _ from 'lodash'
 import fp from 'lodash/fp'
 import React from 'react'
@@ -6,17 +13,10 @@ import { compose, withHandlers } from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import AntCheckBox from 'antd/lib/checkbox'
-import {
-  fallbacksStyle,
-  BLACK_COLOR,
-  LABEL_COLOR,
-  MAIN_COLOR,
-  WHITE_COLOR
-} from 'constants/styles'
-import Label from '../FieldLabel/FieldLabel2'
 import Row from 'antd/lib/row'
 import Col from 'antd/lib/col'
 import T from 'components/T'
+import Label from '../FieldLabel/FieldLabel2'
 
 const style = {
   displayBlock: {
@@ -138,66 +138,65 @@ const CustomCheckbox = props => {
 
   if (!_.isEmpty(grid)) {
     return (
-      <React.Fragment>
-        {label && <Label label={label}/>}
-        <Row style={{ marginLeft: '18px' }}>
-          {_.map(items, item => {
-            const value = _.get(item, 'id')
-            const name = _.get(item, 'name') || _.get(item, 'title')
-            const checked = _.includes(input.value, item.id)
-            return (
-              <Col key={value} span={grid.span} className={classes.checkboxSpan}>
-                <AntCheckBox
-                  key={item.id}
-                  disabled={!checked && disabled}
-                  className={classNames(classes.checkbox, className)}
-                  checked={checked}
-                  onChange={(ev) => onChange(ev.target.checked, item.id)}>
-                  <span style={{ color: checked ? MAIN_COLOR : 'inherit' }}>
-                    {isStatic ? <T>{name}</T> : name}
-                  </span>
-                </AntCheckBox>
-              </Col>
-            )
-          })}
-        </Row>
-      </React.Fragment>
+      <>'       '{label && <Label label={label} />}'       '<Row style={{ marginLeft: '18px' }}>
+        {_.map(items, item => {
+          const value = _.get(item, 'id')
+          const name = _.get(item, 'name') || _.get(item, 'title')
+          const checked = _.includes(input.value, item.id)
+          return (
+            <Col key={value} span={grid.span} className={classes.checkboxSpan}>
+              <AntCheckBox
+                key={item.id}
+                disabled={!checked && disabled}
+                className={classNames(classes.checkbox, className)}
+                checked={checked}
+                onChange={(ev) => onChange(ev.target.checked, item.id)}
+              >
+                <span style={{ color: checked ? MAIN_COLOR : 'inherit' }}>
+                  {isStatic ? <T>{name}</T> : name}
+                </span>
+              </AntCheckBox>
+            </Col>
+          )
+        })}
+                                                            </Row>'     '
+      </>
     )
   }
 
   return (
-    <React.Fragment>
-      {label && <Label label={label}/>}
-      {_.map(items, item => {
-        const id = _.get(item, 'id')
-        const itemLabel = _.get(item, itemName)
-        const checked = _.includes(input.value, id)
-        const count = fp.get(id, counts)
-        return (
-          <AntCheckBox
-            key={item.id}
-            disabled={!checked && disabled}
-            checked={checked}
-            onChange={(ev) => onChange(ev.target.checked, id)}
-            className={classNames(classes.checkbox, className, {
-              [classes.withCounts]: withCounts && count,
-              [classes.displayBlock]: type === 'block',
-              [classes.displayInline]: type === 'inline'
-            })}>
-            {withCounts && count
-              ? <div className={classNames(classes.checkboxContent, {
-                [classes.checkboxContentChecked]: checked
-              })}>
-                {itemLabel}
-                <span className={classes.count}>{count}</span>
+    <>'     '{label && <Label label={label} />}'     '{_.map(items, item => {
+      const id = _.get(item, 'id')
+      const itemLabel = _.get(item, itemName)
+      const checked = _.includes(input.value, id)
+      const count = fp.get(id, counts)
+      return (
+        <AntCheckBox
+          key={item.id}
+          disabled={!checked && disabled}
+          checked={checked}
+          onChange={(ev) => onChange(ev.target.checked, id)}
+          className={classNames(classes.checkbox, className, {
+            [classes.withCounts]: withCounts && count,
+            [classes.displayBlock]: type === 'block',
+            [classes.displayInline]: type === 'inline'
+          })}
+        >
+          {withCounts && count
+            ? <div className={classNames(classes.checkboxContent, {
+              [classes.checkboxContentChecked]: checked
+            })}
+              >
+              {itemLabel}
+              <span className={classes.count}>{count}</span>
               </div>
-              : <span style={{ color: checked ? MAIN_COLOR : 'inherit' }}>
-                {itemLabel}
+            : <span style={{ color: checked ? MAIN_COLOR : 'inherit' }}>
+              {itemLabel}
               </span>}
-          </AntCheckBox>
-        )
-      })}
-    </React.Fragment>
+        </AntCheckBox>
+      )
+    })}'   '
+    </>
   )
 }
 

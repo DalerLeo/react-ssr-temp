@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import MenuBarIcon from 'icons/MenuBar'
 import Modal from 'components/UI/Modal'
 import list from './contants'
+
 const MenubarHeader = styled.div`
     display: flex;
     width: 267px;
@@ -34,7 +35,7 @@ const MenuBar = () => {
   const [open, setMenuOpen] = useState(false)
   const subCategories = find(propEq('id', open), list)
   return (
-    <div style={{position: 'relative'}} onMouseLeave={() => setMenuOpen(false)}>
+    <div style={{ position: 'relative' }} onMouseLeave={() => setMenuOpen(false)}>
       <MenubarHeader>
         <MenuBarIcon />
         <MenubarText>
@@ -45,12 +46,13 @@ const MenuBar = () => {
         return (
           <MenuItems
             onMouseEnter={() => setMenuOpen(type.id)}
-            key={key}>
+            key={key}
+          >
             {type.name}
           </MenuItems>
         )
       })}
-      {open && <Modal subCategories={subCategories}/>}
+      {open && <Modal subCategories={subCategories} />}
     </div>
   )
 }
