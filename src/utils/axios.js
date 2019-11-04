@@ -19,7 +19,7 @@ export const getPayloadFromError = compose(
 const errorInterceptors = curry((dispatch, error) => {
   const status = path(['response', 'status'], error)
 
-  if (equals(UNAUTHORIZED, status && history && dispatch)) {
+  if (equals(UNAUTHORIZED, status && dispatch)) {
     console.warn('AXIOS ERROR CLEAR')
     dispatch({ type: `${actionTypes.LOGIN}_CLEAR` })
     dispatch({ type: `${actionTypes.USER_INFO}_CLEAR` })
@@ -32,7 +32,7 @@ const axiosRequest = ({ getState, dispatch }, noAuth = false) => {
   const state = getState && getState()
   const token = path(['login', 'data', 'token'], state) || getCookie('token')
 
-  console.warn('API_IRL: ', API_URL)
+  console.warn('DAELER')
   axios.defaults.baseURL = `${API_URL}`
   axios.defaults.transformResponse = [responseToCamelCase]
   axios.defaults.timeout = 100000

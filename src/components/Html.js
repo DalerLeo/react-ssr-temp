@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import serialize from 'serialize-javascript'
-import logoPositions from 'components/Title/logoPositions'
 import config from '../config'
 import styled from './styles'
 /* eslint-disable react/no-danger */

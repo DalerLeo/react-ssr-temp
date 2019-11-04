@@ -4,7 +4,6 @@ import React from 'react'
 import { compose, withState } from 'recompose'
 import injectSheet from 'react-jss'
 import PropTypes from 'prop-types'
-import Title from 'components/Title'
 import Container from 'components/Container'
 import Pagination from 'components/Pagination'
 import Col from 'antd/lib/col'
@@ -25,7 +24,6 @@ const Articles = props => {
     <div className={classes.wrapper}>
       <Container>
         <div className={classes.pageTitle}>
-          <Title text="Статьи" />
         </div>
         <Row type="flex" gutter={20}>
           {loMap(list, (item) => {
