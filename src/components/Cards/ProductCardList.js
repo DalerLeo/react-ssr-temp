@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import { path, find, propEq } from 'ramda'
 import { Card } from 'components/Cards'
-import Button from 'components/UI/Button'
+import {CartButton, Button} from 'components/UI/Button'
 import Image from 'components/UI/Image'
 import Price from 'components/UI/Price'
 import ProductContent from 'components/UI/ProductContent'
 import SalePrice from '../UI/SalePrice/SalePrice'
+
 
 const StyledCard = styled(Card)`
   border-right: 1px solid #E1E1E1;
@@ -40,6 +41,8 @@ const ButtonPosition = styled.div`
 `
 
 const mapChild = item => {
+  const [count, setCount] = useState(true);
+  console.log(count)
   const name = path(['name'], item)
   const price = path(['price'], item)
   const images = path(['images'], item)
@@ -58,7 +61,7 @@ const mapChild = item => {
         <ProductContent content={name} />
       </ProductContentPosition>
       <ButtonPosition>
-        <Button label="В корзину" />
+        {count ? <Button onClick={() => setCount(!count)} >В корзину</Button> : <CartButton onClick={()=> setCount(!count)}/>}
       </ButtonPosition>
     </StyledCard>
   )

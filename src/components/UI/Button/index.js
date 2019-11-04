@@ -1,3 +1,7 @@
 import Button from './Button'
+import CartButton from './CartButton'
 
-export default Button
+export {
+    Button,
+    CartButton  
+} 
