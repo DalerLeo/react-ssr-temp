@@ -144,6 +144,7 @@ const rootReducer = combineReducers({
     list: createThunkReducer(actionTypes.USER_ACTIVE_SERVICES),
     unused: createThunkReducer(actionTypes.USER_UNUSED_SERVICES)
   }),
+  productList: createThunkReducer(actionTypes.PRODUCT_LIST),
   feedback: createThunkReducer(actionTypes.FEEDBACK_CREATE)
 })
 

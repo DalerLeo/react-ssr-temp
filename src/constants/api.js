@@ -159,3 +159,6 @@ export const ORDER_REQUEST_CONTRACT = `${ORDER}/%d/ask_contract/`
 
 const FEEDBACK = `${MAIN}/feedback`
 export const FEEDBACK_CREATE = `${FEEDBACK}/`
+
+export const PRODUCT = 'main/product'
+export const PRODUCT_LIST = `${PRODUCT}/`
