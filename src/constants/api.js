@@ -1,4 +1,4 @@
-export const API_HOST = 'apilochin.ritm.uz'
+export const API_HOST = 'apilochin.ritm.uz/ru/api/v1'
 export const API_ROOT = 'api'
 export const API_VERSION = 'v1'
 export const API_PROTOCOL = 'http'
@@ -159,3 +159,6 @@ export const ORDER_REQUEST_CONTRACT = `${ORDER}/%d/ask_contract/`
 
 const FEEDBACK = `${MAIN}/feedback`
 export const FEEDBACK_CREATE = `${FEEDBACK}/`
+
+export const PRODUCT = 'main/product'
+export const PRODUCT_LIST = `${PRODUCT}/`

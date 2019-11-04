@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Card = styled.div`
     background-color: #FFF;
     height: 396px;
-    width: 285px;
+    width: 25%;
 `
 
 Card.propTypes = {

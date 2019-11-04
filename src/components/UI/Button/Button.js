@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+
 const ButtonStyled = styled.button`
     background: #C7F9DD;
     border-radius: 7px;
@@ -14,6 +15,7 @@ const ButtonStyled = styled.button`
 const ButtonText = styled.div`
     color: #13885F;
 `
+
 const Button = (props) => {
   const { label } = props
   return (

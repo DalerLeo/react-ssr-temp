@@ -1,18 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { path } from 'ramda'
+import { pathOr } from 'ramda'
 
 const ModalStyled = styled.div`
+    display: ${props => props.open ? 'block' : 'none'};
     position: absolute;
     top: 0;
     left: 100%;
-    width: 800px;
-    height: 500px;
+    width: auto;
+    height: auto;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.16);
     z-index: 9999;
+    white-space: nowrap;
 `
 const MenuList = styled.div`
     display: flex;
@@ -22,17 +24,22 @@ const MenuList = styled.div`
     color: #2E384C;
     margin: 30px 35px;
 `
-const MenuListItems = styled.div`
+const MenuListItems = styled.b`
   padding: 6px 0;
+  cursor: pointer;
+  :hover{
+    color: #2EBB8A;
+  }
 `
+const defaultArr = []
 const Modal = (props) => {
-  const { subCategories } = props
+  const { subCategories = defaultArr, open } = props
 
-  const subChilds = path(['children'], subCategories)
+  const subChilds = pathOr(defaultArr, ['children'], subCategories)
+
   return (
-    <ModalStyled>
+    <ModalStyled open={open}>
       <MenuList>
-        <b>{subChilds[1].parent.name}</b>
         {subChilds.map((subChild, id) => (
           <MenuListItems>{subChild.name}</MenuListItems>
         ))}

@@ -3,6 +3,22 @@ import * as actionTypes from 'constants/actionTypes'
 import fpGet from 'lodash/fp/get'
 import axios from 'helpers/axiosHelper'
 
+export const getProductList = () => {
+  return (dispatch, getState) => {
+    const params = {
+    }
+
+    const payload = axios({ dispatch, getState })
+      .get(API.PRODUCT_LIST, { params })
+      .then(fpGet('data'))
+
+    return dispatch({
+      payload: payload,
+      type: actionTypes.PRODUCT_LIST
+    })
+  }
+}
+
 export const getProfessionsList = () => {
   return (dispatch, getState) => {
     const params = {

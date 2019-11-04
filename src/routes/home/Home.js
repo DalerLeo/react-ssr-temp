@@ -5,14 +5,14 @@ import ProductCardList from 'components/Cards/ProductCardList'
 import Container from 'components/Container'
 import PopularCategories from 'components/UI/PopularCategories'
 import AddBanner from 'components/UI/AddBanner'
-import ProductsTitle from 'components/UI/ProductsTitle'
 import ShowMore from 'components/UI/ShowMore'
 import MenuBar from 'components/UI/MenuBar'
 import Carusel from 'components/UI/Carusel'
-import useFetchList from '../../hooks/useFetchList'
+import ProductsTitle from 'components/UI/ProductsTitle'
 import products from './cons'
 
-import { getEmployerList } from './actions'
+import { getProductList } from './actions'
+import useFetchList from '../../hooks/useFetchList'
 
 const ProductListBlock = styled.div`
   display: flex;
@@ -24,6 +24,12 @@ const HeaderMenu = styled.div`
 `
 
 const Home = props => {
+  const productData = useFetchList({
+    action: getProductList,
+    stateName: 'productList'
+  })
+
+//  console.warn(productData, 'dsdspo')
   return (
     <div>
       <Header />
@@ -40,10 +46,8 @@ const Home = props => {
         <ProductListBlock>
           <ProductCardList products={products} />
         </ProductListBlock>
-        <ProductsTitle title="Популярные категории" />
         <PopularCategories />
         <AddBanner />
-        <ProductsTitle title="Популярные бренды" pagination={true} />
         <PopularCategories />
         <ProductsTitle title="Лучшие товары за месяц" />
         <ProductListBlock>

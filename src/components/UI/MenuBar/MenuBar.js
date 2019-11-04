@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { path, find, propEq } from 'ramda'
+import { find, propEq } from 'ramda'
 import styled from 'styled-components'
 import MenuBarIcon from 'icons/MenuBar'
 import Modal from 'components/UI/Modal'
 import list from './contants'
 
+const MenuBarStyled = styled.div`
+`
 const MenubarHeader = styled.div`
     display: flex;
     width: 267px;
@@ -21,21 +23,27 @@ const MenubarText = styled.div`
     margin-left: 8px;
 `
 const MenuItems = styled.div`
+    width: 260px;
     font-size: 14px;
     line-height: 129.96%;
     padding: 6px 20px;
     cursor: pointer;
+    position: ${props => props.open ? 'relative' : 'unset'};
     :hover{
       color: #2EBB8A;
       background: #EAFAF1;
     }
 `
-
+const MenuItem = styled.div`
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+`
 const MenuBar = () => {
   const [open, setMenuOpen] = useState(false)
   const subCategories = find(propEq('id', open), list)
   return (
-    <div style={{ position: 'relative' }} onMouseLeave={() => setMenuOpen(false)}>
+    <MenuBarStyled onMouseLeave={() => setMenuOpen(false)}>
       <MenubarHeader>
         <MenuBarIcon />
         <MenubarText>
@@ -45,15 +53,16 @@ const MenuBar = () => {
       {list.map((type, key) => {
         return (
           <MenuItems
+            open={open === type.id}
             onMouseEnter={() => setMenuOpen(type.id)}
-            key={key}
-          >
-            {type.name}
+            key={key}>
+            <MenuItem>{type.name}</MenuItem>
+            <Modal open={open === type.id} subCategories={subCategories}/>
           </MenuItems>
         )
       })}
-      {open && <Modal subCategories={subCategories} />}
-    </div>
+
+    </MenuBarStyled>
   )
 }
 

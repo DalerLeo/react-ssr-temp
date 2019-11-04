@@ -14,11 +14,11 @@ const Carusel = () => {
 
   const images = [
     {
-      src: 'https://www.tsprfid.com/uploads/20150415/841x355-High%20Standard.jpg'
+      src: 'https://a.mktgcdn.com/p/fyvng10ZzCOZhiyz0PtTxJ7ct-sS7pV_S1QpdRKQQL4/841x622.png'
     },
     {
       src:
-        'http://www.modoweinspiracje.pl/wp-content/uploads/2016/08/jesien-2016-trendy-modowe-841x355.jpg'
+        'http://suptg.thisisnotatrueending.com/archive/5655084/images/1251653718851.png'
     },
     {
       src:

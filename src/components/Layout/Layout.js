@@ -14,7 +14,7 @@ import FooterContainer from 'components/Footer/FooterContainer'
 import GlobalLoading from 'components/Utils/GlobalLoading'
 import s from './Layout.css'
 import DataLayout from './DataLayout'
-
+import GlobalStyles from '../GlobalStyles'
 const enhance = compose(
   DataLayout,
   withStyles(s),
@@ -67,11 +67,9 @@ const Layout = props => {
     <div className={classNames({
       [classes.wrapper]: !simple,
       [classes.simpleWrapper]: simple
-    })}
-    >
-
-      <GlobalLoading />
-
+    })}>
+      <GlobalStyles/>
+      <GlobalLoading/>
       <ToastContainer
         autoClose={5000}
         className={classes.toastContainer}
