@@ -48,7 +48,6 @@ const ProductsTitle = (props) => {
       </NextPrevButtonsBlock>
       }
     </ProductsTitlePosotion>
-
   )
 }
 ProductsTitle.propTypes = {

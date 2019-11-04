@@ -28,6 +28,8 @@ import {startListener} from 'redux-first-routing'
 import History from './HistoryProvider'
 import * as sprintf from 'sprintf'
 import { ServerStyleSheet } from 'styled-components'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 const SUCCESS = 200
 

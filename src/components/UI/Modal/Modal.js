@@ -8,12 +8,13 @@ const ModalStyled = styled.div`
     position: absolute;
     top: 0;
     left: 100%;
-    width: 400px;
+    width: auto;
     height: auto;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.16);
     z-index: 9999;
+    white-space: nowrap;
 `
 const MenuList = styled.div`
     display: flex;

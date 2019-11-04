@@ -16,6 +16,8 @@ import createStore from './store/createStore'
 import {startListener} from 'redux-first-routing'
 import generateClassName from 'helpers/generateClassName'
 import {getCartItems} from 'helpers/storage'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 const initialState = {
   ...window.initialState,

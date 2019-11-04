@@ -14,7 +14,7 @@ import HeaderSimple from 'components/Header/HeaderSimple'
 import FooterContainer from 'components/Footer/FooterContainer'
 import GlobalLoading from 'components/Utils/GlobalLoading'
 import DataLayout from './DataLayout'
-
+import GlobalStyles from '../GlobalStyles'
 const enhance = compose(
   DataLayout,
   withStyles(s),
@@ -68,7 +68,7 @@ const Layout = props => {
       [classes.wrapper]: !simple,
       [classes.simpleWrapper]: simple
     })}>
-
+      <GlobalStyles/>
       <GlobalLoading/>
 
       <ToastContainer
