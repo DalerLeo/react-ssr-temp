@@ -1,28 +1,15 @@
 import {
-  BLACK_COLOR,
   crossBrowserify,
   fallbacksStyle,
   MAIN_COLOR,
   GREY_BORDER_STYLE
 } from 'constants/styles'
-import * as ROUTE from 'constants/routes'
-import fp from 'lodash/fp'
-import loMap from 'lodash/map'
 import React from 'react'
 import moment from 'moment'
-import sprintf from 'sprintf'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
 import { compose } from 'recompose'
-import classNames from 'classnames'
-import hexToRgb from 'helpers/hexToRgb'
-import PhoneSimple from 'react-icons/lib/md/phone'
-import Download from 'react-icons/lib/md/file-download'
-import T from 'components/T'
-import Link from 'components/Link'
 import Container from 'components/Container'
-import LogoTitle from 'components/Title/LogoTitle'
-import UsersOnline from './UsersOnline'
 
 const enhance = compose(
   injectSheet({
@@ -112,7 +99,6 @@ const enhance = compose(
       marginBottom: '6px'
     },
     copyDesc: {
-      color: hexToRgb(BLACK_COLOR, '0.32'),
       fontSize: '13px',
       paddingRight: '350px'
     },
@@ -143,161 +129,17 @@ const enhance = compose(
   })
 )
 
-const getDynamicUrl = (pageData) => {
-  return {
-    title: fp.get('nameRu', pageData),
-    url: sprintf(ROUTE.STATIC_PAGE_ITEM_URL, fp.get('keyName', pageData))
-  }
-}
-
 const Footer = props => {
-  const { classes, isEmployer, isApplicant, staticPagesList } = props
-
-  const pagesList = fp.get('data', staticPagesList)
-  const pageForApplicants = fp.find({ keyName: 'specialists' }, pagesList)
-  const pageForEmployers = fp.find({ keyName: 'companies' }, pagesList)
-  const pageAdvertising = fp.find({ keyName: 'advertizers' }, pagesList)
-
-  const menuItems = [
-    {
-      title: 'menu_applicant',
-      isStatic: true,
-      url: '',
-      childs: [
-        getDynamicUrl(pageForApplicants),
-        {
-          title: 'menu_create_resume',
-          isStatic: true,
-          url: ROUTE.RESUME_CREATE_URL,
-          condition: isApplicant
-        },
-        {
-          title: 'footer_faq_resume',
-          isStatic: true,
-          url: {
-            pathname: ROUTE.FAQ_URL,
-            search: '',
-            hash: ''
-          }
-        }
-      ]
-    },
-    {
-      title: 'menu_employer',
-      isStatic: true,
-      url: '',
-      childs: [
-        getDynamicUrl(pageForEmployers),
-        {
-          title: 'menu_create_vacancy',
-          isStatic: true,
-          url: ROUTE.VACANCY_CREATE_URL,
-          condition: isEmployer
-        },
-        {
-          title: 'menu_services',
-          isStatic: true,
-          url: sprintf(ROUTE.SERVICE_ITEM_URL, 'vacancy'),
-          condition: isEmployer
-        },
-        {
-          title: <span className={classes.iconMenu}><Download /> <T>footer_offer</T></span>,
-          url: '',
-          color: true
-        }
-      ]
-    },
-    {
-      title: 'footer_useful',
-      isStatic: true,
-      url: '',
-      childs: [
-        {
-          title: 'menu_company_catalog',
-          isStatic: true,
-          url: {
-            pathname: ROUTE.SEARCH_RESULTS_URL,
-            search: 'type=employer&catalogue=true'
-          }
-        },
-        false && {
-          title: 'menu_events',
-          isStatic: true,
-          url: ''
-        },
-        { title: 'FAQ', url: ROUTE.FAQ_URL },
-        getDynamicUrl(pageAdvertising)
-      ]
-    },
-    {
-      title: 'footer_contact',
-      isStatic: true,
-      url: '',
-      childs: [
-        { title: 'contact_form_title', url: ROUTE.CONTACT_URL, isStatic: true },
-        { title: <span className={classes.iconMenu}><PhoneSimple />+998 71 123-45-67</span> },
-        { title: 'myjob@info.uz' }
-      ]
-    }
-  ]
+  const { classes } = props
 
   return (
     <div className={classes.wrapper}>
       <Container>
         <div className={classes.navigation}>
-          <div className={classes.menu}>
-            <LogoTitle simple={true} />
-          </div>
-          {loMap(menuItems, (item, index) => {
-            const title = fp.get('title', item)
-            const isStatic = fp.get('isStatic', item)
-            const childs = fp.get('childs', item)
-            return (
-              <div key={index} className={classes.menu}>
-                <div className={classes.menuTitle}>{isStatic ? <T>{title}</T> : title}</div>
-                <ul className={classes.childMenus}>
-                  {loMap(childs, (child, key) => {
-                    const childTitle = fp.get('title', child)
-                    const childIsStatic = fp.get('isStatic', child)
-                    const childUrl = fp.get('url', child)
-                    const condition = fp.get('condition', child)
-                    const color = fp.get('color', child)
-                    if (condition === false) return null
-                    if (childUrl) {
-                      return (
-                        <Link
-                          to={childUrl}
-                          key={key}
-                          className={classNames({
-                            [classes.childMenu]: true,
-                            [classes.color]: color
-                          })}
-                        >
-                          {childIsStatic ? <T>{childTitle}</T> : childTitle}
-                        </Link>
-                      )
-                    }
-                    return (
-                      <span
-                        key={key}
-                        className={classNames({
-                          [classes.childMenu]: true,
-                          [classes.color]: color
-                        })}
-                      >
-                        {childIsStatic ? <T>{childTitle}</T> : childTitle}
-                      </span>
-                    )
-                  })}
-                </ul>
-              </div>
-            )
-          })}
+          <div className={classes.menu} />
         </div>
         <div className={classes.copyrightWrap}>
-          <div className={classes.copyright}>© {moment().format('YYYY')} Myjob.uz. <T>footer_copyright</T></div>
-          <div className={classes.copyDesc}><T>footer_copyright_desc</T></div>
-          <UsersOnline />
+          <div className={classes.copyright}>© {moment().format('YYYY')} Myjob.uz.footer_copyright</div>
         </div>
       </Container>
     </div>
@@ -305,11 +147,7 @@ const Footer = props => {
 }
 
 Footer.propTypes = {
-  classes: PropTypes.object,
-  isAuth: PropTypes.bool,
-  isEmployer: PropTypes.bool,
-  isApplicant: PropTypes.bool,
-  staticPagesList: PropTypes.object
+  classes: PropTypes.object
 }
 
 export default enhance(Footer)

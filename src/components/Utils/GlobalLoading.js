@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
 import { connect } from 'react-redux'
 import fp from 'lodash/fp'
-import hexToRgb from 'helpers/hexToRgb'
+import hexToRgb from 'utils/hexToRgb'
 
 const loaderStyle = {
   border: '6px solid #f3f3f3',

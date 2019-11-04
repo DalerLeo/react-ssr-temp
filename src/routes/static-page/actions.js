@@ -2,13 +2,14 @@ import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
 import fp from 'lodash/fp'
 import sprintf from 'sprintf'
-import axios from 'helpers/axiosHelper'
+import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 
 export const getStaticPagesList = () => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
       .get(API.STATIC_PAGES)
-      .then(fp.get('data'))
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
     return dispatch({
       payload,
       type: actionTypes.STATIC_PAGES

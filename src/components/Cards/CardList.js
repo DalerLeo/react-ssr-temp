@@ -3,27 +3,21 @@ import PropTypes from 'prop-types'
 import Row from 'antd/lib/row'
 import Col from 'antd/lib/col'
 import fp from 'lodash/fp'
-import MoreButton from 'components/MoreButton'
-import CardLoadingList from './CardLoadingList'
 
 const CardList = props => {
   const {
-    type,
     data,
     gutter,
     span,
     marginBottom,
     onMore,
-    filter,
-    link,
-    moreText
+    filter
   } = props
 
   const page = filter && filter.getParam('page')
-  const hasMore = filter && filter.hasMoreItems()
 
-  return (
-    <>'     '{((page && onMore) || !data.loading) && (
+  return ((page && onMore) || !data.loading) &&
+    (
       <Row type="flex" gutter={gutter}>
         {fp.map(item => {
           const id = fp.get('id', item)
@@ -32,10 +26,7 @@ const CardList = props => {
           )
         }, fp.get('data', data))}
       </Row>
-    )}'     '<CardLoadingList type={type} items={10} loading={data.loading} />'     '{onMore && hasMore && <MoreButton onClick={onMore} text="button_more" />}'     '{link && <MoreButton style={{ margin: '10px 0 68px' }} link={link} text={moreText || 'button_more'} />}'   '
-    </>
-
-  )
+    )
 }
 
 CardList.defaultProps = {

@@ -29,7 +29,6 @@ const Home = props => {
     stateName: 'productList'
   })
 
-//  console.warn(productData, 'dsdspo')
   return (
     <div>
       <Header />

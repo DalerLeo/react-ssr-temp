@@ -9,7 +9,6 @@ import filterHelper from 'helpers/filterHelper'
 import not from 'helpers/not'
 import pickBy from 'lodash/pickBy'
 import numberFormat from 'helpers/numberFormat'
-import T from 'components/T'
 
 const ONLY_PHONE = 4
 export const compareFilterByProps = curryRight((props, nextProps, filterName = 'filter', except = {}) => {
@@ -190,7 +189,7 @@ export const getSalaryCurrency = (data) => {
 export const getVacancySalary = (salaryFrom, salaryTo, currency, defaultText) => {
   const fromNumber = fp.toNumber(salaryFrom)
   const toNumber = fp.toNumber(salaryTo)
-  if (!fromNumber && !toNumber) return <T>{defaultText}</T>
+  if (!fromNumber && !toNumber) return defaultText
   if (fromNumber && !toNumber) {
     return numberFormat(fromNumber, currency)
   }
@@ -203,7 +202,7 @@ export const getVacancySalary = (salaryFrom, salaryTo, currency, defaultText) =>
       fp.join(' - ')
     )([fromNumber, toNumber])
     : defaultText
-      ? <T>{defaultText}</T>
+      ? defaultText
       : null
 }
 

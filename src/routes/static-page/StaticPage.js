@@ -2,22 +2,17 @@ import fp from 'lodash/fp'
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
-import { getTranslate } from 'helpers/translate'
-import Title from 'components/Title'
 import Container from 'components/Container'
-import TW from 'components/TW'
 import HtmlContent from 'components/HtmlContent'
 
 const withStyles = injectSheet({
   wrapper: {
-    margin: '50px 0'
+    margin: '50px 0',
   },
-  pageTitle: {
-
-  },
+  pageTitle: {},
   content: {
-    lineHeight: '25px'
-  }
+    lineHeight: '25px',
+  },
 })
 
 const StaticPage = props => {
@@ -28,21 +23,9 @@ const StaticPage = props => {
   return (
     <Container>
       <div className={classes.wrapper}>
-        {pageLoading
-          ? <div>Loading...</div>
-          : <TW>
-            {lang => (
-              <>'               '<Title
-                className={classes.pageTitle}
-                text={getTranslate(pageData, lang)}
-              />'               '<div className={classes.content}>
-                                   <HtmlContent>
-                  {getTranslate(pageData, lang, 'body')}
-                </HtmlContent>
-                                                    </div>'             '
-              </>
-            )}
-          </TW>}
+        <div className={classes.content}>
+          <HtmlContent />
+        </div>
       </div>
     </Container>
   )
@@ -50,7 +33,7 @@ const StaticPage = props => {
 
 StaticPage.propTypes = {
   classes: PropTypes.object,
-  pageDetail: PropTypes.object.isRequired
+  pageDetail: PropTypes.object.isRequired,
 }
 
 export default withStyles(StaticPage)

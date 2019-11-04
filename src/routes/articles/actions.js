@@ -1,7 +1,7 @@
 import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
 import fpGet from 'lodash/fp/get'
-import axios from 'helpers/axiosHelper'
+import axios from 'utils/ax'
 
 export const articleListFetch = (data) => {
   return (dispatch, getState) => {

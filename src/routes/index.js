@@ -20,28 +20,17 @@ const routes = {
       action: require('./home').default
     },
     {
-      path: ROUTE.SEARCH_URL,
-      load: () => import(/* webpackChunkName: 'search' */ './search')
-    },
-    {
-      path: ROUTE.SEARCH_RESULTS_URL,
-      action: require('./results').default
-    },
-    {
-      path: ROUTE.USER_SETTING_URL,
-      load: () => import(/* webpackChunkName: 'setting' */ './setting')
-    },
-    {
       path: ROUTE.ARTICLES_URL,
       children: [
         {
           path: '',
           load: () => import(/* webpackChunkName: 'articles' */ './articles')
-        },
-        {
-          path: '/:id',
-          load: () => import(/* webpackChunkName: 'article-details' */ './article-details')
         }
+
+        /*        {
+          path: '/:id',
+          load: () => import(/!* webpackChunkName: 'article-details' *!/ './article-details')
+        } */
 
       ]
     },
@@ -53,10 +42,6 @@ const routes = {
           load: () => import(/* webpackChunkName: 'static-page' */ './static-page')
         }
       ]
-    },
-    {
-      path: ROUTE.CONTACT_URL,
-      load: () => import(/* webpackChunkName: 'contact-us' */ './contact-us')
     },
     // Wildcard routes, e.g. { path: '(.*)', ... } (must go last)
     {
