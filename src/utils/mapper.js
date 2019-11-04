@@ -51,7 +51,7 @@ const mapValue = ([key, value]) => {
 }
 
 const mapD2D = ([key, value]) => {
-  /* const startDate = prop('startDate', value)
+  /* Const startDate = prop('startDate', value)
     const endDate = prop('endDate', value)
 
     if (is(Object, value) &&

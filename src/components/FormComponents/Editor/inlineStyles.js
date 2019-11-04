@@ -15,9 +15,9 @@ const INLINE_STYLES = [
 
     */
   // NEEDED STYLES
-  { label: <FormatBold/>, style: 'BOLD' },
-  { label: <FormatItalic/>, style: 'ITALIC' },
-  { label: <FormatUnderlined/>, style: 'UNDERLINE' }
+  { label: <FormatBold />, style: 'BOLD' },
+  { label: <FormatItalic />, style: 'ITALIC' },
+  { label: <FormatUnderlined />, style: 'UNDERLINE' }
 ]
 
 export default INLINE_STYLES

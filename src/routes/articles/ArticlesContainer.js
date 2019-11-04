@@ -6,9 +6,9 @@ import {
 } from 'recompose'
 
 import { connect } from 'react-redux'
+import { getStateData } from 'helpers/get'
 import Articles from './Articles'
 import { articleListFetch } from './actions'
-import { getStateData } from 'helpers/get'
 
 const mapStateToProps = (state) => {
   return {

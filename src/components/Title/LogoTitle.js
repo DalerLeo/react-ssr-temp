@@ -1,9 +1,9 @@
+import { crossBrowserify } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose, lifecycle } from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
-import { crossBrowserify } from 'constants/styles'
 import withHistory from 'helpers/withHistory'
 import MyJobLogos from 'images/MyJob_Logos_pure.svg'
 import Link from '../Link'
@@ -38,7 +38,7 @@ const LogoTitle = props => {
   const backgroundPosition = typeof window === 'object' ? window.logoPosition : '-999px -999px'
   return (
     <Link
-      to={'/'}
+      to="/"
       {...defaultProps}
       style={{ backgroundPosition }}
       className={classNames(classes.logo, {

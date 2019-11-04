@@ -11,8 +11,8 @@ import Carusel from 'components/UI/Carusel'
 import ProductsTitle from 'components/UI/ProductsTitle'
 import products from './cons'
 
+import { getProductList } from './actions'
 import useFetchList from '../../hooks/useFetchList'
-import {getEmployerList} from './actions'
 
 const ProductListBlock = styled.div`
   display: flex;
@@ -25,31 +25,33 @@ const HeaderMenu = styled.div`
 
 const Home = props => {
   const productData = useFetchList({
-    action: getEmployerList,
+    action: getProductList,
     stateName: 'productList'
   })
+
+//  console.warn(productData, 'dsdspo')
   return (
     <div>
       <Header />
       <Container>
         <HeaderMenu>
           <MenuBar />
-          <Carusel></Carusel>
+          <Carusel />
         </HeaderMenu>
         <ProductsTitle title="Популярные товары" />
         <ProductListBlock>
-          <ProductCardList products={products}/>
+          <ProductCardList products={products} />
         </ProductListBlock>
         <ProductsTitle title="Новинки" pagination={true} />
         <ProductListBlock>
-          <ProductCardList products={products}/>
+          <ProductCardList products={products} />
         </ProductListBlock>
         <PopularCategories />
         <AddBanner />
         <PopularCategories />
         <ProductsTitle title="Лучшие товары за месяц" />
         <ProductListBlock>
-          <ProductCardList products={products}/>
+          <ProductCardList products={products} />
         </ProductListBlock>
         <ShowMore />
       </Container>

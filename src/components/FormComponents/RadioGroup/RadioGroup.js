@@ -32,28 +32,29 @@ const enhance = compose(
 const RadioGroup = ({ input, className, classes, label, block, children, items, ...props }) => {
   if (items) {
     return (
-      <React.Fragment>
-        <Label label={label}/>
-        <Radio.Group
-          className={classNames(classes.radioGroup, className)}
-          {...input}
-          {...props}>
-          {loMap(items, item => (
-            <RadioButton
-              key={item.value || item.id}
-              value={item.value || item.id}
-              label={item.label || item.name}
-              className={block ? classes.radio : ''}
-            />
-          ))}
-        </Radio.Group>
-      </React.Fragment>
+      <>'       '<Label label={label} />'       '<Radio.Group
+        className={classNames(classes.radioGroup, className)}
+        {...input}
+        {...props}
+      >
+        {loMap(items, item => (
+          <RadioButton
+            key={item.value || item.id}
+            value={item.value || item.id}
+            label={item.label || item.name}
+            className={block ? classes.radio : ''}
+          />
+        ))}
+                                                 </Radio.Group>'     '
+      </>
     )
   }
   return (
-    <Radio.Group className={classNames(classes.radioGroup, className)}
-      {...input} {...props}>
-      <Label label={label}/>
+    <Radio.Group
+      className={classNames(classes.radioGroup, className)}
+      {...input} {...props}
+    >
+      <Label label={label} />
       {children}
     </Radio.Group>
   )

@@ -7,10 +7,10 @@ import PropTypes from 'prop-types'
 import Title from 'components/Title'
 import Container from 'components/Container'
 import Pagination from 'components/Pagination'
-import ArticleCard from './ArticleCard'
-import styles from './styles'
 import Col from 'antd/lib/col'
 import Row from 'antd/lib/row'
+import ArticleCard from './ArticleCard'
+import styles from './styles'
 
 const enhance = compose(
   withState('openDialog', 'setOpenDialog', false),
@@ -25,18 +25,18 @@ const Articles = props => {
     <div className={classes.wrapper}>
       <Container>
         <div className={classes.pageTitle}>
-          <Title text={'Статьи'}/>
+          <Title text="Статьи" />
         </div>
-        <Row type={'flex'} gutter={20}>
+        <Row type="flex" gutter={20}>
           {loMap(list, (item) => {
             return (
               <Col key={item.id} span={6} className={classes.articleWrapper}>
-                <ArticleCard id={item.id} data={item}/>
+                <ArticleCard id={item.id} data={item} />
               </Col>
             )
           })}
         </Row>
-        <Pagination filter={articleFilter}/>
+        <Pagination filter={articleFilter} />
       </Container>
     </div>
   )

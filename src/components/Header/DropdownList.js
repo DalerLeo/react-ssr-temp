@@ -1,10 +1,3 @@
-import fp from 'lodash/fp'
-import React from 'react'
-import PropTypes from 'prop-types'
-import injectSheet from 'react-jss'
-import { compose, withHandlers } from 'recompose'
-import { connect } from 'react-redux'
-import sprintf from 'sprintf'
 import {
   crossBrowserify,
   fallbacksStyle,
@@ -16,6 +9,13 @@ import {
   USER_SETTING_URL,
   SUBSCRIPTION_URL
 } from 'constants/routes'
+import fp from 'lodash/fp'
+import React from 'react'
+import PropTypes from 'prop-types'
+import injectSheet from 'react-jss'
+import { compose, withHandlers } from 'recompose'
+import { connect } from 'react-redux'
+import sprintf from 'sprintf'
 import withHistory from 'helpers/withHistory'
 import caughtCancel from 'helpers/caughtCancel'
 import hexToRgb from 'helpers/hexToRgb'
@@ -23,11 +23,11 @@ import { isEmployer, isApplicant } from 'helpers/get'
 import MdExpandMore from 'react-icons/lib/md/keyboard-arrow-down'
 import Dropdown from 'antd/lib/dropdown/dropdown'
 import Menu from 'antd/lib/menu/index'
-import Link from '../Link'
-import T from '../T'
 import RenderOrNull from 'components/Utils/RenderOrNull'
 import ProfilePic from 'components/ProfilePic'
 import BadgePulse from 'components/BadgePulse'
+import Link from '../Link'
+import T from '../T'
 
 const style = {
   settings: {
@@ -174,12 +174,10 @@ const DropDownList = props => {
   const onOpenChatDialog = () => setChatDialog()
 
   const messagesContent = (
-    <React.Fragment>
-      <T>menu_my_messages</T>
-      <RenderOrNull value={newMessagesCount}>
-        <span className={classes.counter}>{newMessagesCount}</span>
-      </RenderOrNull>
-    </React.Fragment>
+    <>'     '<T>menu_my_messages</T>'     '<RenderOrNull value={newMessagesCount}>
+      <span className={classes.counter}>{newMessagesCount}</span>
+                                           </RenderOrNull>'   '
+    </>
   )
 
   const isAuthMenu = (
@@ -222,17 +220,18 @@ const DropDownList = props => {
       <Dropdown
         overlay={isAuthMenu}
         trigger={['hover']}
-        placement={'bottomCenter'}>
+        placement="bottomCenter"
+      >
         <div className={classes.item}>
-          <ProfilePic type={'xxs'} image={photo}/>
+          <ProfilePic type="xxs" image={photo} />
           <span className={classes.text}>
             {isEmployer(user)
               ? <T>menu_my_office</T>
               : formatFullName(name)}
           </span>
-          <MdExpandMore className={classes.arrow}/>
+          <MdExpandMore className={classes.arrow} />
           <RenderOrNull value={allNotificationsCount}>
-            <BadgePulse positions={{ top: -3, left: -3 }}/>
+            <BadgePulse positions={{ top: -3, left: -3 }} />
           </RenderOrNull>
         </div>
       </Dropdown>

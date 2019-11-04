@@ -1,3 +1,4 @@
+import { crossBrowserify, fallbacksStyle } from 'constants/styles'
 import loGet from 'lodash/get'
 import React from 'react'
 import { ToastContainer } from 'react-toastify'
@@ -7,12 +8,11 @@ import classNames from 'classnames'
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import { compose } from 'recompose'
 import { getStaticPagesList } from 'routes/static-page/actions'
-import s from './Layout.css'
 import toastifyStyles from 'react-toastify/dist/ReactToastify.css'
-import { crossBrowserify, fallbacksStyle } from 'constants/styles'
 import HeaderSimple from 'components/Header/HeaderSimple'
 import FooterContainer from 'components/Footer/FooterContainer'
 import GlobalLoading from 'components/Utils/GlobalLoading'
+import s from './Layout.css'
 import DataLayout from './DataLayout'
 import GlobalStyles from '../GlobalStyles'
 const enhance = compose(
@@ -60,7 +60,7 @@ const Layout = props => {
   } = props
 
   if (otherProps.isServer) {
-    otherProps.store.dispatch(getStaticPagesList())
+    //    OtherProps.store.dispatch(getStaticPagesList())
   }
 
   return (
@@ -70,14 +70,13 @@ const Layout = props => {
     })}>
       <GlobalStyles/>
       <GlobalLoading/>
-
       <ToastContainer
         autoClose={5000}
         className={classes.toastContainer}
         closeButton={false}
         hideProgressBar={true}
         pauseOnHover={false}
-        position={'top-left'}
+        position="top-left"
         toastClassName={classes.toast}
       />
 

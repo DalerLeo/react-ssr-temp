@@ -1,10 +1,10 @@
+import {
+  crossBrowserify, fallbacksStyle
+} from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
-import {
-  crossBrowserify, fallbacksStyle
-} from 'constants/styles'
 import classNames from 'classnames'
 import Image from 'images/myjob.png'
 
@@ -68,18 +68,19 @@ const ProfilePic = ({ className, image, type, classes, square, ...defaultProps }
   const xs = type === 'xs'
   const xxs = type === 'xxs'
   return (
-    <div className={classNames({
-      [classes.wrapper]: true,
-      [className]: true,
-      [classes.xs]: xs,
-      [classes.xxs]: xxs,
-      [classes.mini]: mini,
-      [classes.small]: small,
-      [classes.medium]: medium,
-      [classes.large]: large,
-      [classes.square]: square
-    })}
-    style={{ backgroundImage: `url(${image || Image})` }}
+    <div
+      className={classNames({
+        [classes.wrapper]: true,
+        [className]: true,
+        [classes.xs]: xs,
+        [classes.xxs]: xxs,
+        [classes.mini]: mini,
+        [classes.small]: small,
+        [classes.medium]: medium,
+        [classes.large]: large,
+        [classes.square]: square
+      })}
+      style={{ backgroundImage: `url(${image || Image})` }}
     />
   )
 }

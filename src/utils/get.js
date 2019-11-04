@@ -168,9 +168,8 @@ export const getIdForInitValues = (data, keys) => pipe(
       return null
     } else if (isNaN(value)) {
       return [key, { id: value }]
-    } else {
-      return [key, { id: Number(value) }]
     }
+    return [key, { id: Number(value) }]
   }),
   filter(pipe(isNil, not)),
   fromPairs

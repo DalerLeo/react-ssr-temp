@@ -1,9 +1,9 @@
+import { COLOR_RED } from 'constants/styles'
 import React from 'react'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { COLOR_RED } from 'constants/styles'
 
 const enhance = compose(
   injectSheet({
@@ -27,7 +27,7 @@ const Label = ({ ...props }) => {
     return (
       <div className={classNames(classes.label, { [classes.errorLabel]: error })}>
         {label}
-        {required && <span > *</span>}
+        {required && <span> *</span>}
       </div>
     )
   }

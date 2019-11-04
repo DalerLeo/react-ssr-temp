@@ -1,10 +1,10 @@
+import {
+  FIELD_BORDER_STYLE
+} from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
-import {
-  FIELD_BORDER_STYLE
-} from 'constants/styles'
 import Label from 'components/FormComponents/FieldLabel'
 import RenderOrNull from 'components/Utils/RenderOrNull'
 import Label2 from 'components/FormComponents/FieldLabel/FieldLabel2'
@@ -60,10 +60,10 @@ const DateField = (props) => {
   return (
     <div className={classes.wrapper}>
       <RenderOrNull value={label}>
-        <Label required={required} label={label}/>
+        <Label required={required} label={label} />
       </RenderOrNull>
       <RenderOrNull value={label2}>
-        <Label2 label={label2}/>
+        <Label2 label={label2} />
       </RenderOrNull>
       <DatePicker
         onChange={input.onChange}

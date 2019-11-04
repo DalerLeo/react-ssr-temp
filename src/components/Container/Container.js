@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
+
 const enhance = compose(
   injectSheet({
     container: {

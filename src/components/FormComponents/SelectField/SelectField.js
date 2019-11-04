@@ -59,9 +59,10 @@ const SelectField = ({ input, className, classes, withLabel, label, fullWidth, c
         })}
         showSearch={true}
         dropdownClassName={classes.dropdown}
-        notFoundContent={'Не найдено'}
+        notFoundContent="Не найдено"
         {...props}
-        {...input}>
+        {...input}
+      >
         {children}
       </Select>
     </div>

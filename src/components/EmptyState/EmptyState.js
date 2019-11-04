@@ -1,8 +1,8 @@
+import { LIGHT_GREY_BORDER_STYLE } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import loIsEmpty from 'lodash/isEmpty'
 import injectSheet from 'react-jss'
-import { LIGHT_GREY_BORDER_STYLE } from 'constants/styles'
 import { hexToRgb } from 'helpers'
 
 const withStyles = injectSheet({

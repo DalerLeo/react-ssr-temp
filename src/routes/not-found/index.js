@@ -8,7 +8,7 @@ export default props => {
     title: 'Страница не найдена',
     component: (
       <Layout {...props}>
-        <NotFound/>
+        <NotFound />
       </Layout>
     ),
     status: 404

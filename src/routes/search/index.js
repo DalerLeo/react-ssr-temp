@@ -8,7 +8,7 @@ const action = (props) => {
     title: 'Расширенный поиск',
     component: (
       <Layout {...props} search={true}>
-        <SearchPage/>
+        <SearchPage />
       </Layout>
     )
   }

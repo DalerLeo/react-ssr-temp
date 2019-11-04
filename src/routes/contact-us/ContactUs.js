@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
+import { LINK_COLOR } from 'constants/styles'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
 import { compose, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
 import { reduxForm, Field, getFormValues } from 'redux-form'
-import { LINK_COLOR } from 'constants/styles'
+import React, { useState } from 'react'
 import t from 'helpers/translate'
 import withHistory from 'helpers/withHistory'
 import toast from 'helpers/toast'
 import formValidate from 'helpers/formValidate'
 import { getStateLoading } from 'helpers/get'
-import { sendFeedbackAction } from './actions'
 import { Button, GREY } from 'components/Button'
 import { TextField, TextAreaField } from 'components/FormComponents'
 import Title from 'components/Title'
@@ -18,6 +17,7 @@ import Container from 'components/Container'
 import T from 'components/T'
 import TW from 'components/TW'
 import ReCAPTCHA from 'react-google-recaptcha'
+import { sendFeedbackAction } from './actions'
 
 const CAPTCHA_SITE_KEY = '6Ldj2KsUAAAAANbRab1PFLtp44wM7TC-8MINrFRs'
 const CAPTCHA_TEST_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
@@ -106,7 +106,7 @@ const ContactUs = props => {
     <div className={classes.wrapper}>
       <Container>
         <div className={classes.content}>
-          <Title isStatic={true} text={'contact_form_title'}/>
+          <Title isStatic={true} text="contact_form_title" />
           <div className={classes.description}>
             <T>contact_form_description</T>
           </div>
@@ -115,7 +115,7 @@ const ContactUs = props => {
             <TW>
               {lang => (
                 <Field
-                  name={'fullName'}
+                  name="fullName"
                   component={TextField}
                   label={t('contact_form_name', lang)}
                   placeholder={t('contact_form_name_placeholder', lang)}
@@ -126,9 +126,9 @@ const ContactUs = props => {
             <TW>
               {lang => (
                 <Field
-                  name={'email'}
+                  name="email"
                   component={TextField}
-                  label={'Email'}
+                  label="Email"
                   placeholder={t('contact_form_email_placeholder', lang)}
                   required={true}
                 />
@@ -137,7 +137,7 @@ const ContactUs = props => {
             <TW>
               {lang => (
                 <Field
-                  name={'message'}
+                  name="message"
                   component={TextAreaField}
                   label={t('contact_form_message', lang)}
                   placeholder={t('contact_form_message_placeholder', lang)}
@@ -151,15 +151,15 @@ const ContactUs = props => {
             />
             <div className={classes.buttons}>
               <Button
-                type={'medium'}
-                text={'button_cancel'}
+                type="medium"
+                text="button_cancel"
                 color={GREY}
                 onClick={onCancel}
               />
               <Button
-                type={'medium'}
-                text={'button_send'}
-                submitType={'submit'}
+                type="medium"
+                text="button_send"
+                submitType="submit"
                 disabled={!accessGranted}
                 loading={feedbackLoading}
               />

@@ -1,8 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
-import classNames from 'classnames'
 import {
   crossBrowserify,
   fallbacksStyle,
@@ -13,6 +8,11 @@ import {
   FADE_IN_ANIMATE,
   ANCHOR_DISABLED
 } from 'constants/styles'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
+import classNames from 'classnames'
 import {
   VACANCY,
   COMPANY,
@@ -167,8 +167,8 @@ const LoadingCard = props => {
   if (type === SEARCH) {
     return (
       <div className={classes.loadingList}>
-        <div className={classes.position}/>
-        <div className={classes.oneFourth}/>
+        <div className={classes.position} />
+        <div className={classes.oneFourth} />
       </div>
     )
   }
@@ -178,21 +178,22 @@ const LoadingCard = props => {
       <div
         className={classNames(classes.vacancyBig, {
           [classes.margin]: marginBottom
-        })}>
-        <div className={classes.threeFourth}/>
+        })}
+      >
+        <div className={classes.threeFourth} />
         <div className={classes.bodyInfo}>
           <div className={classes.flex}>
-            <div className={classes.photo}/>
+            <div className={classes.photo} />
             <div style={{ width: '100%' }}>
-              <div className={classes.oneThird}/>
-              <div className={classes.oneFourth}/>
+              <div className={classes.oneThird} />
+              <div className={classes.oneFourth} />
             </div>
           </div>
-          <div className={classes.desc}/>
-          <div className={classes.desc}/>
-          <div className={classes.desc}/>
+          <div className={classes.desc} />
+          <div className={classes.desc} />
+          <div className={classes.desc} />
         </div>
-        <div className={classes.oneFourth}/>
+        <div className={classes.oneFourth} />
       </div>
     )
   }
@@ -201,13 +202,14 @@ const LoadingCard = props => {
       className={classNames(classes.vacancy, {
         [classes.margin]: marginBottom,
         [classes.white]: type === BACK_WHITE
-      })}>
-      <div className={classes.image} style={{ background: '#efefef' }}/>
+      })}
+    >
+      <div className={classes.image} style={{ background: '#efefef' }} />
       <div className={classes.body}>
-        <div className={classes.position}/>
-        <div className={classes.desc}/>
-        <div className={classes.desc}/>
-        <div className={classes.position}/>
+        <div className={classes.position} />
+        <div className={classes.desc} />
+        <div className={classes.desc} />
+        <div className={classes.position} />
       </div>
     </a>
   )

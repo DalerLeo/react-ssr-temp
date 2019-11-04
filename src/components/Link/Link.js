@@ -71,7 +71,8 @@ const Link = props => {
       {...otherProps}
       href={toString(to)}
       style={style}
-      onClick={handleClick}>
+      onClick={handleClick}
+    >
       {children}
     </LinkUI>
   )

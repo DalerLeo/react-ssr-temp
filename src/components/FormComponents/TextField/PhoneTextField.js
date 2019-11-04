@@ -1,3 +1,12 @@
+import {
+  BORDER_COLOR,
+  COLOR_RED,
+  crossBrowserify,
+  fallbacksStyle,
+  FIELD_BORDER_STYLE,
+  TEXT_COLOR_DEFAULT
+} from 'constants/styles'
+import { COUNTRY_FLAG_LIST } from 'constants/api'
 import React from 'react'
 import fp from 'lodash/fp'
 import loOmit from 'lodash/omit'
@@ -11,16 +20,7 @@ import {
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import axios from 'helpers/axiosHelper'
-import {
-  BORDER_COLOR,
-  COLOR_RED,
-  crossBrowserify,
-  fallbacksStyle,
-  FIELD_BORDER_STYLE,
-  TEXT_COLOR_DEFAULT
-} from 'constants/styles'
 import hexToRgb from 'helpers/hexToRgb'
-import { COUNTRY_FLAG_LIST } from 'constants/api'
 import Label from 'components/FormComponents/FieldLabel'
 import Label2 from 'components/FormComponents/FieldLabel/FieldLabel2'
 
@@ -171,14 +171,15 @@ const PhoneTextField = (props) => {
 
   return (
     <div className={classes.wrapper}>
-      <Label required={required} label={label}/>
-      <Label2 label={label2}/>
+      <Label required={required} label={label} />
+      <Label2 label={label2} />
       <div
         style={{ width }}
         className={classNames({
           [classes.inputWrapper]: true,
           [classes.errorBorder]: error
-        })}>
+        })}
+      >
         <input
           type={type}
           {...filteredProps}

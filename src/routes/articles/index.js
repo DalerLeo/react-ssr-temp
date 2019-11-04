@@ -1,7 +1,7 @@
 /* eslint-disable func-style */
 import React from 'react'
-import ArticlesContainer from './ArticlesContainer'
 import Layout from 'components/Layout'
+import ArticlesContainer from './ArticlesContainer'
 import { articleListFetch } from './actions'
 
 async function action (props) {
@@ -14,7 +14,7 @@ async function action (props) {
     title: 'Статьи',
     component: (
       <Layout {...props} store={store}>
-        <ArticlesContainer/>
+        <ArticlesContainer />
       </Layout>
     )
   }

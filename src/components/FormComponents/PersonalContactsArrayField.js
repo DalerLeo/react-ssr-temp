@@ -4,9 +4,9 @@ import { compose } from 'recompose'
 import injectSheet from 'react-jss'
 import CloseIcon from 'react-icons/lib/md/close'
 import { Field } from 'redux-form'
+import { crossBrowserify, fallbacksStyle, MAIN_COLOR } from '../../constants/styles'
 import TextField from './TextField'
 import Label from './FieldLabel/FieldLabel2'
-import { crossBrowserify, fallbacksStyle, MAIN_COLOR } from '../../constants/styles'
 
 const enhance = compose(
   injectSheet({
@@ -53,31 +53,29 @@ const PersonalContactsArrayField = (props) => {
 
   const onRemove = (index) => fields.remove(index)
   return (
-    <React.Fragment>
-      <div className={classes.socialTitle}>
-        <Label label={'Контактное лицо'}/>
-        <span onClick={handleTouchTap} className={classes.addBtn}>Добавить</span>
-      </div>
-      {fields.map((lang, index) => {
-        return (
-          <div key={index} className={classes.contact}>
-            <Field
-              name={`${lang}.name`}
-              component={TextField}
-              isStatic={true}
-            />
-            <Field
-              name={`${lang}.phone`}
-              component={TextField}
-              isStatic={true}
-            />
-            <div onClick={() => onRemove(index)} style={deleteStyle}>
-              <CloseIcon style={{ width: '22px', height: '22px' }}/>
-            </div>
+    <>'     '<div className={classes.socialTitle}>
+      <Label label="Контактное лицо" />
+      <span onClick={handleTouchTap} className={classes.addBtn}>Добавить</span>
+             </div>'     '{fields.map((lang, index) => {
+      return (
+        <div key={index} className={classes.contact}>
+          <Field
+            name={`${lang}.name`}
+            component={TextField}
+            isStatic={true}
+          />
+          <Field
+            name={`${lang}.phone`}
+            component={TextField}
+            isStatic={true}
+          />
+          <div onClick={() => onRemove(index)} style={deleteStyle}>
+            <CloseIcon style={{ width: '22px', height: '22px' }} />
           </div>
-        )
-      })}
-    </React.Fragment>
+        </div>
+      )
+    })}'   '
+    </>
   )
 }
 

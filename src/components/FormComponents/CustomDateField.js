@@ -1,3 +1,5 @@
+import { MONTH_LIST } from 'constants/backend'
+import { crossBrowserify, fallbacksStyle } from 'constants/styles'
 import fp from 'lodash/fp'
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
@@ -6,10 +8,8 @@ import { connect } from 'react-redux'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import { Field, change } from 'redux-form'
-import { MONTH_LIST } from 'constants/backend'
 import { dateObjectFormat } from 'helpers/customDate'
 import { Label2, TextField, SearchFieldConfig } from 'components/FormComponents'
-import { crossBrowserify, fallbacksStyle } from 'constants/styles'
 
 const parseDateFormat = ({ input, formName, dispatch }) => {
   const inputValue = fp.get('value', input)
@@ -52,11 +52,11 @@ const CustomDateField = props => {
 
   useEffect(() => {
     parseDateFormat({ input, formName, dispatch })
-  }, [inputValue])
+  }, [dispatch, formName, input, inputValue])
 
   return (
     <div>
-      <Label2 label={label}/>
+      <Label2 label={label} />
       <div className={classes.container}>
         {type === 'default' &&
         <div className={classNames(classes.input, classes.day)}>
@@ -80,7 +80,7 @@ const CustomDateField = props => {
           <Field
             name={`${inputName}.month`}
             component={SearchFieldConfig}
-            placeholder={'Месяц'}
+            placeholder="Месяц"
             items={MONTH_LIST}
             isStatic={true}
           />
@@ -89,7 +89,7 @@ const CustomDateField = props => {
           <Field
             name={`${inputName}.year`}
             component={TextField}
-            placeholder={'Год'}
+            placeholder="Год"
             maxLength={4}
           />
         </div>

@@ -1,3 +1,4 @@
+import { crossBrowserify } from 'constants/styles'
 import React from 'react'
 import fpGet from 'lodash/fp/get'
 import injectSheet from 'react-jss'
@@ -5,7 +6,6 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import HintIcon from 'icons/HintIcon'
-import { crossBrowserify } from 'constants/styles'
 import T from 'components/T'
 
 const style = {
@@ -86,11 +86,13 @@ class FieldHint extends React.Component {
     const { classes, data } = this.props
 
     return (
-      <div ref={this.hint} className={classNames(classes.hintWrapper, {
-        [classes.visibleHint]: this.state.inTheViewport
-      })}>
+      <div
+        ref={this.hint} className={classNames(classes.hintWrapper, {
+          [classes.visibleHint]: this.state.inTheViewport
+        })}
+      >
         <div className={classes.hintTitle}>
-          <HintIcon/>
+          <HintIcon />
           <T>{fpGet('title', data)}</T>
         </div>
         <div className={classes.hintDesc}>

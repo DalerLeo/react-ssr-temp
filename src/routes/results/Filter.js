@@ -1,3 +1,18 @@
+import {
+  ALTERNATE_COLOR,
+  BLACK_COLOR,
+  crossBrowserify,
+  fallbacksStyle,
+  LABEL_COLOR,
+  MAIN_COLOR
+} from 'constants/styles'
+import {
+  EXPERIENCES_LIST,
+  EMPLOYMENT_TYPE,
+  EDUCATION_LIST,
+  GENDER_LIST,
+  MARITAL_STATUS_LIST
+} from 'constants/backend'
 import fp from 'lodash/fp'
 import loMap from 'lodash/map'
 import mapKeys from 'lodash/mapKeys'
@@ -7,35 +22,20 @@ import { compose } from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import { reduxForm, Field } from 'redux-form'
-import {
-  ALTERNATE_COLOR,
-  BLACK_COLOR,
-  crossBrowserify,
-  fallbacksStyle,
-  LABEL_COLOR,
-  MAIN_COLOR
-} from 'constants/styles'
 import { splitToArray } from 'helpers/joinSplitValues'
 import toBoolean from 'helpers/toBoolean'
 import t, { getTranslate } from 'helpers/translate'
 import Spinner from 'icons/Spinner'
-import AppliedFilter from './AppliedFilter'
 import {
   RadioGroup,
   Radio,
   CustomCheckBoxGroup
 } from 'components/FormComponents'
-import {
-  EXPERIENCES_LIST,
-  EMPLOYMENT_TYPE,
-  EDUCATION_LIST,
-  GENDER_LIST,
-  MARITAL_STATUS_LIST
-} from 'constants/backend'
 import toSnakeCase from 'helpers/toSnakeCase'
 import T from 'components/T'
 import TW from 'components/TW'
 import RenderOrNull from 'components/Utils/RenderOrNull'
+import AppliedFilter from './AppliedFilter'
 
 const replaceIrrelevant = (sourceArray) => {
   return [
@@ -202,11 +202,11 @@ const Filter = (props) => {
 
   const resultCounts = mapKeys(props.resultCounts, (val, key) => {
     switch (key) {
-      case 'educationLevel': return 'education'
-      case 'industry': return 'industries'
-      case 'driverLicences': return 'driverLicense'
-      case 'employmentTypes': return 'employmentType'
-      default: return key
+    case 'educationLevel': return 'education'
+    case 'industry': return 'industries'
+    case 'driverLicences': return 'driverLicense'
+    case 'employmentTypes': return 'employmentType'
+    default: return key
     }
   })
 
@@ -274,7 +274,8 @@ const Filter = (props) => {
           <Field
             name={fieldName}
             component={RadioGroup}
-            onChange={(ev, value) => onFilterChange({ value, fieldName })}>
+            onChange={(ev, value) => onFilterChange({ value, fieldName })}
+          >
             {fp.map(item => {
               const id = fp.get('id', item)
               const isStaticItem = fp.get('isStatic', item)
@@ -303,7 +304,8 @@ const Filter = (props) => {
       return (
         <div
           className={classes.expand}
-          onClick={() => setState(!state)}>
+          onClick={() => setState(!state)}
+        >
           <T>{state ? 'button_hide' : 'button_more'}</T>
         </div>
       )
@@ -324,56 +326,49 @@ const Filter = (props) => {
 
   return (
     <div className={classes.wrapper}>
-      <div className={classes.searchWrapper}>
-      </div>
+      <div className={classes.searchWrapper} />
 
       {!isCatalogue &&
-      <React.Fragment>
-        {isAuth && <div onClick={onSaveSearch} className={classes.saveSearch}><T>button_save_search</T></div>}
-        <div className={classes.field}>
-          <div className={classes.label}><T>main_search_by</T></div>
-          <div className={classes.value}>
-            <Field
-              name={'type'}
-              component={RadioGroup}
-              onChange={(ev, value) => onFilterChange({ value, fieldName: 'type' })}>
-              <TW>
-                {(lang) => (
-                  <React.Fragment>
-                    <Radio className={classes.radio} label={t('main_vacancy', lang)} value={'vacancy'}/>
-                    <Radio className={classes.radio} label={t('main_resume', lang)} value={'resume'}/>
-                    <Radio className={classes.radio} label={t('main_companies', lang)} value={'employer'}/>
-                  </React.Fragment>
-                )}
-              </TW>
-            </Field>
-          </div>
+      <>'       '{isAuth && <div onClick={onSaveSearch} className={classes.saveSearch}><T>button_save_search</T></div>}'       '<div className={classes.field}>
+        <div className={classes.label}><T>main_search_by</T></div>
+        <div className={classes.value}>
+          <Field
+            name="type"
+            component={RadioGroup}
+            onChange={(ev, value) => onFilterChange({ value, fieldName: 'type' })}
+          >
+            <TW>
+              {(lang) => (
+                <>'                   '<Radio className={classes.radio} label={t('main_vacancy', lang)} value="vacancy" />'                   '<Radio className={classes.radio} label={t('main_resume', lang)} value="resume" />'                   '<Radio className={classes.radio} label={t('main_companies', lang)} value="employer" />'                 '</>
+              )}
+            </TW>
+          </Field>
         </div>
-      </React.Fragment>}
+                                                                                                                                </div>'     '
+      </>}
 
       <div className={classNames({
         [classes.xpandField]: true,
         [classes.xpand]: expandIndustry
-      })}>
+      })}
+      >
         <div className={classes.label}><T>main_sphere</T></div>
-        {profLoading && fp.isEmpty(profList) && <Spinner/>}
+        {profLoading && fp.isEmpty(profList) && <Spinner />}
         <TW>
           {(lang) => {
             const fieldProps = getSpecialitiesFieldProps('industries', lang)
             return (
-              <React.Fragment>
-                <Field
+              <>'               '<Field
+                {...fieldProps}
+                items={selectedIndustriesList}
+              />'               '<div className={classes.value}>
+                                   <Field
                   {...fieldProps}
-                  items={selectedIndustriesList}
+                  items={unselectedIndustriesList}
+                  className={classes.customCheckbox}
                 />
-                <div className={classes.value}>
-                  <Field
-                    {...fieldProps}
-                    items={unselectedIndustriesList}
-                    className={classes.customCheckbox}
-                  />
-                </div>
-              </React.Fragment>
+                                                    </div>'             '
+              </>
             )
           }}
         </TW>
@@ -385,25 +380,24 @@ const Filter = (props) => {
         <div className={classNames({
           [classes.xpandField]: true,
           [classes.xpand]: expandSphere
-        })}>
+        })}
+        >
           <div className={classes.label}><T>resume_specialty</T></div>
           <TW>
             {(lang) => {
               const fieldProps = getSpecialitiesFieldProps('specialities', lang)
               return (
-                <React.Fragment>
-                  <Field
+                <>'                 '<Field
+                  {...fieldProps}
+                  items={selectedSpecialitiesList}
+                />'                 '<div className={classes.value}>
+                                       <Field
                     {...fieldProps}
-                    items={selectedSpecialitiesList}
+                    items={unselectedSpecialitiesList}
+                    className={classes.customCheckbox}
                   />
-                  <div className={classes.value}>
-                    <Field
-                      {...fieldProps}
-                      items={unselectedSpecialitiesList}
-                      className={classes.customCheckbox}
-                    />
-                  </div>
-                </React.Fragment>
+                                                          </div>'               '
+                </>
               )
             }}
           </TW>
@@ -411,157 +405,148 @@ const Filter = (props) => {
         </div>}
       </RenderOrNull>
       {showFilterFields &&
-      <React.Fragment>
-        <div>
-          {false && (
-            <AppliedFilter
-              profList={profList}
-              regList={regList}
-              onSaveSearch={onSaveSearch}
-              onClear={onClear}/>
-          )}
+      <>'       '<div>
+        {false && (
+          <AppliedFilter
+            profList={profList}
+            regList={regList}
+            onSaveSearch={onSaveSearch}
+            onClear={onClear}
+          />
+        )}
+                 </div>'
+       '<div className={classes.field}>
+         <div className={classes.label}><T>main_work_experience</T></div>
+         <div className={classes.value}>
+          {getRadioButtons(EXPERIENCES_LIST, 'experience', { isStatic: true })}
         </div>
-
-        <div className={classes.field}>
-          <div className={classes.label}><T>main_work_experience</T></div>
-          <div className={classes.value}>
-            {getRadioButtons(EXPERIENCES_LIST, 'experience', { isStatic: true })}
-          </div>
+        </div>'
+       '<div className={classes.field}>
+         <div className={classes.label}><T>main_education</T></div>
+         {getRadioButtons(EDUCATION_LIST_2, 'education', { isStatic: true })}
+        </div>'
+       '{type === 'resume' && <>'         '<div className={classes.field}>
+        <div className={classes.label}><T>main_sex</T></div>
+        <div className={classes.value}>
+           {getRadioButtons(GENDER_LIST_2, 'gender', { isStatic: true })}
+         </div>
+      </div>'         '<div className={classes.field}>
+                                             <div className={classes.label}><T>main_marital_status</T></div>
+                                             <div className={classes.value}>
+          {getRadioButtons(MARITAL_STATUS_LIST, 'maritalStatus', { isStatic: true })}
         </div>
-
-        <div className={classes.field}>
-          <div className={classes.label}><T>main_education</T></div>
-          {getRadioButtons(EDUCATION_LIST_2, 'education', { isStatic: true })}
+      </div>'         '<div className={classNames({
+        [classes.xpandField]: true,
+        [classes.xpand]: expandLangs
+      })}
+                                        >
+                         <div className={classes.label}><T>main_language_knowledge</T></div>
+                         <div className={classes.value}>
+          <Field
+                             name="languages"
+                             component={CustomCheckBoxGroup}
+                             items={langList}
+                             itemName="name"
+                             className={classes.customCheckbox}
+                             onChange={(ev, value) => {
+              onFilterChange({ value, fieldName: 'languages' })
+            }}
+                             withCounts={true}
+                             counts={fp.get('languages', resultCounts)}
+                           />
         </div>
-
-        {type === 'resume' && <React.Fragment>
-          <div className={classes.field}>
-            <div className={classes.label}><T>main_sex</T></div>
-            <div className={classes.value}>
-              {getRadioButtons(GENDER_LIST_2, 'gender', { isStatic: true })}
-            </div>
-          </div>
-          <div className={classes.field}>
-            <div className={classes.label}><T>main_marital_status</T></div>
-            <div className={classes.value}>
-              {getRadioButtons(MARITAL_STATUS_LIST, 'maritalStatus', { isStatic: true })}
-            </div>
-          </div>
-          <div className={classNames({
-            [classes.xpandField]: true,
-            [classes.xpand]: expandLangs
-          })}>
-            <div className={classes.label}><T>main_language_knowledge</T></div>
-            <div className={classes.value}>
-              <Field
-                name={'languages'}
-                component={CustomCheckBoxGroup}
-                items={langList}
-                itemName={'name'}
-                className={classes.customCheckbox}
-                onChange={(ev, value) => {
-                  onFilterChange({ value, fieldName: 'languages' })
-                }}
-                withCounts={true}
-                counts={fp.get('languages', resultCounts)}
-              />
-            </div>
-            {getExpandButton(expandLangs, setExpandLangs, langList)}
-          </div>
-
-          <div className={classes.field}>
-            <div className={classes.label}><T>main_driver_license</T></div>
-            <div className={classes.value}>
-              <Field
-                name={'driverLicense'}
-                component={CustomCheckBoxGroup}
-                items={driverLicenseData}
-                itemName={'title'}
-                type={'block'}
-                withCounts={true}
-                counts={fp.get('driverLicense', resultCounts)}
-                onChange={(ev, value) => onFilterChange({ value, fieldName: 'driverLicense' })}
-              />
-            </div>
-          </div>
-
-          <div className={classes.field}>
-            <div className={classes.label}><T>main_photo_availability</T></div>
-            <div className={classes.value}>
-              {getRadioButtons([
-                { id: '1', name: 'main_with_photo' },
-                { id: '0', name: 'main_without_photo' },
-                { id: 'null', name: 'common_irrelevant' }
-              ], 'withPhoto', { isStatic: true })}
-            </div>
-          </div>
-        </React.Fragment>}
-        <div className={classes.field}>
-          <div className={classes.label}><T>main_schedule</T></div>
-          <div className={classes.value}>
-            <TW>
-              {(lang) => (
-                <Field
-                  name={'employmentType'}
-                  component={CustomCheckBoxGroup}
-                  withCounts={true}
-                  counts={toSnakeCase(fp.get('employmentType', resultCounts))}
-                  items={fp.map(item => {
-                    return {
-                      ...item,
-                      name: t(item.name, lang)
-                    }
-                  }, EMPLOYMENT_TYPE)}
-                  itemName={'name'}
-                  onChange={(ev, value) => onFilterChange({ value, fieldName: 'employmentType' })}
-                />
-              )}
-            </TW>
-          </div>
-        </div>
-        <RenderOrNull value={regList}>
-          <div className={classNames({
-            [classes.xpandField]: true,
-            [classes.xpand]: expandRegions
-          })}>
-            <div className={classes.label}><T>main_region</T></div>
-            <div className={classes.value}>
-              {getRadioButtons(
-                [{ id: 'null', name: 'common_irrelevant', isStatic: true }, ...regList],
-                'region', {
-                  isStatic: false,
-                  radioClassName: classes.customRadio
-                }
-              )}
-              {false && <Field
-                name={'region'}
-                component={RadioGroup}
-                onChange={(ev, value) => onFilterChange({ value, fieldName: 'region' })}>
-                <TW>
-                  {(lang) => fp.map(item => {
-                    return (
-                      <React.Fragment>
-                        <Radio
-                          value={''}
-                          className={classNames(classes.radio, classes.customRadio)}
-                          label={getTranslate('common_irrelevant', lang)}
-                        />
-                        <Radio
-                          key={item.id}
-                          className={classNames(classes.radio, classes.customRadio)}
-                          value={item.id}
-                          label={getTranslate(item, lang)}
-                        />
-                      </React.Fragment>
-                    )
-                  }, regList)}
-                </TW>
-              </Field>}
-            </div>
-            {getExpandButton(expandRegions, setExpandRegions, regList)}
-          </div>
-        </RenderOrNull>
-      </React.Fragment>}
+                         {getExpandButton(expandLangs, setExpandLangs, langList)}
+      </div>'
+         '<div className={classes.field}>
+        <div className={classes.label}><T>main_driver_license</T></div>
+        <div className={classes.value}>
+             <Field
+            name="driverLicense"
+            component={CustomCheckBoxGroup}
+            items={driverLicenseData}
+            itemName="title"
+            type="block"
+            withCounts={true}
+            counts={fp.get('driverLicense', resultCounts)}
+            onChange={(ev, value) => onFilterChange({ value, fieldName: 'driverLicense' })}
+          />
+           </div>
+      </div>'
+         '<div className={classes.field}>
+        <div className={classes.label}><T>main_photo_availability</T></div>
+        <div className={classes.value}>
+             {getRadioButtons([
+            { id: '1', name: 'main_with_photo' },
+            { id: '0', name: 'main_without_photo' },
+            { id: 'null', name: 'common_irrelevant' }
+          ], 'withPhoto', { isStatic: true })}
+           </div>
+      </div>'       '
+                              </>}'       '<div className={classes.field}>
+                                <div className={classes.label}><T>main_schedule</T></div>
+                                <div className={classes.value}>
+                                  <TW>
+                                    {(lang) => (
+                                      <Field
+                                        name="employmentType"
+                                        component={CustomCheckBoxGroup}
+                                        withCounts={true}
+                                        counts={toSnakeCase(fp.get('employmentType', resultCounts))}
+                                        items={fp.map(item => {
+                                          return {
+                                            ...item,
+                                            name: t(item.name, lang)
+                                          }
+                                        }, EMPLOYMENT_TYPE)}
+                                        itemName="name"
+                                        onChange={(ev, value) => onFilterChange({ value, fieldName: 'employmentType' })}
+                                      />
+                                    )}
+                                  </TW>
+                                </div>
+                                           </div>'       '<RenderOrNull value={regList}>
+                                <div className={classNames({
+                                  [classes.xpandField]: true,
+                                  [classes.xpand]: expandRegions
+                                })}
+                                             >
+                                               <div className={classes.label}><T>main_region</T></div>
+                                               <div className={classes.value}>
+                                    {getRadioButtons(
+                                      [{ id: 'null', name: 'common_irrelevant', isStatic: true }, ...regList],
+                                      'region', {
+                                        isStatic: false,
+                                        radioClassName: classes.customRadio
+                                      }
+                                    )}
+                                    {false && <Field
+                                                   name="region"
+                                                   component={RadioGroup}
+                                                   onChange={(ev, value) => onFilterChange({ value, fieldName: 'region' })}
+                                                           >
+                                                   <TW>
+                                        {(lang) => fp.map(item => {
+                                          return (
+                                            <>'                       '<Radio
+                                              value=""
+                                              className={classNames(classes.radio, classes.customRadio)}
+                                              label={getTranslate('common_irrelevant', lang)}
+                                            />'                       '<Radio
+                                                                         key={item.id}
+                                                                         className={classNames(classes.radio, classes.customRadio)}
+                                                                         value={item.id}
+                                                                         label={getTranslate(item, lang)}
+                                                                                                  />'                     '
+                                            </>
+                                          )
+                                        }, regList)}
+                                      </TW>
+                                                           </Field>}
+                                  </div>
+                                               {getExpandButton(expandRegions, setExpandRegions, regList)}
+                                             </div>
+                                             </RenderOrNull>'     '
+      </>}
     </div>
   )
 }

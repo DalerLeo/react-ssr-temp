@@ -1,3 +1,7 @@
+import {
+  crossBrowserify,
+  fallbacksStyle
+} from 'constants/styles'
 import React from 'react'
 import fp from 'lodash/fp'
 import loMap from 'lodash/map'
@@ -7,10 +11,6 @@ import { compose, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
-import {
-  crossBrowserify,
-  fallbacksStyle
-} from 'constants/styles'
 import hexToRgb from 'helpers/hexToRgb'
 import numberFormat from 'helpers/numberFormat'
 import { setArrayToCartAction } from 'routes/action-common/cart'
@@ -174,16 +174,17 @@ const ServiceCheckBoxGroup = props => {
           medium={true}
           text={title}
         />
-        <ServiceDiscount discount={discount}/>
+        <ServiceDiscount discount={discount} />
       </div>}
       <div>
-        <Row type={'flex'} gutter={20} align={'middle'} className={classNames(classes.row, classes.parent, itemClassName)}>
+        <Row type="flex" gutter={20} align="middle" className={classNames(classes.row, classes.parent, itemClassName)}>
           <Col span={16} className={classes.flex}>
             <Checkbox
               checked={allChecked}
               indeterminate={indeterminate}
               onChange={onCheckAll}
-              className={classes.checkbox}>
+              className={classes.checkbox}
+            >
               <T>main_service</T>
             </Checkbox>
           </Col>
@@ -202,7 +203,8 @@ const ServiceCheckBoxGroup = props => {
                 <Field
                   name={`${fieldName}.${id}.checked`}
                   component={Checkbox}
-                  className={classes.checkbox}>
+                  className={classes.checkbox}
+                >
                   <div className={classes.serviceName}>{name}</div>
                   {description && <div className={classes.serviceDecr}>{description}</div>}
                 </Field>
@@ -224,8 +226,8 @@ const ServiceCheckBoxGroup = props => {
           <span><T>serv_total</T>: {numberFormat(totalSum, 'UZS')} </span>
         </div>
         <Button
-          type={'medium'}
-          text={'serv_add_cart'}
+          type="medium"
+          text="serv_add_cart"
           disabled={fp.isEmpty(selected)}
           color={YELLOW}
           style={{ width: '200px' }}

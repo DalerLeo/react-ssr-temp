@@ -56,12 +56,6 @@ module.exports = () => ({
     require('postcss-selector-not')(),
     // Postcss flexbox bug fixer
     // https://github.com/luisrudge/postcss-flexbugs-fixes
-    require('postcss-flexbugs-fixes')(),
-    // Add vendor prefixes to CSS rules using values from caniuse.com
-    // https://github.com/postcss/autoprefixer
-    require('autoprefixer')({
-      browsers: pkg.browserslist,
-      flexbox: 'no-2009'
-    })
+    require('postcss-flexbugs-fixes')()
   ]
 })

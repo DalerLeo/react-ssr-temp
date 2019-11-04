@@ -1,7 +1,7 @@
-import fpGet from 'lodash/fp/get'
-import axios from 'helpers/axiosHelper'
 import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
+import fpGet from 'lodash/fp/get'
+import axios from 'helpers/axiosHelper'
 
 export const getProductList = () => {
   return (dispatch, getState) => {

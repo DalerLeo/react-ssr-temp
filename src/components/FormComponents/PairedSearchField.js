@@ -1,15 +1,15 @@
-import React from 'react'
-import injectSheet from 'react-jss'
-import classNames from 'classnames'
-import Label from './FieldLabel/FieldLabel2'
-import SearchFieldConfig from 'components/FormComponents/SearchFieldConfig'
 import {
   crossBrowserify,
   MAIN_COLOR,
   TEXT_COLOR_DEFAULT,
   WHITE_COLOR
 } from 'constants/styles'
+import React from 'react'
+import injectSheet from 'react-jss'
+import classNames from 'classnames'
+import SearchFieldConfig from 'components/FormComponents/SearchFieldConfig'
 import hexToRgb from 'helpers/hexToRgb'
+import Label from './FieldLabel/FieldLabel2'
 
 const style = {
   wrapper: {
@@ -71,11 +71,12 @@ const PairedSearchField = props => {
 
   return (
     <div className={classNames(classes.wrapper)}>
-      <Label label={label}/>
+      <Label label={label} />
       <div
         className={classNames({
           [classes.inputWrapper]: true
-        })}>
+        })}
+      >
         {prefix && <div className={classes.prefix}>{prefix}</div>}
         <input
           type={type}
@@ -88,7 +89,7 @@ const PairedSearchField = props => {
           })}
         />
       </div>
-      <div className={classes.postfix}><SearchFieldConfig width={searchWidth} input={input}/></div>
+      <div className={classes.postfix}><SearchFieldConfig width={searchWidth} input={input} /></div>
       {(error || submitFailed) && touched && <span className={classes.errorText}>{error || errorText}</span>}
     </div>
 

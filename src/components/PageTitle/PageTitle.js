@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
+import classNames from 'classnames'
 import { BLACK_COLOR, PRIMARY_COLOR } from '../../constants/styles'
 import hexToRgb from '../../helpers/hexToRgb'
-import classNames from 'classnames'
 
 const enhance = compose(
   injectSheet({

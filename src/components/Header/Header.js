@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { compose } from 'recompose'
 import LochinLogo from '../../images/Group.svg'
+
 const enhance = compose(
 )
 

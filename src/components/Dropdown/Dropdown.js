@@ -1,3 +1,7 @@
+import {
+  fallbacksStyle,
+  crossBrowserify
+} from 'constants/styles'
 import fp from 'lodash/fp'
 import loMap from 'lodash/map'
 import React from 'react'
@@ -5,10 +9,6 @@ import PropTypes from 'prop-types'
 import { compose, withState } from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
-import {
-  fallbacksStyle,
-  crossBrowserify
-} from 'constants/styles'
 import Dropdown from 'antd/lib/dropdown'
 import Menu from 'antd/lib/menu'
 import T from 'components/T'
@@ -111,14 +111,16 @@ const CustomDropdown = props => {
     <Dropdown
       overlay={dropdownMenu}
       trigger={['click']}
-      placement={'bottomRight'}
-      onVisibleChange={visible => otherProps.setIsOpen(visible)}>
+      placement="bottomRight"
+      onVisibleChange={visible => otherProps.setIsOpen(visible)}
+    >
       <div className={classNames(classes.dropdownTrigger, className, {
         [classes.dropdownOpen]: otherProps.isOpen,
         [classes.dropdownVertical]: type === 'vertical'
-      })}>
+      })}
+      >
         <div className={classes.dropdownIcon}>
-          <div/><div/><div/>
+          <div /><div /><div />
         </div>
       </div>
     </Dropdown>

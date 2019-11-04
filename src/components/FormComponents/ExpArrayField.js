@@ -58,12 +58,12 @@ const ExpArrayField = (props) => {
     <div className={classes.wrapper}>
       <Title
         isStatic={true}
-        margin={'0 0 30px'}
+        margin='0 0 30px'
         medium={true}
-        text={'main_work_experience'}
+        text='main_work_experience'
       />
       <Field
-        name={'hasExperience'}
+        name='hasExperience'
         component={Checkbox}
         label={t('resume_work_exp', lang)}
       />
@@ -112,7 +112,7 @@ const ExpArrayField = (props) => {
                     trigger={lang}
                   />
                   {countryIsUzb &&
-                  <React.Fragment>
+                  <>
                     <Field
                       name={`${field}.region`}
                       component={SearchFieldConfig}
@@ -134,7 +134,7 @@ const ExpArrayField = (props) => {
                       label2={t('resume_city', lang)}
                       trigger={lang}
                     />}
-                  </React.Fragment>}
+                  </>}
                   {(Boolean(country) && !countryIsUzb) &&
                   <Field
                     name={`${field}.newCity`}
@@ -147,14 +147,14 @@ const ExpArrayField = (props) => {
                     name={`${field}.fromDate`}
                     component={CustomDateField}
                     label={t('resume_start_date', lang)}
-                    type={'month'}
+                    type='month'
                   />
                   {!present && (
                     <Field
                       name={`${field}.toDate`}
                       component={CustomDateField}
                       label={t('resume_end_date', lang)}
-                      type={'month'}
+                      type='month'
                     />
                   )}
                 </div>
@@ -176,7 +176,7 @@ const ExpArrayField = (props) => {
                 </div>
                 {fields.length > ONE &&
                 <div className={classes.deleteBtn} onClick={() => fields.remove(index)}>
-                  <DeleteIcon/>
+                  <DeleteIcon />
                 </div>}
               </div>
             )

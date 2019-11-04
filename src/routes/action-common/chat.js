@@ -1,7 +1,7 @@
-import axios from 'helpers/axiosHelper'
 import * as API from 'constants/api'
-import fp from 'lodash/fp'
 import * as actionTypes from 'constants/actionTypes'
+import axios from 'helpers/axiosHelper'
+import fp from 'lodash/fp'
 
 export const getChatList = () => {
   return (dispatch, getState) => {

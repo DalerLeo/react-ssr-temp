@@ -1,8 +1,3 @@
-import _ from 'lodash'
-import React from 'react'
-import PropTypes from 'prop-types'
-import injectSheet from 'react-jss'
-import { compose } from 'recompose'
 import {
   BLACK_COLOR,
   BORDER_COLOR,
@@ -12,6 +7,11 @@ import {
   TEXT_COLOR_DEFAULT,
   WHITE_COLOR
 } from 'constants/styles'
+import _ from 'lodash'
+import React from 'react'
+import PropTypes from 'prop-types'
+import injectSheet from 'react-jss'
+import { compose } from 'recompose'
 import hexToRgb from 'helpers/hexToRgb'
 import t from 'helpers/translate'
 import withLanguage from 'helpers/withLanguage'
@@ -22,6 +22,7 @@ import AutoComplete from 'antd/lib/auto-complete'
 import T from 'components/T'
 import Label from 'components/FormComponents/FieldLabel'
 import Label2 from 'components/FormComponents/FieldLabel/FieldLabel2'
+
 const Option = AutoComplete.Option
 
 const INPUT_HEIGHT = 45
@@ -248,7 +249,8 @@ const Component = enhance((props) => {
       <Option
         key={key}
         label={withTranslate}
-        title={withTranslate}>
+        title={withTranslate}
+      >
         {withTranslate}
       </Option>
     )
@@ -266,9 +268,10 @@ const Component = enhance((props) => {
         [className]: true,
         [classes.wrapper]: true,
         [classes.disabled]: disabled
-      })}>
-      <Label label={label} required={required} error={error}/>
-      <Label2 label={label2} required={required} error={error}/>
+      })}
+    >
+      <Label label={label} required={required} error={error} />
+      <Label2 label={label2} required={required} error={error} />
       <AutoComplete
         {...filteredProps}
         showSearch={!onlySelect}
@@ -287,12 +290,15 @@ const Component = enhance((props) => {
           [classes.errorInput]: error
         })}
         getPopupContainer={(triggerNode) => triggerNode}
-        dropdownClassName={classes.dropdown}>
-        <Input {...{}} suffix={(
-          <div className={classes.suffix}>
-            <MdKeyboardArrowDown/>
-          </div>
-        )}/>
+        dropdownClassName={classes.dropdown}
+      >
+        <Input
+          {...{}} suffix={(
+            <div className={classes.suffix}>
+              <MdKeyboardArrowDown />
+            </div>
+          )}
+        />
       </AutoComplete>
     </div>
   )

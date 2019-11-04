@@ -1,15 +1,15 @@
-import _ from 'lodash'
-import React from 'react'
-import PropTypes from 'prop-types'
-import sprintf from 'sprintf'
-import injectSheet from 'react-jss'
-import classNames from 'classnames'
 import {
   crossBrowserify,
   fallbacksStyle,
   MAIN_COLOR
 } from 'constants/styles'
 import * as ROUTES from 'constants/routes'
+import _ from 'lodash'
+import React from 'react'
+import PropTypes from 'prop-types'
+import sprintf from 'sprintf'
+import injectSheet from 'react-jss'
+import classNames from 'classnames'
 import hexToRgb from 'helpers/hexToRgb'
 import queryToParams from 'helpers/queryToParams'
 import Link from 'components/Link'
@@ -271,58 +271,59 @@ const Navigation = props => {
 
   const data = isNonAuth ? unauthorizedMenu : isEmployer ? employerMenu : applicantMenu
   const getMenu = (values) => (
-    <React.Fragment>
-      <ul className={classes.menu}>
-        {_.map(values.drop, (item, index) => {
-          const title = _.get(item, 'title')
-          const rootUrl = _.get(item, 'rootUrl')
-          const url = _.get(item, 'url')
-          const isActive = _.startsWith(pathname, rootUrl) || _.startsWith(pathname, url)
-          return (
-            <React.Fragment key={index}>
-              {item.items
-                ? <div className={classes.dropWrap}>
-                  <span><T>{title}</T></span>
-                  <div className={classes.menus}>
-                    {_.map(item.items, child => {
-                      return (
-                        <Link
-                          onClick={child.func}
-                          key={child.title}
-                          to={child.func ? '#' : child.url}>
-                          <T>{child.title}</T>
-                        </Link>
-                      )
-                    })}
-                  </div>
-                </div>
-                : <Link
-                  className={classNames(classes.link, {
-                    [classes.activeLink]: isActive
+    <>'     '<ul className={classes.menu}>
+      {_.map(values.drop, (item, index) => {
+        const title = _.get(item, 'title')
+        const rootUrl = _.get(item, 'rootUrl')
+        const url = _.get(item, 'url')
+        const isActive = _.startsWith(pathname, rootUrl) || _.startsWith(pathname, url)
+        return (
+          <React.Fragment key={index}>
+            {item.items
+              ? <div className={classes.dropWrap}>
+                <span><T>{title}</T></span>
+                <div className={classes.menus}>
+                  {_.map(item.items, child => {
+                    return (
+                      <Link
+                        onClick={child.func}
+                        key={child.title}
+                        to={child.func ? '#' : child.url}
+                      >
+                        <T>{child.title}</T>
+                      </Link>
+                    )
                   })}
-                  to={url}>
-                  <T>{item.title}</T>
+                </div>
+                </div>
+              : <Link
+                className={classNames(classes.link, {
+                  [classes.activeLink]: isActive
+                })}
+                to={url}
+                >
+                <T>{item.title}</T>
                 </Link>}
-            </React.Fragment>
-          )
-        })}
-      </ul>
-      <div className={classes.addButtons}>
-        {_.map(values.links, link => (
-          <Link
-            onClick={link.func}
-            key={link.title}
-            to={link.url}
-            className={classes.button}>
-            <T>{link.title}</T>
-          </Link>
-        ))}
-      </div>
-    </React.Fragment>
+          </React.Fragment>
+        )
+      })}
+             </ul>'     '<div className={classes.addButtons}>
+      {_.map(values.links, link => (
+                 <Link
+          onClick={link.func}
+          key={link.title}
+          to={link.url}
+          className={classes.button}
+        >
+          <T>{link.title}</T>
+        </Link>
+      ))}
+                </div>'   '
+    </>
   )
 
   return (
-    <nav className={'navigation'}>
+    <nav className="navigation">
       {getMenu(data)}
     </nav>
   )

@@ -1,3 +1,5 @@
+import { crossBrowserify, fallbacksStyle } from 'constants/styles'
+import { SERVICE_ITEM_URL } from 'constants/routes'
 import fpGet from 'lodash/fp/get'
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
@@ -6,14 +8,12 @@ import classNames from 'classnames'
 import sprintf from 'sprintf'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
-import { crossBrowserify, fallbacksStyle } from 'constants/styles'
-import { SERVICE_ITEM_URL } from 'constants/routes'
 import withHistory from 'helpers/withHistory'
 import { getServicesMinPrices } from 'routes/services/actions'
 import { Button, TRANSPARENT } from 'components/Button'
 import T from 'components/T'
-import Carousel from './Carousel'
 import { getStateData } from 'helpers/get'
+import Carousel from './Carousel'
 
 const mapStateToProps = state => ({
   ...getStateData('service.minPrices', 'prices', state, false)
@@ -73,18 +73,19 @@ const ServicesCarousel = props => {
 
   useEffect(() => {
     restProps.getServicesMinPrices()
-  }, [])
+  }, [restProps])
 
   return (
     <div className={classNames(classes.servicesWrap, {
       [classes.onlyCarousel]: onlyCarousel
-    })}>
+    })}
+    >
       <div className={classes.servicesInfo}>
         <div className={classes.serviceTitle}><T>main_mj_serv</T></div>
         <div><T>main_mj_serv_description</T></div>
         <Button
           className={classes.allServices}
-          text={'main_mj_serv_all'}
+          text="main_mj_serv_all"
           color={TRANSPARENT}
           onClick={pushToServices}
         />

@@ -43,7 +43,7 @@ const SampleNextArrow = (props) => {
       }}
       onClick={onClick}
     >
-      <ArrowRight style={{ position: 'absolute', left: '30%', top: '30%' }} />
+      <ArrowRight style={{ position: 'absolute', left: '35%', top: '30%' }} />
     </div>
   )
 }
@@ -66,7 +66,7 @@ const SamplePrevArrow = (props) => {
       }}
       onClick={onClick}
     >
-      <ArrowLeft style={{ position: 'absolute', left: '30%', top: '30%' }} />
+      <ArrowLeft style={{ position: 'absolute', left: '25%', top: '30%' }} />
     </div>
   )
 }
@@ -87,39 +87,24 @@ const PopularCategories = () => {
         <PopularStyled>
           <PopularImage src={img1} alt="image"/>
         </PopularStyled>
-        <div>
-          <PopularImage src={img1} alt="image"/>
-        </div>
         <PopularStyled>
           <PopularImage src={img1} alt="image"/>
         </PopularStyled>
-        <div>
-          <PopularImage src={img1} alt="image"/>
-        </div>
         <PopularStyled>
           <PopularImage src={img1} alt="image"/>
         </PopularStyled>
-        <div>
-          <PopularImage src={img1} alt="image"/>
-        </div>
-        <div>
-          <PopularImage src={img1} alt="image"/>
-        </div>
         <PopularStyled>
           <PopularImage src={img1} alt="image"/>
         </PopularStyled>
-        <div>
+        <PopularStyled>
           <PopularImage src={img1} alt="image"/>
-        </div>
-        <div>
+        </PopularStyled>
+        <PopularStyled>
           <PopularImage src={img1} alt="image"/>
-        </div>
-        <div>
+        </PopularStyled>
+        <PopularStyled>
           <PopularImage src={img1} alt="image"/>
-        </div>
-        <div>
-          <PopularImage src={img1} alt="image"/>
-        </div>
+        </PopularStyled>
       </Slider>
     </div>
   )

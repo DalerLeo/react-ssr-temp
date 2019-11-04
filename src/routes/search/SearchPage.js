@@ -1,3 +1,19 @@
+import {
+  crossBrowserify,
+  fallbacksStyle,
+  PRIMARY_COLOR,
+  BACKGROUND,
+  ROLL_UP_FADE_IN
+} from 'constants/styles'
+import {
+  EXPERIENCES_LIST,
+  EMPLOYMENT_TYPE,
+  EDUCATION_LIST,
+  GENDER_LIST,
+  MARITAL_STATUS_LIST
+} from 'constants/backend'
+import * as API from 'constants/api'
+import * as ROUTE from 'constants/routes'
 import fp from 'lodash/fp'
 import React, { useEffect } from 'react'
 import {
@@ -18,22 +34,6 @@ import {
 } from 'redux-form'
 import { connect } from 'react-redux'
 import MdSearch from 'react-icons/lib/md/search'
-import {
-  crossBrowserify,
-  fallbacksStyle,
-  PRIMARY_COLOR,
-  BACKGROUND,
-  ROLL_UP_FADE_IN
-} from 'constants/styles'
-import {
-  EXPERIENCES_LIST,
-  EMPLOYMENT_TYPE,
-  EDUCATION_LIST,
-  GENDER_LIST,
-  MARITAL_STATUS_LIST
-} from 'constants/backend'
-import * as API from 'constants/api'
-import * as ROUTE from 'constants/routes'
 import withHistory from 'helpers/withHistory'
 import queryToParams from 'helpers/queryToParams'
 import paramsToQuery from 'helpers/paramsToQuery'
@@ -211,7 +211,7 @@ const SearchPage = (props) => {
       languages: [{}]
     }
     dispatch(initialize(formName, initialValues))
-  }, [])
+  }, [rest])
 
   const type = fp.get('type', formValues)
   const sphere = fp.get('sphere', formValues)
@@ -220,15 +220,15 @@ const SearchPage = (props) => {
     <div style={{ backgroundColor: BACKGROUND }}>
       <Container className={classes.wrapper}>
         <div className={classes.content}>
-          <Title text={<T>search_advanced_title</T>}/>
+          <Title text={<T>search_advanced_title</T>} />
           <TW>
             {(lang) => (
               <Field
-                name={'text'}
+                name="text"
                 component={TextField}
                 big={true}
                 placeholder={t('main_search', lang)}
-                prefix={<MdSearch color={'#c6cbd4'}/>}
+                prefix={<MdSearch color="#c6cbd4" />}
               />
             )}
           </TW>
@@ -237,7 +237,7 @@ const SearchPage = (props) => {
               <Field
                 className={classes.itemMargin}
                 component={RadioGroup}
-                name={'type'}
+                name="type"
                 items={fp.map(item => ({
                   ...item, label: t(item.label, lang)
                 }), searchKeys)}
@@ -281,7 +281,7 @@ const SearchPage = (props) => {
                   ? t('main_sphere_select', lang)
                   : t('button_change', lang)}
                 api={API.PROFESSIONS_LIST}
-                name={'sphere'}
+                name="sphere"
                 lang={lang}
               />
             )}
@@ -290,7 +290,7 @@ const SearchPage = (props) => {
             {(lang) => (
               <div>
                 <Field
-                  name={'region'}
+                  name="region"
                   label2={t('main_region', lang)}
                   placeholder={t('main_region_select', lang)}
                   className={classes.marginTop}
@@ -306,120 +306,112 @@ const SearchPage = (props) => {
           </TW>
 
           {type === 'resume'
-            ? <React.Fragment>
-              <div className={classes.field}>
-                <Label2 label={<T>main_age</T>}/>
-                <div className={classes.flexField}>
-                  <TW>
-                    {(lang) => (
-                      <React.Fragment>
-                        <Field
-                          name={'minAge'}
-                          component={TextField}
-                          placeholder={t('main_from', lang)}
-                          width={'150px'}
-                        />
-                        <Field
-                          name={'maxAge'}
-                          component={TextField}
-                          placeholder={t('main_to', lang)}
-                          width={'150px'}
-                        />
-                      </React.Fragment>
-                    )}
-                  </TW>
-                </div>
+            ? <>'             '<div className={classes.field}>
+              <Label2 label={<T>main_age</T>} />
+              <div className={classes.flexField}>
+                <TW>
+                  {(lang) => (
+                    <>'                       '<Field
+                      name="minAge"
+                      component={TextField}
+                      placeholder={t('main_from', lang)}
+                      width="150px"
+                    />'                       '<Field
+                                                 name="maxAge"
+                                                 component={TextField}
+                                                 placeholder={t('main_to', lang)}
+                                                 width="150px"
+                                                                          />'                     '
+                    </>
+                  )}
+                </TW>
               </div>
-              <div className={classes.field}>
-                <FieldArray
-                  name={'languages'}
-                  component={LanguagesField}
+                               </div>'             '<div className={classes.field}>
+              <FieldArray
+                                   name="languages"
+                                   component={LanguagesField}
+                                 />
+                                 </div>'             '<div className={classes.field}>
+              <Label2 label={<T>main_driver_license</T>} />
+              <div className={classes.itemMargin}>
+                                     <Field
+                  name="driverLicense"
+                  component={CustomCheckBoxGroup}
+                  items={driverLicenseList.data}
+                  itemName="title"
+                  type="inline"
                 />
-              </div>
-              <div className={classes.field}>
-                <Label2 label={<T>main_driver_license</T>}/>
-                <div className={classes.itemMargin}>
-                  <Field
-                    name={'driverLicense'}
-                    component={CustomCheckBoxGroup}
-                    items={driverLicenseList.data}
-                    itemName={'title'}
-                    type={'inline'}
-                  />
-                </div>
-              </div>
-              <div className={classes.field}>
-                <Label2 label={<T>main_sex</T>}/>
-                <Field name={'gender'} component={RadioGroup}>
-                  <TW>
-                    {(lang) => fp.map((item) => {
-                      return (
-                        <Radio
-                          key={item.id}
-                          className={classes.radio}
-                          label={t(item.name, lang)}
-                          value={item.id}
-                        />
-                      )
-                    }, GENDER_LIST)}
-                  </TW>
-                </Field>
-              </div>
-              <div className={classes.field}>
-                <Label2 label={<T>main_marital_status</T>}/>
-                <Field name={'maritalStatus'} component={RadioGroup}>
-                  <TW>
-                    {(lang) => fp.map((item) => {
-                      return (
-                        <Radio
-                          key={item.id}
-                          className={classes.radio}
-                          label={t(item.name, lang)}
-                          value={item.id}
-                        />
-                      )
-                    }, MARITAL_STATUS_LIST)}
-                  </TW>
-                </Field>
-              </div>
-            </React.Fragment>
-            : <React.Fragment>
-              <div className={classes.field}>
-                <Label2 label={<T>main_education_level</T>}/>
-                <div className={classes.itemMargin}>
-                  <TW>
-                    {(lang) => (
-                      <Field
-                        name={'education'}
-                        component={CustomCheckBoxGroup}
-                        items={fp.map(item => ({
-                          id: item.id,
-                          name: t(item.name, lang)
-                        }), EDUCATION_LIST)}
+                                   </div>
+                                 </div>'             '<div className={classes.field}>
+              <Label2 label={<T>main_sex</T>} />
+              <Field name="gender" component={RadioGroup}>
+                                     <TW>
+                  {(lang) => fp.map((item) => {
+                    return (
+                      <Radio
+                        key={item.id}
+                        className={classes.radio}
+                        label={t(item.name, lang)}
+                        value={item.id}
                       />
-                    )}
-                  </TW>
-                </div>
+                    )
+                  }, GENDER_LIST)}
+                </TW>
+                                   </Field>
+                                 </div>'             '<div className={classes.field}>
+              <Label2 label={<T>main_marital_status</T>} />
+              <Field name="maritalStatus" component={RadioGroup}>
+                                     <TW>
+                  {(lang) => fp.map((item) => {
+                    return (
+                      <Radio
+                        key={item.id}
+                        className={classes.radio}
+                        label={t(item.name, lang)}
+                        value={item.id}
+                      />
+                    )
+                  }, MARITAL_STATUS_LIST)}
+                </TW>
+                                   </Field>
+                                 </div>'           '
+              </>
+            : <>'             '<div className={classes.field}>
+              <Label2 label={<T>main_education_level</T>} />
+              <div className={classes.itemMargin}>
+                <TW>
+                  {(lang) => (
+                    <Field
+                      name="education"
+                      component={CustomCheckBoxGroup}
+                      items={fp.map(item => ({
+                        id: item.id,
+                        name: t(item.name, lang)
+                      }), EDUCATION_LIST)}
+                    />
+                  )}
+                </TW>
               </div>
-            </React.Fragment>}
+                               </div>'           '
+              </>}
 
           <div className={classes.salary}>
             <TW>
               {(lang) => (
                 <Field
-                  name={'minSalary'}
+                  name="minSalary"
                   component={TextField}
-                  width={'270px'}
+                  width="270px"
                   label2={t('main_salary_from', lang)}
                   normalize={normalizeNumber}
                 />
               )}
             </TW>
             <Field
-              name={'currency'}
+              name="currency"
               api={API.CURRENCY_LIST}
               component={SearchFieldConfig}
-              width={'78px'}
+              width="78px"
             />
           </div>
 
@@ -427,7 +419,7 @@ const SearchPage = (props) => {
             <TW>
               {(lang) => (
                 <Field
-                  name={'hideWithoutSalary'}
+                  name="hideWithoutSalary"
                   className={classes.itemMargin}
                   component={Checkbox}
                   label={t('main_filter_salary_none', lang)}
@@ -439,21 +431,19 @@ const SearchPage = (props) => {
           <div className={classes.marginTop}>
             <TW>
               {(lang) => (
-                <React.Fragment>
-                  <Label2 label={t('main_work_experience', lang)}/>
-                  <Field name={'experience'} component={RadioGroup}>
-                    {fp.map((item) => {
-                      return (
-                        <Radio
-                          key={item.id}
-                          className={classes.radio}
-                          label={t(item.name, lang)}
-                          value={item.id}
-                        />
-                      )
-                    }, EXPERIENCES_LIST)}
-                  </Field>
-                </React.Fragment>
+                <>'                 '<Label2 label={t('main_work_experience', lang)} />'                 '<Field name="experience" component={RadioGroup}>
+                  {fp.map((item) => {
+                    return (
+                      <Radio
+                        key={item.id}
+                        className={classes.radio}
+                        label={t(item.name, lang)}
+                        value={item.id}
+                      />
+                    )
+                  }, EXPERIENCES_LIST)}
+                                                                                                          </Field>'               '
+                </>
               )}
             </TW>
           </div>
@@ -461,27 +451,26 @@ const SearchPage = (props) => {
           <div className={classes.marginTop}>
             <TW>
               {(lang) => (
-                <React.Fragment>
-                  <Label2 label={t('main_type_of_employment', lang)}/>
-                  <div className={classes.itemMargin}>
-                    <Field
-                      name={'employmentType'}
-                      component={CustomCheckBoxGroup}
-                      items={fp.map(item => ({
-                        id: item.id,
-                        name: t(item.name, lang)
-                      }), EMPLOYMENT_TYPE)}
-                    />
-                  </div>
-                </React.Fragment>
+                <>'                 '<Label2 label={t('main_type_of_employment', lang)} />'                 '<div className={classes.itemMargin}>
+                  <Field
+                    name="employmentType"
+                    component={CustomCheckBoxGroup}
+                    items={fp.map(item => ({
+                      id: item.id,
+                      name: t(item.name, lang)
+                    }), EMPLOYMENT_TYPE)}
+                  />
+                                                                                                             </div>'               '
+                </>
               )}
             </TW>
           </div>
           <div style={{ marginTop: '40px' }}>
             <Button
               onClick={onSearch}
-              type={'medium'}
-              fullWidth>
+              type="medium"
+              fullWidth={true}
+            >
               <T>button_find</T>
             </Button>
           </div>

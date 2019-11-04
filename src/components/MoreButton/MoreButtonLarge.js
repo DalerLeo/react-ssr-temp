@@ -1,10 +1,10 @@
+import { crossBrowserify } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import hexToRgb from 'helpers/hexToRgb'
-import { crossBrowserify } from 'constants/styles'
 
 const enhance = compose(
   injectSheet({
@@ -34,10 +34,11 @@ const MoreButtonLarge = ({ ...props }) => {
     <div className={classes.wrapper} style={{ textAlign: alignRight ? 'right' : 'left' }}>
       <button
         style={style}
-        type={'button'}
+        type="button"
         className={classNames(classes.button)}
         onClick={onClick}
-        {...props}>
+        {...props}
+      >
         {text}
       </button>
     </div>

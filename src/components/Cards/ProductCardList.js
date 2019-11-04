@@ -48,17 +48,17 @@ const mapChild = item => {
   return (
     <StyledCard>
       <ImagePosition>
-        <Image src={image} alt="image"/>
+        <Image src={image} alt="image" />
       </ImagePosition>
       <PricePosition>
-        <Price price={price}/>
+        <Price price={price} />
         {true && <SalePrice>25 000</SalePrice>}
       </PricePosition>
       <ProductContentPosition>
-        <ProductContent content={name}/>
+        <ProductContent content={name} />
       </ProductContentPosition>
       <ButtonPosition>
-        <Button label="В корзину"/>
+        <Button label="В корзину" />
       </ButtonPosition>
     </StyledCard>
   )

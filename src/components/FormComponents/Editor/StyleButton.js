@@ -1,9 +1,9 @@
+import { MAIN_COLOR } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import classNames from 'classnames'
 import injectSheet from 'react-jss'
-import { MAIN_COLOR } from 'constants/styles'
 
 const enhance = compose(
   injectSheet({
@@ -37,9 +37,11 @@ const StyleButton = (props) => {
   }
 
   return (
-    <span className={classNames(classes.button, {
-      [classes.active]: active
-    })} onMouseDown={thisOnToggle}>
+    <span
+      className={classNames(classes.button, {
+        [classes.active]: active
+      })} onMouseDown={thisOnToggle}
+    >
       {label}
     </span>
   )

@@ -1,9 +1,9 @@
+import { crossBrowserify, MAIN_COLOR } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
-import { crossBrowserify, MAIN_COLOR } from 'constants/styles'
 
 const enhance = compose(
   injectSheet({

@@ -22,7 +22,7 @@ const CardList = props => {
     <Row gutter={gutter} style={{ margin }}>
       {_.map(_.range(items), (item, index) => (
         <Col key={index} xs={span} style={{ marginBottom }}>
-          <LoadingCard type={type} marginBottom={true} data={item}/>
+          <LoadingCard type={type} marginBottom={true} data={item} />
         </Col>
       ))}
     </Row>

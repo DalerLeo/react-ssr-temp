@@ -1,3 +1,4 @@
+import { SEARCH_RESULTS_URL } from 'constants/routes'
 import _ from 'lodash'
 import fp from 'lodash/fp'
 import {
@@ -9,7 +10,6 @@ import {
 } from 'recompose'
 import { connect } from 'react-redux'
 import { getFormValues } from 'redux-form'
-import { SEARCH_RESULTS_URL } from 'constants/routes'
 import withHistory from 'helpers/withHistory'
 import excludeKeys from 'helpers/excludeKeys'
 import { getStateData, isEmployer, isApplicant } from 'helpers/get'
@@ -52,52 +52,11 @@ const mapDispatchToProps = {
   fetchPopularVacancyList,
   articleListFetch
 }
-const notLoading = flag => !flag
 
 export default compose(
   withHistory,
   connect(mapStateToProps, mapDispatchToProps),
   mapPropsStream(props$ => {
-    props$
-      .first()
-      .subscribe(props => {
-        props.generalStatsFetch()
-      })
-    props$
-      .filter(fp.flow(fp.get('professionsList.loading'), notLoading))
-      .filter(fp.flow(fp.get('professionsList.failed'), notLoading))
-      .filter(fp.flow(fp.get('professionsList.data'), fp.isEmpty))
-      .subscribe(props => props.getProfessionsList())
-
-    props$
-      .filter(fp.flow(fp.get('regionsList.loading'), notLoading))
-      .filter(fp.flow(fp.get('regionsList.failed'), notLoading))
-      .filter(fp.flow(fp.get('regionsList.data'), fp.isEmpty))
-      .subscribe(props => props.getRegionsList('region'))
-
-    props$
-      .first()
-      .subscribe(props => props.fetchPopularVacancyList())
-
-    props$
-      .first()
-      .subscribe(props => props.articleListFetch({ pageSize: 5 }))
-
-    props$
-      .distinctUntilChanged(null, fp.get('query.companyTab'))
-      .subscribe(props => {
-        const companyTab = fp.get('query.companyTab', props) || 'company-week'
-        props.getEmployerList(companyTab)
-      })
-
-    props$
-      .distinctUntilChanged(null, fp.get('query.tab'))
-      .subscribe(props => {
-        const tab = props.query.tab || 'vacancy'
-        tab === 'vacancy' && props.getVacancyList()
-        if (tab === 'specialist' || isEmployer(props.userData)) props.getResumeList()
-      })
-
     const { handler: onMainTabChange, stream: onMainTabChange$ } = createEventHandler()
     const { handler: onCompanyTabChange, stream: onCompanyTabChange$ } = createEventHandler()
     const { handler: onSearch, stream: onSearch$ } = createEventHandler()

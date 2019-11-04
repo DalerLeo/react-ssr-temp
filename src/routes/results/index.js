@@ -13,7 +13,7 @@ async function action (props) {
     title: 'Результаты поиска',
     component: (
       <Layout search={true} {...props} store={store}>
-        <ResultsContainer/>
+        <ResultsContainer />
       </Layout>
     )
   }

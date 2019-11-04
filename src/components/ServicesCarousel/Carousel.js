@@ -1,10 +1,3 @@
-import fp from 'lodash/fp'
-import React, { useRef } from 'react'
-import PropTypes from 'prop-types'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
-import classNames from 'classnames'
-import sprintf from 'sprintf'
 import {
   crossBrowserify,
   fallbacksStyle,
@@ -12,6 +5,13 @@ import {
   ANCHOR_DISABLED
 } from 'constants/styles'
 import { SERVICE_ITEM_URL } from 'constants/routes'
+import fp from 'lodash/fp'
+import React, { useRef } from 'react'
+import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
+import classNames from 'classnames'
+import sprintf from 'sprintf'
 import hexToRgb from 'helpers/hexToRgb'
 import numberFormat from 'helpers/numberFormat'
 import ChevronLeft from 'icons/CaruselLeft'
@@ -197,11 +197,11 @@ const CarouselContainer = props => {
 
   const getTagTitle = serviceType => {
     switch (serviceType) {
-      case 'employer_service': return 'Вакансия'
-      case 'vip_packet': return 'VIP услуги'
-      case 'database_access': return 'База MyJob'
-      case 'payment': return 'Баланс'
-      default: return null
+    case 'employer_service': return 'Вакансия'
+    case 'vip_packet': return 'VIP услуги'
+    case 'database_access': return 'База MyJob'
+    case 'payment': return 'Баланс'
+    default: return null
     }
   }
 
@@ -215,13 +215,15 @@ const CarouselContainer = props => {
     <div className={classes.wrapper}>
       <button
         className={classNames(classes.nav, classes.prev)}
-        onClick={() => onClickNav('prev')}>
-        <ChevronLeft/>
+        onClick={() => onClickNav('prev')}
+      >
+        <ChevronLeft />
       </button>
       <Carousel
         ref={sliderRef}
         className={classes.carousel}
-        {...sliderConfig}>
+        {...sliderConfig}
+      >
         {fp.map(item => {
           const type = fp.get('type', item)
           const title = fp.get('title', item)
@@ -235,7 +237,8 @@ const CarouselContainer = props => {
                     [classes.vacancy]: type === 'employer_service',
                     [classes.database]: type === 'database_access',
                     [classes.balance]: type === 'payment'
-                  })}>
+                  })}
+                  >
                     {getTagTitle(type, discount)}
                   </div>
                   <div className={classes.title}>{title}</div>
@@ -244,7 +247,7 @@ const CarouselContainer = props => {
                   </div>}
                 </div>
                 <div className={classes.diamond}>
-                  <Diamond/>
+                  <Diamond />
                 </div>
               </div>
             </Link>
@@ -253,8 +256,9 @@ const CarouselContainer = props => {
       </Carousel>
       <button
         className={classNames(classes.nav, classes.next)}
-        onClick={() => onClickNav('next')}>
-        <ChevronRight/>
+        onClick={() => onClickNav('next')}
+      >
+        <ChevronRight />
       </button>
     </div>
   )

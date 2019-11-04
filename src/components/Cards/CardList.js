@@ -23,23 +23,17 @@ const CardList = props => {
   const hasMore = filter && filter.hasMoreItems()
 
   return (
-    <React.Fragment>
-      {((page && onMore) || !data.loading) && (
-        <Row type={'flex'} gutter={gutter}>
-          {fp.map(item => {
-            const id = fp.get('id', item)
-            return (
-              <Col key={id} xs={span} style={{ marginBottom }}>
-
-              </Col>
-            )
-          }, fp.get('data', data))}
-        </Row>
-      )}
-      <CardLoadingList type={type} items={10} loading={data.loading} />
-      {onMore && hasMore && <MoreButton onClick={onMore} text={'button_more'}/>}
-      {link && <MoreButton style={{ margin: '10px 0 68px' }} link={link} text={moreText || 'button_more'}/>}
-    </React.Fragment>
+    <>'     '{((page && onMore) || !data.loading) && (
+      <Row type="flex" gutter={gutter}>
+        {fp.map(item => {
+          const id = fp.get('id', item)
+          return (
+            <Col key={id} xs={span} style={{ marginBottom }} />
+          )
+        }, fp.get('data', data))}
+      </Row>
+    )}'     '<CardLoadingList type={type} items={10} loading={data.loading} />'     '{onMore && hasMore && <MoreButton onClick={onMore} text="button_more" />}'     '{link && <MoreButton style={{ margin: '10px 0 68px' }} link={link} text={moreText || 'button_more'} />}'   '
+    </>
 
   )
 }

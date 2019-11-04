@@ -1,9 +1,9 @@
+import { fallbacksStyle, crossBrowserify } from 'constants/styles'
 import React from 'react'
 import { compose } from 'recompose'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import injectSheet from 'react-jss'
-import { fallbacksStyle, crossBrowserify } from 'constants/styles'
 import SuccessIcon from 'icons/Success'
 import ErrorIcon from 'icons/Error'
 
@@ -56,13 +56,14 @@ const GlobalNotify = props => {
   return (
     <div className={classNames(classes.notifyWrap, {
       [classes.errorWrap]: isError
-    })}>
+    })}
+    >
       <div className={classes.icon}>
-        {isError ? <ErrorIcon/> : <SuccessIcon/>}
+        {isError ? <ErrorIcon /> : <SuccessIcon />}
       </div>
       <div className={classes.body}>
         <div className={classes.title}>{title}</div>
-        <div className={classes.description} dangerouslySetInnerHTML={{ __html: message }}/>
+        <div className={classes.description} dangerouslySetInnerHTML={{ __html: message }} />
       </div>
     </div>
   )

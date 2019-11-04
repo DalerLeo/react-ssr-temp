@@ -1,8 +1,8 @@
+import { crossBrowserify, MAIN_COLOR } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
-import { crossBrowserify, MAIN_COLOR } from 'constants/styles'
 import MdFavorite from 'react-icons/lib/md/favorite'
 import Spinner from 'icons/Spinner'
 
@@ -50,10 +50,12 @@ const FavButton = props => {
   }
 
   return (
-    <div className={classNames(classes.favBtn, {
-      [classes.favBtnActive]: isFav
-    })} onClick={onToggleFav}>
-      {loading ? <Spinner/> : <MdFavorite/>}
+    <div
+      className={classNames(classes.favBtn, {
+        [classes.favBtnActive]: isFav
+      })} onClick={onToggleFav}
+    >
+      {loading ? <Spinner /> : <MdFavorite />}
     </div>
   )
 }

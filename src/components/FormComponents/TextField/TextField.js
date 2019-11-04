@@ -1,9 +1,3 @@
-import fp from 'lodash/fp'
-import React from 'react'
-import PropTypes from 'prop-types'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
-import classNames from 'classnames'
 import {
   COLOR_RED,
   crossBrowserify,
@@ -11,6 +5,12 @@ import {
   FIELD_BORDER_STYLE,
   TEXT_COLOR_DEFAULT
 } from 'constants/styles'
+import fp from 'lodash/fp'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
+import classNames from 'classnames'
 import hexToRgb from 'helpers/hexToRgb'
 import { normalizeNumber } from 'helpers/normalizeNumber'
 import Visibility from 'react-icons/lib/md/visibility'
@@ -175,51 +175,51 @@ const TextField = (props) => {
 
   const getFieldByType = () => {
     switch (type) {
-      case 'number': return (
-        <InputNumber
-          {...defaultProps}
-          onChange={input.onChange}
-          value={input.value}
-          formatter={normalizeNumber}
-          className={classNames(classes.inputNumber, className, {
-            [classes.inputFieldPrefix]: prefix && !isTextPrefix,
-            [classes.inputTextPrefix]: isTextPrefix
-          })}
-        />
-      )
-      case 'password': return (
-        <div className={classes.passwordInput}>
-          <input
-            type={showPass ? 'text' : 'password'}
-            {...defaultProps}
-            {...input}
-            className={classNames(className, classes.inputField)}
-          />
-          {showPassword && (
-            <div className={classes.showPass} onClick={() => setShowPass(!showPass)}>
-              {showPass ? <VisibilityOff/> : <Visibility/>}
-            </div>
-          )}
-        </div>
-      )
-      default: return (
+    case 'number': return (
+      <InputNumber
+        {...defaultProps}
+        onChange={input.onChange}
+        value={input.value}
+        formatter={normalizeNumber}
+        className={classNames(classes.inputNumber, className, {
+          [classes.inputFieldPrefix]: prefix && !isTextPrefix,
+          [classes.inputTextPrefix]: isTextPrefix
+        })}
+      />
+    )
+    case 'password': return (
+      <div className={classes.passwordInput}>
         <input
-          type={type}
+          type={showPass ? 'text' : 'password'}
           {...defaultProps}
           {...input}
-          className={classNames(className, {
-            [classes.inputField]: true,
-            [classes.inputFieldPrefix]: prefix,
-            [classes.bigInput]: big
-          })}
+          className={classNames(className, classes.inputField)}
         />
-      )
+        {showPassword && (
+          <div className={classes.showPass} onClick={() => setShowPass(!showPass)}>
+            {showPass ? <VisibilityOff /> : <Visibility />}
+          </div>
+        )}
+      </div>
+    )
+    default: return (
+      <input
+        type={type}
+        {...defaultProps}
+        {...input}
+        className={classNames(className, {
+          [classes.inputField]: true,
+          [classes.inputFieldPrefix]: prefix,
+          [classes.bigInput]: big
+        })}
+      />
+    )
     }
   }
   return (
     <div className={classes.wrapper}>
-      <Label error={isError} required={required} label={label}/>
-      <Label2 error={isError} label={label2}/>
+      <Label error={isError} required={required} label={label} />
+      <Label2 error={isError} label={label2} />
       <div
         style={{ width }}
         className={classNames({
@@ -228,7 +228,8 @@ const TextField = (props) => {
           [classes.inputDisabled]: disabled,
           [classes.overflow]: overflow,
           [classes.errorBorder]: isError
-        })}>
+        })}
+      >
         {getFieldByType()}
         {prefix && <div className={classes.prefix}>{prefix}</div>}
         {postfix && <div className={classes.postfix}>{postfix}</div>}

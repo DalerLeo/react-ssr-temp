@@ -1,8 +1,8 @@
+import * as API from 'constants/api'
+import * as actionTypes from 'constants/actionTypes'
 import fp from 'lodash/fp'
 import moment from 'moment'
 import axios from 'helpers/axiosHelper'
-import * as API from 'constants/api'
-import * as actionTypes from 'constants/actionTypes'
 import toSnakeCase from 'helpers/toSnakeCase'
 import setCookie from 'helpers/setCookie'
 

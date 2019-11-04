@@ -1,9 +1,9 @@
+import { BLACK_COLOR, ZERO } from 'constants/styles'
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
-import { BLACK_COLOR, ZERO } from 'constants/styles'
 import { getActiveUsersCount } from 'routes/action-common'
 import hexToRgb from 'helpers/hexToRgb'
 
@@ -30,7 +30,7 @@ const UsersOnline = props => {
   useEffect(() => {
     otherProps.getActiveUsersCount()
       .then(({ value }) => setActiveUsers(value.userCount))
-  }, [])
+  }, [otherProps])
 
   return (
     <div className={classes.usersCount}>Пользователей на сайте: {activeUsers}</div>

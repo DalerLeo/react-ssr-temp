@@ -1,12 +1,12 @@
-import _ from 'lodash'
-import React from 'react'
-import { compose } from 'recompose'
-import injectSheet from 'react-jss'
 import {
   BLACK_COLOR,
   crossBrowserify,
   fallbacksStyle, MAIN_COLOR
 } from 'constants/styles'
+import _ from 'lodash'
+import React from 'react'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { Checkbox } from 'components/FormComponents'
@@ -66,67 +66,66 @@ const CheckboxGroup = props => {
   const { input, classes, items, grid, label, type, meta, ...defaultProps } = props
   if (!_.isEmpty(grid)) {
     return (
-      <React.Fragment>
-        {label && <Label label={label}/>}
-        <CheckboxGr
-          className={classNames({
-            [classes.wrapper]: true
+      <>'       '{label && <Label label={label} />}'       '<CheckboxGr
+        className={classNames({
+          [classes.wrapper]: true
+        })}
+        value={input.value}
+        onChange={input.onChange}
+        {...defaultProps}
+      >
+        <Row>
+          {_.map(items, item => {
+            const value = _.get(item, 'id')
+            const name = _.get(item, 'name') || _.get(item, 'title')
+            return (
+              <Col key={value} span={grid.span}>
+                <Checkbox
+                  key={value}
+                  value={value}
+                  label={name}
+                  className={
+                    classNames(classes.checkGridItem, label && classes.labeledMargin)
+                  }
+                />
+              </Col>
+            )
           })}
-          value={input.value}
-          onChange={input.onChange}
-          {...defaultProps}>
-          <Row>
-            {_.map(items, item => {
-              const value = _.get(item, 'id')
-              const name = _.get(item, 'name') || _.get(item, 'title')
-              return (
-                <Col key={value} span={grid.span}>
-                  <Checkbox
-                    key={value}
-                    value={value}
-                    label={name}
-                    className={
-                      classNames(classes.checkGridItem, label && classes.labeledMargin)}
-                  />
-                </Col>
-              )
-            })}
-          </Row>
-        </CheckboxGr>
-      </React.Fragment>
+        </Row>
+                                                            </CheckboxGr>'     '
+      </>
     )
   }
 
   return (
-    <React.Fragment>
-      {label && <Label label={label}/>}
-      <CheckboxGr
-        className={classNames({
-          [classes.wrapper]: true,
-          [classes.blockWrapper]: type === 'block',
-          [classes.inline]: type === 'inline'
-        })}
-        value={input.value || []}
-        onChange={input.onChange}
-        {...defaultProps}>
-        {_.map(items, item => {
-          const value = _.get(item, 'id')
-          const name = _.get(item, 'name') || _.get(item, 'title')
-          const checked = _.includes(input.value, value)
-          return (
-            <Checkbox
-              key={value}
-              value={value}
-              label={name}
-              className={classNames(
-                classes.checkbox,
-                { [classes.checkboxActive]: checked }
-              )}
-            />
-          )
-        })}
-      </CheckboxGr>
-    </React.Fragment>
+    <>'     '{label && <Label label={label} />}'     '<CheckboxGr
+      className={classNames({
+        [classes.wrapper]: true,
+        [classes.blockWrapper]: type === 'block',
+        [classes.inline]: type === 'inline'
+      })}
+      value={input.value || []}
+      onChange={input.onChange}
+      {...defaultProps}
+    >
+      {_.map(items, item => {
+        const value = _.get(item, 'id')
+        const name = _.get(item, 'name') || _.get(item, 'title')
+        const checked = _.includes(input.value, value)
+        return (
+          <Checkbox
+            key={value}
+            value={value}
+            label={name}
+            className={classNames(
+              classes.checkbox,
+              { [classes.checkboxActive]: checked }
+            )}
+          />
+        )
+      })}
+                                                      </CheckboxGr>'   '
+    </>
   )
 }
 

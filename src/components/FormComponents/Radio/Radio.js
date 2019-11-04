@@ -2,10 +2,10 @@ import _ from 'lodash'
 import React from 'react'
 import { compose } from 'recompose'
 import injectSheet from 'react-jss'
-import { crossBrowserify, MAIN_COLOR, PRIMARY_COLOR } from '../../../constants/styles'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import AntRadio from 'antd/lib/radio'
+import { crossBrowserify, MAIN_COLOR, PRIMARY_COLOR } from '../../../constants/styles'
 
 const enhance = compose(
   injectSheet({
@@ -63,7 +63,8 @@ const Radio = ({ className, classes, label, ...defaultProps }) => {
   return (
     <AntRadio
       className={classNames(classes.radio, className)}
-      {...defaultProps}>
+      {...defaultProps}
+    >
       {label}
     </AntRadio>
   )

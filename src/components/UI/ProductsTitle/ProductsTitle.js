@@ -3,6 +3,7 @@ import propTypes from 'prop-types'
 import styled from 'styled-components'
 import ArrowLeft from '../../../icons/ArrowLeft'
 import ArrowRight from '../../../icons/ArrowRight'
+
 const ProductsTitlePosotion = styled.div`
     display: flex;
     justify-content: space-between;
@@ -45,8 +46,7 @@ const ProductsTitle = (props) => {
         <NextPrevButton>
           <ArrowRight />
         </NextPrevButton>
-      </NextPrevButtonsBlock>
-      }
+      </NextPrevButtonsBlock>}
     </ProductsTitlePosotion>
   )
 }
