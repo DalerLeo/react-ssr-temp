@@ -29,6 +29,8 @@ const Home = props => {
     stateName: 'productList'
   })
 
+  console.warn(productData)
+
   return (
     <div>
       <Header />

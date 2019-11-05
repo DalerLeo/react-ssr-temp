@@ -17,7 +17,7 @@ const MinusButton = styled.button`
     background-color: transparent;
     border: none;
     outline: 0;
-    cursor: pointer;
+    cursor: ${props => props.counter === 1 ? 'no-drop' : 'pointer'};
 `
 const PlusButton = styled.button`
     background-color: transparent;
@@ -33,11 +33,12 @@ const Counter = styled.div`
     margin-top: 11px;
 `
 const CartButton = (props) => {
-    const {counter, setCounter} = useState(0)
+    const [counter, setCounter] = useState(2)
+    
     return ( 
         <StyledCartButton>
-            <MinusButton onClick={() => setCounter(counter - 1)}>
-              {(counter === 0) ? <DeleteIcon /> : <MinusIcon />}  
+            <MinusButton counter={counter} onClick={() => setCounter(counter - 1)} disabled={counter === 1}>
+               <MinusIcon />
             </MinusButton>
             <Counter>
                 {counter}
