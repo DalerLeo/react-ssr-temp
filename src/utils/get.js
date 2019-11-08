@@ -96,12 +96,13 @@ export const getInitValuesFromHistory = curry((fields, history) =>
   )(history)
 )
 
-export const getDataFromState = curry((name, state) => ({
+export const getDataFromState = curry((name, state) => {
+return {
   loading: path([name, 'loading'], state),
   failed: path([name, 'failed'], state),
   data: path([name, 'data'], state),
   results: pathOr([], [name, 'data', 'results'], state)
-}))
+}})
 
 export const getBooleanFromHistory = curry((name, history) =>
   compose(

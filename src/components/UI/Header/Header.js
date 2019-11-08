@@ -6,16 +6,18 @@ import ShoppingBag from 'icons/ShoppingBag'
 import useWindowScroll from '@react-hook/window-scroll'
 import MenuBarIcon from 'icons/MenuBar'
 import TopHeader from './TopHeader'
+import Link from 'components/Link'
 
 const HeaderBlock = styled.div`
   position: fixed;
-  right: 0;
-  left: 0;
+  width: 100%;
   z-index: 9999;
+  top: 0;
 `
 const HeaderStyled = styled.div`
   align-items: center;
   display: flex;
+  justify-content: space-between;
   padding: 14px 150px;
   height: 78px;
   background-color: #2EBB8A;
@@ -24,9 +26,9 @@ const LogoBlock = styled.div`
 
 `
 const SearchBlock = styled.div`
-  width: 440px;
+  width: ${props => props.scrollY > 100 ? '340px' : '400px'};
   display: flex;
-  margin-left: ${props => props.scrollY > 100 ? '0px' : '-163px'};
+  margin-left: ${props => props.scrollY > 100 ? '0px' : '-200px'};
   z-index: 1;
 `
 
@@ -54,15 +56,14 @@ const MyProfile = styled.div`
   font-size: 16px;
   line-height: 164.57%;
   color: #FFFFFF;
-  margin-left: 79px;
   cursor: pointer;
 `
 const MenubarHeader = styled.div`
     display: flex;
-    width: 267px;
+    width: 217px;
     height: 52px;
     padding: 15px 20px;
-    margin-left: 40px;
+    margin-left: 10px;
     opacity: ${props => props.scrollY > 100 ? '1' : '0'};
     transition: opacity 0.5s ease;
     cursor: pointer;
@@ -74,9 +75,9 @@ const MenubarText = styled.div`
     margin-left: 8px;
 `
 const LogoStyled = styled.div`
-padding-bottom: 10px;
-  background-color: #29D398;
-  border-radius: 5px;
+    padding-bottom: 10px;
+    background-color: #29D398;
+    border-radius: 5px;
 `
 
 const Header = () => {
@@ -107,8 +108,10 @@ const Header = () => {
           Мой профиль
         </MyProfile>
         <MyProfile>
+        <Link to="/cart">
           <ShoppingBag />
-          Корзина
+            Корзина
+        </Link>
         </MyProfile>
       </HeaderStyled>
     </HeaderBlock>

@@ -20,19 +20,16 @@ const errorInterceptors = curry((dispatch, error) => {
   const status = path(['response', 'status'], error)
 
   if (equals(UNAUTHORIZED, status && dispatch)) {
-    console.warn('AXIOS ERROR CLEAR')
     dispatch({ type: `${actionTypes.LOGIN}_CLEAR` })
     dispatch({ type: `${actionTypes.USER_INFO}_CLEAR` })
-    expireDocumentCookie()
+    typeof document !== 'undefined' && expireDocumentCookie()
   }
   return Promise.reject(error)
 })
 
 const axiosRequest = ({ getState, dispatch }, noAuth = false) => {
   const state = getState && getState()
-  const token = path(['login', 'data', 'token'], state) || getCookie('token')
-
-  console.warn('DAELER')
+  const token = path(['login', 'data', 'token'], state) ||  getCookie('token')
   axios.defaults.baseURL = `${API_URL}`
   axios.defaults.transformResponse = [responseToCamelCase]
   axios.defaults.timeout = 100000

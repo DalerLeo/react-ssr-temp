@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import { path, find, propEq } from 'ramda'
 import { Card } from 'components/Cards'
@@ -7,7 +7,7 @@ import Image from 'components/UI/Image'
 import Price from 'components/UI/Price'
 import ProductContent from 'components/UI/ProductContent'
 import SalePrice from '../UI/SalePrice/SalePrice'
-
+import {setItemToCart, removeItemFrom} from './storage'
 
 const StyledCard = styled(Card)`
   border-right: 1px solid #E1E1E1;
@@ -40,13 +40,18 @@ const ButtonPosition = styled.div`
   margin-left: 20px;
 `
 
+const ProductCardList = (props) => {
+  const { productData } = props
+  const results = path(['results'], productData)
+  return results.map(mapChild)
+}
+
 const mapChild = item => {
   const [count, setCount] = useState(true);
-  console.log(count)
   const name = path(['name'], item)
   const price = path(['price'], item)
   const images = path(['images'], item)
-  const isPrimary = find(propEq('is_primary', true))(images)
+  const isPrimary = find(propEq('isPrimary', true))(images)
   const image = path(['file'], isPrimary)
   return (
     <StyledCard>
@@ -55,21 +60,23 @@ const mapChild = item => {
       </ImagePosition>
       <PricePosition>
         <Price price={price} />
-        {true && <SalePrice>25 000</SalePrice>}
+        {true && <SalePrice>25000</SalePrice>}
       </PricePosition>
       <ProductContentPosition>
         <ProductContent content={name} />
       </ProductContentPosition>
       <ButtonPosition>
-        {count ? <Button onClick={() => setCount(!count)} >В корзину</Button> : <CartButton onClick={()=> setCount(!count)}/>}
+        {count ? <Button 
+                    onRemove={() => removeItemFrom(id)}
+                    onClick={value => {
+                      setItemToCart(2, item)
+                      setCount(!count)
+                    }}>
+                    В корзину
+                  </Button> : <CartButton onClick={()=> setCount(!count)}/>}
       </ButtonPosition>
     </StyledCard>
   )
-}
-const ProductCardList = (props) => {
-  const { products } = props
-  const results = path(['results'], products)
-  return results.map(mapChild)
 }
 
 export default ProductCardList

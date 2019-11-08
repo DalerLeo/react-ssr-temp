@@ -1,20 +1,16 @@
-/* eslint-disable func-style */
 import React from 'react'
 import Layout from 'components/Layout'
-import { getProductList } from './actions'
-import HomeContainer from './HomeContainer'
+import CartContainer from './CartContainer'
 
-import {menuAs} from '../../components/UI/MenuBar/actions';
 async function action (props) {
   const { store, isServer } = props
   if (isServer) {
-
   }
   return {
-    title: 'Главная',
+    title: 'Корзина',
     component: (
       <Layout {...props} home={true}>
-        <HomeContainer />
+        <CartContainer />
       </Layout>
     )
   }
