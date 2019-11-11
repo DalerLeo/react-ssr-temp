@@ -104,8 +104,10 @@ const Header = () => {
           </SearchButton>
         </SearchBlock>
         <MyProfile>
-          <Profile />
-          Мой профиль
+          <Link to="/sign-in">
+            <Profile />
+            Мой профиль
+          </Link>
         </MyProfile>
         <MyProfile>
         <Link to="/cart">

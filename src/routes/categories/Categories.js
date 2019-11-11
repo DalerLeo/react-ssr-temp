@@ -3,12 +3,16 @@ import styled from 'styled-components'
 import {path} from 'ramda'
 import Header from 'components/UI/Header'
 import Container from 'components/Container'
-
+import ProductCard from 'components/Cards/ProductCard'
 import { getProductCategoryList } from './actions'
 import useFetchList from '../../hooks/useFetchList'
 
-const Categories = ({id, ...props}) => {
 
+const ProductListBlock = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
+const Categories = ({id, ...props}) => {
   const mapper = (history, params) => {
     return id
   }
@@ -18,24 +22,18 @@ const Categories = ({id, ...props}) => {
       stateName: 'productCategoryList',
       mapper
     })
-    const categoryProducts = path(['results'], productCategoryData)
-    console.warn(categoryProducts)
+    const items = path(['results'], productCategoryData)
   return (
     <div>
       <Header />
       <Container>
-        <div>
-          {categoryProducts.map((categoryProduct, key) => {
-            const productName = path(['name'], categoryProduct)
-            const productPrice = path(['price'], categoryProduct)
+        <ProductListBlock>
+          {items.map((item, key) => {
             return (
-              <div key={key}>
-                <div>{productName}</div>
-                <div>{productPrice}</div>
-              </div>
+              <ProductCard key={key} item={item}/>
             )
           })}
-        </div>
+        </ProductListBlock>
       </Container>
     </div>
   )
