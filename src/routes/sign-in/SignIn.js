@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import TopHeader from 'components/UI/Header/TopHeader'
 import Logo from 'icons/Logo'
 
+const TopHeaderStyled = styled.div`
+    margin-top: -120px;
+`
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -15,7 +18,7 @@ const SignInStyled = styled.div`
 `
 const Enter = styled.div`
     display: block;
-    margin-top: 100px;
+    margin-top: 150px;
     color: #222121;
     font-size: 36px;
     font-wight: bold;
@@ -64,61 +67,64 @@ const InputMessage = styled.input`
         margin: 0; 
     }
 `
-function LoginForm() {
-    const [form, setValues] = useState({
-      phoneNumber: ''
-    });
-  
-    const printValues = e => {
-      e.preventDefault();
-    };
-    
-    const updateField = e => {
-      setValues({
-        ...form,
-        [e.target.name]: e.target.value
-      });
-    };
-    
-    console.warn(form.phoneNumber)
-    if(form.phoneNumber.length == 9){
-        console.warn('doneee')
-    }
-    return (
-      <form onChange={printValues}>
-          <InputMessage 
-            name="phoneNumber"
-            type="number" 
-            placeholder="Введите номер телефона" 
-            value={form.username} 
-            onChange={updateField}/>
-      </form>
-    );
+const LoginForm = () => {
+  const [form, setValues] = useState({
+    phoneNumber: ''
+  })
+
+  const printValues = (event) => {
+    (event).preventDefault()
   }
 
-const SignIn = (props) => {
-    return (
-        <div>
-        {/* <TopHeader /> */}
-            <Container>
-                <SignInStyled>
-                    <Logo />
-                </SignInStyled>
-                <Enter>
-                    Вход
-                </Enter>
-                <PhoneNumber>
-                    Номер телефона
-                </PhoneNumber>
-                <InputWrapper>
-                    <InputNumber>
-                        +998
-                    </InputNumber>
-                    <LoginForm />
-                </InputWrapper>
-            </Container>
-        </div>
-    );
+  const updateField = event => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  console.warn(form.phoneNumber)
+  if (form.phoneNumber.length === 9) {
+    console.warn('doneee')
+  }
+  return (
+    <form onChange={printValues}>
+      <InputMessage
+        name="phoneNumber"
+        type="number"
+        placeholder="Введите номер телефона"
+        value={form.username}
+        onChange={updateField}
+      />
+    </form>
+  )
 }
- 
-export default SignIn;
+
+const SignIn = (props) => {
+  return (
+    <div>
+      <TopHeaderStyled>
+        <TopHeader />
+        <SignInStyled>
+          <Logo />
+        </SignInStyled>
+      </TopHeaderStyled>
+      <Container>
+        <Enter>
+            Вход
+        </Enter>
+        <PhoneNumber>
+            Номер телефона
+        </PhoneNumber>
+        <InputWrapper>
+          <InputNumber>
+            +998
+          </InputNumber>
+          <LoginForm />
+        </InputWrapper>
+      </Container>
+    </div>
+  )
+}
+
+export default SignIn
