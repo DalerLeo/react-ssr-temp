@@ -20,7 +20,7 @@ const Linear = styled.div`
   overflow: hidden;
   width: 100%;
   height: 3px;
-  background-color: ${props => hexToRgb('green', 0.4)};
+  background-color: ${props => hexToRgb('#efefef', 0.4)};
 `
 
 const animFirst = keyframes`
@@ -54,14 +54,14 @@ const Inter = styled.div`
   height: 100%;
   :before {
     animation: ${animFirst} 1.5s infinite ease-out;
-    background-color: ${props => hexToRgb('green', 0.63)};
+    background-color: ${props => hexToRgb('#efefef', 0.63)};
     content: ' ';
     position: absolute;
     height: 100%;
   }
   :after {
     animation: ${animSecond} 1.5s infinite ease-in;
-    background-color: ${props => hexToRgb('green', 0.9)};
+    background-color: ${props => hexToRgb('#efefef', 0.9)};
     content: ' ';
     position: absolute;
     height: 100%;
