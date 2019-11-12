@@ -1,7 +1,3 @@
-/* eslint-disable global-require */
-/* eslint-disable capitalized-comments */
-/* eslint-disable no-inline-comments */
-/* eslint-disable no-undef */
 import * as ROUTE from 'constants/routes'
 import * as actionTypes from 'constants/actionTypes'
 
@@ -12,26 +8,27 @@ const setLoader = (loading) => ({
 })
 const routes = {
   path: '',
-
-  // Keep in mind, routes are evaluated in order
   children: [
     {
       path: '',
       action: require('./home').default
     },
     {
-      path: ROUTE.ARTICLES_URL,
+      path: ROUTE.CART,
       children: [
         {
           path: '',
-          load: () => import(/* webpackChunkName: 'articles' */ './articles')
+          load: () => import('./cart')
         }
-
-        /*        {
-          path: '/:id',
-          load: () => import(/!* webpackChunkName: 'article-details' *!/ './article-details')
-        } */
-
+      ]
+    },
+    {
+      path: ROUTE.CATEGORIES,
+      children: [
+        {
+          path: '',
+          load: () => import('./categories')
+        }
       ]
     },
     {
@@ -39,11 +36,10 @@ const routes = {
       children: [
         {
           path: '/:child',
-          load: () => import(/* webpackChunkName: 'static-page' */ './static-page')
+          load: () => import('./static-page')
         }
       ]
     },
-    // Wildcard routes, e.g. { path: '(.*)', ... } (must go last)
     {
       path: '(.*)',
       load: () => import(/* webpackChunkName: 'not-found' */ './not-found')
@@ -51,7 +47,6 @@ const routes = {
   ],
 
   async action ({ next, ...props }) {
-    // SET ASYNC_LOADER TRUE
     props.store.dispatch(setLoader(true))
 
     // Execute each child route until one of them return the result

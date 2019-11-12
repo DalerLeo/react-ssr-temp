@@ -9,7 +9,6 @@ import ShowMore from 'components/UI/ShowMore'
 import MenuBar from 'components/UI/MenuBar'
 import Carusel from 'components/UI/Carusel'
 import ProductsTitle from 'components/UI/ProductsTitle'
-import products from './cons'
 
 import { getProductList } from './actions'
 import useFetchList from '../../hooks/useFetchList'
@@ -20,7 +19,6 @@ const ProductListBlock = styled.div`
 `
 const HeaderMenu = styled.div`
   display: flex;
-  padding-top: 120px;
 `
 
 const Home = props => {
@@ -28,7 +26,6 @@ const Home = props => {
     action: getProductList,
     stateName: 'productList'
   })
-
   return (
     <div>
       <Header />
@@ -39,18 +36,18 @@ const Home = props => {
         </HeaderMenu>
         <ProductsTitle title="Популярные товары" />
         <ProductListBlock>
-          <ProductCardList products={products} />
+          <ProductCardList productData={productData} />
         </ProductListBlock>
         <ProductsTitle title="Новинки" pagination={true} />
         <ProductListBlock>
-          <ProductCardList products={products} />
+          <ProductCardList productData={productData} />
         </ProductListBlock>
         <PopularCategories />
         <AddBanner />
         <PopularCategories />
         <ProductsTitle title="Лучшие товары за месяц" />
         <ProductListBlock>
-          <ProductCardList products={products} />
+          <ProductCardList productData={productData} />
         </ProductListBlock>
         <ShowMore />
       </Container>

@@ -3,8 +3,10 @@ import SvgIcon from './SvgIcon'
 
 export default (props) => {
   return (
-    <SvgIcon {...props}>
-      <path d="M4,10h16c1.1,0,2,0.9,2,2l0,0c0,1.1-0.9,2-2,2H4c-1.1,0-2-0.9-2-2l0,0C2,10.9,2.9,10,4,10z" />
+    <SvgIcon width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#242F3B" stroke-opacity="0.37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8 12H16" stroke="#242F3B" stroke-opacity="0.37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </SvgIcon>
   )
 }
+

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import Link from 'components/Link'
 import { pathOr } from 'ramda'
 
 const ModalStyled = styled.div`
@@ -25,23 +26,24 @@ const MenuList = styled.div`
     margin: 30px 35px;
 `
 const MenuListItems = styled.b`
-  padding: 6px 0;
-  cursor: pointer;
-  :hover{
-    color: #2EBB8A;
-  }
+    padding: 6px 0;
+    cursor: pointer;
+    :hover{
+      color: #2EBB8A;
+    }
 `
 const defaultArr = []
 const Modal = (props) => {
   const { subCategories = defaultArr, open } = props
 
   const subChilds = pathOr(defaultArr, ['children'], subCategories)
-
   return (
     <ModalStyled open={open}>
       <MenuList>
         {subChilds.map((subChild, id) => (
-          <MenuListItems>{subChild.name}</MenuListItems>
+            <Link to={`/categories/${subChild.id}`}>
+              <MenuListItems id={id}>{subChild.name}</MenuListItems>
+            </Link>
         ))}
       </MenuList>
     </ModalStyled>

@@ -26,7 +26,8 @@ const enhance = compose(
       ...crossBrowserify('justifyContent', 'space-between'),
       position: 'relative',
       minHeight: '100vh',
-      background: '#f9fafb'
+      background: '#f9fafb',
+      paddingTop: '120px' 
     },
     content: {
       ...crossBrowserify('flexGrow', '1')
@@ -64,10 +65,7 @@ const Layout = props => {
   }
 
   return (
-    <div className={classNames({
-      [classes.wrapper]: !simple,
-      [classes.simpleWrapper]: simple
-    })}>
+    <div className={classes.wrapper}>
       <GlobalStyles/>
       <GlobalLoading/>
       <ToastContainer
@@ -80,11 +78,6 @@ const Layout = props => {
         toastClassName={classes.toast}
       />
 
-      {simple
-        ? <HeaderSimple
-          query={query}
-        />
-        : <div />}
       <div className={classes.content}>
         {React.cloneElement(children, {
           pathname,

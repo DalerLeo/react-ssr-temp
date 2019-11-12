@@ -25,7 +25,6 @@ const responseToCamelCase = (data, response) => {
 const apiErrorHandler = _.curry((dispatch, error) => {
   const status = _.get(error, ['response', 'status'])
   if (_.isEqual(UN_AUTH, status) && history && dispatch) {
-    console.warn('AXIOS ERROR CLEAR')
     dispatch({ type: `${actionTypes.LOGIN}_CLEAR` })
     dispatch({ type: `${actionTypes.USER_INFO}_CLEAR` })
     expireDocumentCookie()

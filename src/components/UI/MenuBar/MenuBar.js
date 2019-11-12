@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import { find, propEq } from 'ramda'
+import { find, propEq, pathOr, path } from 'ramda'
 import styled from 'styled-components'
 import MenuBarIcon from 'icons/MenuBar'
 import Modal from 'components/UI/Modal'
-import list from './contants'
+import Link from 'components/Link'
+import { menuAs } from './actions'
+import useFetchList from '../../../hooks/useFetchList'
 
 const MenuBarStyled = styled.div`
 `
@@ -39,9 +41,18 @@ const MenuItem = styled.div`
     text-overflow: ellipsis;
     overflow: hidden;
 `
+const defArray = []
+
 const MenuBar = () => {
+
+  const menuData = useFetchList({
+    action: menuAs,
+    stateName: 'menuAs'
+  })
+  
   const [open, setMenuOpen] = useState(false)
-  const subCategories = find(propEq('id', open), list)
+  const lists = pathOr(defArray, ['data'], menuData)
+  const subCategories = find(propEq('id', open), lists)
   return (
     <MenuBarStyled onMouseLeave={() => setMenuOpen(false)}>
       <MenubarHeader>
@@ -50,14 +61,17 @@ const MenuBar = () => {
           Каталог товаров
         </MenubarText>
       </MenubarHeader>
-      {list.map((type, key) => {
+      {lists.map((type, key) => {
+        const parentId = path(['id'], type)
         return (
           <MenuItems
             open={open === type.id}
             onMouseEnter={() => setMenuOpen(type.id)}
             key={key}>
-            <MenuItem>{type.name}</MenuItem>
-            <Modal open={open === type.id} subCategories={subCategories}/>
+              <Link to={`/categories/${parentId}`}>
+                <MenuItem>{type.name}</MenuItem>
+                <Modal open={open === type.id} subCategories={subCategories} key={key}/>
+              </Link>
           </MenuItems>
         )
       })}

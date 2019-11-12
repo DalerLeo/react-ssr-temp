@@ -20,11 +20,6 @@ export default Component => {
       const { store: { getState, dispatch } } = this.props
       const state = getState()
     }
-
-    /* ComponentDidUpdate (prevProps, prevState, snapshot) {
-      console.warn(prevProps, prevState)
-      console.warn(this.props, this.state)
-    } */
     actionSuccess () {
       const { store: { dispatch } } = this.props
       dispatch(setGlobalNotify())
