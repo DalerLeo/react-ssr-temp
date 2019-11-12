@@ -70,3 +70,5 @@ export const DETAIL_URL = '/:id'
 export const CART = '/cart'
 
 export const CATEGORIES = `/categories/:id`
+
+export const SIGN_IN = '/sign-in'

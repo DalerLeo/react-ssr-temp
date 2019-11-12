@@ -2,16 +2,17 @@ import { MAIN_COLOR } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
-import My404 from 'icons/404'
+import My404 from 'icons/Logo'
 import Link from 'components/Link'
 
 const withStyles = injectSheet({
   wrapper: {
     padding: '200px 0',
-    textAlign: 'center'
+    textAlign: 'center',
+    backgroundColor: '#2EBB8A'
   },
   errorCode: {
-    color: '#5A308D',
+    color: '#249E74',
     fontSize: '100px',
     fontWeight: 'bold',
     '& span': {

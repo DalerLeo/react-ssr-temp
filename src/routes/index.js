@@ -23,6 +23,15 @@ const routes = {
       ]
     },
     {
+      path: ROUTE.SIGN_IN,
+      children: [
+        {
+          path: '',
+          load: () => import('./sign-in')
+        }
+      ]
+    },
+    {
       path: ROUTE.CATEGORIES,
       children: [
         {

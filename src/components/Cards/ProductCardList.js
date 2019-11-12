@@ -8,7 +8,7 @@ import Price from 'components/UI/Price'
 import ProductContent from 'components/UI/ProductContent'
 import SalePrice from '../UI/SalePrice/SalePrice'
 import {setItemToCart, removeItemFrom} from './storage'
-
+import ProductCard from './ProductCard'
 const StyledCard = styled(Card)`
   border-right: 1px solid #E1E1E1;
   border-bottom: 1px solid #E1E1E1;
@@ -47,36 +47,7 @@ const ProductCardList = (props) => {
 }
 
 const mapChild = item => {
-  const [count, setCount] = useState(true);
-  const name = path(['name'], item)
-  const price = path(['price'], item)
-  const images = path(['images'], item)
-  const isPrimary = find(propEq('isPrimary', true))(images)
-  const image = path(['file'], isPrimary)
-  return (
-    <StyledCard>
-      <ImagePosition>
-        <Image src={image} alt="image" />
-      </ImagePosition>
-      <PricePosition>
-        <Price price={price} />
-        {true && <SalePrice>25000</SalePrice>}
-      </PricePosition>
-      <ProductContentPosition>
-        <ProductContent content={name} />
-      </ProductContentPosition>
-      <ButtonPosition>
-        {count ? <Button 
-                    onRemove={() => removeItemFrom(id)}
-                    onClick={value => {
-                      setItemToCart(2, item)
-                      setCount(!count)
-                    }}>
-                    В корзину
-                  </Button> : <CartButton onClick={()=> setCount(!count)}/>}
-      </ButtonPosition>
-    </StyledCard>
-  )
+  return <ProductCard item={item} />
 }
 
 export default ProductCardList

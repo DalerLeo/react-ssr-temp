@@ -1,4 +1,3 @@
-export const SIGN_IN = 'SIGN_IN'
 export const USER_INFO = 'USER_INFO'
 export const USER_RESET_PASSWORD = 'USER_RESET_PASSWORD'
 export const LANGUAGE = 'LANGUAGE'
@@ -140,3 +139,5 @@ export const PRODUCT_CATEGORY_LIST = 'PRODUCT_CATEGORY_LIST'
 export const CART = 'CART'
 
 export const MENU_AS = 'MENU_AS'
+
+export const SIGN_IN = 'SIGN_IN'
