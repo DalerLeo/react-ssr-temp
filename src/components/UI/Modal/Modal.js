@@ -25,8 +25,9 @@ const MenuList = styled.div`
     color: #2E384C;
     margin: 30px 35px;
 `
-const MenuListItems = styled.b`
+const MenuListItems = styled.div`
     padding: 6px 0;
+    font-weight: 520;
     cursor: pointer;
     :hover{
       color: #2EBB8A;
@@ -40,10 +41,10 @@ const Modal = (props) => {
   return (
     <ModalStyled open={open}>
       <MenuList>
-        {subChilds.map((subChild, id) => (
-            <Link to={`/categories/${subChild.id}`}>
-              <MenuListItems id={id}>{subChild.name}</MenuListItems>
-            </Link>
+        {subChilds.map((subChild, key) => (
+          <Link to={`/categories/${subChild.id}`} key={key}>
+            <MenuListItems>{subChild.name}</MenuListItems>
+          </Link>
         ))}
       </MenuList>
     </ModalStyled>
