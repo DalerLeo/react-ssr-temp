@@ -7,7 +7,6 @@ import React from 'react'
 import {Provider} from 'react-redux'
 import ReactDOM from 'react-dom/server'
 import PrettyError from 'pretty-error'
-import {JssProvider, SheetsRegistry} from 'react-jss'
 import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
 import App from 'components/App'
@@ -22,7 +21,6 @@ import {setObservableConfig} from 'recompose'
 import createStore from './store/createStore'
 import queryToParams from './utils/queryToParams'
 import fetch from 'node-fetch'
-import generateClassName from 'helpers/generateClassName'
 import createHistory from 'history/createMemoryHistory'
 import {startListener} from 'redux-first-routing'
 import History from './HistoryProvider'
@@ -153,17 +151,13 @@ app.get('*', async (req, res, next) => {
       res.redirect(route.status || 302, route.redirect)
       return
     }
-
-    const sheets = new SheetsRegistry()
     const data = {...route}
 
     data.children = ReactDOM.renderToString(
       styledSheet.collectStyles(
       <Provider store={store}>
         <History.Provider value={history}>
-          <JssProvider registry={sheets} generateClassName={generateClassName} >
             <App context={context}>{route.component}</App>
-          </JssProvider>
         </History.Provider>
       </Provider>
       )
@@ -188,7 +182,7 @@ app.get('*', async (req, res, next) => {
     }
 
     const styleTags = styledSheet.getStyleElement()
-    const html = ReactDOM.renderToStaticMarkup(<Html store={store} styleTags={styleTags}  sheets={sheets} {...data} />)
+    const html = ReactDOM.renderToStaticMarkup(<Html store={store} styleTags={styleTags}  {...data} />)
     res.status(route.status || SUCCESS)
     res.send(`<!doctype html>${html}`)
   } catch (err) {
@@ -208,7 +202,6 @@ pe.skipPackage('express')
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   console.error(pe.render(err))
-  const sheets = new SheetsRegistry()
   const initialEntries = [req.path + queryToParams(req.query)]
   const history = createHistory({initialEntries})
   const store = createStore(history, {}, false)
@@ -217,7 +210,6 @@ app.use((err, req, res, next) => {
       title="Internal Server Error"
       store={store}
       description={err.message}
-      sheets={sheets}
       styles={[{id: 'css', cssText: errorPageStyle._getCss()}]} // eslint-disable-line no-underscore-dangle
     >
       {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err} />)}

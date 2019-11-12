@@ -1,3 +1,4 @@
+/*
 import { fallbacksStyle, crossBrowserify } from 'constants/styles'
 import React from 'react'
 import { compose } from 'recompose'
@@ -83,3 +84,4 @@ GlobalNotify.defaultProps = {
 }
 
 export default enhance(GlobalNotify)
+*/

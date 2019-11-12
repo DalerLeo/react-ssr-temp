@@ -1,54 +1,40 @@
-import { MAIN_COLOR } from 'constants/styles'
 import React from 'react'
-import PropTypes from 'prop-types'
-import injectSheet from 'react-jss'
-import My404 from 'icons/Logo'
-import Link from 'components/Link'
+import styled from 'styled-components'
+import My404 from '../../icons/404'
 
-const withStyles = injectSheet({
-  wrapper: {
-    padding: '200px 0',
-    textAlign: 'center',
-    backgroundColor: '#2EBB8A'
-  },
-  errorCode: {
-    color: '#249E74',
-    fontSize: '100px',
-    fontWeight: 'bold',
-    '& span': {
-      marginLeft: '10px'
-    }
-  },
-  errorText: {
-    fontSize: '20px',
-    fontWeight: '500',
-    marginBottom: '10px'
-  },
-  goHome: {
-    color: MAIN_COLOR,
-    fontWeight: '500',
-    '&:hover': {
-      color: '#5A308D'
-    }
-  }
-})
+const Wrapper = styled.div`
+  padding: 200px 0;
+  text-align: center;
+`
+
+const ErrorCode = styled.div`
+  color: #5A308D;
+  font-size: 100px;
+  font-weight: bold;
+   span {
+   margin-left: 20px;
+   }
+`
+
+const ErrorText = styled.div`
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+`
 
 const NotFound = props => {
-  const { classes } = props
-
   return (
-    <div className={classes.wrapper}>
-      <div className={classes.errorCode}>
+    <Wrapper>
+      <ErrorCode>
         <My404 /><span>404</span>
-      </div>
-      <div className={classes.errorText} />
-      <Link to="/" className={classes.goHome} />
-    </div>
+      </ErrorCode>
+      <ErrorText />
+    </Wrapper>
   )
 }
 
 NotFound.propTypes = {
-  classes: PropTypes.object
+
 }
 
-export default withStyles(NotFound)
+export default NotFound

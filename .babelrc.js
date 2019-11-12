@@ -6,8 +6,7 @@ module.exports = {
     '@babel/plugin-transform-runtime',
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-proposal-object-rest-spread",
-    ["import", { "libraryName": "antd" }]
+    "@babel/plugin-proposal-object-rest-spread"
   ],
   ignore: ['node_modules', 'build']
 }

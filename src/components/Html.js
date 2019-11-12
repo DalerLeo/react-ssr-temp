@@ -6,7 +6,17 @@ import styled from './styles'
 /* eslint-disable react/no-danger */
 
 const Html = props => {
-  const { title, description, styles, scripts, app, children, sheets, styleTags } = props
+  const {
+    title,
+    description,
+    styles,
+    scripts,
+    app,
+    children,
+    styleTags
+  } = props
+
+  const initialState = props.store && JSON.stringify(props.store.getState())
   return (
     <html className="no-js" lang="en">
       <head>
@@ -18,7 +28,10 @@ const Html = props => {
         {scripts.map(script =>
           <link key={script} rel="preload" href={script} as="script" />
         )}
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&amp;subset=cyrillic" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&amp;subset=cyrillic"
+          rel="stylesheet"
+        />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="apple-touch-icon" href="/icon.png" />
         <link rel="stylesheet" href="/antd.min.css" />
@@ -32,8 +45,7 @@ const Html = props => {
             dangerouslySetInnerHTML={{ __html: style.cssText }}
           />
         )}
-        {sheets && <style id="server-react-jss" type="text/css" dangerouslySetInnerHTML={{ __html: sheets.toString() }} />}
-        <script dangerouslySetInnerHTML={{ __html: `var initialState = ${props.store && JSON.stringify(props.store.getState())}` }} />
+        <script dangerouslySetInnerHTML={{ __html: `var initialState = ${initialState}` }} />
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
@@ -47,7 +59,9 @@ const Html = props => {
               `ga('create','${config.analytics.googleTrackingId}','auto');ga('send','pageview')`
           }}
         />}
-        {config.analytics.googleTrackingId && <script src="https://www.google-analytics.com/analytics.js" async={true} defer={true} />}
+        {config.analytics.googleTrackingId && (
+          <script src="https://www.google-analytics.com/analytics.js" async={true} defer={true} />
+        )}
       </body>
     </html>
   )
@@ -64,7 +78,6 @@ Html.propTypes = {
       cssText: PropTypes.string.isRequired
     }).isRequired
   ),
-  sheets: PropTypes.any.isRequired,
   scripts: PropTypes.arrayOf(PropTypes.string.isRequired),
   app: PropTypes.object,
   children: PropTypes.string

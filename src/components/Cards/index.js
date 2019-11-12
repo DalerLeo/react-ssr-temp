@@ -1,6 +1,5 @@
 import CardList from './CardList'
 import Card from './Card'
-import CardLoadingList from './CardLoadingList'
 import {
   VACANCY,
   COMPANY,
@@ -16,7 +15,6 @@ import {
 export {
   Card,
   CardList,
-  CardLoadingList,
   VACANCY,
   COMPANY,
   VACANCY_BIG,

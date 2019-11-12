@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {path} from 'ramda'
 import Header from 'components/UI/Header'
-import Container from 'components/Container'
+import Container from 'components/StyledElems/Container'
 import ProductCard from 'components/Cards/ProductCard'
 import { getProductCategoryList } from './actions'
 import useFetchList from '../../hooks/useFetchList'
@@ -16,7 +16,7 @@ const Categories = ({id, ...props}) => {
   const mapper = (history, params) => {
     return id
   }
-  
+
     const productCategoryData = useFetchList({
       action: getProductCategoryList,
       stateName: 'productCategoryList',

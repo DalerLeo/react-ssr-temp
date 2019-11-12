@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Row from 'antd/lib/row'
-import Col from 'antd/lib/col'
-import fp from 'lodash/fp'
+import { map, prop } from 'ramda'
+import { Row, Col } from '../Grid'
 
 const CardList = props => {
   const {
@@ -18,13 +17,13 @@ const CardList = props => {
 
   return ((page && onMore) || !data.loading) &&
     (
-      <Row type="flex" gutter={gutter}>
-        {fp.map(item => {
-          const id = fp.get('id', item)
+      <Row gutter={gutter}>
+        {map(item => {
+          const id = prop('id', item)
           return (
             <Col key={id} xs={span} style={{ marginBottom }} />
           )
-        }, fp.get('data', data))}
+        }, prop('data', data))}
       </Row>
     )
 }

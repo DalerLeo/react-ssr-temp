@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { path, find, propEq } from 'ramda'
 import { Card } from 'components/Cards'
@@ -48,7 +48,6 @@ const ProductDard = (props) => {
   const images = path(['images'], item)
   const isPrimary = find(propEq('isPrimary', true))(images)
   const image = path(['file'], isPrimary)
-  console.warn('image', image)
   return (
     <StyledCard>
       <ImagePosition>

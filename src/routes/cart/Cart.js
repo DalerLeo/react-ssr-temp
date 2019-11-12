@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from 'components/UI/Header'
-import Container from 'components/Container'
+import Container from 'components/StyledElems/Container'
 import Cart from 'components/UI/Cart'
 
 const Home = props => {

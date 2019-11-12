@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import deepForceUpdate from 'react-deep-force-update'
 import queryString from 'query-string'
-import {JssProvider, SheetsRegistry} from 'react-jss'
 import App from './components/App'
 import History from './HistoryProvider'
 import history, {createPath} from './history'
@@ -14,7 +13,6 @@ import {setObservableConfig} from 'recompose'
 import smoothScrollTo from 'utils/smoothScrollTo'
 import createStore from './store/createStore'
 import {startListener} from 'redux-first-routing'
-import generateClassName from 'helpers/generateClassName'
 import {getCartItems} from 'utils/storage'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -98,9 +96,7 @@ async function onLocationChange (location, action, onHotUpdate) {
     const appRender = (
       <Provider store={store}>
         <History.Provider value={history}>
-          <JssProvider generateClassName={generateClassName}>
             <App lang={lang} context={context}>{route.component}</App>
-          </JssProvider>
         </History.Provider>
       </Provider>
     )
@@ -108,13 +104,8 @@ async function onLocationChange (location, action, onHotUpdate) {
     if (isInitialRender) {
       if (!onHotUpdate)
         container.innerHTML = ''
-
-      const jssElem = document.getElementById('server-react-jss')
-      if (jssElem) jssElem.parentNode.removeChild(jssElem)
-
     }
     const renderReactApp = isInitialRender ? ReactDOM.hydrate : ReactDOM.render
-    const sheets = new SheetsRegistry()
     appInstance = renderReactApp(
       appRender,
       container,

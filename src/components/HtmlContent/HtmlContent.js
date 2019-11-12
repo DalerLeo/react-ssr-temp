@@ -1,66 +1,63 @@
-import { MAIN_COLOR } from 'constants/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
-import injectSHeet from 'react-jss'
+import styled from 'styled-components'
 
-const withStyles = injectSHeet({
-  content: {
-    lineHeight: ({ lineHeight }) => `${lineHeight}px`,
-    '& ul': {
-      listStyle: 'none',
-      padding: '0',
-      paddingLeft: '18px !important',
-      '& li:before': {
-        borderRadius: '50%',
-        content: '"\\2022"',
-        color: MAIN_COLOR,
-        fontWeight: 'bold',
-        display: 'inline-block',
-        marginLeft: '-14px',
-        paddingRight: '7px',
-        position: 'absolute'
+const Content = styled.div`
+
+    line-height: ${({ lineHeight }) => lineHeight};
+    ul {
+      list-style: none;
+      padding: 0;
+      padding-left: 18px !important;
+      li:before {
+        border-radius: 50%;
+        content: '\\\\2022';
+        font-weight: bold;
+        display: inline-block;
+        margin-left: -14px;
+        padding-right: 7px;
+        position: absolute;
       },
-      '& br': {
-        display: 'none'
+      & br: {
+        display: none
       }
     },
-    '& ol': {
-      padding: '0',
-      paddingLeft: '18px !important'
+    & ol {
+      padding: 0;
+      padding-left: 18px !important;
     },
-    '& ul, & ol': {
-      '&:last-child': { margin: '0' }
+    & ul, & ol {
+      &:last-child { margin: 0 }
     },
-    '& li': {
-      fontSize: '15px',
-      '& span': {
-        fontSize: 'inherit !important',
-        fontFamily: 'inherit !important'
+    & li {
+      font-size: 15px;
+      & span {
+        font-size: inherit !important;
+        font-family: inherit !important
       },
-      '&:last-child': {
-        marginBottom: '0'
+      &:last-child {
+        margin-bottom: 0
       }
     },
-    '& p': {
-      margin: '0'
+    & p: {
+      margin: 0
     },
-    '& img': {
-      maxWidth: '100%'
+    & img: {
+      max-width: 100%
     }
-  }
-})
+  
+`
 
-const HtmlContent = ({ children, classes }) => {
+const HtmlContent = ({ children, lineHeight }) => {
   return (
-    <div
-      className={classes.content}
+    <Content
+      lineHeight={lineHeight}
       dangerouslySetInnerHTML={{ __html: children }}
     />
   )
 }
 
 HtmlContent.propTypes = {
-  classes: PropTypes.object,
   lineHeight: PropTypes.any,
   children: PropTypes.any
 }
@@ -69,4 +66,4 @@ HtmlContent.defaultProps = {
   lineHeight: 22
 }
 
-export default withStyles(HtmlContent)
+export default HtmlContent

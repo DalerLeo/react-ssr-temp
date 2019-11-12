@@ -1,53 +1,37 @@
-import { crossBrowserify, fallbacksStyle } from 'constants/styles'
-import loGet from 'lodash/get'
 import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import PropTypes from 'prop-types'
-import injectSheet from 'react-jss'
-import classNames from 'classnames'
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import { compose } from 'recompose'
-import { getStaticPagesList } from 'routes/static-page/actions'
 import toastifyStyles from 'react-toastify/dist/ReactToastify.css'
-import HeaderSimple from 'components/Header/HeaderSimple'
 import FooterContainer from 'components/Footer/FooterContainer'
 import GlobalLoading from 'components/Utils/GlobalLoading'
+import styled from 'styled-components'
+import GlobalStyles from '../GlobalStyles'
 import s from './Layout.css'
 import DataLayout from './DataLayout'
-import GlobalStyles from '../GlobalStyles'
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: 100vh;
+  background: #f9fafb;
+  padding-top: 120px;
+`
+
+const Content = styled.div`
+  flex-grow: 1;
+`
 const enhance = compose(
   DataLayout,
   withStyles(s),
-  withStyles(toastifyStyles),
-  injectSheet({
-    wrapper: {
-      ...fallbacksStyle('display', 'flex'),
-      ...crossBrowserify('flexDirection', 'column'),
-      ...crossBrowserify('justifyContent', 'space-between'),
-      position: 'relative',
-      minHeight: '100vh',
-      background: '#f9fafb',
-      paddingTop: '120px' 
-    },
-    content: {
-      ...crossBrowserify('flexGrow', '1')
-    },
-    simpleWrapper: {
-      paddingTop: '68px',
-      position: 'relative'
-    },
-
-    toastContainer: {},
-    toast: {
-      fontFamily: 'inherit !important',
-      padding: '0 !important'
-    }
-  })
+  withStyles(toastifyStyles)
 )
 
 const Layout = props => {
   const {
-    classes,
     children,
     pathname,
     query,
@@ -65,20 +49,18 @@ const Layout = props => {
   }
 
   return (
-    <div className={classes.wrapper}>
-      <GlobalStyles/>
-      <GlobalLoading/>
+    <Wrapper>
+      <GlobalStyles />
+      <GlobalLoading />
       <ToastContainer
         autoClose={5000}
-        className={classes.toastContainer}
         closeButton={false}
         hideProgressBar={true}
         pauseOnHover={false}
         position="top-left"
-        toastClassName={classes.toast}
       />
 
-      <div className={classes.content}>
+      <Content>
         {React.cloneElement(children, {
           pathname,
           query,
@@ -88,19 +70,18 @@ const Layout = props => {
           isAuth,
           actionSuccess
         })}
-      </div>
+      </Content>
       <FooterContainer
         isAuth={isAuth}
         isEmployer={isEmployer}
         isApplicant={isApplicant}
       />
-    </div>
+    </Wrapper>
   )
 }
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: PropTypes.object,
   search: PropTypes.bool,
   home: PropTypes.bool,
   simple: PropTypes.bool,

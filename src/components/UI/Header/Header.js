@@ -11,7 +11,7 @@ import Link from 'components/Link'
 const HeaderBlock = styled.div`
   position: fixed;
   width: 100%;
-  z-index: 9999;
+  z-index: 20;
   top: 0;
 `
 const HeaderStyled = styled.div`
