@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import MenuBarIcon from 'icons/MenuBar'
 import Modal from 'components/UI/Modal'
 import Link from 'components/Link'
-import { menuAs } from './actions'
 import useFetchList from '../../../hooks/useFetchList'
+import { menuAs } from './actions'
 
 const MenuBarStyled = styled.div`
 `
@@ -32,7 +32,6 @@ const MenuItems = styled.div`
     cursor: pointer;
     position: ${props => props.open ? 'relative' : 'unset'};
     :hover{
-      color: #2EBB8A;
       background: #EAFAF1;
     }
 `
@@ -44,12 +43,11 @@ const MenuItem = styled.div`
 const defArray = []
 
 const MenuBar = () => {
-
   const menuData = useFetchList({
     action: menuAs,
     stateName: 'menuAs'
   })
-  
+
   const [open, setMenuOpen] = useState(false)
   const lists = pathOr(defArray, ['data'], menuData)
   const subCategories = find(propEq('id', open), lists)
@@ -67,11 +65,12 @@ const MenuBar = () => {
           <MenuItems
             open={open === type.id}
             onMouseEnter={() => setMenuOpen(type.id)}
-            key={key}>
-              <Link to={`/categories/${parentId}`}>
-                <MenuItem>{type.name}</MenuItem>
-                <Modal open={open === type.id} subCategories={subCategories} key={key}/>
-              </Link>
+            key={key}
+          >
+            <Link to={`/categories/${parentId}`}>
+              <MenuItem>{type.name}</MenuItem>
+              <Modal open={open === type.id} subCategories={subCategories} key={key} />
+            </Link>
           </MenuItems>
         )
       })}

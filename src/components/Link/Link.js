@@ -6,8 +6,12 @@ import styled, { css } from 'styled-components'
 import withHistory from 'helpers/withHistory'
 
 const LinkUI = styled.a`
+    color: black;
     &:focus {
-      text-decoration: none
+      text-decoration: none;
+    }
+    &:hover{
+      color: #2EBB8A;
     }
     ${props => props.absolute && css`
     position: absolute;

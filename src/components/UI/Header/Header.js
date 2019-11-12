@@ -5,8 +5,8 @@ import Profile from 'icons/Profile'
 import ShoppingBag from 'icons/ShoppingBag'
 import useWindowScroll from '@react-hook/window-scroll'
 import MenuBarIcon from 'icons/MenuBar'
-import TopHeader from './TopHeader'
 import Link from 'components/Link'
+import TopHeader from './TopHeader'
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -104,16 +104,16 @@ const Header = () => {
           </SearchButton>
         </SearchBlock>
         <MyProfile>
-          <Link to="/sign-in">
+          <Link to="/sign-in" style={{ color: 'white' }}>
             <Profile />
             Мой профиль
           </Link>
         </MyProfile>
         <MyProfile>
-        <Link to="/cart">
-          <ShoppingBag />
+          <Link to="/cart" style={{ color: 'white' }}>
+            <ShoppingBag />
             Корзина
-        </Link>
+          </Link>
         </MyProfile>
       </HeaderStyled>
     </HeaderBlock>
