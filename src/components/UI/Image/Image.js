@@ -6,7 +6,9 @@ const ImageStyled = styled.img`
     display: flex;
     justify-content: center;
     max-width: 138px;
-    max-height: 146px; 
+    max-height: 146px;
+    min-width: 138px;
+    min-height: 146px; 
 `
 const Image = (props) => {
   const { src } = props
