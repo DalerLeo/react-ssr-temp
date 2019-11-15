@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Link from 'components/Link'
 import Telegram from 'icons/Telegram'
 
 const TopHeaderStyled = styled.div`
@@ -54,9 +55,11 @@ const TopHeader = () => {
         </TelegramLink>
       </LeftSide>
       <RightSide>
-        <Delivery>
+        <Link to="/delivery" style={{ color: 'white' }}>
+          <Delivery>
           Доставка
-        </Delivery>
+          </Delivery>
+        </Link>
         <Payment>
           Удобная оплата
         </Payment>

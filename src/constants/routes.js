@@ -69,6 +69,12 @@ export const DETAIL_URL = '/:id'
 
 export const CART = '/cart'
 
-export const CATEGORIES = `/categories/:id`
+export const CATEGORIES = '/categories/:id'
 
 export const SIGN_IN = '/sign-in'
+
+export const DELIVERY = '/delivery'
+
+export const PROFILE = '/profile'
+
+export const ADDRESS = '/address'

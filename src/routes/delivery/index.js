@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from 'components/Layout'
-import SignInContainer from './SignInContainer'
+import DeliveryContainer from './DeliveryContainer'
 
 async function action (props) {
   const { store, isServer } = props
@@ -8,10 +8,10 @@ async function action (props) {
 
   }
   return {
-    title: 'Логин',
+    title: 'Доставка',
     component: (
       <Layout {...props}>
-        <SignInContainer />
+        <DeliveryContainer />
       </Layout>
     )
   }

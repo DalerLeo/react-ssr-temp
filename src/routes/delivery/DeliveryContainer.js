@@ -5,7 +5,7 @@ import {
 import { connect } from 'react-redux'
 import withHistory from 'helpers/withHistory'
 
-import CartWrapper from './Cart'
+import DeliverynWrapper from './Delivery'
 
 const mapStateToProps = (state) => {
   return {
@@ -21,4 +21,4 @@ export default compose(
   withHistory,
   connect(mapStateToProps, mapDispatchToProps),
   pure
-)(CartWrapper)
+)(DeliverynWrapper)

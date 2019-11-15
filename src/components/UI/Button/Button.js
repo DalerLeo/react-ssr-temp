@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-
 const ButtonStyled = styled.button`
     background: #C7F9DD;
     border-radius: 7px;
@@ -11,11 +10,9 @@ const ButtonStyled = styled.button`
     outline: 0;
     cursor: pointer;
     color: #13885F;
+    margin-top: 10px;
+    float: right;
 `
-const ButtonText = styled.div`
-    color: #13885F;
-`
-
 
 ButtonStyled.propTypes = {
   children: PropTypes.node

@@ -2,7 +2,7 @@ import * as actionTypes from 'constants/actionTypes'
 import { reducer as formReducer } from 'redux-form'
 import { routerReducer } from 'redux-first-routing'
 import { combineReducers } from 'redux'
-import createThunkReducer from 'helpers/createThunkReducer'
+import createThunkReducer from 'utils/createThunkReducer'
 import createStandardReducer from 'helpers/createStandardReducer'
 
 const rootReducer = combineReducers({

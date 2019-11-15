@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Goto = ({ color, style, ...defaultPorps }) => {
+const Goto = ({ ...defaultPorps }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 17 14"
-      fill={color} style={{ ...style }} width={17} height={14}
+      width={17} height={14}
       {...defaultPorps}
     >
       <g fill="none" fillRule="evenodd" stroke="#7848B7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.3">

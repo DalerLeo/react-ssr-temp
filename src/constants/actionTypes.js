@@ -141,3 +141,9 @@ export const CART = 'CART'
 export const MENU_AS = 'MENU_AS'
 
 export const SIGN_IN = 'SIGN_IN'
+
+export const DELIVERY = 'DELIVERY'
+
+export const PROFILE = 'profile'
+
+export const ADDRESS = 'address'

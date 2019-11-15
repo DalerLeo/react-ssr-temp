@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from 'components/UI/Header'
 import ProductCardList from 'components/Cards/ProductCardList'
 import Container from 'components/StyledElems/Container'
 import PopularCategories from 'components/UI/PopularCategories'
@@ -10,8 +9,8 @@ import MenuBar from 'components/UI/MenuBar'
 import Carusel from 'components/UI/Carusel'
 import ProductsTitle from 'components/UI/ProductsTitle'
 
-import { getProductList } from './actions'
 import useFetchList from '../../hooks/useFetchList'
+import { getProductList } from './actions'
 
 const ProductListBlock = styled.div`
   display: flex;
@@ -28,7 +27,7 @@ const Home = props => {
   })
   return (
     <div>
-      <Header />
+
       <Container>
         <HeaderMenu>
           <MenuBar />

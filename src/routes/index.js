@@ -32,6 +32,33 @@ const routes = {
       ]
     },
     {
+      path: ROUTE.DELIVERY,
+      children: [
+        {
+          path: '',
+          load: () => import('./delivery')
+        }
+      ]
+    },
+    {
+      path: ROUTE.PROFILE,
+      children: [
+        {
+          path: '',
+          load: () => import('./profile')
+        }
+      ]
+    },
+    {
+      path: ROUTE.ADDRESS,
+      children: [
+        {
+          path: '',
+          load: () => import('./address')
+        }
+      ]
+    },
+    {
       path: ROUTE.CATEGORIES,
       children: [
         {

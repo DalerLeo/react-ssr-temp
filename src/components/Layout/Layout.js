@@ -7,6 +7,7 @@ import toastifyStyles from 'react-toastify/dist/ReactToastify.css'
 import FooterContainer from 'components/Footer/FooterContainer'
 import GlobalLoading from 'components/Utils/GlobalLoading'
 import styled from 'styled-components'
+import Header from 'components/UI/Header'
 import GlobalStyles from '../GlobalStyles'
 import s from './Layout.css'
 import DataLayout from './DataLayout'
@@ -60,6 +61,7 @@ const Layout = props => {
         position="top-left"
       />
 
+      <Header />
       <Content>
         {React.cloneElement(children, {
           pathname,
