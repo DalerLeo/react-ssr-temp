@@ -8,6 +8,7 @@ async function action (props) {
 
   }
   return {
+    chunk: ['delivery'],
     title: 'Доставка',
     component: (
       <Layout {...props}>

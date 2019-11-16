@@ -104,9 +104,14 @@ app.get('*', async (req, res, next) => {
     const lang = req.cookies.lang || 'ru'
 
 
-    // If exist and valid token initialize store with TOKEN
+    console.warn('KOOK: ', req.cookies)
+    // If exist and valid token initialize st
+    // ore with TOKEN
     token && await fetch(API.API_URL + API.CHECK_TOKEN + token)
       .then((response) => {
+        console.warn('DDDD: ')
+        console.warn(response)
+        console.warn(token)
         if (response.status === 404) {
           return Promise.reject({ response })
         }

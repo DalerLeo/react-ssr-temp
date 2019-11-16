@@ -24,7 +24,7 @@ export const signInAction = (username, password) => {
 
     return dispatch({
       payload,
-      type: actionTypes.SIGN_IN
+      type: actionTypes.LOGIN
     })
   }
 }
@@ -48,7 +48,7 @@ export const userSignOut = () => {
     // Dispatch({ type: actionTypes.CART_CHANGE_LIST, payload: { data: [] } })
     return dispatch({
       payload,
-      type: `${actionTypes.SIGN_IN}`
+      type: `${actionTypes.LOGIN}`
     })
   }
 }

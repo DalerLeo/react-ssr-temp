@@ -9,7 +9,6 @@ const SignInContainer = props => {
   const history = useContext(History)
   const onRegister = (phone) => dispatch(registerAction(phone))
   const onLogin = (password, phoneNumber) => {
-    console.warn(phoneNumber, password)
     return dispatch(signInAction(phoneNumber, password)).then(() => history.replace('/'))
   }
 

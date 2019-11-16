@@ -1,3 +1,4 @@
+import * as STATE from 'constants/stateNames'
 import React from 'react'
 import styled from 'styled-components'
 import ProductCardList from 'components/Cards/ProductCardList'
@@ -8,7 +9,6 @@ import ShowMore from 'components/UI/ShowMore'
 import MenuBar from 'components/UI/MenuBar'
 import Carusel from 'components/UI/Carusel'
 import ProductsTitle from 'components/UI/ProductsTitle'
-
 import useFetchList from '../../hooks/useFetchList'
 import { getProductList } from './actions'
 
@@ -23,7 +23,7 @@ const HeaderMenu = styled.div`
 const Home = props => {
   const productData = useFetchList({
     action: getProductList,
-    stateName: 'productList'
+    stateName: STATE.PRODUCT_LIST
   })
   return (
     <div>

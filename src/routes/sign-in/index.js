@@ -8,6 +8,7 @@ async function action (props) {
 
   }
   return {
+    chunk: ['sign-in'],
     title: 'Логин',
     component: (
       <Layout {...props}>
