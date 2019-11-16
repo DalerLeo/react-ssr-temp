@@ -29,6 +29,7 @@ import { ServerStyleSheet } from 'styled-components'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
+import toCamelCase from './utils/toCamelCase'
 const SUCCESS = 200
 
 setObservableConfig({
@@ -86,17 +87,6 @@ app.get('*', async (req, res, next) => {
       styles.forEach(style => css.add(style._getCss()))
     }
     const dispatch = store.dispatch
-    if (req.query.uid && req.query.token) {
-      await fetch(sprintf(API.API_URL + API.USER_ACTIVATION, req.query.uid, req.query.token))
-        .then(data => {
-          const status = fp.get('status', data)
-          dispatch({
-            type: actionTypes.USER_ACTIVATION,
-            data: status,
-            loading: false
-          })
-        })
-    }
     let isAuth = false
 
     // Get TOKEN / LANGUAGE from header
@@ -105,18 +95,22 @@ app.get('*', async (req, res, next) => {
 
     // If exist and valid token initialize st
     // ore with TOKEN
+    console.warn(token)
     token && await fetch(API.API_URL + API.CHECK_TOKEN + token)
       .then((response) => {
         if (response.status === 404) {
           return Promise.reject({ response })
         }
         isAuth = true
-        return Promise.resolve(response)
+        return response.json()
       })
-      .then(() => dispatch({
-        payload: Promise.resolve({token}),
-        type: actionTypes.LOGIN
-      }))
+      .then((data) => {
+        dispatch({payload: toCamelCase(data), type: `${actionTypes.USER_INFO}_FULFILLED`})
+        return dispatch({
+          payload: Promise.resolve({token}),
+          type: actionTypes.LOGIN
+        })
+      })
       .then(() => dispatch(() => Promise.resolve('promise')))
       .catch(error => {
         const status = fp.get('response.status', error)

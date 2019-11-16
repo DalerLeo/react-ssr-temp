@@ -19,6 +19,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import {getCookie} from 'utils/cookie'
 import * as actionTypes from 'constants/actionTypes'
 
+console.warn(window.initialState)
 const initialState = {
   ...window.initialState,
   cart: { data: getCartItems() },
@@ -47,11 +48,10 @@ const insertCss = (...styles) => {
 };
 const token = getCookie('token', document.cookie)
 
-console.warn(token)
-token && store.dispatch({
+/*token && store.dispatch({
   payload: Promise.resolve({token}),
   type: actionTypes.LOGIN
-})
+})*/
 const context = {
   isServer: false,
   isAuth: false,

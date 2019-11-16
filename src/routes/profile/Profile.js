@@ -1,10 +1,11 @@
 import React from 'react'
-import UserProfile from 'components/Profile'
+import ProfileUI from './ProfileUI'
 
 const Profile = (props) => {
+  const { userData } = props
   return (
     <div>
-      <UserProfile />
+      <ProfileUI {...userData} />
     </div>
   )
 }

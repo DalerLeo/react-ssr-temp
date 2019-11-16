@@ -14,8 +14,8 @@ const rootReducer = combineReducers({
   notifications: createThunkReducer(actionTypes.NOTIFICATIONS),
   asyncLoading: createStandardReducer(actionTypes.ASYNC_LOADING),
   notify: createStandardReducer(actionTypes.NOTIFY_OPEN),
-  login: createThunkReducer(actionTypes.LOGIN),
-  user: createThunkReducer(actionTypes.USER_INFO),
+  [STATE.LOGIN]: createThunkReducer(actionTypes.LOGIN),
+  [STATE.USER_INFO]: createThunkReducer(actionTypes.USER_INFO),
   reset: createThunkReducer(actionTypes.USER_RESET_PASSWORD),
   register: createThunkReducer(actionTypes.REGISTER),
   article: combineReducers({
@@ -27,7 +27,6 @@ const rootReducer = combineReducers({
     item: createThunkReducer(actionTypes.COMMENT_ITEM),
     create: createThunkReducer(actionTypes.COMMENT_CREATE)
   }),
-
   faq: createThunkReducer(actionTypes.FAQ_LIST),
   [STATE.PRODUCT_LIST]: createThunkReducer(actionTypes.PRODUCT_LIST),
   productCategoryList: createThunkReducer(actionTypes.PRODUCT_CATEGORY_LIST),

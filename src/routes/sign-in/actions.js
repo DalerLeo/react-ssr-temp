@@ -13,7 +13,7 @@ export const signInAction = (username, password) => {
       password
     }
     const payload = axios({ dispatch, getState })
-      .post(API.SIGN_IN, params)
+      .post(API.LOGIN, params)
       .then(response => {
         const resp = path(['data'], response)
         const token = path(['token'], resp)
@@ -32,14 +32,14 @@ export const signInAction = (username, password) => {
 export const userSignOut = () => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .post(API.SIGN_OUT)
+      .post(API.LOGOUT)
       .then(response => {
         document.cookie = 'token='
         return _.get(response, 'data')
       })
       .catch(() => {
         document.cookie = 'token='
-        //        Dispatch({ type: `${actionTypes.SIGN_IN}_CLEAR` })
+        dispatch({ type: `${actionTypes.LOGIN}_CLEAR` })
         //        Dispatch({ type: `${actionTypes.PRODUCT_FAVORITE}_CLEAR` })
       })
     // Dispatch({ type: `${actionTypes.PRODUCT_FAVORITE}_CLEAR` })
