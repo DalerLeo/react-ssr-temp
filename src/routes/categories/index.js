@@ -10,6 +10,7 @@ async function action (props) {
   if (isServer) {
   }
   return {
+    chunk: ['categories'],
     title: 'Главная',
     component: (
       <Layout {...props} home={true}>

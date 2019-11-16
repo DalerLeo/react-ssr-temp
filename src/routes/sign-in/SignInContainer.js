@@ -1,24 +1,18 @@
-import {
-  compose,
-  pure,
-} from 'recompose'
-import { connect } from 'react-redux'
-import withHistory from 'helpers/withHistory'
+import React, { useContext } from 'react'
+import { useDispatch } from 'react-redux'
+import History from '../../HistoryProvider'
+import SignIn from './SignIn'
+import { registerAction, signInAction } from './actions'
 
-import SignInWrapper from './SignIn'
-
-const mapStateToProps = (state) => {
-  return {
-
+const SignInContainer = props => {
+  const dispatch = useDispatch()
+  const history = useContext(History)
+  const onRegister = (phone) => dispatch(registerAction(phone))
+  const onLogin = (password, phoneNumber) => {
+    return dispatch(signInAction(phoneNumber, password)).then(() => history.replace('/'))
   }
+
+  return <SignIn onRegister={onRegister} onLogin={onLogin} />
 }
 
-const mapDispatchToProps = {
-
-}
-
-export default compose(
-  withHistory,
-  connect(mapStateToProps, mapDispatchToProps),
-  pure
-)(SignInWrapper)
+export default SignInContainer

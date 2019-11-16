@@ -1,11 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
-import Logo from 'icons/Logo'
-import Profile from 'icons/Profile'
-import ShoppingBag from 'icons/ShoppingBag'
 import useWindowScroll from '@react-hook/window-scroll'
-import MenuBarIcon from 'icons/MenuBar'
 import Link from 'components/Link'
+import Dropdown from 'components/UI/Dropdown'
+import ProfileImage from 'images/Profile.png'
+import ProfileIcon from 'icons/Profile'
+import Settings from 'icons/Settings'
+import Logo from 'icons/Logo'
+import MenuBarIcon from 'icons/MenuBar'
+import ShoppingBag from 'icons/ShoppingBag'
+import Location from 'icons/Locations'
+import Enter from 'icons/ArrowLeft'
+import Exit from 'icons/ArrowRight'
 import TopHeader from './TopHeader'
 
 const HeaderBlock = styled.div`
@@ -79,7 +85,17 @@ const LogoStyled = styled.div`
     background-color: #29D398;
     border-radius: 5px;
 `
-
+const ProfileImageStyled = styled.img`
+  max-width: 34px;
+  max-height: 34px;
+`
+const DropdownItem = styled.div`
+  display: flex;
+  align-items: center;
+`
+const DropdownTexts = styled.div`
+  margin-left: 10px;
+`
 const Header = () => {
   const scrollY = useWindowScroll(60)
   return (
@@ -87,7 +103,9 @@ const Header = () => {
       <TopHeader />
       <HeaderStyled>
         <LogoBlock>
-          <Logo />
+          <Link to="/">
+            <Logo />
+          </Link>
         </LogoBlock>
         <MenubarHeader scrollY={scrollY}>
           <LogoStyled>
@@ -104,10 +122,42 @@ const Header = () => {
           </SearchButton>
         </SearchBlock>
         <MyProfile>
-          <Link to="/sign-in" style={{ color: 'white' }}>
-            <Profile />
-            Мой профиль
-          </Link>
+          <ProfileIcon />
+          <Dropdown title="Мой профиль">
+            <DropdownItem>
+              <ProfileImageStyled src={ProfileImage} />
+              <DropdownTexts>+99893 593 58 69</DropdownTexts>
+            </DropdownItem>
+            <hr />
+            <DropdownItem>
+              <Location />
+              <DropdownTexts>Мои заказы </DropdownTexts>
+            </DropdownItem>
+            <hr />
+            <DropdownItem>
+              <Location />
+              <Link to="/address">
+                <DropdownTexts>Мои адреса</DropdownTexts>
+              </Link>
+            </DropdownItem>
+            <DropdownItem>
+              <Settings />
+              <Link to="/profile">
+                <DropdownTexts>Настройки</DropdownTexts>
+              </Link>
+            </DropdownItem>
+            <hr />
+            <DropdownItem>
+              <Exit />
+              <Link to="/sign-in">
+                <DropdownTexts>Вход</DropdownTexts>
+              </Link>
+            </DropdownItem>
+            <DropdownItem>
+              <Enter />
+              <DropdownTexts>Выход</DropdownTexts>
+            </DropdownItem>
+          </Dropdown>
         </MyProfile>
         <MyProfile>
           <Link to="/cart" style={{ color: 'white' }}>

@@ -50,6 +50,7 @@ const MenuBar = () => {
 
   const [open, setMenuOpen] = useState(false)
   const lists = pathOr(defArray, ['data'], menuData)
+  console.warn('MENU_ ', lists)
   const subCategories = find(propEq('id', open), lists)
   return (
     <MenuBarStyled onMouseLeave={() => setMenuOpen(false)}>

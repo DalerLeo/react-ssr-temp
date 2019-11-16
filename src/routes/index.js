@@ -18,7 +18,7 @@ const routes = {
       children: [
         {
           path: '',
-          load: () => import('./cart')
+          load: () => import(/* webpackChunkName: 'cart' */ './cart')
         }
       ]
     },
@@ -27,7 +27,34 @@ const routes = {
       children: [
         {
           path: '',
-          load: () => import('./sign-in')
+          load: () => import(/* webpackChunkName: 'sign-in' */ './sign-in')
+        }
+      ]
+    },
+    {
+      path: ROUTE.DELIVERY,
+      children: [
+        {
+          path: '',
+          load: () => import(/* webpackChunkName: 'delivery' */ './delivery')
+        }
+      ]
+    },
+    {
+      path: ROUTE.PROFILE,
+      children: [
+        {
+          path: '',
+          load: () => import(/* webpackChunkName: 'profile' */ './profile')
+        }
+      ]
+    },
+    {
+      path: ROUTE.ADDRESS,
+      children: [
+        {
+          path: '',
+          load: () => import(/* webpackChunkName: 'address' */ './address')
         }
       ]
     },
@@ -36,7 +63,7 @@ const routes = {
       children: [
         {
           path: '',
-          load: () => import('./categories')
+          load: () => import(/* webpackChunkName: 'categories' */ './categories')
         }
       ]
     },
@@ -45,13 +72,13 @@ const routes = {
       children: [
         {
           path: '/:child',
-          load: () => import('./static-page')
+          load: () => import(/* webpackChunkName: 'static-page' */ './static-page')
         }
       ]
     },
     {
       path: '(.*)',
-      load: () => import('./not-found')
+      load: () => import(/* webpackChunkName: 'not-found' */ './not-found')
     }
   ],
 

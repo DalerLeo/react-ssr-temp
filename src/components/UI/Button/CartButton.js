@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {  useState  } from 'react'
 import styled from 'styled-components'
 import PlusIcon from 'icons/Plus'
 import MinusIcon from 'icons/Minus'
 import DeleteIcon from 'icons/Delete'
+
 const StyledCartButton = styled.div`
     display: flex;
     justify-content: space-between;
@@ -33,21 +34,21 @@ const Counter = styled.div`
     margin-top: 11px;
 `
 const CartButton = (props) => {
-    const [counter, setCounter] = useState(2)
-    
-    return ( 
-        <StyledCartButton>
-            <MinusButton counter={counter} onClick={() => setCounter(counter - 1)} disabled={counter === 1}>
-               <MinusIcon />
-            </MinusButton>
-            <Counter>
-                {counter}
-            </Counter>
-            <PlusButton onClick={() => setCounter(counter + 1)}>
-                <PlusIcon />
-            </PlusButton>
-        </StyledCartButton>
-     );
+  const [counter, setCounter] = useState(2)
+
+  return (
+    <StyledCartButton>
+      <MinusButton counter={counter} onClick={() => setCounter(counter - 1)} disabled={counter === 1}>
+        <MinusIcon />
+      </MinusButton>
+      <Counter>
+        {counter}
+      </Counter>
+      <PlusButton onClick={() => setCounter(counter + 1)}>
+        <PlusIcon />
+      </PlusButton>
+    </StyledCartButton>
+  )
 }
- 
-export default CartButton;
+
+export default CartButton

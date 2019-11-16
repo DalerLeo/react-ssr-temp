@@ -103,10 +103,15 @@ app.get('*', async (req, res, next) => {
     const token = req.cookies.token
     const lang = req.cookies.lang || 'ru'
 
-/*
-    // If exist and valid token initialize store with TOKEN
+
+    console.warn('KOOK: ', req.cookies)
+    // If exist and valid token initialize st
+    // ore with TOKEN
     token && await fetch(API.API_URL + API.CHECK_TOKEN + token)
       .then((response) => {
+        console.warn('DDDD: ')
+        console.warn(response)
+        console.warn(token)
         if (response.status === 404) {
           return Promise.reject({ response })
         }
@@ -127,7 +132,7 @@ app.get('*', async (req, res, next) => {
           dispatch({type: `${actionTypes.USER_INFO}_CLEAR`})
         }
       })
-*/
+
 
     lang && dispatch({
       payload: lang,
@@ -137,7 +142,6 @@ app.get('*', async (req, res, next) => {
     // Global (context) variables that can be easily accessed from any React component
     // https://facebook.github.io/react/docs/context.html
     const context = {
-      insertCss,
       store,
       isServer: true,
       isAuth,
@@ -157,7 +161,7 @@ app.get('*', async (req, res, next) => {
       styledSheet.collectStyles(
       <Provider store={store}>
         <History.Provider value={history}>
-            <App context={context}>{route.component}</App>
+            <App insertCss={insertCss} context={context}>{route.component}</App>
         </History.Provider>
       </Provider>
       )

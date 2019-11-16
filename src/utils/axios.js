@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { path, equals, curry, prop, compose, isNil } from 'ramda'
+import { path, equals, curry, prop, compose, isNil, pathOr } from 'ramda'
 import * as actionTypes from '../constants/actionTypes'
 import { API_URL } from '../constants/api'
 import responseToCamelCase from './responseToCamelCase'
@@ -14,7 +14,10 @@ export const getPayloadFromSuccess = response => {
 
 export const getPayloadFromError = compose(
   data => !isNil(data) && Promise.reject(data),
-  path(['response', 'data'])
+  (d) => {
+    const errMessage = prop('message', d)
+    return pathOr(errMessage, ['response', 'data'])(d)
+  }
 )
 const errorInterceptors = curry((dispatch, error) => {
   const status = path(['response', 'status'], error)
@@ -29,7 +32,7 @@ const errorInterceptors = curry((dispatch, error) => {
 
 const axiosRequest = ({ getState, dispatch }, noAuth = false) => {
   const state = getState && getState()
-  const token = path(['login', 'data', 'token'], state) ||  getCookie('token')
+  const token = path(['login', 'data', 'token'], state) || getCookie('token')
   axios.defaults.baseURL = `${API_URL}`
   axios.defaults.transformResponse = [responseToCamelCase]
   axios.defaults.timeout = 100000

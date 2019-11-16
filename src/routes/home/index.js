@@ -4,7 +4,6 @@ import Layout from 'components/Layout'
 import { getProductList } from './actions'
 import HomeContainer from './HomeContainer'
 
-import {menuAs} from '../../components/UI/MenuBar/actions';
 async function action (props) {
   const { store, isServer } = props
   if (isServer) {

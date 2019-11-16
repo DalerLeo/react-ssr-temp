@@ -1,4 +1,5 @@
-export const API_HOST = 'apilochin.ritm.uz/ru/api/v1'
+
+export const API_HOST = '94.250.255.250:8081/'
 export const API_ROOT = 'api'
 export const API_VERSION = 'v1'
 export const API_PROTOCOL = 'http'
@@ -164,7 +165,10 @@ export const PRODUCT = 'main/product'
 export const PRODUCT_LIST = `${PRODUCT}/`
 export const PRODUCT_CATEGORY_LIST = `${PRODUCT}`
 
-
 export const MENU_AS = 'main/product_type/as_menu'
 
+export const SIGN_IN = `${MAIN}/login/`
+export const SIGN_OUT = `${MAIN}/logout/`
+
+export const REGISTER = `${MAIN}/client/register/`
 
