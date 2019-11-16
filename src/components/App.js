@@ -1,11 +1,12 @@
 import React from 'react'
 import moment from 'moment'
 import PropTypes from 'prop-types'
+import StyleContext from 'isomorphic-style-loader/StyleContext'
+import AppContext from './AppContext'
 
 const ContextType = {
   // Enables critical path CSS rendering
   // https://github.com/kriasoft/isomorphic-style-loader
-  insertCss: PropTypes.func.isRequired,
   // Universal HTTP client
   pathname: PropTypes.string.isRequired,
   query: PropTypes.object,
@@ -38,6 +39,7 @@ const ContextType = {
  */
 class App extends React.PureComponent {
   static propTypes = {
+    insertCss: PropTypes.func.isRequired,
     context: PropTypes.shape(ContextType).isRequired,
     children: PropTypes.element.isRequired,
     lang: PropTypes.string
@@ -55,9 +57,17 @@ class App extends React.PureComponent {
   }
 
   render () {
+    const { context, insertCss } = this.props
+
     // NOTE: If you need to add or modify header, footer etc. of the app,
     // Please do that inside the Layout component.
-    return React.Children.only(this.props.children)
+    return (
+      <StyleContext.Provider value={{ insertCss }}>
+        <AppContext.Provider value={{ context }}>
+          {React.Children.only(this.props.children)}
+        </AppContext.Provider>
+      </StyleContext.Provider>
+    )
   }
 }
 

@@ -142,7 +142,6 @@ app.get('*', async (req, res, next) => {
     // Global (context) variables that can be easily accessed from any React component
     // https://facebook.github.io/react/docs/context.html
     const context = {
-      insertCss,
       store,
       isServer: true,
       isAuth,
@@ -162,7 +161,7 @@ app.get('*', async (req, res, next) => {
       styledSheet.collectStyles(
       <Provider store={store}>
         <History.Provider value={history}>
-            <App context={context}>{route.component}</App>
+            <App insertCss={insertCss} context={context}>{route.component}</App>
         </History.Provider>
       </Provider>
       )
