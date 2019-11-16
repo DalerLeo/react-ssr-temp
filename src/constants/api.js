@@ -5,7 +5,7 @@ export const API_VERSION = 'v1'
 export const API_PROTOCOL = 'http'
 export const API_URL = `${API_PROTOCOL}://${API_HOST}`
 
-export const CHECK_TOKEN = '/main/check_token/'
+export const CHECK_TOKEN = '/main/client/check_token/'
 
 const MAIN = 'main'
 const BLOG = 'blog'
