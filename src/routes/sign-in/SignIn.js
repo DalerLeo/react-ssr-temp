@@ -93,10 +93,14 @@ const LoginContainer = styled.div`
     display: ${props => props.openLogin ? 'block' : 'none'};
 `
 
+const Loading = styled.div`
+    display: ${props => props.loading ? 'block' : 'none'}
+`
+
 const LoginForm = props => {
   const { onRegister, onLogin } = props
   const [openLogin, setOpenLogin] = useState(false)
-
+  const [loading, setLoading] = useState(false)
   const [form, setValues] = useState({
     phoneNumber: '',
     password: ''
@@ -110,9 +114,11 @@ const LoginForm = props => {
 
   useEffect(() => {
     if (form.phoneNumber.length === 9) {
+      setLoading(true)
       onRegister(form.phoneNumber).then(() => setOpenLogin(true))
+      openLogin ? setLoading(false) : setLoading(true)
     }
-  }, [form.phoneNumber])
+  }, [form.phoneNumber, onRegister, openLogin])
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
@@ -128,6 +134,7 @@ const LoginForm = props => {
           onChange={updateField}
         />
       </InputWrapper>
+      <Loading loading={loading}>Loading...</Loading>
       <LoginContainer openLogin={openLogin}>
         <InputWrapper>
           <InputPassword

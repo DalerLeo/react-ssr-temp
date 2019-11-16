@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import useWindowScroll from '@react-hook/window-scroll'
 import Link from 'components/Link'
@@ -59,6 +59,7 @@ const SearchButton = styled.button`
   cursor: pointer;
 `
 const MyProfile = styled.div`
+  display: flex;
   font-size: 16px;
   line-height: 164.57%;
   color: #FFFFFF;
@@ -97,6 +98,7 @@ const DropdownTexts = styled.div`
   margin-left: 10px;
 `
 const Header = () => {
+  const [isAuth, setIsAuth] = useState(false)
   const scrollY = useWindowScroll(60)
   return (
     <HeaderBlock>
@@ -121,9 +123,14 @@ const Header = () => {
             Найти
           </SearchButton>
         </SearchBlock>
-        <MyProfile>
-          <ProfileIcon />
-          <Dropdown title="Мой профиль">
+        {isAuth ? <MyProfile>
+          <Link to="/sign-in" style={{ color: 'white' }}>
+            <Exit style={{ fill: 'white', marginRight: '5px' }} />
+            Вход
+          </Link>
+        </MyProfile> : <MyProfile>
+                   <ProfileIcon />
+                   <Dropdown title="Мой профиль">
             <DropdownItem>
               <ProfileImageStyled src={ProfileImage} />
               <DropdownTexts>+99893 593 58 69</DropdownTexts>
@@ -148,17 +155,12 @@ const Header = () => {
             </DropdownItem>
             <hr />
             <DropdownItem>
-              <Exit />
-              <Link to="/sign-in">
-                <DropdownTexts>Вход</DropdownTexts>
-              </Link>
-            </DropdownItem>
-            <DropdownItem>
               <Enter />
               <DropdownTexts>Выход</DropdownTexts>
             </DropdownItem>
           </Dropdown>
-        </MyProfile>
+        </MyProfile>}
+
         <MyProfile>
           <Link to="/cart" style={{ color: 'white' }}>
             <ShoppingBag />

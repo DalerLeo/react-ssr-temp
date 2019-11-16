@@ -32,8 +32,8 @@ const Modal = styled.div`
 `
 const CloseButton = styled.button`
     position: absolute;
-    right: 1rem;
-    top: 1rem;
+    right: 1.4rem;
+    top: 2.5rem;
     width: 2rem;
     height: 2rem;
     padding: 0.5rem;
@@ -51,7 +51,7 @@ const ModalWindow = (props) => {
       {show ? <Overlay onClick={closeModal} /> : <Hide />}
       {show && <Modal>
         <CloseButton onClick={closeModal}>X</CloseButton>
-        <h1>Dobavit Address</h1>
+        <h1>Добавить адрес</h1>
         <FormField type="text" placeholder="Укажите ардес на карте" label="Адрес доставки" />
         <FormField type="number" placeholder="Укажите номер телефона" label="Номер телефона" />
         <FormField type="text" placeholder="Укажите свое имя" label="Имя" />
