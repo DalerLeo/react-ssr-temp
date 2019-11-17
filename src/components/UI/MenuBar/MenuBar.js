@@ -49,8 +49,7 @@ const MenuBar = () => {
   })
 
   const [open, setMenuOpen] = useState(false)
-  const lists = pathOr(defArray, ['data'], menuData)
-  console.warn('MENU_ ', lists)
+  const lists = pathOr(defArray, ['results'], menuData)
   const subCategories = find(propEq('id', open), lists)
   return (
     <MenuBarStyled onMouseLeave={() => setMenuOpen(false)}>
@@ -70,7 +69,6 @@ const MenuBar = () => {
           >
             <Link to={`/categories/${parentId}`}>
               <MenuItem>{type.name}</MenuItem>
-              <Modal open={open === type.id} subCategories={subCategories} key={key} />
             </Link>
           </MenuItems>
         )

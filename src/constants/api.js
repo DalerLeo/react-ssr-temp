@@ -38,7 +38,7 @@ export const PRODUCT = 'main/product'
 export const PRODUCT_LIST = `${PRODUCT}/`
 export const PRODUCT_CATEGORY_LIST = `${PRODUCT}`
 
-export const MENU_AS = 'main/product_type/as_menu'
+export const MENU_AS = 'main/product_type'
 
 export const REGISTER = `${MAIN}/client/register/`
 

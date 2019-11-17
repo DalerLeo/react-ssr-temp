@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { path, find, propEq } from 'ramda'
+import { path, find, propEq, pathOr } from 'ramda'
 import { Card } from 'components/Cards'
 import { CartButton, Button } from 'components/UI/Button'
 import Image from 'components/UI/Image'
@@ -11,13 +11,13 @@ import SalePrice from '../UI/SalePrice/SalePrice'
 import { setItemToCart, removeItemFrom } from './storage'
 
 const StyledCard = styled(Card)`
-  border-right: 1px solid #E1E1E1;
-  border-bottom: 1px solid #E1E1E1;
-  &:nth-child(4){
+  border-right: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
+  &:nth-child(4) {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-}
-  &:nth-child(4n){
+  }
+  &:nth-child(4n) {
     border-right: none;
   }
 `
@@ -40,18 +40,23 @@ const ButtonPosition = styled.div`
   margin-top: 30px;
   margin-left: 20px;
 `
-const ProductDard = (props) => {
+const defArr = []
+const ProductDard = props => {
   const { item } = props
   const [count, setCount] = useState(true)
   const name = path(['name'], item)
+  const id = path(['id'], item)
   const price = path(['price'], item)
-  const images = path(['images'], item)
+  const images = pathOr(defArr, ['images'], item)
   const isPrimary = find(propEq('isPrimary', true))(images)
   const image = path(['file'], isPrimary)
   return (
     <StyledCard>
       <ImagePosition>
-        <Image src={typeof (image) === 'undefined' ? NoImage : image} alt="image" />
+        <Image
+          src={typeof image === 'undefined' ? NoImage : image}
+          alt="image"
+        />
       </ImagePosition>
       <PricePosition>
         <Price price={price} />
@@ -61,15 +66,19 @@ const ProductDard = (props) => {
         <ProductContent content={name} />
       </ProductContentPosition>
       <ButtonPosition>
-        {count ? <Button
-          onRemove={() => removeItemFrom(id)}
-          onClick={value => {
-            setItemToCart(2, item)
-            setCount(!count)
-          }}
-                 >
-                    В корзину
-        </Button> : <CartButton onClick={() => setCount(!count)} />}
+        {count ? (
+          <Button
+            onRemove={() => removeItemFrom(id)}
+            onClick={value => {
+              setItemToCart(2, item)
+              setCount(!count)
+            }}
+          >
+            В корзину
+          </Button>
+        ) : (
+          <CartButton onClick={() => setCount(!count)} />
+        )}
       </ButtonPosition>
     </StyledCard>
   )
