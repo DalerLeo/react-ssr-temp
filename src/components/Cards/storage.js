@@ -1,9 +1,10 @@
 import {
-    clone, pipe, assoc, prop, propEq, find, when, map,
-    ifElse, prepend, not, propSatisfies, lt, filter
-  } from 'ramda'
+  clone, pipe, assoc, prop, propEq, find, when, map,
+  ifElse, prepend, not, propSatisfies, lt, filter
+} from 'ramda'
+
   const ZERO = 0
-//-------------------------------------------------
+// -------------------------------------------------
 export const LANGUAGE = 'LANGUAGE'
 
 export const PRODUCT_LIST = 'PRODUCT_LIST'
@@ -46,18 +47,18 @@ export const CART_ALERT = 'CART_ALERT'
 export const SING_IN_ALERT = 'SING_IN_ALERT'
 export const ORDER_ITEM_PAYMENT = 'ORDER_ITEM_PAYMENT'
 
-//-------------------------------------------------
+// -------------------------------------------------
 export const CART = 'cart'
 export const TOKEN = 'token'
 export const LANG = 'lang'
 export const API_TOM = 'api_tom'
 export const PAGE_SIZE = 'page_size'
-//--------------------------------------------------
+// --------------------------------------------------
 export const getStorage = (local) => {
   if (typeof (window) !== 'undefined') {
     return local ? localStorage : sessionStorage
   }
-  return {getItem: () => null, setItem: () => null}
+  return { getItem: () => null, setItem: () => null }
 }
 
 export const getCart = () => {
@@ -91,52 +92,52 @@ export const getApi = (local = true) => {
   return storage.getItem(API_TOM)
 }
 
-//--------------------------------------------------
+// --------------------------------------------------
 export const setItemToCart = (amount, product) => {
-    const items = getCart()
-    const id = prop('id', product)
-    const alter = map(
-      when(
-        propEq('id', id),
-        assoc('amount', amount)
-      ),
-    )
-    const clonedObj = pipe(
-      clone,
+  const items = getCart()
+  const id = prop('id', product)
+  const alter = map(
+    when(
+      propEq('id', id),
       assoc('amount', amount)
-    )(product)
-  
-    const formedList = pipe(
-      ifElse(
-        pipe(find(propEq('id', id)), not),
-        prepend(clonedObj),
-        alter
-      ),
-      filter(
-        propSatisfies(lt(ZERO), 'amount'),
-      ))(items)
-  
-    setToCart(JSON.stringify(formedList))
-    
-    return (dispatch, getState) => {
-      dispatch({
-        type: 'CART_ALERT',
-        payload: {product, amount, open: true}
-      })
-      return dispatch({
-        type: actionType.CART_CHANGE_LIST,
-        payload: {data: formedList}
-      })
-    }
-  }
-  
-  export const removeItemFrom = (id) => {
-    const items = getCart()
-    const formedList = filter(pipe(propEq('id', id), not))(items)
-    removeFromCart(JSON.stringify(formedList))
-  
-    return {
+    ),
+  )
+  const clonedObj = pipe(
+    clone,
+    assoc('amount', amount)
+  )(product)
+
+  const formedList = pipe(
+    ifElse(
+      pipe(find(propEq('id', id)), not),
+      prepend(clonedObj),
+      alter
+    ),
+    filter(
+      propSatisfies(lt(ZERO), 'amount'),
+    ))(items)
+
+  setToCart(JSON.stringify(formedList))
+
+  return (dispatch, getState) => {
+    dispatch({
+      type: 'CART_ALERT',
+      payload: { product, amount, open: true }
+    })
+    return dispatch({
       type: actionType.CART_CHANGE_LIST,
-      payload: {data: formedList}
-    }
+      payload: { data: formedList }
+    })
   }
+}
+
+export const removeItemFrom = (id) => {
+  const items = getCart()
+  const formedList = filter(pipe(propEq('id', id), not))(items)
+  removeFromCart(JSON.stringify(formedList))
+
+  return {
+    type: actionType.CART_CHANGE_LIST,
+    payload: { data: formedList }
+  }
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { find, propEq, pathOr, path } from 'ramda'
 import styled from 'styled-components'
 import MenuBarIcon from 'icons/MenuBar'
-import Modal from 'components/UI/Modal'
+import MenuModal from 'components/UI/MenuModal'
 import Link from 'components/Link'
 import useFetchList from '../../../hooks/useFetchList'
 import { menuAs } from './actions'
@@ -50,7 +50,7 @@ const MenuBar = () => {
 
   const [open, setMenuOpen] = useState(false)
   const lists = pathOr(defArray, ['results'], menuData)
-  const subCategories = find(propEq('id', open), lists)
+  const subCategories = find(propEq('id', open))(lists)
   return (
     <MenuBarStyled onMouseLeave={() => setMenuOpen(false)}>
       <MenubarHeader>
@@ -69,6 +69,7 @@ const MenuBar = () => {
           >
             <Link to={`/categories/${parentId}`}>
               <MenuItem>{type.name}</MenuItem>
+              <MenuModal open={open === type.id} subCategories={subCategories} key={key} />
             </Link>
           </MenuItems>
         )

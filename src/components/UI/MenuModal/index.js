@@ -1,3 +1,3 @@
-import Modal from './Modal'
+import MenuModal from './MenuModal'
 
-export default Modal
+export default MenuModal
