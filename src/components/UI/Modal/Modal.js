@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Plus from 'icons/Plus'
 import ModalWindow from './ModalWindow'
+
 const ModalContainer = styled.div`
     
 `
@@ -18,6 +19,7 @@ const CardText = styled.div`
   margin-left: 10px;
 `
 const Modal = (props) => {
+  const { children } = props
   const [show, setShow] = useState(false)
   const openModal = () => setShow(true)
   const closeModal = () => setShow(false)
@@ -25,7 +27,7 @@ const Modal = (props) => {
   return (
     <ModalContainer>
       <ModalButton onClick={openModal}><Plus /> <CardText>Show modal</CardText></ModalButton>
-      <ModalWindow closeModal={closeModal} show={show} />
+      <ModalWindow closeModal={closeModal} show={show} children={children} />
     </ModalContainer>
   )
 }

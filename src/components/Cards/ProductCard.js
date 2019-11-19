@@ -72,7 +72,6 @@ const ProductCard = props => {
       <ButtonPosition>
         {count ? (
           <Button
-            onRemove={() => removeItemFrom(id)}
             onClick={value => {
               setItemToCart(2, item)
               setCount(!count)

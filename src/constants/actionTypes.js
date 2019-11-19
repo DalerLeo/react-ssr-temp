@@ -144,6 +144,7 @@ export const SIGN_IN = 'SIGN_IN'
 
 export const DELIVERY = 'DELIVERY'
 
-export const PROFILE = 'profile'
+export const PROFILE = 'PROFILE'
 
-export const ADDRESS = 'address'
+export const CREATE_ADDRESS = 'create_address'
+export const ADDRESS_LIST = 'address_list'

@@ -4,7 +4,7 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 
 export const menuAs = () => {
   return (dispatch, getState) => {
-    const params = {}
+    const params = { page_size: 19 }
 
     const payload = axios({ dispatch, getState })
       .get(API.MENU_AS, { params })

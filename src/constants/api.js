@@ -1,5 +1,5 @@
 
-export const API_HOST = '94.250.255.250:8081/'
+export const API_HOST = '94.250.255.250:8081'
 export const API_ROOT = 'api'
 export const API_VERSION = 'v1'
 export const API_PROTOCOL = 'http'
@@ -45,3 +45,5 @@ export const REGISTER = `${MAIN}/client/register/`
 export const CLIENT = `${MAIN}/client`
 export const CLIENT_UPDATE = `${CLIENT}/%d/`
 export const CLIENT_DETAIL = `${CLIENT}/%d/`
+
+export const CREATE_ADDRESS = `${MAIN}/client_address/`
