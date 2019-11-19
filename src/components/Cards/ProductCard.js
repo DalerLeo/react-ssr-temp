@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import { path, find, propEq, pathOr } from 'ramda'
-import { Card } from 'components/Cards'
 import { CartButton, Button } from 'components/UI/Button'
 import Image from 'components/UI/Image'
 import Price from 'components/UI/Price'
@@ -10,7 +10,10 @@ import NoImage from 'images/NoImage.png'
 import SalePrice from '../UI/SalePrice/SalePrice'
 import { setItemToCart, removeItemFrom } from './storage'
 
-const StyledCard = styled(Card)`
+const StyledCard = styled.div`
+  background-color: #FFF;
+    height: 396px;
+    width: 25%;
   border-right: 1px solid #e1e1e1;
   border-bottom: 1px solid #e1e1e1;
   &:nth-child(4) {
@@ -37,11 +40,12 @@ const ProductContentPosition = styled.div`
   margin-top: 18px;
 `
 const ButtonPosition = styled.div`
-  margin-top: 30px;
+  margin-top: 25px;
   margin-left: 20px;
+  float: left;
 `
 const defArr = []
-const ProductDard = props => {
+const ProductCard = props => {
   const { item } = props
   const [count, setCount] = useState(true)
   const name = path(['name'], item)
@@ -83,5 +87,7 @@ const ProductDard = props => {
     </StyledCard>
   )
 }
-
-export default ProductDard
+ProductCard.propTypes = {
+  item: PropTypes.object
+}
+export default ProductCard

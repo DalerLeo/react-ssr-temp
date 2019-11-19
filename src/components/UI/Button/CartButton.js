@@ -1,8 +1,7 @@
-import React, {  useState  } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import PlusIcon from 'icons/Plus'
 import MinusIcon from 'icons/Minus'
-import DeleteIcon from 'icons/Delete'
 
 const StyledCartButton = styled.div`
     display: flex;
@@ -13,6 +12,7 @@ const StyledCartButton = styled.div`
     border: 1px solid #C7F9DD;
     outline: 0;
     cursor: pointer;
+    margin-top: 10px;
 `
 const MinusButton = styled.button`
     background-color: transparent;

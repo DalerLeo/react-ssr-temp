@@ -25,16 +25,16 @@ const MenuList = styled.div`
     color: #2E384C;
     margin: 30px 35px;
 `
-const MenuListItems = styled.div`
+const MenuListItem = styled.div`
     padding: 6px 0;
-    font-weight: 520;
+    font-weight: 500;
     cursor: pointer;
     :hover{
       color: #2EBB8A;
     }
 `
 const defaultArr = []
-const Modal = (props) => {
+const MenuModal = (props) => {
   const { subCategories = defaultArr, open } = props
 
   const subChilds = pathOr(defaultArr, ['children'], subCategories)
@@ -43,7 +43,7 @@ const Modal = (props) => {
       <MenuList>
         {subChilds.map((subChild, key) => (
           <Link to={`/categories/${subChild.id}`} key={key}>
-            <MenuListItems>{subChild.name}</MenuListItems>
+            <MenuListItem>{subChild.name}</MenuListItem>
           </Link>
         ))}
       </MenuList>
@@ -51,7 +51,8 @@ const Modal = (props) => {
   )
 }
 
-Modal.propTypes = {
-  subCategories: PropTypes.obj
+MenuModal.propTypes = {
+  subCategories: PropTypes.array,
+  open: PropTypes.bool
 }
-export default Modal
+export default MenuModal
