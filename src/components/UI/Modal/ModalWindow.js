@@ -20,7 +20,7 @@ const Overlay = styled.div`
 const Modal = styled.div`
     width: 500px;
     position: absolute;
-    top: -10%;
+    top: -50%;
     left: 35%;
     margin: 0px auto;
     padding: 20px;

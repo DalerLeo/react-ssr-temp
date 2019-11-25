@@ -47,3 +47,4 @@ export const CLIENT_UPDATE = `${CLIENT}/%d/`
 export const CLIENT_DETAIL = `${CLIENT}/%d/`
 
 export const CREATE_ADDRESS = `${MAIN}/client_address/`
+export const ADDRESS_LIST = `${MAIN}/client_address/`

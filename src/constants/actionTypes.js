@@ -146,5 +146,6 @@ export const DELIVERY = 'DELIVERY'
 
 export const PROFILE = 'PROFILE'
 
-export const CREATE_ADDRESS = 'create_address'
-export const ADDRESS_LIST = 'address_list'
+export const CREATE_ADDRESS = 'CREATE_ADDRESS'
+
+export const ADDRESS_LIST = 'ADDRESS_LIST'

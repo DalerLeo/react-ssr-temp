@@ -13,7 +13,6 @@ const ProfileContainer = props => {
 
   const onUpdate = (values) => {
 
-    console.warn('dsds')
     return dispatch(updateClientAction(user.id, values))
   }
 

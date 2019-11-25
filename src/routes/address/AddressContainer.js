@@ -1,23 +1,22 @@
+import * as STATE from 'constants/stateNames'
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import useFetchList from '../../hooks/useFetchList'
 import Address from './Address'
-import { addressCreateAction } from './actions'
+import { addressCreateAction, addressListAction } from './actions'
 
 const AddressContainer = props => {
   const dispatch = useDispatch()
   const addAddress = (data) => dispatch(addressCreateAction(data))
 
-  //  const onUpdate = (values) => {
+  const listAddress = useFetchList({
+    action: addressListAction,
+    stateName: STATE.ADDRESS_LIST
+  })
 
-  //   console.warn('dsds')
-  //   return dispatch(updateClientAction(user.id, values))
-  // }
+  console.warn(listAddress)
 
-  // const userData = {
-  //   onSubmit: onUpdate,
-  //   initialValues: user
-  // }
-  return <Address addAddress={addAddress} />
+  return <Address addAddress={addAddress} listAddress={listAddress} />
 }
 
 export default AddressContainer

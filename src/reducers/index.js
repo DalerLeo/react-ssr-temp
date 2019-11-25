@@ -32,7 +32,8 @@ const rootReducer = combineReducers({
   productCategoryList: createThunkReducer(actionTypes.PRODUCT_CATEGORY_LIST),
   menuAs: createThunkReducer(actionTypes.MENU_AS),
   feedback: createThunkReducer(actionTypes.FEEDBACK_CREATE),
-  address: createThunkReducer(actionTypes.CREATE_ADDRESS)
+  [STATE.ADDRESS_CREATE]: createThunkReducer(actionTypes.CREATE_ADDRESS),
+  [STATE.ADDRESS_LIST]: createThunkReducer(actionTypes.ADDRESS_LIST),
 })
 
 export default rootReducer

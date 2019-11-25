@@ -1,3 +1,5 @@
 export const PRODUCT_LIST = 'productList'
+export const ADDRESS_LIST = 'addressList'
+export const ADDRESS_CREATE = 'addressCreate'
 export const USER_INFO = 'userInfo'
 export const LOGIN = 'login'
