@@ -17,13 +17,12 @@ import { getCartItems } from 'utils/storage';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import {getCookie} from 'utils/cookie'
-import * as actionTypes from 'constants/actionTypes'
 
-console.warn(window.initialState)
 const initialState = {
   ...window.initialState,
   cart: { data: getCartItems() },
 };
+console.warn(initialState)
 // Set Initial value for STORE
 const store = createStore(history, initialState, true);
 

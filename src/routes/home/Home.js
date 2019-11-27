@@ -21,13 +21,13 @@ const HeaderMenu = styled.div`
 `
 
 const Home = props => {
+  const { products } = props
   const productData = useFetchList({
     action: getProductList,
     stateName: STATE.PRODUCT_LIST
   })
   return (
     <div>
-
       <Container>
         <HeaderMenu>
           <MenuBar />
@@ -35,18 +35,18 @@ const Home = props => {
         </HeaderMenu>
         <ProductsTitle title="Популярные товары" />
         <ProductListBlock>
-          <ProductCardList productData={productData} />
+          <ProductCardList productData={productData} products={products} />
         </ProductListBlock>
         <ProductsTitle title="Новинки" pagination={true} />
         <ProductListBlock>
-          <ProductCardList productData={productData} />
+          <ProductCardList productData={productData} products={products} />
         </ProductListBlock>
         <PopularCategories />
         <AddBanner />
         <PopularCategories />
         <ProductsTitle title="Лучшие товары за месяц" />
         <ProductListBlock>
-          <ProductCardList productData={productData} />
+          <ProductCardList productData={productData} products={products} />
         </ProductListBlock>
         <ShowMore />
       </Container>

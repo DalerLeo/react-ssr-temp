@@ -61,7 +61,7 @@ const Layout = props => {
         position="top-left"
       />
 
-      <Header />
+      <Header isAuth={isAuth} />
       <Content>
         {React.cloneElement(children, {
           pathname,

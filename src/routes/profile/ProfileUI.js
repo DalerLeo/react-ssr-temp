@@ -5,13 +5,15 @@ import { Container } from 'components/StyledElems'
 import { Button } from 'components/UI/Button'
 import ImageUpload from 'components/UI/ImageUpload/ImageUploadField'
 import { FormField } from 'components/UI/FormField'
-import {prop} from 'ramda'
+import { prop } from 'ramda'
+
 const FieldWrapper = styled.div`
   margin-bottom: 20px;
 `
 
 const Profile = (props) => {
   const { onSubmit, initialValues } = props
+  console.warn(initialValues)
   return (
     <Container>
       <Form

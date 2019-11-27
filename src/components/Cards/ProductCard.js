@@ -1,5 +1,7 @@
+import * as STATE from 'constants/stateNames'
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { path, find, propEq, pathOr } from 'ramda'
 import { CartButton, Button } from 'components/UI/Button'
@@ -7,8 +9,10 @@ import Image from 'components/UI/Image'
 import Price from 'components/UI/Price'
 import ProductContent from 'components/UI/ProductContent'
 import NoImage from 'images/NoImage.png'
+import { getDataFromState } from 'utils/get'
+import equals from 'fast-deep-equal'
 import SalePrice from '../UI/SalePrice/SalePrice'
-import { setItemToCart, removeItemFrom } from './storage'
+import { setItemToCart } from './storage'
 
 const StyledCard = styled.div`
   background-color: #FFF;
@@ -45,14 +49,21 @@ const ButtonPosition = styled.div`
   float: left;
 `
 const defArr = []
+
 const ProductCard = props => {
   const { item } = props
+  const cartList = useSelector(getDataFromState(STATE.CART), equals)
+  const products = pathOr([], ['data'], cartList)
+  const dispatch = useDispatch()
   const [count, setCount] = useState(true)
   const name = path(['name'], item)
   const id = path(['id'], item)
   const price = path(['price'], item)
   const images = pathOr(defArr, ['images'], item)
   const isPrimary = find(propEq('isPrimary', true))(images)
+  const idTaker = find(propEq('id', id))(products)
+  const idChecker = path(['id'], idTaker)
+  console.warn('idTaker: ', idChecker)
   const image = path(['file'], isPrimary)
   return (
     <StyledCard>
@@ -70,17 +81,17 @@ const ProductCard = props => {
         <ProductContent content={name} />
       </ProductContentPosition>
       <ButtonPosition>
-        {count ? (
+        {id === idChecker ? (
+          <CartButton onClick={() => setCount(!count)} />
+        ) : (
           <Button
             onClick={value => {
-              setItemToCart(2, item)
+              dispatch(setItemToCart(2, item))
               setCount(!count)
             }}
           >
             В корзину
           </Button>
-        ) : (
-          <CartButton onClick={() => setCount(!count)} />
         )}
       </ButtonPosition>
     </StyledCard>

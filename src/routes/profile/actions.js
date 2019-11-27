@@ -5,7 +5,6 @@ import { prop } from 'ramda'
 import { sprintf } from 'sprintf-js'
 
 export const updateClientAction = (id, data) => {
-  console.warn(data)
   const fullName = prop('fullName', data)
   const requestData = { fullName }
   return (dispatch, getState) => {

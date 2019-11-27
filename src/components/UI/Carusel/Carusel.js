@@ -4,10 +4,9 @@ import { Gallery, GalleryImage } from 'react-gesture-gallery'
 
 const CaruselStyled = styled.div`
     border-radius: 10px;
-    background-color: green;
+    background-color: transparent;
     overflow: hidden;
     margin-left: 32px;
-
 `
 const Carusel = () => {
   const [index, setIndex] = React.useState(0)
@@ -38,7 +37,7 @@ const Carusel = () => {
         }}
       >
         {images.map(img => (
-          <GalleryImage objectFit="contain" key={img.src} src={img.src} />
+          <GalleryImage key={img.src} src={img.src} />
         ))}
       </Gallery>
     </CaruselStyled>

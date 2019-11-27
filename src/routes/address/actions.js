@@ -2,6 +2,7 @@ import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
 import { path } from 'ramda'
 import axios from 'utils/axios'
+import sprintf from 'sprintf'
 
 export const addressListAction = (data, type) => {
   return (dispatch, getState) => {
@@ -33,29 +34,29 @@ export const addressCreateAction = (data) => {
       //      Contact_person: contact_phone
     }
     const payload = axios({ dispatch, getState })
-      .post(API.CREATE_ADDRESS, params)
+      .post(API.ADDRESS_CREATE, params)
       .then(response => {
         return path(['data'], response)
       })
 
     return dispatch({
       payload,
-      type: actionTypes.CREATE_ADDRESS
+      type: actionTypes.ADDRESS_CREATE
     })
   }
 }
 
-// Export const addressDeleteAction = (id) => {
-//   Return (dispatch, getState) => {
-//     Const payload = axios({dispatch, getState})
-//       .delete(sprintf(API.USER_ADDRESS_ITEM, id))
-//       .then(response => {
-//         Return fpGet('data', response)
-//       })
+export const addressDeleteAction = (id) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .delete(sprintf(API.ADDRESS_DELETE, id))
+      .then(response => {
+        return path('data', response)
+      })
 
-//     Return dispatch({
-//       Payload,
-//       Type: actionTypes.USER_ADDRESS_CREATE
-//     })
-//   }
-// }
+    return dispatch({
+      payload,
+      type: actionTypes.ADDRESS_DELETE
+    })
+  }
+}

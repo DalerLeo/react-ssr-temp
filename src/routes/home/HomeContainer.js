@@ -1,24 +1,17 @@
-import {
-  compose,
-  pure,
-} from 'recompose'
-import { connect } from 'react-redux'
-import withHistory from 'helpers/withHistory'
+import * as STATE from 'constants/stateNames'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import equals from 'fast-deep-equal'
+import { getDataFromState } from 'utils/get'
+import { pathOr } from 'ramda'
+import Home from './Home'
 
-import HomeWrapper from './Home'
+const HomeContainer = props => {
+  const cartList = useSelector(getDataFromState(STATE.CART), equals)
 
-const mapStateToProps = (state) => {
-  return {
+  const products = pathOr([], ['data'], cartList)
 
-  }
+  return <Home products={products} />
 }
 
-const mapDispatchToProps = {
-
-}
-
-export default compose(
-  withHistory,
-  connect(mapStateToProps, mapDispatchToProps),
-  pure
-)(HomeWrapper)
+export default HomeContainer

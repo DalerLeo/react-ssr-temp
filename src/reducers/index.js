@@ -5,12 +5,12 @@ import { routerReducer } from 'redux-first-routing'
 import { combineReducers } from 'redux'
 import createThunkReducer from 'utils/createThunkReducer'
 import createStandardReducer from 'helpers/createStandardReducer'
-
+import { cartReducer } from './customReducers'
 const rootReducer = combineReducers({
   form: formReducer,
   router: routerReducer,
   lang: createThunkReducer(actionTypes.LANGUAGE),
-  cart: createThunkReducer(actionTypes.CART_LIST),
+  [STATE.CART]: cartReducer(),
   notifications: createThunkReducer(actionTypes.NOTIFICATIONS),
   asyncLoading: createStandardReducer(actionTypes.ASYNC_LOADING),
   notify: createStandardReducer(actionTypes.NOTIFY_OPEN),
@@ -32,7 +32,7 @@ const rootReducer = combineReducers({
   productCategoryList: createThunkReducer(actionTypes.PRODUCT_CATEGORY_LIST),
   menuAs: createThunkReducer(actionTypes.MENU_AS),
   feedback: createThunkReducer(actionTypes.FEEDBACK_CREATE),
-  [STATE.ADDRESS_CREATE]: createThunkReducer(actionTypes.CREATE_ADDRESS),
+  [STATE.ADDRESS_CREATE]: createThunkReducer(actionTypes.ADDRESS_CREATE),
   [STATE.ADDRESS_LIST]: createThunkReducer(actionTypes.ADDRESS_LIST),
 })
 

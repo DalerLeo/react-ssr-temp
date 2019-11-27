@@ -9,7 +9,7 @@ const ModalContainer = styled.div`
 const ModalButton = styled.div`
     display: flex;
     background-color: #FFF;
-    padding: 50px;
+    padding: 53px 76px;
     border-radius: 7px;
     border: 1px solid lightgreen;
     cursor: pointer;
