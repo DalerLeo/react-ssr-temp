@@ -1,5 +1,5 @@
 import * as STATE from 'constants/stateNames'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -12,6 +12,7 @@ import NoImage from 'images/NoImage.png'
 import { getDataFromState } from 'utils/get'
 import equals from 'fast-deep-equal'
 import Link from 'components/Link/Link'
+import { favouriteCreateAction, favouriteDeleteAction } from 'routes/favourite/actions'
 import SalePrice from '../UI/SalePrice/SalePrice'
 import { setItemToCart } from './storage'
 
@@ -50,31 +51,45 @@ const ButtonPosition = styled.div`
   position: absolute;
   bottom: 25px;
   left: 20px;
-  
+`
+const FavouriteButton = styled.button` 
+    background-color: ${props => props.favourite ? 'red' : 'none'}
 `
 const defArr = []
 
 const ProductCard = props => {
   const { item } = props
+  console.warn('1212', item)
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
+
   const products = pathOr(defArr, ['data'], cartList)
+
   const dispatch = useDispatch()
   const name = path(['name'], item)
   const id = path(['id'], item)
   const price = path(['price'], item)
   const images = pathOr(defArr, ['images'], item)
+  const isFavourite = path(['isFavourite'], item)
   const isPrimary = find(propEq('isPrimary', true))(images)
   const cartProduct = find(propEq('id', id))(products)
   const idChecker = path(['id'], cartProduct)
   const image = path(['file'], isPrimary)
   const amount = prop('amount', cartProduct)
 
+  const [favourite, setFavourite] = useState(isFavourite)
   const onChange = value => {
     dispatch(setItemToCart(value, item))
   }
+
+  const onFavourite = () => {
+    setFavourite(!favourite)
+    dispatch(favouriteDeleteAction(id))
+    dispatch(favouriteCreateAction(id))
+  }
+
   return (
     <StyledCard>
-      <button>Favourite</button>
+      <FavouriteButton favourite={favourite} onClick={onFavourite}>Favourite</FavouriteButton>
       <Link to={'/product/' + id}>
         <ImagePosition>
           <Image

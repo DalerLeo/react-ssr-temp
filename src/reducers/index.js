@@ -31,6 +31,8 @@ const rootReducer = combineReducers({
   faq: createThunkReducer(actionTypes.FAQ_LIST),
   [STATE.PRODUCT_LIST]: createThunkReducer(actionTypes.PRODUCT_LIST),
   [STATE.PRODUCT_ITEM]: createThunkReducer(actionTypes.PRODUCT_ITEM),
+  [STATE.FAVOURITE_LIST]: createThunkReducer(actionTypes.FAVOURITE_LIST),
+  [STATE.FAVOURITE_CREATE]: createThunkReducer(actionTypes.FAVOURITE_CREATE),
   productCategoryList: createThunkReducer(actionTypes.PRODUCT_CATEGORY_LIST),
   menuAs: createThunkReducer(actionTypes.MENU_AS),
   feedback: createThunkReducer(actionTypes.FEEDBACK_CREATE),

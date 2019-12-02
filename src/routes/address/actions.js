@@ -5,7 +5,7 @@ import axios from 'utils/axios'
 import sprintf from 'sprintf'
 
 export const addressListAction = (data, type) => {
-  return (dispatch, getState) => {
+  return (dispatch, getStadte) => {
     const params = {
       page_size: 150
     }

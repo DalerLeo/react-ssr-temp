@@ -24,7 +24,9 @@ export const USER_ACTIVE_SERVICES = `${SERVICE}/active_services/`
 export const USER_UNUSED_SERVICES = `${SERVICE}/active_services/unused_services/`
 
 export const LOGIN = `${MAIN}/login/`
+
 export const LOGOUT = `${MAIN}/logout/`
+
 export const FILE_UPLOAD = '/main/file/'
 
 export const STAT_EMPLOYER_GENERAL = 'statistics/employer/general/'
@@ -51,4 +53,7 @@ export const ADDRESS_CREATE = `${MAIN}/client-address/`
 export const ADDRESS_LIST = `${MAIN}/client-address/`
 export const ADDRESS_DELETE = `${MAIN}/client-address/%d/`
 
-
+const FAVORITE = `${MAIN}/favourites`
+export const FAVOURITE_CREATE = `${FAVORITE}/`
+export const FAVOURITE_LIST = `${FAVORITE}/`
+export const FAVOURITE_DELETE = `${FAVORITE}/unset/`
