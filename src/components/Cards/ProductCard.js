@@ -1,9 +1,9 @@
 import * as STATE from 'constants/stateNames'
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
-import { path, find, propEq, pathOr } from 'ramda'
+import { path, find, propEq, pathOr, prop } from 'ramda'
 import { CartButton, Button } from 'components/UI/Button'
 import Image from 'components/UI/Image'
 import Price from 'components/UI/Price'
@@ -11,15 +11,18 @@ import ProductContent from 'components/UI/ProductContent'
 import NoImage from 'images/NoImage.png'
 import { getDataFromState } from 'utils/get'
 import equals from 'fast-deep-equal'
+import Link from 'components/Link/Link'
 import SalePrice from '../UI/SalePrice/SalePrice'
 import { setItemToCart } from './storage'
 
 const StyledCard = styled.div`
+  position: relative;
   background-color: #FFF;
-    height: 396px;
-    width: 25%;
+  height: 396px;
+  width: 25%;
   border-right: 1px solid #e1e1e1;
   border-bottom: 1px solid #e1e1e1;
+  border-top-left-radius: 5px;
   &:nth-child(4) {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
@@ -44,50 +47,56 @@ const ProductContentPosition = styled.div`
   margin-top: 18px;
 `
 const ButtonPosition = styled.div`
-  margin-top: 25px;
-  margin-left: 20px;
-  float: left;
+  position: absolute;
+  bottom: 25px;
+  left: 20px;
+  
 `
 const defArr = []
 
 const ProductCard = props => {
   const { item } = props
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
-  const products = pathOr([], ['data'], cartList)
+  const products = pathOr(defArr, ['data'], cartList)
   const dispatch = useDispatch()
-  const [count, setCount] = useState(true)
   const name = path(['name'], item)
   const id = path(['id'], item)
   const price = path(['price'], item)
   const images = pathOr(defArr, ['images'], item)
   const isPrimary = find(propEq('isPrimary', true))(images)
-  const idTaker = find(propEq('id', id))(products)
-  const idChecker = path(['id'], idTaker)
-  console.warn('idTaker: ', idChecker)
+  const cartProduct = find(propEq('id', id))(products)
+  const idChecker = path(['id'], cartProduct)
   const image = path(['file'], isPrimary)
+  const amount = prop('amount', cartProduct)
+
+  const onChange = value => {
+    dispatch(setItemToCart(value, item))
+  }
   return (
     <StyledCard>
-      <ImagePosition>
-        <Image
-          src={typeof image === 'undefined' ? NoImage : image}
-          alt="image"
-        />
-      </ImagePosition>
-      <PricePosition>
-        <Price price={price} />
-        {true && <SalePrice>25000</SalePrice>}
-      </PricePosition>
-      <ProductContentPosition>
-        <ProductContent content={name} />
-      </ProductContentPosition>
+      <button>Favourite</button>
+      <Link to={'/product/' + id}>
+        <ImagePosition>
+          <Image
+            src={typeof image === 'undefined' ? NoImage : image}
+            alt="image"
+          />
+        </ImagePosition>
+        <PricePosition>
+          <Price price={price} />
+          {true && <SalePrice>25000</SalePrice>}
+        </PricePosition>
+        <ProductContentPosition>
+          <ProductContent content={name} />
+        </ProductContentPosition>
+      </Link>
       <ButtonPosition>
         {id === idChecker ? (
-          <CartButton onClick={() => setCount(!count)} />
+          <CartButton amount={amount} onChange={onChange} />
         ) : (
           <Button
             onClick={value => {
-              dispatch(setItemToCart(2, item))
-              setCount(!count)
+              dispatch(setItemToCart(1, item))
             }}
           >
             В корзину

@@ -26,6 +26,7 @@ const Home = props => {
     action: getProductList,
     stateName: STATE.PRODUCT_LIST
   })
+  console.warn(productData)
   return (
     <div>
       <Container>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Form, Field } from 'react-final-form'
 import { Container } from 'components/StyledElems'
@@ -11,9 +11,21 @@ const FieldWrapper = styled.div`
   margin-bottom: 20px;
 `
 
+const ChangePassword = styled.div`
+  display: ${props => props.open ? 'block' : 'none'};
+`
+const PasswordButtonBlock = styled.div`
+  display: flex;
+`
+const PasswordButton = styled.button`
+  margin-left: ${props => props.open ? '0' : '15px'};
+`
+const SpanPassword = styled.span`
+  display: ${props => props.open ? 'none' : 'block'};
+`
 const Profile = (props) => {
   const { onSubmit, initialValues } = props
-  console.warn(initialValues)
+  const [open, setOpen] = useState(false)
   return (
     <Container>
       <Form
@@ -34,30 +46,34 @@ const Profile = (props) => {
               <Field
                 label="Full Name"
                 name="fullName"
-                type="text"
                 component={FormField}
                 placeholder="Name"
               />
             </FieldWrapper>
-            <FieldWrapper>
-              <Field
-                label="Password"
-                name="password"
-                type="password"
-                component={FormField}
-                placeholder="Password"
-              />
-            </FieldWrapper>
-            <FieldWrapper>
-              <Field
-                label="Confirm Password"
-                name="confirmPassword"
-                type="password"
-                component={FormField}
-                placeholder="Confirm Password"
-              />
-            </FieldWrapper>
-            <Button>Сохранить</Button>
+            <h3>Пароль</h3>
+            <PasswordButtonBlock>
+              <SpanPassword open={open}>•••••••••</SpanPassword>
+              <PasswordButton open={open} onClick={() => setOpen(!open)}>{open ? 'Отменить' : 'Изменить'}</PasswordButton>
+            </PasswordButtonBlock>
+            <ChangePassword open={open}>
+              <FieldWrapper>
+                <Field
+                  name="password"
+                  type="password"
+                  component={FormField}
+                  placeholder="Введите Пароль"
+                />
+              </FieldWrapper>
+              <FieldWrapper>
+                <Field
+                  name="confirmPassword"
+                  type="password"
+                  component={FormField}
+                  placeholder="Повторите Пароль"
+                />
+              </FieldWrapper>
+              <Button>Сохранить</Button>
+            </ChangePassword>
           </form>
         )}
       />

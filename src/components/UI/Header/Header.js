@@ -177,7 +177,11 @@ const Header = (props) => {
               </Dropdown>
             </MyProfile>
           )}
-
+        <MyProfile>
+          <Link to="/favourite" style={{ color: 'white' }}>
+            Favourite
+          </Link>
+        </MyProfile>
         <MyProfile>
           <Link to="/cart" style={{ color: 'white' }}>
             <ShoppingBag />

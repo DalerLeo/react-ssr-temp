@@ -137,6 +137,7 @@ export const CART_CHANGE_LIST = 'CART_CHANGE_LIST'
 
 export const PRODUCT_LIST = 'PRODUCT_LIST'
 export const PRODUCT_CATEGORY_LIST = 'PRODUCT_CATEGORY_LIST'
+export const PRODUCT_ITEM = 'PRODUCT_ITEM'
 
 export const CART = 'CART'
 

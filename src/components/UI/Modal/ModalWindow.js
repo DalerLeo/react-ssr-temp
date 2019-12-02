@@ -49,10 +49,12 @@ const ModalWindow = (props) => {
   return (
     <div>
       {show ? <Overlay onClick={closeModal} /> : <Hide />}
-      {show && <Modal>
-        <CloseButton onClick={closeModal}>X</CloseButton>
-        {children}
-      </Modal>}
+      {show && (
+        <Modal>
+          <CloseButton onClick={closeModal}>X</CloseButton>
+          {children}
+        </Modal>
+      )}
     </div>
   )
 }

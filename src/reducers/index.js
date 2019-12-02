@@ -6,6 +6,7 @@ import { combineReducers } from 'redux'
 import createThunkReducer from 'utils/createThunkReducer'
 import createStandardReducer from 'helpers/createStandardReducer'
 import { cartReducer } from './customReducers'
+
 const rootReducer = combineReducers({
   form: formReducer,
   router: routerReducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   }),
   faq: createThunkReducer(actionTypes.FAQ_LIST),
   [STATE.PRODUCT_LIST]: createThunkReducer(actionTypes.PRODUCT_LIST),
+  [STATE.PRODUCT_ITEM]: createThunkReducer(actionTypes.PRODUCT_ITEM),
   productCategoryList: createThunkReducer(actionTypes.PRODUCT_CATEGORY_LIST),
   menuAs: createThunkReducer(actionTypes.MENU_AS),
   feedback: createThunkReducer(actionTypes.FEEDBACK_CREATE),

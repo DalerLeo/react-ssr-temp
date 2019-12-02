@@ -34,17 +34,29 @@ const Counter = styled.div`
     margin-top: 11px;
 `
 const CartButton = (props) => {
-  const [counter, setCounter] = useState(2)
+  const { amount, onChange } = props
 
+  const [counter, setCounter] = useState(amount)
+
+  const onSubtract = () => {
+    const value = counter - 1
+    setCounter(value)
+    onChange && onChange(value)
+  }
+  const onAdd = () => {
+    const value = counter + 1
+    setCounter(value)
+    onChange && onChange(value)
+  }
   return (
     <StyledCartButton>
-      <MinusButton counter={counter} onClick={() => setCounter(counter - 1)} disabled={counter === 1}>
+      <MinusButton counter={counter} onClick={onSubtract} disabled={counter < 2}>
         <MinusIcon />
       </MinusButton>
       <Counter>
         {counter}
       </Counter>
-      <PlusButton onClick={() => setCounter(counter + 1)}>
+      <PlusButton onClick={onAdd}>
         <PlusIcon />
       </PlusButton>
     </StyledCartButton>

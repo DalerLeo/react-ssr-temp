@@ -1,20 +1,17 @@
 /* eslint-disable func-style */
 import React from 'react'
 import Layout from 'components/Layout'
-import CategoriesContainer from './CategoriesContainer'
+import SingleProductContainer from './SingleProductContainer'
 
 async function action (props) {
   const { store, isServer, params } = props
 
-  console.warn(props)
-  if (isServer) {
-  }
   return {
     chunk: ['categories'],
     title: 'Главная',
     component: (
       <Layout {...props} home={true}>
-        <CategoriesContainer {...params} />
+        <SingleProductContainer {...params} />
       </Layout>
     )
   }

@@ -12,7 +12,7 @@ const ProfileContainer = props => {
   const { data: user } = useSelector(getDataFromState(STATE.USER_INFO), equals)
 
   const onUpdate = (values) => {
-    return dispatch(updateClientAction(user.id, values))
+    return dispatch(updateClientAction(user.id, values, user.phoneNumber, user.password))
   }
 
   const userData = {
