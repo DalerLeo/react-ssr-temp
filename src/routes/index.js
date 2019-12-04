@@ -27,7 +27,7 @@ const routes = {
       children: [
         {
           path: '',
-          load: () => import(/* webpackChunkName: 'cart' */ './favourite')
+          load: () => import(/* webpackChunkName: 'favourite' */ './favourite')
         }
       ]
     },
