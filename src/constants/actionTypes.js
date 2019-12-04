@@ -133,8 +133,11 @@ export const ORDER_REQUEST_CONTRACT = 'ORDER_REQUEST_CONTRACT'
 
 export const FEEDBACK_CREATE = 'FEEDBACK_CREATE'
 
+export const CART_CHANGE_LIST = 'CART_CHANGE_LIST'
+
 export const PRODUCT_LIST = 'PRODUCT_LIST'
 export const PRODUCT_CATEGORY_LIST = 'PRODUCT_CATEGORY_LIST'
+export const PRODUCT_ITEM = 'PRODUCT_ITEM'
 
 export const CART = 'CART'
 
@@ -144,6 +147,8 @@ export const SIGN_IN = 'SIGN_IN'
 
 export const DELIVERY = 'DELIVERY'
 
-export const PROFILE = 'profile'
+export const PROFILE = 'PROFILE'
 
-export const ADDRESS = 'address'
+export const ADDRESS_CREATE = 'ADDRESS_CREATE'
+export const ADDRESS_LIST = 'ADDRESS_LIST'
+export const ADDRESS_DELETE = 'ADDRESS_DELETE'

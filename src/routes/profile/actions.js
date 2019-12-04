@@ -4,10 +4,10 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 import { prop } from 'ramda'
 import { sprintf } from 'sprintf-js'
 
-export const updateClientAction = (id, data) => {
-  console.warn(data)
+export const updateClientAction = (id, data, phoneNumber) => {
   const fullName = prop('fullName', data)
-  const requestData = { fullName }
+  const password = prop('password', data)
+  const requestData = { full_name: fullName, phone_number: phoneNumber, password: password }
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
       .put(sprintf(API.CLIENT_UPDATE, id), requestData)

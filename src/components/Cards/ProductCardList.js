@@ -4,6 +4,7 @@ import ProductCard from './ProductCard'
 
 const ProductCardList = (props) => {
   const { productData } = props
+
   const results = path(['results'], productData)
   return results.map(mapChild)
 }

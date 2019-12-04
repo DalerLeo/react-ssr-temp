@@ -97,12 +97,13 @@ export const getInitValuesFromHistory = curry((fields, history) =>
 )
 
 export const getDataFromState = curry((name, state) => {
-return {
-  loading: path([name, 'loading'], state),
-  failed: path([name, 'failed'], state),
-  data: path([name, 'data'], state),
-  results: pathOr([], [name, 'data', 'results'], state)
-}})
+  return {
+    loading: path([name, 'loading'], state),
+    failed: path([name, 'failed'], state),
+    data: path([name, 'data'], state),
+    results: pathOr([], [name, 'data', 'results'], state)
+  }
+})
 
 export const getBooleanFromHistory = curry((name, history) =>
   compose(
@@ -187,7 +188,7 @@ export const getDateFromUrl = location => {
 }
 
 export const getItemFromTree = (arr, target) => {
-  for (let i in arr) {
+  for (const i in arr) {
     const a = arr[i]
     if (a.id === target) {
       return a

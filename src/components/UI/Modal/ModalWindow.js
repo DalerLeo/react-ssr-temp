@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FormField } from 'components/UI/FormField'
-import {  Button  } from 'components/UI/Button'
+import { Button } from 'components/UI/Button'
 
 const Hide = styled.div`
     display: none;
@@ -20,7 +20,7 @@ const Overlay = styled.div`
 const Modal = styled.div`
     width: 500px;
     position: absolute;
-    top: -10%;
+    top: -50%;
     left: 35%;
     margin: 0px auto;
     padding: 20px;
@@ -44,19 +44,17 @@ const CloseButton = styled.button`
     border: 1px solid rgba(0, 0, 0, 0.562);
 `
 const ModalWindow = (props) => {
-  const { show, closeModal } = props
+  const { show, closeModal, children } = props
 
   return (
     <div>
       {show ? <Overlay onClick={closeModal} /> : <Hide />}
-      {show && <Modal>
-        <CloseButton onClick={closeModal}>X</CloseButton>
-        <h1>Добавить адрес</h1>
-        <FormField type="text" placeholder="Укажите ардес на карте" label="Адрес доставки" />
-        <FormField type="number" placeholder="Укажите номер телефона" label="Номер телефона" />
-        <FormField type="text" placeholder="Укажите свое имя" label="Имя" />
-        <Button type="Submit">Сохранить</Button>
-      </Modal>}
+      {show && (
+        <Modal>
+          <CloseButton onClick={closeModal}>X</CloseButton>
+          {children}
+        </Modal>
+      )}
     </div>
   )
 }

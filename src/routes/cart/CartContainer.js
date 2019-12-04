@@ -1,24 +1,23 @@
-import {
-  compose,
-  pure,
-} from 'recompose'
-import { connect } from 'react-redux'
-import withHistory from 'helpers/withHistory'
+import * as STATE from 'constants/stateNames'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import equals from 'fast-deep-equal'
+import { getDataFromState } from 'utils/get'
+import { pathOr } from 'ramda'
+import Cart from './Cart'
+import { removeItemFrom } from './actions'
 
-import CartWrapper from './Cart'
+const AddressContainer = props => {
+  const dispatch = useDispatch()
+  const cartList = useSelector(getDataFromState(STATE.CART), equals)
 
-const mapStateToProps = (state) => {
-  return {
-
+  const onDelete = (id) => {
+    return dispatch(removeItemFrom(id))
   }
+
+  const products = pathOr([], ['data'], cartList)
+
+  return <Cart products={products} onDelete={onDelete} />
 }
 
-const mapDispatchToProps = {
-
-}
-
-export default compose(
-  withHistory,
-  connect(mapStateToProps, mapDispatchToProps),
-  pure
-)(CartWrapper)
+export default AddressContainer

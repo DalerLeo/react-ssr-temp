@@ -23,6 +23,15 @@ const routes = {
       ]
     },
     {
+      path: ROUTE.FAVOURITE,
+      children: [
+        {
+          path: '',
+          load: () => import(/* webpackChunkName: 'cart' */ './favourite')
+        }
+      ]
+    },
+    {
       path: ROUTE.SIGN_IN,
       children: [
         {
@@ -64,6 +73,15 @@ const routes = {
         {
           path: '',
           load: () => import(/* webpackChunkName: 'categories' */ './categories')
+        }
+      ]
+    },
+    {
+      path: ROUTE.SINGLE_PRODUCT,
+      children: [
+        {
+          path: '',
+          load: () => import(/* webpackChunkName: 'categories' */ './single-product')
         }
       ]
     },

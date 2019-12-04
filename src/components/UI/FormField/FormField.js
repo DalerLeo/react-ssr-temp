@@ -20,12 +20,11 @@ const Label = styled.label`
   margin-bottom: 5px;
 `
 const FormField = props => {
-  const { label, placeholder, input } = props
-  const type = path(['input', 'type'], props)
+  const { label, placeholder, input, ...rest } = props
   return (
     <InputWrapper>
       <Label>{label}</Label>
-      <InputField type={type} placeholder={placeholder} {...input}/>
+      <InputField placeholder={placeholder} {...input} {...rest} />
     </InputWrapper>
   )
 }

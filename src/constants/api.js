@@ -37,6 +37,7 @@ export const FEEDBACK_CREATE = `${FEEDBACK}/`
 export const PRODUCT = 'main/product'
 export const PRODUCT_LIST = `${PRODUCT}/`
 export const PRODUCT_CATEGORY_LIST = `${PRODUCT}`
+export const PRODUCT_ITEM = `${PRODUCT}/%d/`
 
 export const MENU_AS = 'main/product_type'
 
@@ -45,3 +46,9 @@ export const REGISTER = `${MAIN}/client/register/`
 export const CLIENT = `${MAIN}/client`
 export const CLIENT_UPDATE = `${CLIENT}/%d/`
 export const CLIENT_DETAIL = `${CLIENT}/%d/`
+
+export const ADDRESS_CREATE = `${MAIN}/client-address/`
+export const ADDRESS_LIST = `${MAIN}/client-address/`
+export const ADDRESS_DELETE = `${MAIN}/client-address/%d/`
+
+
