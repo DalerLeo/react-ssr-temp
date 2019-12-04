@@ -32,7 +32,7 @@ const errorInterceptors = curry((dispatch, error) => {
 
 const axiosRequest = ({ getState, dispatch }, noAuth = false) => {
   const state = getState && getState()
-  const token = path(['login', 'data', 'token'], state) || getCookie('token')
+  const token = path(['login', 'data', 'token'], state)
   axios.defaults.baseURL = `${API_URL}`
   axios.defaults.transformResponse = [responseToCamelCase]
   axios.defaults.timeout = 100000

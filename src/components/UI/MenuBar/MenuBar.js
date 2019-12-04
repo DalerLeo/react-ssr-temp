@@ -4,8 +4,10 @@ import styled from 'styled-components'
 import MenuBarIcon from 'icons/MenuBar'
 import MenuModal from 'components/UI/MenuModal'
 import Link from 'components/Link'
-import useFetchList from '../../../hooks/useFetchList'
-import { menuAs } from './actions'
+import { useSelector } from 'react-redux'
+import equals from 'fast-deep-equal'
+import { getDataFromState } from '../../../utils/get'
+import * as STATE from '../../../constants/stateNames'
 
 const MenuBarStyled = styled.div`
 `
@@ -43,11 +45,7 @@ const MenuItem = styled.div`
 const defArray = []
 
 const MenuBar = () => {
-  const menuData = useFetchList({
-    action: menuAs,
-    stateName: 'menuAs'
-  })
-
+  const menuData = useSelector(getDataFromState(STATE.MENU_AS), equals)
   const [open, setMenuOpen] = useState(false)
   const lists = pathOr(defArray, ['results'], menuData)
   const subCategories = find(propEq('id', open))(lists)
