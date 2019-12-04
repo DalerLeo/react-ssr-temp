@@ -11,7 +11,6 @@ import DeleteIcon from 'icons/Delete'
 import NoImage from 'images/NoImage.png'
 import NoProductImage from 'images/empty-template-cart.png'
 import { setItemToCart } from 'components/Cards/storage'
-import { spinAnimStyle } from '../../constants/styles'
 
 const Card = styled.div`
   display: flex;

@@ -63,7 +63,6 @@ const ProductCard = props => {
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
 
   const products = pathOr(defArr, ['data'], cartList)
-
   const dispatch = useDispatch()
   const name = path(['name'], item)
   const id = path(['id'], item)
@@ -83,8 +82,8 @@ const ProductCard = props => {
 
   const onFavourite = () => {
     setFavourite(!favourite)
-    dispatch(favouriteDeleteAction(id))
-    dispatch(favouriteCreateAction(id))
+
+    favourite ? dispatch(favouriteDeleteAction(id)) : dispatch(favouriteCreateAction(id))
   }
 
   return (

@@ -37,13 +37,13 @@ export const favouriteCreateAction = (product) => {
   }
 }
 
-export const favouriteDeleteAction = (id) => {
+export const favouriteDeleteAction = (product) => {
   return (dispatch, getState) => {
     const params = {
-      product: id
+      product
     }
     const payload = axios({ dispatch, getState })
-      .delete(sprintf(API.FAVOURITE_DELETE, params))
+      .post(API.FAVOURITE_DELETE, params)
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 

@@ -10,7 +10,7 @@ import Pages from './Pages'
 const Wrap = styled.div`
   display: inline-block;
   padding: 4px;
-  background: #F3F3F3;
+  background: #C7F9DD;
   border-radius: 10px;
 `
 
@@ -24,7 +24,7 @@ export const Page = styled.button`
   cursor: pointer;
   position: relative;
   ${props => props.isActive && css`
-    background-color: #C8916D;
+    background-color: #2EBB8A;
     color: #fff;
     font-weight: 600;
   `}
@@ -37,10 +37,10 @@ export const Page = styled.button`
     content: ' ';
     position: absolute;
     top: 50%;
-    right: 0;
+    right: -1px;
     height: 24px;
     width: 1px;
-    background-color: ${props => props.isActive ? '#C8916D' : '#D8D8D8'};
+    background-color: ${props => props.isActive ? '#C7F9DD' : '#2EBB8A'};
     transform: translateY(-50%);
   }
   
