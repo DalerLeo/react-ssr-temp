@@ -40,12 +40,7 @@ export const userSignOut = () => {
       .catch(() => {
         document.cookie = 'token='
         dispatch({ type: `${actionTypes.LOGIN}_CLEAR` })
-        //        Dispatch({ type: `${actionTypes.PRODUCT_FAVORITE}_CLEAR` })
       })
-    // Dispatch({ type: `${actionTypes.PRODUCT_FAVORITE}_CLEAR` })
-    // Dispatch({ type: `${actionTypes.PRODUCT_FAVORITE_SET}_CLEAR` })
-    // SetToCart(JSON.stringify([]))
-    // Dispatch({ type: actionTypes.CART_CHANGE_LIST, payload: { data: [] } })
     return dispatch({
       payload,
       type: `${actionTypes.LOGIN}`
@@ -69,19 +64,3 @@ export const registerAction = (phone) => {
     })
   }
 }
-
-// Export const userDataFetchAction = () => {
-//   Return (dispatch, getState) => {
-//     Const token = _.get(getState(), ['auth', 'signIn', 'data', 'token'])
-//     Const payload = axios({ dispatch, getState })
-//       .get(API.USER_DETAIL)
-//       .then(response => {
-//         Return { user: _.get(response, 'data'), token }
-//       })
-
-//     Return dispatch({
-//       Payload,
-//       Type: actionTypes.SIGN_IN
-//     })
-//   }
-// }

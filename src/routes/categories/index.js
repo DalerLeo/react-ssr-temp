@@ -14,7 +14,7 @@ async function action (props) {
     title: 'Главная',
     component: (
       <Layout {...props} home={true}>
-        <CategoriesContainer {...params}/>
+        <CategoriesContainer {...params} />
       </Layout>
     )
   }

@@ -2,12 +2,12 @@ import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
 import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 
-export const getProductCategoryList = (type) => {
+export const getProductCategoryList = (data) => {
   return (dispatch, getState) => {
-
     const params = {
       thumbnail_type: 'large',
-      type
+      ...data,
+      page_size: 12
     }
 
     const payload = axios({ dispatch, getState })

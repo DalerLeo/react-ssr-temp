@@ -1,17 +1,18 @@
 import React from 'react'
-import Header from 'components/UI/Header'
-import Container from 'components/StyledElems/Container'
-import Cart from 'components/UI/Cart'
+import PropTypes from 'prop-types'
+import Cart from 'components/Cart'
 
 const Home = props => {
+  const { onDelete, products = [] } = props
   return (
     <div>
-      <Header />
-      <Container>
-        <Cart />
-      </Container>
+      <Cart products={products} onDelete={onDelete} />
     </div>
   )
 }
 
+Home.propTypes = {
+  products: PropTypes.array,
+  onDelete: PropTypes.func
+}
 export default Home

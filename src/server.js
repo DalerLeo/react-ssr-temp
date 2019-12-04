@@ -97,6 +97,7 @@ app.get('*', async (req, res, next) => {
     token && await fetch(API.API_URL + API.CHECK_TOKEN + token)
       .then((response) => {
         if (response.status === 404) {
+          console.warn('404')
           return Promise.reject({ response })
         }
         isAuth = true
@@ -104,6 +105,7 @@ app.get('*', async (req, res, next) => {
       })
       .then((data) => {
         dispatch({payload: toCamelCase(data), type: `${actionTypes.USER_INFO}_FULFILLED`})
+        console.warn('SUCCESS')
         return dispatch({
           payload: Promise.resolve({token}),
           type: actionTypes.LOGIN
@@ -113,6 +115,7 @@ app.get('*', async (req, res, next) => {
       .catch(error => {
         const status = fp.get('response.status', error)
         if (status === 404 || status === 401) {
+          console.warn("EERRRORR")
           isAuth = false
           res.clearCookie('token')
           dispatch({type: `${actionTypes.LOGIN}_CLEAR`})
