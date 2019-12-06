@@ -3,16 +3,21 @@ import styled from 'styled-components'
 import Link from 'components/Link'
 import Telegram from 'icons/Telegram'
 
+const TopHeaderWidth = styled.div`
+  width: 100%;
+  background-color: #249E74;
+`
 const TopHeaderStyled = styled.div`
     display: flex;
     justify-content: space-between;
-    background-color: #249E74;
+    align-items: center;
     height: 28px;
     color: white;
-    padding: 5px 150px;
     font-size: 12px;
     line-height: 164.57%;
     cursor: pointer;
+    width: 1130px;
+    margin: auto;
 `
 const LeftSide = styled.div`
     display: flex;
@@ -45,34 +50,36 @@ const RegionValue = styled.div`
 `
 const TopHeader = () => {
   return (
-    <TopHeaderStyled>
-      <LeftSide>
-        <PhoneNumber>
+    <TopHeaderWidth>
+      <TopHeaderStyled>
+        <LeftSide>
+          <PhoneNumber>
           998 (97) 9555-212
-        </PhoneNumber>
-        <TelegramLink>
+          </PhoneNumber>
+          <TelegramLink>
           t.me/lochin
-        </TelegramLink>
-      </LeftSide>
-      <RightSide>
-        <Link to="/delivery" style={{ color: 'white' }}>
-          <Delivery>
+          </TelegramLink>
+        </LeftSide>
+        <RightSide>
+          <Link to="/delivery" style={{ color: 'white' }}>
+            <Delivery>
           Доставка
-          </Delivery>
-        </Link>
-        <Payment>
+            </Delivery>
+          </Link>
+          <Payment>
           Удобная оплата
-        </Payment>
-        <Region>
-          <RegionTitle>
-            <Telegram /> Регион:
-          </RegionTitle>
-          <RegionValue>
+          </Payment>
+          <Region>
+            <RegionTitle>
+              <Telegram /> Регион:
+            </RegionTitle>
+            <RegionValue>
             Ташкент
-          </RegionValue>
-        </Region>
-      </RightSide>
-    </TopHeaderStyled>
+            </RegionValue>
+          </Region>
+        </RightSide>
+      </TopHeaderStyled>
+    </TopHeaderWidth>
   )
 }
 

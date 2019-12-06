@@ -8,7 +8,8 @@ const DropdownContent = styled.div`
     background-color: #fff;
     color: black;
     border-radius: 7px;
-    min-width: 215px;
+    min-width: 250px;
+    width: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
     z-index: 1;
@@ -23,12 +24,16 @@ const DropdownStyled = styled.div`
         transition: opasity 2s;
     }
 `
+const StyledTitle = styled.div`
+`
 
 const Dropdown = (props) => {
   const { title, children } = props
   return (
     <DropdownStyled>
-      {title}
+      <StyledTitle>
+        {title}
+      </StyledTitle>
       <DropdownContent>
         {children}
       </DropdownContent>

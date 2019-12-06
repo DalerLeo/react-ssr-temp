@@ -1,7 +1,7 @@
 /* eslint-disable func-style */
 import React from 'react'
 import Layout from 'components/Layout'
-import SingleProductContainer from './SingleProductContainer'
+import ProductContainer from './ProductContainer'
 import { getProduct } from './actions'
 
 async function action (props) {
@@ -13,7 +13,7 @@ async function action (props) {
     title: 'Главная',
     component: (
       <Layout {...props} home={true}>
-        <SingleProductContainer {...params} />
+        <ProductContainer {...params} />
       </Layout>
     )
   }

@@ -59,9 +59,7 @@ const defArr = []
 
 const ProductCard = props => {
   const { item } = props
-  console.warn('1212', item)
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
-
   const products = pathOr(defArr, ['data'], cartList)
   const dispatch = useDispatch()
   const name = path(['name'], item)
@@ -82,7 +80,6 @@ const ProductCard = props => {
 
   const onFavourite = () => {
     setFavourite(!favourite)
-
     favourite ? dispatch(favouriteDeleteAction(id)) : dispatch(favouriteCreateAction(id))
   }
 

@@ -12,7 +12,7 @@ const Carusel = () => {
 
   const images = [
     {
-      src: 'https://a.mktgcdn.com/p/fyvng10ZzCOZhiyz0PtTxJ7ct-sS7pV_S1QpdRKQQL4/841x622.png'
+      src: 'https://media.licdn.com/dms/image/C4D1BAQGh2qH8a1qv0w/company-background_10000/0?e=2159024400&v=beta&t=-g_EHxycwOcdpdpSoLy7Zd64jZBCfdplEDmO0xUOZVg'
     },
     {
       src: 'http://suptg.thisisnotatrueending.com/archive/5655084/images/1251653718851.png'
@@ -24,6 +24,7 @@ const Carusel = () => {
       src: 'https://klubialpinprishtina.com/wp-content/uploads/2017/07/20368827_1984915758200737_1945558551622446370_o-841x355.jpg'
     }
   ]
+
   return (
     <CaruselStyled>
       <Gallery
@@ -33,7 +34,7 @@ const Carusel = () => {
         }}
       >
         {images.map(img => (
-          <GalleryImage key={img.src} src={img.src} />
+          <GalleryImage objectFit="cover" style={{ borderRadius: '10px' }} key={img.src} src={img.src} />
         ))}
       </Gallery>
     </CaruselStyled>

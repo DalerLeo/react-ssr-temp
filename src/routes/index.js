@@ -68,6 +68,15 @@ const routes = {
       ]
     },
     {
+      path: ROUTE.ORDER,
+      children: [
+        {
+          path: '',
+          load: () => import(/* webpackChunkName: 'order' */ './order')
+        }
+      ]
+    },
+    {
       path: ROUTE.CATEGORIES,
       children: [
         {
@@ -81,7 +90,7 @@ const routes = {
       children: [
         {
           path: '',
-          load: () => import(/* webpackChunkName: 'categories' */ './single-product')
+          load: () => import(/* webpackChunkName: 'categories' */ './product')
         }
       ]
     },

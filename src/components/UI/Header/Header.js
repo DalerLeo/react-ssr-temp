@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { isEmpty } from 'ramda'
+import React, { useContext, useState } from 'react'
+import { isEmpty, pathOr, find, propEq, path } from 'ramda'
 import styled from 'styled-components'
 import useWindowScroll from '@react-hook/window-scroll'
 import Link from 'components/Link'
@@ -15,7 +15,10 @@ import Enter from 'icons/ArrowLeft'
 import Exit from 'icons/ArrowRight'
 import { userSignOut } from 'routes/sign-in/actions'
 import { useDispatch } from 'react-redux'
+import DropdownMenu from 'components/DropdownMenu'
 import History from '../../../HistoryProvider'
+import useFetchList from '../../../hooks/useFetchList'
+import { menuAs } from '../MenuBar/actions'
 import TopHeader from './TopHeader'
 
 const HeaderBlock = styled.div`
@@ -23,14 +26,15 @@ const HeaderBlock = styled.div`
   width: 100%;
   z-index: 20;
   top: 0;
+  background-color: #2EBB8A;
 `
 const HeaderStyled = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 14px 150px;
   height: 78px;
-  background-color: #2EBB8A;
+  width: 1130px;
+  margin: auto;
 `
 const LogoBlock = styled.div`
 
@@ -54,7 +58,7 @@ const SearchField = styled.input`
 const SearchButton = styled.button`
   border: none;
   height: 50px;
-  width: 20%;
+  width: 80px;
   background-color: #29D398;
   color: white;
   border-top-right-radius: 5px;
@@ -73,7 +77,7 @@ const MenubarHeader = styled.div`
     display: flex;
     width: 217px;
     height: 52px;
-    padding: 15px 20px;
+    padding: 10px 10px;
     margin-left: 10px;
     opacity: ${props => props.scrollY > 100 ? '1' : '0'};
     transition: opacity 0.5s ease;
@@ -86,7 +90,8 @@ const MenubarText = styled.div`
     margin-left: 8px;
 `
 const LogoStyled = styled.div`
-    padding-bottom: 10px;
+    margin-top: -5px;
+    padding: 10px 10px 30px 12px;
     background-color: #29D398;
     border-radius: 5px;
 `
@@ -96,14 +101,32 @@ const ProfileImageStyled = styled.img`
 `
 const DropdownItem = styled.div`
   display: flex;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  // position: ${props => props.open ? 'relative' : 'unset'};
   align-items: center;
+  :hover{
+    background: #EAFAF1;
+    color: green;
+    border-radius: 7px;
+  }
 `
 const DropdownTexts = styled.div`
   margin-left: 10px;
 `
 
+const defArray = []
 const Header = (props) => {
   const { isAuth } = props
+
+  const menuData = useFetchList({
+    action: menuAs,
+    stateName: 'menuAs'
+  })
+  const [open, setMenuOpen] = useState(false)
+  const lists = pathOr(defArray, ['results'], menuData)
+  const subCategories = find(propEq('id', open))(lists)
 
   const history = useContext(History)
   const dispatch = useDispatch()
@@ -126,7 +149,7 @@ const Header = (props) => {
             <MenuBarIcon />
           </LogoStyled>
           <MenubarText>
-            Каталог товаров
+            <DropdownMenu />
           </MenubarText>
         </MenubarHeader>
         <SearchBlock scrollY={scrollY}>

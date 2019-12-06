@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import Header from 'components/UI/Header'
 import PropTypes from 'prop-types'
 import Container from 'components/StyledElems/Container'
 import styled from 'styled-components'
@@ -17,7 +16,7 @@ const Card = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #FFF;
-  width: 75%;
+  width: 714px;
   height: 80px;
   margin-bottom: 15px;
   border-radius: 7px;
@@ -69,7 +68,7 @@ const Img = styled.img`
 `
 
 const ContentPosition = styled.div`
-  
+  width: 614px;
 `
 const NoProductImg = styled.img`
   display: flex;
@@ -96,7 +95,6 @@ const Cart = props => {
 
   return (
     <div>
-      <Header />
       <Container>
         {isEmpty(products) ? (
           <ContentPosition>

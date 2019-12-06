@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from 'components/UI/Header'
 import { path } from 'ramda'
 import PropTypes from 'prop-types'
 import Container from 'components/StyledElems/Container'
@@ -15,7 +14,6 @@ const Favourite = props => {
   const favouriteProducts = path(['results'], favouriteList)
   return (
     <div>
-      <Header />
       <Container>
         <FavouriteBlock>
           {favouriteProducts.map((favouriteProduct, key) => (

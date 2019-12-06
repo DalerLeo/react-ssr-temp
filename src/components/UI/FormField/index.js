@@ -1,3 +1,4 @@
 import FormField from './FormField'
+import TextArea from './TextArea'
 
-export { FormField }
+export { FormField, TextArea }

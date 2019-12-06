@@ -67,16 +67,12 @@ const Layout = props => {
           pathname,
           query,
           userData,
-          isEmployer,
-          isApplicant,
           isAuth,
           actionSuccess
         })}
       </Content>
       <FooterContainer
         isAuth={isAuth}
-        isEmployer={isEmployer}
-        isApplicant={isApplicant}
       />
     </Wrapper>
   )

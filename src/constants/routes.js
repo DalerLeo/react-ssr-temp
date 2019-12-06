@@ -82,3 +82,5 @@ export const ADDRESS = '/address'
 export const SINGLE_PRODUCT = '/product/:id'
 
 export const FAVOURITE = '/favourite'
+
+export const ORDER = '/order'
