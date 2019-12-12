@@ -26,7 +26,6 @@ const Home = props => {
     action: getProductList,
     stateName: STATE.PRODUCT_LIST
   })
-  console.warn(productData)
   return (
     <div>
       <Container>
@@ -36,18 +35,18 @@ const Home = props => {
         </HeaderMenu>
         <ProductsTitle title="Популярные товары" />
         <ProductListBlock>
-          <ProductCardList productData={productData} products={products} />
+          <ProductCardList productData={productData} products={products} column={4} />
         </ProductListBlock>
         <ProductsTitle title="Новинки" pagination={true} />
         <ProductListBlock>
-          <ProductCardList productData={productData} products={products} />
+          <ProductCardList productData={productData} products={products} column={4} />
         </ProductListBlock>
         <PopularCategories />
         <AddBanner />
         <PopularCategories />
         <ProductsTitle title="Лучшие товары за месяц" />
         <ProductListBlock>
-          <ProductCardList productData={productData} products={products} />
+          <ProductCardList productData={productData} products={products} column={4} />
         </ProductListBlock>
         <ShowMore />
       </Container>

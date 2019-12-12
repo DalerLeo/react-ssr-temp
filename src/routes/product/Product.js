@@ -9,6 +9,8 @@ import { getDataFromState } from 'utils/get'
 import { setItemToCart } from 'components/Cards/storage'
 import { favouriteCreateAction, favouriteDeleteAction } from 'routes/favourite/actions'
 import Comment from 'components/Comment'
+import { Row, Col } from 'components/Grid'
+import Container from 'components/Container'
 
 const FavouriteButton = styled.button` 
     background-color: ${props => props.favourite ? 'red' : 'none'}
@@ -16,6 +18,7 @@ const FavouriteButton = styled.button`
 const FakeDiv = styled.div`
   display: flex;
 `
+
 const Product = (props) => {
   const { productData } = props
 
@@ -29,6 +32,7 @@ const Product = (props) => {
   const filterProduct = find(propEq('id', id))(datas)
   const amount = pathOr(0, ['amount'], filterProduct)
   const isFavourite = path(['data', 'isFavourite'], productData)
+
   const onChange = value => {
     dispatch(setItemToCart(value, data))
   }
@@ -41,13 +45,17 @@ const Product = (props) => {
   }
 
   return (
-    <div>
-      <FakeDiv>
-        {name} - {id} - <CartButton amount={amount} onChange={onChange} />
-        <FavouriteButton favourite={favourite} onClick={onFavourite}>Favourite</FavouriteButton>
-      </FakeDiv>
+    <Container>
+      <Row>
+        <Col span={24}>
+          <FakeDiv>
+            {name} - {id} - <CartButton amount={amount} onChange={onChange} />
+            <FavouriteButton favourite={favourite} onClick={onFavourite}>Favourite</FavouriteButton>
+          </FakeDiv>
+        </Col>
+      </Row>
       <Comment />
-    </div>
+    </Container>
   )
 }
 

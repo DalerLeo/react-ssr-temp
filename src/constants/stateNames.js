@@ -12,3 +12,4 @@ export const USER_INFO = 'userInfo'
 export const CART = 'cart'
 
 export const LOGIN = 'login'
+export const FILTER_LIST = 'filterList'

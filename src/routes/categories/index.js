@@ -6,7 +6,7 @@ import CategoriesContainer from './CategoriesContainer'
 async function action (props) {
   const { store, isServer, params } = props
 
-  console.warn(props)
+  
   if (isServer) {
   }
   return {

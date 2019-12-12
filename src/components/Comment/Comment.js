@@ -2,10 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import { Field, Form } from 'react-final-form'
 import { TextArea } from 'components/UI/FormField'
+import ProfileImage from 'images/Profile.png'
+import { Row, Col } from 'components/Grid'
 
 const Button = styled.button`
     float: right;
-    margin: 10px 100px;
+    margin-top: 20px;
+`
+const ProfileImageStyled = styled.img`
+  max-width: 64px;
+  max-height: 64px;
+  margin: 10px 10px;
 `
 const Comment = (props) => {
   return (
@@ -14,21 +21,17 @@ const Comment = (props) => {
         onSubmit={() => ''}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
-            <Field
-              name="comment"
-              component={TextArea}
-              cols={170}
-            />
-            <Field
-              name="comment"
-              component={TextArea}
-              cols={150}
-            />
-            <Field
-              name="comment"
-              component={TextArea}
-              cols={130}
-            />
+            <Row gutter={24}>
+              <Col span={2}>
+                <ProfileImageStyled src={ProfileImage} />
+              </Col>
+              <Col span={22}>
+                <Field
+                  name="comment"
+                  component={TextArea}
+                />
+              </Col>
+            </Row>
             <Button type="submit">Добавить</Button>
           </form>
         )}

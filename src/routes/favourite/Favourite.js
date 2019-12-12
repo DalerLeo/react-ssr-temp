@@ -17,7 +17,7 @@ const Favourite = props => {
       <Container>
         <FavouriteBlock>
           {favouriteProducts.map((favouriteProduct, key) => (
-            <FavouriteCard item={favouriteProduct.product} key={key} />
+            <FavouriteCard item={favouriteProduct.product} key={key} column={4} />
           ))}
         </FavouriteBlock>
       </Container>

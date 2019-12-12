@@ -20,15 +20,15 @@ const StyledCard = styled.div`
   position: relative;
   background-color: #FFF;
   height: 396px;
-  width: 25%;
+  width: ${props => props.column === 3 ? '33%' : '25%'};
   border-right: 1px solid #e1e1e1;
   border-bottom: 1px solid #e1e1e1;
   border-top-left-radius: 5px;
-  &:nth-child(4) {
+  &:nth-child(${props => props.column === 3 ? 3 : 4}) {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
   }
-  &:nth-child(4n) {
+  &:nth-child(${props => props.column === 3 ? 3 : 4}n) {
     border-right: none;
   }
 `
@@ -58,7 +58,7 @@ const FavouriteButton = styled.button`
 const defArr = []
 
 const ProductCard = props => {
-  const { item } = props
+  const { item, column } = props
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
   const products = pathOr(defArr, ['data'], cartList)
   const dispatch = useDispatch()
@@ -84,7 +84,7 @@ const ProductCard = props => {
   }
 
   return (
-    <StyledCard>
+    <StyledCard column={column}>
       <FavouriteButton favourite={favourite} onClick={onFavourite}>Favourite</FavouriteButton>
       <Link to={'/product/' + id}>
         <ImagePosition>

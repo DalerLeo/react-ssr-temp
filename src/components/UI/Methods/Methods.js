@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const MethodsBlock = styled.div`
-    width: 330px;
-    border: 1px solid grey;
+    width: 350px;
+    border: 2px solid ${props => props.selected ? 'green' : 'lightgrey'};
     border-radius: 7px;
     cursor: pointer;
     padding: 10px 20px;
@@ -37,9 +37,10 @@ const MethodFooterTitle = styled.div`
     font-weight: 500;
 `
 const Methods = (props) => {
+  const { selected } = props
   return (
     <div>
-      <MethodsBlock>
+      <MethodsBlock selected={selected}>
         <MethodFTitleFlex>
           <MethodTitle>Сверхсрочная доставка</MethodTitle>
           <MethodPrise>12000 сум</MethodPrise>

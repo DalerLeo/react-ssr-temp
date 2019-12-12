@@ -21,3 +21,23 @@ export const getProductCategoryList = (data) => {
     })
   }
 }
+
+export const filterListFetch = (data) => {
+  return (dispatch, getState) => {
+    const params = {
+      thumbnail_type: 'large',
+      ...data,
+      page_size: 12
+    }
+
+    const payload = axios({ dispatch, getState })
+      .get(API.FILTER_LIST, { params })
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload: payload,
+      type: actionTypes.FILTER_LIST
+    })
+  }
+}

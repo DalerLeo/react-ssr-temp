@@ -57,3 +57,6 @@ const FAVORITE = `${MAIN}/favourites`
 export const FAVOURITE_CREATE = `${FAVORITE}/`
 export const FAVOURITE_LIST = `${FAVORITE}/`
 export const FAVOURITE_DELETE = `${FAVORITE}/unset/`
+
+const FILTER = `${PRODUCT}/filters`
+export const FILTER_LIST = `/${FILTER}/`

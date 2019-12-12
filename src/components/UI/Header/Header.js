@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { isEmpty, pathOr, find, propEq, path } from 'ramda'
+import React, { useContext } from 'react'
+import { isEmpty } from 'ramda'
 import styled from 'styled-components'
 import useWindowScroll from '@react-hook/window-scroll'
 import Link from 'components/Link'
@@ -8,7 +8,6 @@ import ProfileImage from 'images/Profile.png'
 import ProfileIcon from 'icons/Profile'
 import Settings from 'icons/Settings'
 import Logo from 'icons/Logo'
-import MenuBarIcon from 'icons/MenuBar'
 import ShoppingBag from 'icons/ShoppingBag'
 import Location from 'icons/Locations'
 import Enter from 'icons/ArrowLeft'
@@ -17,8 +16,6 @@ import { userSignOut } from 'routes/sign-in/actions'
 import { useDispatch } from 'react-redux'
 import DropdownMenu from 'components/DropdownMenu'
 import History from '../../../HistoryProvider'
-import useFetchList from '../../../hooks/useFetchList'
-import { menuAs } from '../MenuBar/actions'
 import TopHeader from './TopHeader'
 
 const HeaderBlock = styled.div`
@@ -89,12 +86,6 @@ const MenubarText = styled.div`
     color: white;
     margin-left: 8px;
 `
-const LogoStyled = styled.div`
-    margin-top: -5px;
-    padding: 10px 10px 30px 12px;
-    background-color: #29D398;
-    border-radius: 5px;
-`
 const ProfileImageStyled = styled.img`
   max-width: 34px;
   max-height: 34px;
@@ -116,17 +107,8 @@ const DropdownTexts = styled.div`
   margin-left: 10px;
 `
 
-const defArray = []
 const Header = (props) => {
   const { isAuth } = props
-
-  const menuData = useFetchList({
-    action: menuAs,
-    stateName: 'menuAs'
-  })
-  const [open, setMenuOpen] = useState(false)
-  const lists = pathOr(defArray, ['results'], menuData)
-  const subCategories = find(propEq('id', open))(lists)
 
   const history = useContext(History)
   const dispatch = useDispatch()
@@ -145,9 +127,6 @@ const Header = (props) => {
           </Link>
         </LogoBlock>
         <MenubarHeader scrollY={scrollY}>
-          <LogoStyled>
-            <MenuBarIcon />
-          </LogoStyled>
           <MenubarText>
             <DropdownMenu />
           </MenubarText>
