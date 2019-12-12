@@ -2,6 +2,7 @@ import React from 'react'
 import fp from 'lodash/fp'
 import setGlobalNotify from 'helpers/setGlobalNotify'
 import { path } from 'ramda'
+import { menuAs } from 'components/UI/MenuBar/actions'
 /* eslint-disable react/prop-types */
 export default Component => {
   return class DataLayout extends React.Component {
@@ -15,10 +16,14 @@ export default Component => {
       this.actionSuccess = this.actionSuccess.bind(this)
       this.getNotifications = this.getNotifications.bind(this)
     }
+    componentDidUpdate(prevProps, prevState) {
+      console.warn('UPDATE')
+    }
 
     componentDidMount () {
       const { store: { getState, dispatch } } = this.props
-      const state = getState()
+      // Dispatch(menuAs())
+      console.warn('DDDDDDDDDD')
     }
 
     actionSuccess () {

@@ -8,8 +8,11 @@ export const FAVOURITE_CREATE = 'favouriteCreate'
 export const FAVOURITE_LIST = 'favouriteList'
 
 export const USER_INFO = 'userInfo'
+export const MENU_AS = 'menuAs'
 
 export const CART = 'cart'
 
 export const LOGIN = 'login'
 export const FILTER_LIST = 'filterList'
+
+export const PRODUCT_CATEGORY_LIST = 'productCategoryList'

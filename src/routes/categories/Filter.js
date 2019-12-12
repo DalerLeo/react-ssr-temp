@@ -12,12 +12,13 @@ const FilterWrapper = styled.div`
 `
 
 const Filter = props => {
-  const { filterList } = props
-  const items = path(['brands'], filterList)
+  const { data } = props
+  console.warn('filter', data)
+  const items = path(['brands'], data)
   return (
     <FilterWrapper>
       {items.map((item, key) => (
-        <Checkbox name="brand" key={key}>{item.name}</Checkbox>
+        <Checkbox name="brand" key={key} onChange={e => console.warn(e.target.id)} value="dasdsa" id={item.id}>{item.name}</Checkbox>
       ))}
     </FilterWrapper>
   )

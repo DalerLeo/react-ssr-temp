@@ -9,10 +9,10 @@ const Wrapper = styled.label`
 const Input = styled.input`
 `
 const Checkbox = props => {
-  const { name, id, children } = props
+  const { name, id, children, onChange } = props
   return (
     <Wrapper forHtml={name + id}>
-      <Input type="checkbox" id={id} />
+      <Input type="checkbox" id={id} onChange={onChange} />
       <span>{children}</span>
     </Wrapper>
   )

@@ -28,7 +28,7 @@ import * as sprintf from 'sprintf'
 import { ServerStyleSheet } from 'styled-components'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-
+import {menuAs} from 'components/UI/MenuBar/actions'
 import toCamelCase from './utils/toCamelCase'
 const SUCCESS = 200
 
@@ -87,15 +87,14 @@ app.get('*', async (req, res, next) => {
       styles.forEach(style => css.add(style._getCss()))
     }
     const dispatch = store.dispatch
+    await dispatch(menuAs())
     let isAuth = false
 
     // Get TOKEN / LANGUAGE from header
     const token = req.cookies.token
     const lang = req.cookies.lang || 'ru'
 
-    // If exist and valid token initialize st
-    // ore with TOKEN
-    console.warn(token)
+    // If exist and valid token initialize store with TOKEN
     token && await fetch(API.API_URL + API.CHECK_TOKEN + token)
       .then((response) => {
         if (response.status === 404) {

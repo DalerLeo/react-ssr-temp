@@ -25,9 +25,7 @@ export const getProductCategoryList = (data) => {
 export const filterListFetch = (data) => {
   return (dispatch, getState) => {
     const params = {
-      thumbnail_type: 'large',
-      ...data,
-      page_size: 12
+      ...data
     }
 
     const payload = axios({ dispatch, getState })
