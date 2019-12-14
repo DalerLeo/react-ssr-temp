@@ -19,6 +19,8 @@ const AddressInfoTitle = styled.div`
   margin-bottom: 20px;
 `
 const Order = props => {
+  const {data} = props
+  console.warn(data)
   return (
     <Container>
       <AddressInfoTitle>Оформление заказа</AddressInfoTitle>
@@ -26,9 +28,7 @@ const Order = props => {
       <MainBlock>
         <div>
           <AddressInfo>
-            <Methods selected={true} />
-            <Methods selected={false} />
-            <Methods selected={false} />
+            <Methods data={data} />
           </AddressInfo>
           <hr style={{ width: '95%' }} />
         </div>
@@ -38,9 +38,7 @@ const Order = props => {
       <AddressInfoTitle>Способ доставки</AddressInfoTitle>
       <MainBlock>
         <AddressInfo>
-          <Methods />
-          <Methods />
-          <Methods />
+          <Methods data={data} />
         </AddressInfo>
       </MainBlock>
     </Container>

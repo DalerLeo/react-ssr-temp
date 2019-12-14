@@ -1,5 +1,6 @@
-const ZERO = 0
 import { createBrowserHistory } from 'history'
+
+const ZERO = 0
 
 // Navigation manager, e.g. history.push('/home')
 // https://github.com/mjackson/history

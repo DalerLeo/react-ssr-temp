@@ -8,12 +8,15 @@ const Wrapper = styled.label`
 
 const Input = styled.input`
 `
+const CheckboxText = styled.span`
+  margin-left: 10px;
+`
 const Checkbox = props => {
   const { name, id, children, onChange } = props
   return (
     <Wrapper forHtml={name + id}>
       <Input type="checkbox" id={id} onChange={onChange} />
-      <span>{children}</span>
+      <CheckboxText>{children}</CheckboxText>
     </Wrapper>
   )
 }

@@ -1,30 +1,39 @@
 import * as STATE from 'constants/stateNames'
-import React from 'react'
-import useFetchList from '../../hooks/useFetchList'
+import React, { useContext } from 'react'
+import History from '../../HistoryProvider'
+import useFetchList, { getListParams } from '../../hooks/useFetchList'
+import { replaceParamsRoute } from '../../utils/route'
 import Categories from './Categories'
-
 import { getProductCategoryList, filterListFetch } from './actions'
 
-const CategoryContainer = ({ id, ...props }) => {
+const CategoriesContainer = ({ id, ...props }) => {
+  const history = useContext(History)
+
   const mapper = (history, params) => {
+    console.warn(params)
+    return { type: id, ...params }
+  }
+
+  const filterMapper = (history, params) => {
     return { type: id }
   }
 
   const productCategoryData = useFetchList({
     action: getProductCategoryList,
     stateName: STATE.PRODUCT_CATEGORY_LIST,
-    mapper
+    mapper,
+    pickParams: ['brand', 'country', 'options']
   })
-
-  console.warn(productCategoryData)
-
   const filterData = useFetchList({
     action: filterListFetch,
     stateName: STATE.FILTER_LIST,
-    mapper
+    mapper: filterMapper
   })
 
-  return <Categories productCategoryData={productCategoryData} filterData={filterData} />
+  const onChange = (name, typeId) => {
+    replaceParamsRoute({ [name]: typeId }, history)
+  }
+  return <Categories productCategoryData={productCategoryData} filterData={filterData} onChange={onChange} />
 }
 
-export default CategoryContainer
+export default CategoriesContainer

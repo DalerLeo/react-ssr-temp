@@ -5,13 +5,13 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 export const getProductCategoryList = (data) => {
   return (dispatch, getState) => {
     const params = {
-      thumbnail_type: 'large',
+      // Thumbnail_type: 'large',
       ...data,
       page_size: 12
     }
 
     const payload = axios({ dispatch, getState })
-      .get(API.PRODUCT_CATEGORY_LIST, { params })
+      .get(API.PRODUCT_LIST, { params })
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 

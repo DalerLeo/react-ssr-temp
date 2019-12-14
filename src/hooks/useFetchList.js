@@ -30,7 +30,7 @@ const useFetchList = (params) => {
 
   const data = useSelector(state => getDataFromState(stateName, state), equals)
   const effect = () => {
-    dispatch(action(mapper(history, pickParams)))
+    dispatch(action(mapper(history, searchParams)))
   }
 
   useCompareEffect(effect, [searchParams])

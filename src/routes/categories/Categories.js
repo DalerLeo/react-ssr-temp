@@ -11,6 +11,7 @@ import Filter from './Filter'
 
 const Container = styled(ContainerUI)`
    display: flex;
+   justify-content: center;
 `
 
 const ProductListBlock = styled.div`
@@ -20,7 +21,7 @@ const ProductListBlock = styled.div`
 `
 
 const Categories = (props) => {
-  const { productCategoryData, filterData } = props
+  const { productCategoryData, filterData, onChange } = props
 
   const items = path(['results'], productCategoryData)
   const count = path(['data', 'count'], productCategoryData)
@@ -29,7 +30,7 @@ const Categories = (props) => {
     <div>
       <Header />
       <Container>
-        <Filter {...filterData} />
+        <Filter {...filterData} onChange={onChange} />
         {loading ? <Skelet count={9} />
           : (
             <ProductListBlock>

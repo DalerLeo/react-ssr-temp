@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const MethodsBlock = styled.div`
     width: 350px;
-    border: 2px solid ${props => props.selected ? 'green' : 'lightgrey'};
+    border: 2px solid green;
     border-radius: 7px;
     cursor: pointer;
     padding: 10px 20px;
@@ -37,21 +37,27 @@ const MethodFooterTitle = styled.div`
     font-weight: 500;
 `
 const Methods = (props) => {
-  const { selected } = props
+  const { data } = props
+  console.warn(data)
   return (
     <div>
-      <MethodsBlock selected={selected}>
-        <MethodFTitleFlex>
-          <MethodTitle>Сверхсрочная доставка</MethodTitle>
-          <MethodPrise>12000 сум</MethodPrise>
-        </MethodFTitleFlex>
-        <MethodSubTitle>
-            Ну очень быстрая доставка. Доставит сам Флэш.
-        </MethodSubTitle>
-        <MethodFooterTitle>
-            Только если вы не живете на Сергелийском районе.
-        </MethodFooterTitle>
-      </MethodsBlock>
+      {data.map((item, key) => {
+        return (
+          <MethodsBlock key={key}>
+            <MethodFTitleFlex>
+              <MethodTitle>{item.name}</MethodTitle>
+              <MethodPrise>{item.price} сум</MethodPrise>
+            </MethodFTitleFlex>
+            <MethodSubTitle>
+              {item.title}
+            </MethodSubTitle>
+            <MethodFooterTitle>
+              {item.address}
+            </MethodFooterTitle>
+          </MethodsBlock>
+        )
+      })}
+
     </div>
   )
 }
