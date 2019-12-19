@@ -1,4 +1,3 @@
-import fp from 'lodash/fp'
 import path from 'path'
 import express from 'express'
 import cookieParser from 'cookie-parser'
@@ -31,7 +30,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import {menuAs} from 'components/UI/MenuBar/actions'
 import toCamelCase from './utils/toCamelCase'
 const SUCCESS = 200
-
+import {path as rPath} from 'ramda'
 setObservableConfig({
   // Converts a plain ES observable to an RxJS 5 observable
   fromESObservable: Rx.Observable.from
@@ -114,7 +113,7 @@ app.get('*', async (req, res, next) => {
       })
       .then(() => dispatch(() => Promise.resolve('promise')))
       .catch(error => {
-        const status = fp.get('response.status', error)
+        const status = rPath(['response', 'status'], error)
         if (status === 404 || status === 401) {
           console.warn("EERRRORR")
           isAuth = false

@@ -1,9 +1,8 @@
 import _ from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { compose } from 'recompose'
 import styled, { css } from 'styled-components'
-import withHistory from 'helpers/withHistory'
+import useHistory from 'hooks/useHistory'
 
 const LinkUI = styled.a`
     color: black;
@@ -22,9 +21,6 @@ const LinkUI = styled.a`
     z-index: 0;
     `}
 `
-const enhance = compose(
-  withHistory
-)
 
 const isLeftClickEvent = (event) => {
   return event.button === Number('0')
@@ -41,13 +37,13 @@ const isModifiedEvent = (event) => {
 const Link = props => {
   const {
     to,
-    history,
     children,
     smooth,
     style,
     ...otherProps
   } = props
 
+  const history = useHistory()
   const handleClick = event => {
     if (props.onClick) {
       event.preventDefault()
@@ -84,19 +80,17 @@ const Link = props => {
 
 Link.propTypes = {
   to: PropTypes.any.isRequired,
-  target: PropTypes.string,
   children: PropTypes.node,
   onClick: PropTypes.func,
   absolute: PropTypes.bool,
   smooth: PropTypes.bool,
   classes: PropTypes.object,
   className: PropTypes.string,
-  style: PropTypes.object,
-  history: PropTypes.object.isRequired
+  style: PropTypes.object
 }
 
 Link.defaultProps = {
   onClick: null
 }
 
-export default enhance(Link)
+export default Link

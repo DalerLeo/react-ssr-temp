@@ -8,6 +8,7 @@ export default new UniversalRouter(routes, {
         .then(action => {
             return action.default && action.default(context, params)
         })
+        .catch((...eee) => console.warn('router: ', eee))
     }
     if (typeof context.route.action === 'function') {
       return context.route.action(context, params)

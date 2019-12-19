@@ -3,7 +3,6 @@ import {
   pure,
 } from 'recompose'
 import { connect } from 'react-redux'
-import withHistory from 'helpers/withHistory'
 
 import DeliverynWrapper from './Delivery'
 
@@ -18,7 +17,6 @@ const mapDispatchToProps = {
 }
 
 export default compose(
-  withHistory,
   connect(mapStateToProps, mapDispatchToProps),
   pure
 )(DeliverynWrapper)

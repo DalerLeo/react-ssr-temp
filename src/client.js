@@ -45,7 +45,7 @@ const insertCss = (...styles) => {
     removeCss.forEach(f => f());
   };
 };
-const token = getCookie('token', document.cookie)
+
 
 /*token && store.dispatch({
   payload: Promise.resolve({token}),
@@ -175,7 +175,8 @@ async function onLocationChange(location, action, onHotUpdate) {
     });
   } catch (error) {
     if (__DEV__) {
-      throw error;
+      console.warn(error)
+      //throw error;
     }
 
     console.error(error);

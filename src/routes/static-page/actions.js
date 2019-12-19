@@ -1,6 +1,5 @@
 import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
-import fp from 'lodash/fp'
 import sprintf from 'sprintf'
 import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 
@@ -21,7 +20,7 @@ export const getStaticPageItem = (keyname) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
       .get(sprintf(API.STATIC_PAGES_ITEM, keyname))
-      .then(fp.get('data'))
+      .then(getPayloadFromSuccess)
 
     return dispatch({
       payload,

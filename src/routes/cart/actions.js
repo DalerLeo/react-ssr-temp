@@ -2,7 +2,7 @@ import * as actionType from 'constants/actionTypes'
 import {
   pipe, propEq, not, filter
 } from 'ramda'
-import { getCart, removeFromCart } from 'helpers/storage'
+import { getCart, removeFromCart } from 'utils/storage'
 
 export const removeItemFrom = (id) => {
   const items = getCart()

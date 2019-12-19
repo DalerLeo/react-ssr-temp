@@ -1,13 +1,14 @@
 import React from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { CartUI } from 'components/Cart'
-import CartInfo from 'components/Cart/CartInfo'
+import { CartUI, CartInfo } from 'components/Cart'
 import { Col, Row } from 'components/Grid'
 import Container from 'components/Container'
 
 const Cart = props => {
-  const { onDelete, products = [] } = props
+  const {
+    onDelete,
+    products
+  } = props
   return (
     <Container>
       <Row>
@@ -25,5 +26,9 @@ const Cart = props => {
 Cart.propTypes = {
   products: PropTypes.array,
   onDelete: PropTypes.func
+}
+
+Cart.defaultProps = {
+  products: []
 }
 export default Cart

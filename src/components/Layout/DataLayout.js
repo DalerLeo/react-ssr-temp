@@ -1,8 +1,8 @@
 import React from 'react'
 import fp from 'lodash/fp'
-import setGlobalNotify from 'helpers/setGlobalNotify'
+import setGlobalNotify from 'utils/setGlobalNotify'
 import { path } from 'ramda'
-import { menuAs } from 'components/UI/MenuBar/actions'
+
 /* eslint-disable react/prop-types */
 export default Component => {
   return class DataLayout extends React.Component {

@@ -22,6 +22,7 @@ import {
   isNil
 } from 'ramda'
 import moment from 'moment'
+import fp from 'lodash/fp'
 import { getSearchParam, parseParams } from './urls'
 import { mapParamsToRequest, mapStrToBoolean, decodeURLParams } from './mapper'
 import toSnakeCase from './toSnakeCase'
@@ -202,3 +203,8 @@ export const getItemFromTree = (arr, target) => {
   }
   return null
 }
+
+export const arrayObjToObj = fp.flow(
+  fp.map(fp.values),
+  fp.fromPairs
+)
