@@ -4,8 +4,29 @@ import styled, { css } from 'styled-components'
 import InputLabel from '../InputLabel'
 import { SwitchContainer } from '../Switches'
 
-const Group = styled('div')``
-
+const Group = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: ${props => props.count > 13 ? '400px' : 'auto'};
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  padding: 0 10px;
+`
+const HeaderBlock = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #EFEFEF;
+  padding: 10px;
+`
+const Count = styled.div`
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 129.96%;
+  color: #979BA5;
+`
 const Checkboxes = styled('div')`
   ${props =>
     props.mode === 'inline' &&
@@ -23,7 +44,7 @@ const Checkboxes = styled('div')`
 `
 
 const CheckboxGroup = props => {
-  const { value, children, label, onChange, mode, ...rest } = props
+  const { value, children, label, onChange, mode, count, ...rest } = props
   const [checkedValues, setCheckedValues] = React.useState(value)
 
   const onChangeItem = (value, isChecked) => {
@@ -37,21 +58,26 @@ const CheckboxGroup = props => {
   }
 
   return (
-    <Group {...rest}>
-      <InputLabel>{label}</InputLabel>
-      <Checkboxes mode={mode}>
-        {React.Children.map(children, (child, key) => {
-          const checkboxProps = child.props
-          const childValue = checkboxProps.value
-          return React.cloneElement(child, {
-            key,
-            ...checkboxProps,
-            checked: checkedValues.includes(childValue),
-            onChange: isChecked => onChangeItem(childValue, isChecked)
-          })
-        })}
-      </Checkboxes>
-    </Group>
+    <div>
+      <HeaderBlock>
+        <InputLabel>{label}</InputLabel>
+        <Count>{count}</Count>
+      </HeaderBlock>
+      <Group {...rest} count={count}>
+        <Checkboxes mode={mode}>
+          {React.Children.map(children, (child, key) => {
+            const checkboxProps = child.props
+            const childValue = checkboxProps.value
+            return React.cloneElement(child, {
+              key,
+              ...checkboxProps,
+              checked: checkedValues.includes(childValue),
+              onChange: isChecked => onChangeItem(childValue, isChecked)
+            })
+          })}
+        </Checkboxes>
+      </Group>
+    </div>
   )
 }
 

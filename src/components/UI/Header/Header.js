@@ -37,15 +37,13 @@ const LogoBlock = styled.div`
 
 `
 const SearchBlock = styled.div`
-  width: ${props => props.scrollY > 100 ? '340px' : '400px'};
+  width: 400px;
   display: flex;
-  margin-left: ${props => props.scrollY > 100 ? '0px' : '-200px'};
-  z-index: 1;
 `
 
 const SearchField = styled.input`
   height: 50px;
-  width: 80%;
+  width: 60%;
   border: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -76,8 +74,6 @@ const MenubarHeader = styled.div`
     height: 52px;
     padding: 10px 10px;
     margin-left: 10px;
-    opacity: ${props => props.scrollY > 100 ? '1' : '0'};
-    transition: opacity 0.5s ease;
     cursor: pointer;
 `
 const MenubarText = styled.div`
@@ -126,12 +122,12 @@ const Header = (props) => {
             <Logo />
           </Link>
         </LogoBlock>
-        <MenubarHeader scrollY={scrollY}>
+        <MenubarHeader>
           <MenubarText>
             <DropdownMenu />
           </MenubarText>
         </MenubarHeader>
-        <SearchBlock scrollY={scrollY}>
+        <SearchBlock>
           <SearchField placeholder="Я хочу найти..." />
           <SearchButton>
             Найти

@@ -17,11 +17,12 @@ const CategoriesContainer = ({ id, ...props }) => {
     return { type: id }
   }
 
+  
   const productCategoryData = useFetchList({
     action: getProductCategoryList,
     stateName: STATE.PRODUCT_CATEGORY_LIST,
     mapper,
-    pickParams: ['brand', 'country', 'options']
+    pickParams: ['brand', 'country', 'options', 'page']
   })
   const filterData = useFetchList({
     action: filterListFetch,

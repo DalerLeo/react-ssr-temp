@@ -60,7 +60,6 @@ const Pagination = props => {
   const lastPage = last(pageList)
   const currPage = getCurrentPage('page', history)
   const goTo = to => addParamsRoute({ page: to }, history)
-
   const pager = pageCount > 15
     ? (
       <Pages
