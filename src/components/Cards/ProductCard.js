@@ -70,7 +70,7 @@ const ProductCard = props => {
   const isPrimary = find(propEq('isPrimary', true))(images)
   const cartProduct = find(propEq('id', id))(products)
   const idChecker = path(['id'], cartProduct)
-  const image = path(['file'], isPrimary)
+  const image = path(['image'], isPrimary)
   const amount = prop('amount', cartProduct)
 
   const [favourite, setFavourite] = useState(isFavourite)

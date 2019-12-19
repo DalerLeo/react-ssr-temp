@@ -16,7 +16,7 @@ const TopHeaderStyled = styled.div`
     font-size: 12px;
     line-height: 164.57%;
     cursor: pointer;
-    width: 1130px;
+    width: 1200px;
     margin: auto;
 `
 const LeftSide = styled.div`

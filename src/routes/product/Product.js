@@ -20,11 +20,11 @@ const FakeDiv = styled.div`
 `
 
 const Product = (props) => {
-  const { productData } = props
+  const { productData, onSubmit, commentList } = props
 
   const dispatch = useDispatch()
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
-  const datas = path(['data'], cartList)
+  const datas = pathOr([], ['data'], cartList)
 
   const data = path(['data'], productData)
   const name = path(['name'], data)
@@ -54,7 +54,7 @@ const Product = (props) => {
           </FakeDiv>
         </Col>
       </Row>
-      <Comment />
+      <Comment onSubmit={onSubmit} commentList={commentList} />
     </Container>
   )
 }

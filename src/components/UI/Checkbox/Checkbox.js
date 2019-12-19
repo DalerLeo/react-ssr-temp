@@ -1,24 +1,79 @@
 import React from 'react'
-import styled from 'styled-components'
-import { spinAnimStyle } from '../../../constants/styles'
+import PropTypes from 'prop-types'
+import styled, { css } from 'styled-components'
+import {
+  SwitchContainer as SwitchContainerUI,
+  SwitchInput,
+  CheckMark
+} from '../Switches'
 
-const Wrapper = styled.label`
-  margin: 5px 0;
+const StyledCheckMark = styled(CheckMark)`
+  ${props =>
+    props.indeterminate &&
+    css`
+      border-color: #2EBB8A;
+    `}
+  :after {
+    border-style: solid;
+    border-color: #2EBB8A;
+    border-width: 0 2px 2px 0;
+    height: 7px;
+    transform: rotate(45deg) scale(0);
+    left: 7px;
+    top: 4px;
+    width: 3px;
+    ${props =>
+    props.indeterminate &&
+      css`
+        background: #2EBB8A;
+        border: none;
+        opacity: 1;
+        transform: scale(1);
+        left: 4px;
+        top: 7px;
+        height: 2px;
+        width: 8px;
+      `}
+  }
 `
 
-const Input = styled.input`
+const StyledInput = styled(SwitchInput)`
+  :checked + ${StyledCheckMark}:after {
+    transform: rotate(45deg) scale(1);
+  }
 `
-const CheckboxText = styled.span`
-  margin-left: 10px;
+const SwitchContainer = styled(SwitchContainerUI)`
+  ${props =>
+    !props.label &&
+    css`
+      margin-bottom: 0;
+      width: 18px;
+      height: 18px;
+      padding-left: 18px;
+    `}
 `
-const Checkbox = props => {
-  const { name, id, children, onChange } = props
+const Checkbox = ({ onChange, ...props }) => {
+  const onChecked = ev => onChange && onChange(ev.target.checked, ev)
   return (
-    <Wrapper forHtml={name + id}>
-      <Input type="checkbox" id={id} onChange={onChange} />
-      <CheckboxText>{children}</CheckboxText>
-    </Wrapper>
+    <SwitchContainer disabled={props.disabled} label={props.label} {...props}>
+      {props.label}
+      <StyledInput {...props} onChange={onChecked} type="checkbox" />
+      <StyledCheckMark indeterminate={props.indeterminate} />
+    </SwitchContainer>
   )
+}
+
+Checkbox.propTypes = {
+  label: PropTypes.string,
+  value: PropTypes.any,
+  disabled: PropTypes.bool,
+  indeterminate: PropTypes.bool,
+  onChange: PropTypes.func,
+  checked: PropTypes.bool
+}
+
+StyledCheckMark.propTypes = {
+  error: PropTypes.bool
 }
 
 export default Checkbox

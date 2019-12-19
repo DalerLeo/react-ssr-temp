@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { pathOr } from 'ramda'
 
-import Checkbox from '../../components/UI/Checkbox/Checkbox'
+import Checkbox, { CheckboxGroup } from 'components/UI/Checkbox'
 
 const FilterBlock = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const FilterBlock = styled.div`
 const FilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 100%;
   height: auto;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -27,26 +27,41 @@ const Filter = props => {
   const items = pathOr([], ['brands'], data)
   const countries = pathOr([], ['country'], data)
   const options = pathOr([], ['option'], data)
+  console.warn('options', options)
   return (
     <FilterBlock>
-      <FilterWrapper>
+      <CheckboxGroup
+        label="Бранд"
+        mode="column"
+        onChange={values => onChange('brand', values)}
+      >
         {items.map((item, key) => (
-          <Checkbox name="brand" key={key} onChange={event => onChange('brand', event.target.id)} id={item.id}>{item.name}</Checkbox>
+          <Checkbox key={key} value={item.id} label={item.name} />
         ))}
-      </FilterWrapper>
-      <FilterWrapper>
+      </CheckboxGroup>
+      <CheckboxGroup
+        label="Страна"
+        mode="column"
+        onChange={values => onChange('country', values)}
+      >
         {countries.map((item, key) => (
-          <Checkbox name="country" key={key} onChange={event => onChange('country', event.target.id)} id={item.id}>{item.name}</Checkbox>
+          <Checkbox key={key} value={item.id} label={item.name} />
         ))}
-      </FilterWrapper>
+      </CheckboxGroup>
+
       {options.map((option, key) => {
         const optionValues = pathOr([], ['optionValues', 'values'], option)
         return (
-          <FilterWrapper key={key}>
+          <CheckboxGroup
+            key={key}
+            label={option.name}
+            mode="column"
+            onChange={values => onChange('country', values)}
+          >
             {optionValues.map((item, subKey) => (
-              <Checkbox name="options" key={subKey} onChange={event => onChange('options', event.target.id)} id={item.id}>{item.name}</Checkbox>
+              <Checkbox key={subKey} value={item.id} label={item.name} />
             ))}
-          </FilterWrapper>
+          </CheckboxGroup>
         )
       })}
     </FilterBlock>

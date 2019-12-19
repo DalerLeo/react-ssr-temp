@@ -2,7 +2,7 @@ import * as STATE from 'constants/stateNames'
 import React from 'react'
 import styled from 'styled-components'
 import ProductCardList from 'components/Cards/ProductCardList'
-import Container from 'components/StyledElems/Container'
+import Container from 'components/Container'
 import PopularCategories from 'components/UI/PopularCategories'
 import AddBanner from 'components/UI/AddBanner'
 import ShowMore from 'components/UI/ShowMore'
@@ -22,6 +22,7 @@ const HeaderMenu = styled.div`
 
 const Home = props => {
   const { products } = props
+
   const productData = useFetchList({
     action: getProductList,
     stateName: STATE.PRODUCT_LIST

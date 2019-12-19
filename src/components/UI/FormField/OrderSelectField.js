@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import { curry, path } from 'ramda'
 
 const MethodsBlock = styled.div`
     width: 350px;
-    border: 2px solid green;
+    border: 2px solid ${props => props.isActive ? 'green' : 'lightgrey'};
     border-radius: 7px;
     cursor: pointer;
     padding: 10px 20px;
@@ -36,17 +37,25 @@ const MethodFooterTitle = styled.div`
     line-height: 1.38;
     font-weight: 500;
 `
-const Methods = (props) => {
-  const { data } = props
-  console.warn(data)
+const OrderSelectField = (props) => {
+  const { input, data } = props
+  const onChange = curry((value, ev) => input.onChange(value))
+
   return (
-    <div>
+    <>
       {data.map((item, key) => {
+        const isActive = input.value && input.value.id === item.id
+        const toggleItem = isActive ? { } : item
+        const price = path(['price'], item)
         return (
-          <MethodsBlock key={key}>
+          <MethodsBlock
+            isActive={isActive}
+            key={item.id}
+            onClick={onChange(toggleItem)}
+          >
             <MethodFTitleFlex>
               <MethodTitle>{item.name}</MethodTitle>
-              <MethodPrise>{item.price} сум</MethodPrise>
+              <MethodPrise>{price} сум</MethodPrise>
             </MethodFTitleFlex>
             <MethodSubTitle>
               {item.title}
@@ -57,9 +66,8 @@ const Methods = (props) => {
           </MethodsBlock>
         )
       })}
-
-    </div>
+    </>
   )
 }
 
-export default Methods
+export default OrderSelectField

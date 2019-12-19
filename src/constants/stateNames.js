@@ -16,3 +16,6 @@ export const LOGIN = 'login'
 export const FILTER_LIST = 'filterList'
 
 export const PRODUCT_CATEGORY_LIST = 'productCategoryList'
+
+export const COMMENT_CREATE = 'commentCreate'
+export const COMMENT_LIST = 'commentList'

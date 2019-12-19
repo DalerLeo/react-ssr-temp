@@ -10,7 +10,7 @@ const TextAreaField = styled.textarea`
 `
 const TextArea = (props) => {
   return (
-    <TextAreaField rows="10" placeholder=" Напишите ваш отзыв" />
+    <TextAreaField {...props.input} rows="10" placeholder=" Напишите ваш отзыв" />
   )
 }
 

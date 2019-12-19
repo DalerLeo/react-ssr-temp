@@ -60,3 +60,7 @@ export const FAVOURITE_DELETE = `${FAVORITE}/unset/`
 
 const FILTER = `${PRODUCT}/filters`
 export const FILTER_LIST = `/${FILTER}/`
+
+const COMMENT = `${MAIN}/comments/`
+export const COMMENT_CREATE = `${COMMENT}`
+export const COMMENT_LIST = `${COMMENT}`

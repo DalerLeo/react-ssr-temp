@@ -39,6 +39,8 @@ const rootReducer = combineReducers({
   feedback: createThunkReducer(actionTypes.FEEDBACK_CREATE),
   [STATE.ADDRESS_CREATE]: createThunkReducer(actionTypes.ADDRESS_CREATE),
   [STATE.ADDRESS_LIST]: createThunkReducer(actionTypes.ADDRESS_LIST),
+  [STATE.COMMENT_CREATE]: createThunkReducer(actionTypes.COMMENT_CREATE),
+  [STATE.COMMENT_LIST]: createThunkReducer(actionTypes.COMMENT_LIST),
 })
 
 export default rootReducer

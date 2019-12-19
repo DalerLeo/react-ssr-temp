@@ -35,8 +35,8 @@ const MenuListItem = styled.div`
 `
 const defaultArr = []
 const MenuModal = (props) => {
-  const { subCategories = defaultArr, open } = props
-
+  const { subCategories = defaultArr, open, parentId } = props
+  const productId = [11, 27, 88, 120, 126, 131, 156, 92, 107, 38]
   const subChilds = pathOr(defaultArr, ['children'], subCategories)
   return (
     <ModalStyled open={open}>

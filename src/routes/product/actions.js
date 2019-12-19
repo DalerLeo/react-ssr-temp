@@ -2,6 +2,7 @@ import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
 import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 import { sprintf } from 'sprintf-js'
+import { path } from 'ramda'
 
 export const getProduct = (id) => {
   return (dispatch, getState) => {
@@ -28,31 +29,34 @@ export const commentListFetch = (id, data) => {
     }
 
     const payload = axios({ dispatch, getState })
-      .get(sprintf(API.PRODUCT_ITEM, id), { params })
+      .get(sprintf(API.COMMENT_LIST, id), { params })
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload: payload,
-      type: actionTypes.PRODUCT_ITEM
+      type: actionTypes.COMMENT_LIST
     })
   }
 }
-
-export const commentCreateAction = (id, comment, commentId) => {
+export const commentCreateAction = (id, comment) => {
   return (dispatch, getState) => {
+    const store = getState()
+    const userInfo = path(['userInfo', 'data', 'id'], store)
+    const productItem = path(['productItem', 'data', 'id'], store)
     const params = {
-
+      comment,
+      client: userInfo,
+      product: productItem
     }
-
     const payload = axios({ dispatch, getState })
-      .get(sprintf(API.PRODUCT_ITEM, id), { params })
+      .post(sprintf(API.COMMENT_CREATE, id), params)
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload: payload,
-      type: actionTypes.PRODUCT_ITEM
+      type: actionTypes.COMMENT_CREATE
     })
   }
 }

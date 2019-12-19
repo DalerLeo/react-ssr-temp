@@ -4,11 +4,13 @@ import PropTypes from 'prop-types'
 import DeliveryIcon from 'images/delivery.svg'
 import WalletIcon from 'images/wallet.svg'
 import Link from 'components/Link/Link'
+import { path } from 'ramda'
 
 const CartInfoBlock = styled.div`
-  padding: 20px 40px;
-  border: 1px solid grey;
+  padding: 20px 20px;
+  border: 1px solid lightgrey;
   border-radius: 7px;
+  position: fixed;
 `
 const CartInfoItem = styled.div`
   margin-bottom: 10px;
@@ -23,7 +25,6 @@ const DeliveryBlock = styled.div`
 const WalletBlock = styled.div`
   margin-bottom: 30px;
 `
-
 const PriceBlock = styled.div`
   margin-top: 30px;
 `
@@ -43,6 +44,7 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `
 const CartInfo = props => {
+  const { sumAll } = props
   return (
     <CartInfoBlock>
       <DeliveryBlock>
@@ -57,15 +59,15 @@ const CartInfo = props => {
       <PriceBlock>
         <PriceBlockItem>
           <div>Товары</div>
-          <div>54 780 сум</div>
-        </PriceBlockItem>
-        <PriceBlockItem>
-          <div>Доставка</div>
           <div>0 сум</div>
         </PriceBlockItem>
         <PriceBlockItem>
+          <div>Доставка</div>
+          <div>{sumAll} сум</div>
+        </PriceBlockItem>
+        <PriceBlockItem>
           <div>Итого</div>
-          <div>54 780 сум</div>
+          <div>{sumAll} сум</div>
         </PriceBlockItem>
       </PriceBlock>
       <Link to="/order">

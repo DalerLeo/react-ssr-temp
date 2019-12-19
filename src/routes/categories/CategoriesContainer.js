@@ -10,7 +10,6 @@ const CategoriesContainer = ({ id, ...props }) => {
   const history = useContext(History)
 
   const mapper = (history, params) => {
-    console.warn(params)
     return { type: id, ...params }
   }
 
@@ -31,9 +30,10 @@ const CategoriesContainer = ({ id, ...props }) => {
   })
 
   const onChange = (name, typeId) => {
-    replaceParamsRoute({ [name]: typeId }, history)
+    const selectedProducts = typeId.join('-')
+    replaceParamsRoute({ [name]: selectedProducts }, history)
   }
-  return <Categories productCategoryData={productCategoryData} filterData={filterData} onChange={onChange} />
+  return <Categories productCategoryData={productCategoryData} filterData={filterData} onChange={onChange} id={Number(id)} />
 }
 
 export default CategoriesContainer

@@ -48,6 +48,7 @@ const MenuBar = () => {
   const menuData = useSelector(getDataFromState(STATE.MENU_AS), equals)
   const [open, setMenuOpen] = useState(false)
   const lists = pathOr(defArray, ['results'], menuData)
+  console.warn(menuData)
   const subCategories = find(propEq('id', open))(lists)
   return (
     <MenuBarStyled onMouseLeave={() => setMenuOpen(false)}>
@@ -67,7 +68,7 @@ const MenuBar = () => {
           >
             <Link to={`/categories/${parentId}`}>
               <MenuItem>{type.name}</MenuItem>
-              <MenuModal open={open === type.id} subCategories={subCategories} key={key} />
+              <MenuModal open={open === type.id} subCategories={subCategories} key={key} parentId={parentId} />
             </Link>
           </MenuItems>
         )

@@ -30,7 +30,7 @@ const HeaderStyled = styled.div`
   display: flex;
   justify-content: space-between;
   height: 78px;
-  width: 1130px;
+  width: 1200px;
   margin: auto;
 `
 const LogoBlock = styled.div`

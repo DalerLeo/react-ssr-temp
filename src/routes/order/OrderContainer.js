@@ -1,5 +1,6 @@
 import React from 'react'
 import Order from './Order'
+
 const data = [
   {
     id: '1',
@@ -25,7 +26,7 @@ const data = [
 ]
 
 const OrderContainer = props => {
-  return <Order data={data}/>
+  return <Order data={data} />
 }
 
 export default OrderContainer

@@ -1,5 +1,5 @@
 import React from 'react'
-import Container from 'components/StyledElems/Container'
+import Container from 'components/Container'
 import styled from 'styled-components'
 import { Col, Row } from 'components/Grid'
 import Logo from 'images/Logo.png'

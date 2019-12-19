@@ -1,3 +1,4 @@
-import Cart from './Cart'
+import CartUI from './Cart'
+import CartInfo from './CartInfo'
 
-export default Cart
+export { CartUI, CartInfo }

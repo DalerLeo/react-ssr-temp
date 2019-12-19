@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import Container from 'components/StyledElems/Container'
 import styled from 'styled-components'
-import { path, isEmpty } from 'ramda'
+import { path, isEmpty, find, propEq } from 'ramda'
 import MinusIcon from 'icons/Minus'
 import PlusIcon from 'icons/Plus'
 import DeleteIcon from 'icons/Delete'
@@ -104,7 +104,9 @@ const Cart = props => {
         ) : (
           <div>
             {products.map((product, key) => {
-              const image = path(['image'], product)
+              const images = path(['images'], product)
+              const isPrimary = find(propEq('isPrimary', true))(images)
+              const image = path(['image'], isPrimary)
               const name = path(['name'], product)
               const id = path(['id'], product)
               const price = path(['price'], product)
@@ -113,7 +115,7 @@ const Cart = props => {
                 <Card key={key}>
                   <div>
                     <Img
-                      src={NoImage}
+                      src={typeof image === 'undefined' ? NoImage : image}
                       alt="image"
                     />
                   </div>
