@@ -1,5 +1,4 @@
-import fp from 'lodash/fp'
-import { arrayObjToObj } from 'helpers/get'
+import { arrayObjToObj } from 'utils/get'
 
 export const CURRENCY_NAME = 'UZS'
 
@@ -97,15 +96,6 @@ export const SORT_LIST_BY = [
   { id: 'createdDate', name: 'По дате' }
 ]
 
-export const getExpValue = (id) => fp.flow(
-  fp.find({ id: fp.toString(id) }),
-  fp.get('name')
-)(EXPERIENCES_LIST)
-
-export const getEmpTypeValue = (id) => fp.flow(
-  fp.find({ id }),
-  fp.get('name')
-)(EMPLOYMENT_TYPE)
 
 export const MONTH_LIST = [
   { id: '01', name: 'month_january' },
@@ -133,12 +123,6 @@ export const BONUS_LIST = [
   { id: '10', name: 'Бассейн' }
 ]
 
-export const getPeriod = (id) => {
-  return fp.flow(
-    fp.find({ id }),
-    fp.get('name')
-  )(MONTH_LIST)
-}
 
 export const MARITAL_STATUS_LIST = [
   { id: 'single', name: 'marital_status_single' },

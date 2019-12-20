@@ -36,7 +36,10 @@ const Categories = (props) => {
   const items = path(['results'], productCategoryData)
   const count = path(['data', 'count'], productCategoryData)
   const loading = path(['loading'], productCategoryData)
-  console.warn(productCategoryData)
+  const filterItem = path(['data'], filterData)
+  console.warn(filterItem)
+  const getList = sessionStorage.getItem(filterItem) || '[]'
+  const parsedList = JSON.parse(getList)
 
   return (
     <div>
@@ -44,7 +47,7 @@ const Categories = (props) => {
       <Container>
         <Row>
           <ColUI span={5} minWidth="250">
-            <Filter {...filterData} onChange={onChange} />
+            <Filter {...filterData} onChange={onChange} parsedList={parsedList} />
           </ColUI>
           <ColUI span={1} minWidth="50" />
           <ColUI span={18} minWidth="900">

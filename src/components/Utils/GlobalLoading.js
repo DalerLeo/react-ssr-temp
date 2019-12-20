@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import hexToRgb from 'helpers/hexToRgb'
+import hexToRgb from 'utils/hexToRgb'
 import styled, { keyframes } from 'styled-components'
 import { equals, path } from 'ramda'
 

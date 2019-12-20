@@ -1,7 +1,7 @@
 import * as actionTypes from 'constants/actionTypes'
 import fp from 'lodash/fp'
-import { getCartItems, setItemToCart } from 'helpers/storage'
-import toast from 'helpers/toast'
+import { getCartItems, setItemToCart } from 'utils/storage'
+import toast from 'utils/toast'
 
 const onAddCartItemToastProps = {
   title: 'Добавлено',

@@ -4,7 +4,7 @@ import { reducer as formReducer } from 'redux-form'
 import { routerReducer } from 'redux-first-routing'
 import { combineReducers } from 'redux'
 import createThunkReducer from 'utils/createThunkReducer'
-import createStandardReducer from 'helpers/createStandardReducer'
+import createStandardReducer from 'utils/createStandardReducer'
 import { cartReducer } from './customReducers'
 
 const rootReducer = combineReducers({

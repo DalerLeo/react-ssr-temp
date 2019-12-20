@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import numberWithoutSpaces from 'helpers/numberWithoutSpaces'
+import numberWithoutSpaces from 'utils/numberWithoutSpaces'
 
 export const normalizeNumber = (value, prevValue) => {
   const numberValue = _.toNumber(numberWithoutSpaces(value))

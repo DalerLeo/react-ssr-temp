@@ -38,21 +38,21 @@ const TagCancel = styled.button`
 `
 
 const Filter = props => {
-  const { data, onChange } = props
+  const { data, onChange, parsedList } = props
   const items = pathOr([], ['brands'], data)
   const itemsCount = pathOr(0, ['length'], items)
   const countries = pathOr([], ['country'], data)
   const countryCount = pathOr(0, ['length'], countries)
   const options = pathOr([], ['option'], data)
+
   return (
     <FilterBlock>
       <TagBlock>
         <TagsContentBlock>
-          <Tags label="Apple" />
-          <Tags label="1.0 кг" />
-          <Tags label="Samsun" />
-          <Tags label="1" />
-          <Tags label="1" />
+          {parsedList.map((parsedItem, key) => {
+            return <Tags key={key} label={parsedItem.name} />
+          })}
+
         </TagsContentBlock>
         <TagCancel>
           Сбросить все
@@ -65,7 +65,7 @@ const Filter = props => {
         onChange={values => onChange('brand', values)}
       >
         {items.map((item, key) => (
-          <Checkbox key={key} value={item.id} label={item.name} />
+          <Checkbox key={key} value={item} label={item.name} />
         ))}
       </CheckboxGroup>
       <CheckboxGroup
@@ -75,7 +75,7 @@ const Filter = props => {
         onChange={values => onChange('country', values)}
       >
         {countries.map((item, key) => (
-          <Checkbox key={key} value={item.id} label={item.name} />
+          <Checkbox key={key} value={item} label={item.name} />
         ))}
       </CheckboxGroup>
 
@@ -88,10 +88,10 @@ const Filter = props => {
             label={option.name}
             mode="column"
             count={optionsCount}
-            onChange={values => onChange('country', values)}
+            onChange={values => onChange('option', values)}
           >
             {optionValues.map((item, subKey) => (
-              <Checkbox key={subKey} value={item.id} label={item.name} />
+              <Checkbox key={subKey} value={item} label={item.name} />
             ))}
           </CheckboxGroup>
         )

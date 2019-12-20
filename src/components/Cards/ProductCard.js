@@ -13,6 +13,7 @@ import { getDataFromState } from 'utils/get'
 import equals from 'fast-deep-equal'
 import Link from 'components/Link/Link'
 import { favouriteCreateAction, favouriteDeleteAction } from 'routes/favourite/actions'
+import FavoriteIcon from 'icons/Favorite'
 import SalePrice from '../UI/SalePrice/SalePrice'
 import { setItemToCart } from './storage'
 
@@ -52,8 +53,11 @@ const ButtonPosition = styled.div`
   bottom: 25px;
   left: 20px;
 `
-const FavouriteButton = styled.button` 
-    background-color: ${props => props.favourite ? 'red' : 'none'}
+const FavouriteButton = styled.div` 
+    background-color: ${props => props.favourite ? 'red' : 'none'};
+    position: absolute;
+    top: 20px;
+    right: 20px;
 `
 const defArr = []
 
@@ -85,7 +89,7 @@ const ProductCard = props => {
 
   return (
     <StyledCard column={column}>
-      <FavouriteButton favourite={favourite} onClick={onFavourite}>Favourite</FavouriteButton>
+      <FavouriteButton favourite={favourite} onClick={onFavourite}><FavoriteIcon /></FavouriteButton>
       <Link to={'/product/' + id}>
         <ImagePosition>
           <Image

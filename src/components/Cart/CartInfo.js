@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import DeliveryIcon from 'images/delivery.svg'
 import WalletIcon from 'images/wallet.svg'
-import Link from 'components/Link/Link'
+import Link from 'components/Link'
 import { path } from 'ramda'
 
 const CartInfoBlock = styled.div`
