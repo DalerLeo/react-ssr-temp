@@ -17,7 +17,9 @@ const Container = styled(ContainerUI)`
    display: flex;
    justify-content: center;
 `
-
+const ColUI = styled(Col)`
+  min-width: ${props => props.minWidth}px;
+`
 const ProductListBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -34,17 +36,21 @@ const Categories = (props) => {
   const items = path(['results'], productCategoryData)
   const count = path(['data', 'count'], productCategoryData)
   const loading = path(['loading'], productCategoryData)
+  const filterItem = path(['data'], filterData)
+  console.warn(filterItem)
+  const getList = sessionStorage.getItem(filterItem) || '[]'
+  const parsedList = JSON.parse(getList)
 
   return (
     <div>
       <Header />
       <Container>
         <Row>
-          <Col span={5}>
-            <Filter {...filterData} onChange={onChange} />
-          </Col>
-          <Col span={1} />
-          <Col span={18}>
+          <ColUI span={5} minWidth="250">
+            <Filter {...filterData} onChange={onChange} parsedList={parsedList} />
+          </ColUI>
+          <ColUI span={1} minWidth="50" />
+          <ColUI span={18} minWidth="900">
             <Row>
               <h1>{titleName}</h1>
             </Row>
@@ -63,7 +69,7 @@ const Categories = (props) => {
             <Row>
               <Pagination count={count} pageSize={12} />
             </Row>
-          </Col>
+          </ColUI>
         </Row>
       </Container>
     </div>

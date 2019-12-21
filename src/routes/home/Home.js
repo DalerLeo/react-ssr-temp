@@ -31,7 +31,7 @@ const Home = props => {
     <div>
       <Container>
         <HeaderMenu>
-          <MenuBar />
+          {/* <MenuBar /> */}
           <Carusel />
         </HeaderMenu>
         <ProductsTitle title="Популярные товары" />

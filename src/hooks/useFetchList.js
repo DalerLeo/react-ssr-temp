@@ -27,7 +27,6 @@ const useFetchList = (params) => {
   const history = useContext(History)
 
   const searchParams = getListParams(history, pickParams)
-
   const data = useSelector(state => getDataFromState(stateName, state), equals)
   const effect = () => {
     dispatch(action(mapper(history, searchParams)))
