@@ -13,7 +13,7 @@ async function action (props) {
     title: 'Главная',
     component: (
       <Layout {...props} home={true}>
-        <ProductContainer {...params} />
+        <ProductContainer id={Number(params.id)} />
       </Layout>
     )
   }

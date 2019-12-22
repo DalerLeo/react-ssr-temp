@@ -19,7 +19,7 @@ import {
   head,
   pipe,
   isEmpty,
-  isNil
+  isNil, find, propEq
 } from 'ramda'
 import moment from 'moment'
 import fp from 'lodash/fp'
@@ -207,4 +207,11 @@ export const getItemFromTree = (arr, target) => {
 export const arrayObjToObj = fp.flow(
   fp.map(fp.values),
   fp.fromPairs
+)
+
+const defArr = []
+export const getPrimaryImage = pipe(
+  pathOr(defArr, ['images']),
+  find(propEq('isPrimary', true)),
+  prop('image')
 )

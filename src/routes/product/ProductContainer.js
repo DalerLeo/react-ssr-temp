@@ -2,11 +2,13 @@ import * as STATE from 'constants/stateNames'
 import React from 'react'
 import { path } from 'ramda'
 import { useDispatch } from 'react-redux'
-import useFetchList, { getListParams } from '../../hooks/useFetchList'
-import Product from './Product'
+import PropTypes from 'prop-types'
+import useFetchList from '../../hooks/useFetchList'
+import Product from './components/Product'
 import { getProduct, commentCreateAction, commentListFetch } from './actions'
 
-const ProductContainer = ({ id, ...props }) => {
+const ProductContainer = props => {
+  const { id } = props
   const dispatch = useDispatch()
 
   const mapper = (history, params) => {
@@ -32,4 +34,7 @@ const ProductContainer = ({ id, ...props }) => {
   return <Product productData={productData} onSubmit={onComment} commentList={commentList} />
 }
 
+ProductContainer.propTypes = {
+  id: PropTypes.number
+}
 export default ProductContainer

@@ -22,14 +22,16 @@ export const getProduct = (id) => {
   }
 }
 
-export const commentListFetch = (id, data) => {
+export const commentListFetch = (product, data) => {
+
   return (dispatch, getState) => {
     const params = {
+      product,
       ...data
     }
 
     const payload = axios({ dispatch, getState })
-      .get(sprintf(API.COMMENT_LIST, id), { params })
+      .get(API.COMMENT_LIST, { params })
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
