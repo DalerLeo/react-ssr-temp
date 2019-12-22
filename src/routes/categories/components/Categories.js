@@ -1,5 +1,6 @@
 import * as STATE from 'constants/stateNames'
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { path, find, propEq } from 'ramda'
 import Header from 'components/UI/Header'
@@ -8,9 +9,7 @@ import ProductCard from 'components/Cards/ProductCard'
 import Pagination from 'components/Pagination'
 import Skelet from 'components/UI/Skelet/Skelet'
 import { Row, Col } from 'components/Grid'
-import { useSelector } from 'react-redux'
-import equals from 'fast-deep-equal'
-import { getDataFromState } from 'utils/get'
+import { getItemFromTree } from 'utils/get'
 import Filter from './Filter'
 
 const Container = styled(ContainerUI)`
@@ -27,18 +26,21 @@ const ProductListBlock = styled.div`
 `
 
 const Categories = (props) => {
-  const { productCategoryData, filterData, onChange, id } = props
+  const {
+    productCategoryData,
+    filterData,
+    menuItems,
+    onChange,
+    tagsData,
+    id
+  } = props
 
-  const menuData = useSelector(getDataFromState(STATE.MENU_AS), equals)
-  const menuItem = path(['results'], menuData)
-  const titleItem = find(propEq('id', id))(menuItem)
+  const titleItem = find(propEq('id', id))(menuItems)
   const titleName = path(['name'], titleItem)
   const items = path(['results'], productCategoryData)
   const count = path(['data', 'count'], productCategoryData)
   const loading = path(['loading'], productCategoryData)
-  const filterItem = path(['data'], filterData)
-  console.warn(filterItem)
-  const getList = sessionStorage.getItem(filterItem) || '[]'
+  const getList = '[]'
   const parsedList = JSON.parse(getList)
 
   return (
@@ -47,7 +49,11 @@ const Categories = (props) => {
       <Container>
         <Row>
           <ColUI span={5} minWidth="250">
-            <Filter {...filterData} onChange={onChange} parsedList={parsedList} />
+            <Filter
+              {...filterData}
+              tagsData={tagsData}
+              onChange={onChange}
+              parsedList={parsedList} />
           </ColUI>
           <ColUI span={1} minWidth="50" />
           <ColUI span={18} minWidth="900">
@@ -76,4 +82,11 @@ const Categories = (props) => {
   )
 }
 
+Categories.propTypes = {
+  productCategoryData: PropTypes.object,
+  filterData: PropTypes.object,
+  onChange: PropTypes.func,
+  id: PropTypes.number,
+  menuItems: PropTypes.array
+}
 export default Categories

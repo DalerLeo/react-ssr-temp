@@ -6,11 +6,9 @@ import CategoriesContainer from './CategoriesContainer'
 async function action (props) {
   const { store, isServer, params } = props
 
-  
   if (isServer) {
   }
   return {
-    chunk: ['categories'],
     title: 'Главная',
     component: (
       <Layout {...props} home={true}>

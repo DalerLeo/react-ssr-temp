@@ -14,85 +14,40 @@ const routes = {
       action: require('./home').default
     },
     {
+      path: ROUTE.CATEGORIES,
+      action: require('./categories').default
+    },
+    {
       path: ROUTE.CART,
-      children: [
-        {
-          path: '',
-          load: () => import(/* webpackChunkName: 'cart' */ './cart')
-        }
-      ]
+      load: () => import(/* webpackChunkName: 'cart' */ './cart')
     },
     {
       path: ROUTE.FAVOURITE,
-      children: [
-        {
-          path: '',
-          load: () => import(/* webpackChunkName: 'favourite' */ './favourite')
-        }
-      ]
+      load: () => import(/* webpackChunkName: 'favourite' */ './favourite')
     },
     {
       path: ROUTE.SIGN_IN,
-      children: [
-        {
-          path: '',
-          load: () => import(/* webpackChunkName: 'sign-in' */ './sign-in')
-        }
-      ]
+      load: () => import(/* webpackChunkName: 'sign-in' */ './sign-in')
     },
     {
       path: ROUTE.DELIVERY,
-      children: [
-        {
-          path: '',
-          load: () => import(/* webpackChunkName: 'delivery' */ './delivery')
-        }
-      ]
+      load: () => import(/* webpackChunkName: 'delivery' */ './delivery')
     },
     {
       path: ROUTE.PROFILE,
-      children: [
-        {
-          path: '',
-          load: () => import(/* webpackChunkName: 'profile' */ './profile')
-        }
-      ]
+      load: () => import(/* webpackChunkName: 'profile' */ './profile')
     },
     {
       path: ROUTE.ADDRESS,
-      children: [
-        {
-          path: '',
-          load: () => import(/* webpackChunkName: 'address' */ './address')
-        }
-      ]
+      load: () => import(/* webpackChunkName: 'address' */ './address')
     },
     {
       path: ROUTE.ORDER,
-      children: [
-        {
-          path: '',
-          load: () => import(/* webpackChunkName: 'order' */ './order')
-        }
-      ]
-    },
-    {
-      path: ROUTE.CATEGORIES,
-      children: [
-        {
-          path: '',
-          load: () => import(/* webpackChunkName: 'categories' */ './categories')
-        }
-      ]
+      load: () => import(/* webpackChunkName: 'order' */ './order')
     },
     {
       path: ROUTE.SINGLE_PRODUCT,
-      children: [
-        {
-          path: '',
-          load: () => import(/* webpackChunkName: 'categories' */ './product')
-        }
-      ]
+      load: () => import(/* webpackChunkName: 'product' */ './product')
     },
     {
       path: ROUTE.STATIC_PAGE_URL,

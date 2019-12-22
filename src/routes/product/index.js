@@ -9,7 +9,7 @@ async function action (props) {
 
   await store.dispatch(getProduct(params.id))
   return {
-    chunk: ['categories'],
+    chunk: ['product'],
     title: 'Главная',
     component: (
       <Layout {...props} home={true}>

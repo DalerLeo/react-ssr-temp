@@ -1,50 +1,66 @@
 import * as STATE from 'constants/stateNames'
 import React, { useContext } from 'react'
-import { setItemToCart } from 'components/Cards/storage'
+import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
+import equals from 'fast-deep-equal'
 import History from '../../HistoryProvider'
 import useFetchList from '../../hooks/useFetchList'
 import { replaceParamsRoute } from '../../utils/route'
-import Categories from './Categories'
+import { getDataFromState, getParamsFormHistory } from '../../utils/get'
+import Categories from './components/Categories'
 import { getProductCategoryList, filterListFetch } from './actions'
 
-const CategoriesContainer = ({ id, ...props }) => {
-  const history = useContext(History)
+const filterMapper = (type) => {
+  return { type }
+}
 
+const getProductParams = (id) => {
   const mapper = (_, params) => {
     return { type: id, ...params }
   }
 
-  const filterMapper = (_, params) => {
-    return { type: id }
-  }
-
-  const productCategoryData = useFetchList({
+  return {
     action: getProductCategoryList,
     stateName: STATE.PRODUCT_CATEGORY_LIST,
     mapper,
-    pickParams: ['brand', 'country', 'options', 'page']
-  })
-  const filterData = useFetchList({
+    pickParams: ['brand', 'country', 'option', 'page']
+  }
+}
+const getFilterParams = (id) => {
+  return {
     action: filterListFetch,
     stateName: STATE.FILTER_LIST,
-    mapper: filterMapper
-  })
+    mapper: () => filterMapper(id)
+  }
+}
+const CategoriesContainer = ({ id, ...props }) => {
+  const history = useContext(History)
+  const queryParams = getParamsFormHistory(history)
+  const { results: menuItems } = useSelector(getDataFromState(STATE.MENU_AS), equals)
+  const productCategoryData = useFetchList(getProductParams(id))
+  const filterData = useFetchList(getFilterParams(id))
 
-  const onChange = (name, objects) => {
-    const typeId = objects.map(object => {
-      return object.id
-    })
-    sessionStorage.setItem(name, JSON.stringify(objects, name))
-    console.warn('options', name)
-    const selectedProducts = typeId.join('-')
+  const tagsData = {
+    menuItems, queryParams
+  }
+  const onChange = (name, ids) => {
+    const selectedProducts = ids.join('-')
     replaceParamsRoute({ [name]: selectedProducts }, history)
   }
-  return <Categories
-    productCategoryData={productCategoryData}
-    filterData={filterData}
-    onChange={onChange}
-    id={Number(id)}
-  />
+  return (
+    <Categories
+      productCategoryData={productCategoryData}
+      filterData={{...filterData, queryParams}}
+      menuItems={menuItems}
+      tagsData={tagsData}
+      onChange={onChange}
+      id={Number(id)}
+    />
+  )
+}
+
+CategoriesContainer.propTypes = {
+  id: PropTypes.string
 }
 
 export default CategoriesContainer
