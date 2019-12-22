@@ -18,15 +18,17 @@ const useFetchList = (params) => {
   const {
     stateName,
     action,
-    key = 'list',
+
     mapper = getListParams,
+    changeListener = getListParams,
     pickParams = DEFAULT_PICK_PARAMS
   } = params
 
   const dispatch = useDispatch()
   const history = useContext(History)
 
-  const searchParams = getListParams(history, pickParams)
+  const searchParams = changeListener(history, pickParams)
+
   const data = useSelector(state => getDataFromState(stateName, state), equals)
   const effect = () => {
     dispatch(action(mapper(history, searchParams)))

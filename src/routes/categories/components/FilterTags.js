@@ -1,10 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import DeleteIcon from 'icons/TagDelete'
-import { pathOr, split, pipe, map } from 'ramda'
+import { SecondaryButton } from 'components/UI/Button'
 
 import PropTypes from 'prop-types'
 
+const Tags = styled.div`
+  padding: 20px;
+`
 const Tag = styled.div`
   display: inline-block;
   background: #EAEBED;
@@ -17,6 +20,10 @@ const Tag = styled.div`
 const TagName = styled.span`
   padding-right: 15px;
 `
+
+const Clear = styled.span`
+  cursor: pointer;
+`
 const includes = (item, query) => query.includes(item.id)
 
 const FilterTags = props => {
@@ -25,32 +32,35 @@ const FilterTags = props => {
     countries,
     options,
     brandIds,
-    countryIds
+    countryIds,
+    onReset,
+    onItemReset
   } = props
 
   const includedBrands = brands.filter(item => includes(item, brandIds))
   const includedCountries = countries.filter(item => includes(item, countryIds))
   return (
-    <div>
+    <Tags>
       {includedBrands.map(brand => (
-        <Tag
-          key={brand.id}
-        >
+        <Tag key={brand.id}>
           <TagName>{brand.name}</TagName>
-          <DeleteIcon />
+          <Clear onClick={() => onItemReset('brand', brand.id)}>
+            <DeleteIcon />
+          </Clear>
         </Tag>
       )
       )}
       {includedCountries.map(country => (
-        <Tag
-          key={country.id}
-        >
+        <Tag key={country.id}>
           <TagName>{country.name}</TagName>
-          <DeleteIcon />
+          <Clear onClick={() => onItemReset('country', country.id)}>
+            <DeleteIcon />
+          </Clear>
         </Tag>
       )
       )}
-    </div>
+      <SecondaryButton onClick={onReset}>Сбросить все</SecondaryButton>
+    </Tags>
   )
 }
 
@@ -59,7 +69,9 @@ FilterTags.propTypes = {
   countries: PropTypes.array,
   options: PropTypes.array,
   brandIds: PropTypes.array,
-  countryIds: PropTypes.array
+  countryIds: PropTypes.array,
+  onReset: PropTypes.func,
+  onItemReset: PropTypes.func
 }
 
 export default FilterTags

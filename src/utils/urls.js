@@ -77,6 +77,26 @@ const removeItemFromSelect = (search, key, value) => {
   )(params)
 }
 
+const a = b => {
+  console.warn(b)
+  return b
+}
+const removeItemFromParams = (params, key, value) => {
+  const values = is(Array, value) ? map(String, value) : [String(value)]
+
+  return pipe(
+    prop(key),
+    defaultTo(''),
+    split('-'),
+    filter(item => item),
+    without(values),
+    uniq,
+    sort(subtract),
+    join('-')
+  )(params)
+}
+
+
 const addItemToSelect = (url, key, value) => {
   const params = parseParams(url)
   const values = is(Array, value) ? map(String, value) : [String(value)]
@@ -98,5 +118,6 @@ export {
   getSearchParam,
   appendParamsToUrl,
   removeItemFromSelect,
-  addItemToSelect
+  addItemToSelect,
+  removeItemFromParams
 }

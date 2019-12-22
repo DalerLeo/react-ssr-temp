@@ -11,21 +11,8 @@ const FilterBlock = styled.div`
   flex-direction: column;
 `
 
-const TagBlock = styled.div`
-  padding: 20px 10px;
-`
 
-const TagCancel = styled.button`
-    background: #EAEBED;
-    border-radius: 4px;
-    border: 0;
-    width: 100%;
-    padding: 10px 0;
-    cursor: pointer;
-    outline: 0;
-`
 const emptyStr = ''
-
 const getIds = (data, key) => pipe(
   propOr(emptyStr, key),
   split('-'),
@@ -35,30 +22,31 @@ const getIds = (data, key) => pipe(
 
 const defArr = []
 const Filter = props => {
-  const { data, onChange, queryParams } = props
-  const items = pathOr([], ['brands'], data)
-  const countries = pathOr([], ['country'], data)
-  const options = pathOr([], ['option'], data)
+  const {
+    data,
+    onChange,
+    queryParams,
+    onReset,
+    onItemReset
+  } = props
 
+  const items = pathOr(defArr, ['brands'], data)
+  const countries = pathOr(defArr, ['country'], data)
+  const options = pathOr(defArr, ['option'], data)
   const brandIds = getIds(queryParams, 'brand')
-
   const countryIds = getIds(queryParams, 'country')
   const optionIds = getIds(queryParams, 'option')
   return (
     <FilterBlock>
       <FilterTags
-
         countries={countries}
         options={options}
         brands={items}
         brandIds={brandIds}
         countryIds={countryIds}
+        onReset={onReset}
+        onItemReset={onItemReset}
       />
-      <TagBlock>
-        <TagCancel>
-          Сбросить все
-        </TagCancel>
-      </TagBlock>
       <FilterSection
         label="Бранд"
         queryName="brand"
@@ -94,6 +82,8 @@ const Filter = props => {
 Filter.propTypes = {
   data: PropTypes.object,
   onChange: PropTypes.func,
+  onReset: PropTypes.func,
+  onItemReset: PropTypes.func,
   queryParams: PropTypes.object
 }
 export default Filter

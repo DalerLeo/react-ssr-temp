@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-
+import numberFormat from 'utils/numberFormat'
 const PriceStyled = styled.div`
     color: #2EBB8A;
     font-size: 18px;
@@ -11,7 +11,7 @@ const Price = (props) => {
   const { price } = props
   return (
     <PriceStyled>
-      {price} сум
+      {numberFormat(price)} сум
     </PriceStyled>
   )
 }

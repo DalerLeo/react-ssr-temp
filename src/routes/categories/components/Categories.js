@@ -2,7 +2,7 @@ import * as STATE from 'constants/stateNames'
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { path, find, propEq } from 'ramda'
+import { path, find, propEq, prop } from 'ramda'
 import Header from 'components/UI/Header'
 import ContainerUI from 'components/StyledElems/Container'
 import ProductCard from 'components/Cards/ProductCard'
@@ -25,23 +25,26 @@ const ProductListBlock = styled.div`
   width: calc(100%)
 `
 
+const Pages = styled.div`
+  text-align: center;
+  margin-top: 20px;
+`
 const Categories = (props) => {
   const {
     productCategoryData,
     filterData,
     menuItems,
     onChange,
-    tagsData,
     id
   } = props
 
   const titleItem = find(propEq('id', id))(menuItems)
+  const category = getItemFromTree(menuItems, id)
+  const categoryName = prop('name', category)
   const titleName = path(['name'], titleItem)
   const items = path(['results'], productCategoryData)
   const count = path(['data', 'count'], productCategoryData)
   const loading = path(['loading'], productCategoryData)
-  const getList = '[]'
-  const parsedList = JSON.parse(getList)
 
   return (
     <div>
@@ -51,14 +54,13 @@ const Categories = (props) => {
           <ColUI span={5} minWidth="250">
             <Filter
               {...filterData}
-              tagsData={tagsData}
               onChange={onChange}
-              parsedList={parsedList} />
+            />
           </ColUI>
           <ColUI span={1} minWidth="50" />
           <ColUI span={18} minWidth="900">
             <Row>
-              <h1>{titleName}</h1>
+              <h1>{categoryName}</h1>
             </Row>
             <Row>
               {loading ? <Skelet count={9} />
@@ -72,9 +74,9 @@ const Categories = (props) => {
                   </ProductListBlock>
                 )}
             </Row>
-            <Row>
+            <Pages>
               <Pagination count={count} pageSize={12} />
-            </Row>
+            </Pages>
           </ColUI>
         </Row>
       </Container>

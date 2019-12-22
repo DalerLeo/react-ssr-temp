@@ -8,7 +8,7 @@ const Group = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: ${props => props.count > 13 ? '400px' : 'auto'};
+  height: ${props => props.count > 7 ? '200px' : 'auto'};
   overflow-y: scroll;
   overflow-x: hidden;
   margin-right: 10px;
@@ -47,10 +47,14 @@ const CheckboxGroup = props => {
   const { value, children, label, onChange, mode, count, ...rest } = props
   const [checkedValues, setCheckedValues] = React.useState(value)
 
-  const onChangeItem = (value, isChecked) => {
+  React.useEffect(() => {
+    setCheckedValues(value)
+  }, [value])
+
+  const onChangeItem = (v, isChecked) => {
     const formedValues = isChecked
-      ? [...checkedValues, value]
-      : checkedValues.filter(item => item !== value)
+      ? [...checkedValues, v]
+      : checkedValues.filter(item => item !== v)
     setCheckedValues(formedValues)
     if (typeof onChange === 'function') {
       onChange(formedValues)
