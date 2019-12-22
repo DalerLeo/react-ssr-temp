@@ -67,6 +67,7 @@ const CategoriesContainer = props => {
   const filterActions = {
     ...filterData,
     queryParams,
+    onChange,
     onReset,
     onItemReset
   }
@@ -75,7 +76,6 @@ const CategoriesContainer = props => {
       productCategoryData={productCategoryData}
       filterData={filterActions}
       menuItems={menuItems}
-      onChange={onChange}
       id={Number(id)}
     />
   )

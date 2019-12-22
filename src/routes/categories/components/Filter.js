@@ -30,7 +30,7 @@ const Filter = props => {
     onItemReset
   } = props
 
-  const items = pathOr(defArr, ['brands'], data)
+  const brands = pathOr(defArr, ['brands'], data)
   const countries = pathOr(defArr, ['country'], data)
   const options = pathOr(defArr, ['option'], data)
   const brandIds = getIds(queryParams, 'brand')
@@ -41,9 +41,10 @@ const Filter = props => {
       <FilterTags
         countries={countries}
         options={options}
-        brands={items}
+        brands={brands}
         brandIds={brandIds}
         countryIds={countryIds}
+        optionIds={optionIds}
         onReset={onReset}
         onItemReset={onItemReset}
       />
@@ -51,7 +52,7 @@ const Filter = props => {
         label="Бранд"
         queryName="brand"
         ids={brandIds}
-        list={items}
+        list={brands}
         onChange={onChange}
       />
       <FilterSection

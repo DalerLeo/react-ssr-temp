@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import DeleteIcon from 'icons/TagDelete'
 import { SecondaryButton } from 'components/UI/Button'
-
+import { pipe, map, flatten, path } from 'ramda'
 import PropTypes from 'prop-types'
 
 const Tags = styled.div`
@@ -26,6 +26,10 @@ const Clear = styled.span`
 `
 const includes = (item, query) => query.includes(item.id)
 
+const collectOptions = pipe(
+  map(path(['optionValues', 'values'])),
+  flatten
+)
 const FilterTags = props => {
   const {
     brands,
@@ -33,15 +37,18 @@ const FilterTags = props => {
     options,
     brandIds,
     countryIds,
+    optionIds,
     onReset,
     onItemReset
   } = props
 
-  const includedBrands = brands.filter(item => includes(item, brandIds))
-  const includedCountries = countries.filter(item => includes(item, countryIds))
+  const selectedBrands = brands.filter(item => includes(item, brandIds))
+  const selectedCountries = countries.filter(item => includes(item, countryIds))
+  const selectedOptions = collectOptions(options).filter(item => includes(item, optionIds))
+
   return (
     <Tags>
-      {includedBrands.map(brand => (
+      {selectedBrands.map(brand => (
         <Tag key={brand.id}>
           <TagName>{brand.name}</TagName>
           <Clear onClick={() => onItemReset('brand', brand.id)}>
@@ -50,10 +57,19 @@ const FilterTags = props => {
         </Tag>
       )
       )}
-      {includedCountries.map(country => (
+      {selectedCountries.map(country => (
         <Tag key={country.id}>
           <TagName>{country.name}</TagName>
           <Clear onClick={() => onItemReset('country', country.id)}>
+            <DeleteIcon />
+          </Clear>
+        </Tag>
+      )
+      )}
+      {selectedOptions.map(option => (
+        <Tag key={option.id}>
+          <TagName>{option.name}</TagName>
+          <Clear onClick={() => onItemReset('option', option.id)}>
             <DeleteIcon />
           </Clear>
         </Tag>
@@ -68,6 +84,7 @@ FilterTags.propTypes = {
   brands: PropTypes.array,
   countries: PropTypes.array,
   options: PropTypes.array,
+  optionIds: PropTypes.array,
   brandIds: PropTypes.array,
   countryIds: PropTypes.array,
   onReset: PropTypes.func,

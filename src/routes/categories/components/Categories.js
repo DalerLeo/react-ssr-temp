@@ -34,14 +34,11 @@ const Categories = (props) => {
     productCategoryData,
     filterData,
     menuItems,
-    onChange,
     id
   } = props
 
-  const titleItem = find(propEq('id', id))(menuItems)
   const category = getItemFromTree(menuItems, id)
   const categoryName = prop('name', category)
-  const titleName = path(['name'], titleItem)
   const items = path(['results'], productCategoryData)
   const count = path(['data', 'count'], productCategoryData)
   const loading = path(['loading'], productCategoryData)
@@ -52,10 +49,7 @@ const Categories = (props) => {
       <Container>
         <Row>
           <ColUI span={5} minWidth="250">
-            <Filter
-              {...filterData}
-              onChange={onChange}
-            />
+            <Filter {...filterData} />
           </ColUI>
           <ColUI span={1} minWidth="50" />
           <ColUI span={18} minWidth="900">
