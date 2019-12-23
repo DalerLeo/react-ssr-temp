@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import Checkbox, { CheckboxGroup } from 'components/UI/Checkbox'
 import { length } from 'ramda'
+import equal from 'fast-deep-equal'
 
 const FilterSection = props => {
   const { label, queryName, ids, onChange, list } = props
@@ -15,7 +16,7 @@ const FilterSection = props => {
       value={ids}
       onChange={values => onChange(queryName, values)}
     >
-      {list.map((item, index) => (
+      {list.map((item) => (
         <Checkbox key={item.id} value={item.id} label={item.name} />
       ))}
     </CheckboxGroup>
@@ -29,14 +30,4 @@ FilterSection.propTypes = {
   onChange: PropTypes.func,
   list: PropTypes.array
 }
-export default memo(FilterSection, (a, b) => {
-  if(a.queryName === 'country' || a.queryName === 'brand'){
-    //console.warn(a.queryName)
-    //console.warn(equal(a, b))
-    //console.warn(equals(a, b))
-    //console.warn(JSON.stringify(a) === JSON.stringify(b))
-
-  }
-
-  return JSON.stringify(a) === JSON.stringify(b)
-})
+export default memo(FilterSection, equal)

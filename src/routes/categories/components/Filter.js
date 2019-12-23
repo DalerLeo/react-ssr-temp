@@ -11,7 +11,6 @@ const FilterBlock = styled.div`
   flex-direction: column;
 `
 
-
 const emptyStr = ''
 const getIds = (data, key) => pipe(
   propOr(emptyStr, key),

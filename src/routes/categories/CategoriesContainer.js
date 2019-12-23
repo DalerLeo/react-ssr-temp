@@ -1,5 +1,5 @@
 import * as STATE from 'constants/stateNames'
-import React, { useContext } from 'react'
+import React, { useContext, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import equals from 'fast-deep-equal'
@@ -45,6 +45,7 @@ const getProductParams = (id) => {
   }
 }
 
+const SPLITTER = '-'
 const CategoriesContainer = props => {
   const { id, pathname, query } = props
 
@@ -54,16 +55,16 @@ const CategoriesContainer = props => {
   const productCategoryData = useFetchList(getProductParams(id))
   const filterData = useFetchList(getFilterParams(id))
 
-  const onChange = (name, ids) => {
-    const selectedProducts = ids.join('-')
-    replaceParamsRoute({ [name]: selectedProducts }, history)
-  }
-
   const onReset = () => history.push(pathname)
   const onItemReset = (key, value) => {
     const restIds = removeItemFromParams(query, key, value)
     replaceParamsRoute({ [key]: restIds }, history)
   }
+  const onChange = useCallback((name, ids) => {
+    const selectedProducts = ids.join(SPLITTER)
+    replaceParamsRoute({ [name]: selectedProducts }, history)
+  }, [])
+
   const filterActions = {
     ...filterData,
     queryParams,
@@ -71,6 +72,7 @@ const CategoriesContainer = props => {
     onReset,
     onItemReset
   }
+
   return (
     <Categories
       productCategoryData={productCategoryData}
@@ -83,7 +85,8 @@ const CategoriesContainer = props => {
 
 CategoriesContainer.propTypes = {
   id: PropTypes.string,
-  pathname: PropTypes.string
+  pathname: PropTypes.string,
+  query: PropTypes.object
 }
 
 export default CategoriesContainer

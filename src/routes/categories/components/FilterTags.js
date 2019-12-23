@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import DeleteIcon from 'icons/TagDelete'
 import { SecondaryButton } from 'components/UI/Button'
-import { pipe, map, flatten, path } from 'ramda'
+import { pipe, map, flatten, path, isEmpty } from 'ramda'
 import PropTypes from 'prop-types'
 
 const Tags = styled.div`
@@ -30,6 +30,7 @@ const collectOptions = pipe(
   map(path(['optionValues', 'values'])),
   flatten
 )
+
 const FilterTags = props => {
   const {
     brands,
@@ -46,6 +47,9 @@ const FilterTags = props => {
   const selectedCountries = countries.filter(item => includes(item, countryIds))
   const selectedOptions = collectOptions(options).filter(item => includes(item, optionIds))
 
+  if (isEmpty(brandIds) && isEmpty(countryIds) && isEmpty(optionIds)) {
+    return null
+  }
   return (
     <Tags>
       {selectedBrands.map(brand => (
