@@ -10,7 +10,6 @@ const FavButton = styled.button`
 
 const FavouriteButton = (props) => {
   const { favourite } = props
-  console.warn('fav', props)
   return (
     <FavButton favourite={favourite}>
             В избранное

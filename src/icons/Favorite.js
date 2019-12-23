@@ -8,6 +8,7 @@ export default props => {
       viewBox="0 0 18 16"
       width={20}
       height={20}
+      fill="none"
       {...props}
     >
 

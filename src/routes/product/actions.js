@@ -23,7 +23,6 @@ export const getProduct = (id) => {
 }
 
 export const commentListFetch = (product, data) => {
-
   return (dispatch, getState) => {
     const params = {
       product,
@@ -59,6 +58,25 @@ export const commentCreateAction = (id, comment) => {
     return dispatch({
       payload: payload,
       type: actionTypes.COMMENT_CREATE
+    })
+  }
+}
+
+export const getProductList = () => {
+  return (dispatch, getState) => {
+    const params = {
+      thumbnail_type: 'large',
+      page_size: 4
+    }
+
+    const payload = axios({ dispatch, getState })
+      .get(API.PRODUCT_LIST, { params })
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload: payload,
+      type: actionTypes.PRODUCT_LIST
     })
   }
 }

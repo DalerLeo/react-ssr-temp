@@ -25,9 +25,10 @@ const ProductContainer = props => {
     mapper
   })
 
-  const onComment = (values, commentId) => {
+  const onComment = (values, form, ...other) => {
     const comment = path(['comment'], values)
-    return dispatch(commentCreateAction(id, comment, commentId))
+    return dispatch(commentCreateAction(id, comment))
+      .then(() => form.change('comment', ''))
       .then(() => dispatch(commentListFetch(id, { pageSize: '5' })))
   }
 

@@ -7,6 +7,9 @@ const TextAreaField = styled.textarea`
     padding: 10px;
     float: right;
     width: 100%;
+    border: 1px solid #D9DBDE;
+    outline: 0;
+    background-color: #FAFAFA;
 `
 const TextArea = (props) => {
   return (

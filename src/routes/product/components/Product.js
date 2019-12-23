@@ -18,6 +18,10 @@ import FavoriteIcon from 'icons/Favorite'
 import payme from 'images/payme.png'
 import click from 'images/click.png'
 import uzcard from 'images/uzcard.png'
+import ProductsTitle from 'components/UI/ProductsTitle'
+import ProductCardList from 'components/Cards/ProductCardList'
+import useFetchList from 'hooks/useFetchList'
+import { getProductList } from '../actions'
 import Feature from './Feature'
 
 const FavouriteButton = styled.button`
@@ -31,6 +35,9 @@ const FavouriteButton = styled.button`
     display: flex;
     outline: 0;
     cursor: pointer;
+    > svg {
+      fill: ${props => props.favourite ? 'black' : 'none'};
+    }
 `
 const FavIconText = styled.div`
   margin-left: 10px;
@@ -129,7 +136,15 @@ const PaymentImage = styled.img`
   margin-right: 20px;
   cursor: pointer;
 `
+const ProductListBlock = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
 const Product = (props) => {
+  const popularData = useFetchList({
+    action: getProductList,
+    stateName: STATE.PRODUCT_LIST
+  })
   const { productData, onSubmit, commentList } = props
 
   const dispatch = useDispatch()
@@ -216,6 +231,11 @@ const Product = (props) => {
           <Feature key={option.id} label={label}>{value}</Feature>
         )
       })}
+      <ProductsTitle title="Новинки" pagination={true} />
+      <ProductListBlock>
+        <ProductCardList productData={popularData} column={4} />
+      </ProductListBlock>
+      <br />
       <Comment onSubmit={onSubmit} commentList={commentList} />
     </ContainerUI>
   )
