@@ -4,8 +4,8 @@ import styled from 'styled-components'
 const ButtonStyled = styled.button`
     background: #C7F9DD;
     border-radius: 7px;
-    height: 46px;
-    width: 112px;
+    height: 50px;
+    width: 200px;
     border: none;
     outline: 0;
     cursor: pointer;

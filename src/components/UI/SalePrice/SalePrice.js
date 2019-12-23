@@ -5,7 +5,6 @@ const StyledSalePrice = styled.span`
     font-size: 14px;
     line-height: 129.96%;
     color: #242F3B;
-
 `
 const DelPrice = styled.del`
     color: #2EBB8A;
