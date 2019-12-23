@@ -102,7 +102,6 @@ app.get('*', async (req, res, next) => {
       })
       .then((data) => {
         dispatch({payload: toCamelCase(data), type: `${actionTypes.USER_INFO}_FULFILLED`})
-        console.warn('SUCCESS')
         return dispatch({
           payload: Promise.resolve({token}),
           type: actionTypes.LOGIN

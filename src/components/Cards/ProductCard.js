@@ -54,10 +54,12 @@ const ButtonPosition = styled.div`
   left: 20px;
 `
 const FavouriteButton = styled.div` 
-    background-color: ${props => props.favourite ? 'red' : 'none'};
     position: absolute;
     top: 20px;
     right: 20px;
+    svg {
+      fill: ${props => props.favourite && props.theme.colors.primary.default};
+    }
 `
 const defArr = []
 
@@ -89,7 +91,9 @@ const ProductCard = props => {
 
   return (
     <StyledCard column={column}>
-      <FavouriteButton favourite={favourite} onClick={onFavourite}><FavoriteIcon /></FavouriteButton>
+      <FavouriteButton favourite={favourite} onClick={onFavourite}>
+        <FavoriteIcon />
+      </FavouriteButton>
       <Link to={'/product/' + id}>
         <ImagePosition>
           <Image
