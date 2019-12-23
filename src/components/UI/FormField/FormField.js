@@ -16,8 +16,8 @@ const InputField = styled.input`
   padding: 10px;
 `
 const Label = styled.label`
-  font-size: 20px;
-  margin-bottom: 5px;
+  font-size: 15px;
+  margin-bottom: 10px;
 `
 const FormField = props => {
   const { label, placeholder, input, ...rest } = props

@@ -140,6 +140,12 @@ const ProductListBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
 `
+
+const Descr = styled.pre`
+  font-family: inherit;
+  white-space: pre-wrap;
+  line-height: 22px;
+`
 const Product = (props) => {
   const popularData = useFetchList({
     action: getProductList,
@@ -220,7 +226,7 @@ const Product = (props) => {
         </Col>
       </Row>
       <H2>Описание товара</H2>
-      <div>{description}</div>
+      <Descr>{description}</Descr>
       <H2>Основное</H2>
       <Feature label="Страна-изготовитель">{country}</Feature>
       <Feature label="Бренд">{brand}</Feature>

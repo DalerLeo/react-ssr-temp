@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'components/Link'
 import Telegram from 'icons/Telegram'
+import Container from '../../Container'
 
 const TopHeaderWidth = styled.div`
   width: 100%;
@@ -51,34 +52,36 @@ const RegionValue = styled.div`
 const TopHeader = () => {
   return (
     <TopHeaderWidth>
-      <TopHeaderStyled>
-        <LeftSide>
-          <PhoneNumber>
+      <Container>
+        <TopHeaderStyled>
+          <LeftSide>
+            <PhoneNumber>
           998 (97) 9555-212
-          </PhoneNumber>
-          <TelegramLink>
+            </PhoneNumber>
+            <TelegramLink>
           t.me/lochin
-          </TelegramLink>
-        </LeftSide>
-        <RightSide>
-          <Link to="/delivery" style={{ color: 'white' }}>
-            <Delivery>
+            </TelegramLink>
+          </LeftSide>
+          <RightSide>
+            <Link to="/delivery" style={{ color: 'white' }}>
+              <Delivery>
           Доставка
-            </Delivery>
-          </Link>
-          <Payment>
+              </Delivery>
+            </Link>
+            <Payment>
           Удобная оплата
-          </Payment>
-          <Region>
-            <RegionTitle>
-              <Telegram /> Регион:
-            </RegionTitle>
-            <RegionValue>
+            </Payment>
+            <Region>
+              <RegionTitle>
+                <Telegram /> Регион:
+              </RegionTitle>
+              <RegionValue>
             Ташкент
-            </RegionValue>
-          </Region>
-        </RightSide>
-      </TopHeaderStyled>
+              </RegionValue>
+            </Region>
+          </RightSide>
+        </TopHeaderStyled>
+      </Container>
     </TopHeaderWidth>
   )
 }

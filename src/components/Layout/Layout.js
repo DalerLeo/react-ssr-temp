@@ -3,14 +3,17 @@ import { ToastContainer } from 'react-toastify'
 import PropTypes from 'prop-types'
 import withStyles from 'isomorphic-style-loader/withStyles'
 import toastifyStyles from 'react-toastify/dist/ReactToastify.css'
+import slickCss from 'slick-carousel/slick/slick.css'
+import slickTheme from 'slick-carousel/slick/slick-theme.css'
 import FooterContainer from 'components/Footer/FooterContainer'
 import GlobalLoading from 'components/Utils/GlobalLoading'
 import styled from 'styled-components'
 import Header from 'components/UI/Header'
+import { pipe } from 'ramda'
 import GlobalStyles from '../GlobalStyles'
 import s from './Layout.css'
 import DataLayout from './DataLayout'
-import {pipe} from 'ramda'
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -27,7 +30,9 @@ const Content = styled.div`
 const enhance = pipe(
   DataLayout,
   withStyles(s),
-  withStyles(toastifyStyles)
+  withStyles(toastifyStyles),
+  withStyles(slickCss),
+  withStyles(slickTheme)
 )
 
 const Layout = props => {

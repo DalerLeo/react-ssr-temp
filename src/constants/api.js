@@ -41,6 +41,11 @@ export const PRODUCT_LIST = `${PRODUCT}/`
 export const PRODUCT_CATEGORY_LIST = `${PRODUCT}`
 export const PRODUCT_ITEM = `${PRODUCT}/%d/`
 
+export const ORDER = 'main/order'
+export const ORDER_LIST = `${ORDER}/`
+export const ORDER_CREATE = `${ORDER}/`
+export const ORDER_ITEM = `${ORDER}/%d/`
+
 export const MENU_AS = 'main/product_type'
 
 export const REGISTER = `${MAIN}/client/register/`

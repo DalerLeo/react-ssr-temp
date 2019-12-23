@@ -5,9 +5,9 @@ export default props => {
   return (
     <SvgIcon
       fontSize="unset"
-      viewBox="0 0 18 16"
-      width={20}
-      height={20}
+      viewBox="0 0 20 20"
+      width="20"
+      height="20"
       fill="none"
       {...props}
     >

@@ -17,6 +17,8 @@ const rootReducer = combineReducers({
   [STATE.USER_INFO]: createThunkReducer(actionTypes.USER_INFO),
   reset: createThunkReducer(actionTypes.USER_RESET_PASSWORD),
   register: createThunkReducer(actionTypes.REGISTER),
+  [STATE.ORDER_CREATE]: createThunkReducer(actionTypes.ORDER_CREATE),
+  [STATE.ORDER_LIST]: createThunkReducer(actionTypes.ORDER_LIST),
   article: combineReducers({
     list: createThunkReducer(actionTypes.ARTICLE_LIST),
     item: createThunkReducer(actionTypes.ARTICLE_ITEM)

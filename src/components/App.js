@@ -1,7 +1,9 @@
+import theme from 'constants/theme'
 import React from 'react'
 import moment from 'moment'
 import PropTypes from 'prop-types'
 import StyleContext from 'isomorphic-style-loader/StyleContext'
+import { ThemeProvider } from 'styled-components'
 import AppContext from './AppContext'
 
 const ContextType = {
@@ -62,11 +64,13 @@ class App extends React.PureComponent {
     // NOTE: If you need to add or modify header, footer etc. of the app,
     // Please do that inside the Layout component.
     return (
-      <StyleContext.Provider value={{ insertCss }}>
-        <AppContext.Provider value={{ context }}>
-          {React.Children.only(this.props.children)}
-        </AppContext.Provider>
-      </StyleContext.Provider>
+      <ThemeProvider theme={theme}>
+        <StyleContext.Provider value={{ insertCss }}>
+          <AppContext.Provider value={{ context }}>
+            {React.Children.only(this.props.children)}
+          </AppContext.Provider>
+        </StyleContext.Provider>
+      </ThemeProvider>
     )
   }
 }

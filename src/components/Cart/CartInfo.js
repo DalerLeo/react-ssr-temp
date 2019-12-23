@@ -44,7 +44,7 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `
 const CartInfo = props => {
-  const { sumAll } = props
+  const { sumAll, order } = props
   return (
     <CartInfoBlock>
       <DeliveryBlock>
@@ -70,9 +70,9 @@ const CartInfo = props => {
           <div>{sumAll} сум</div>
         </PriceBlockItem>
       </PriceBlock>
-      <Link to="/order">
-        <SubmitButton>Оформить заказ</SubmitButton>
-      </Link>
+
+        <SubmitButton type='submit'>Оформить заказ</SubmitButton>
+
     </CartInfoBlock>
   )
 }

@@ -28,7 +28,6 @@ import {menuAs} from 'components/UI/MenuBar/actions'
 import toCamelCase from './utils/toCamelCase'
 const SUCCESS = 200
 import {path as rPath} from 'ramda'
-
 process.on('unhandledRejection', (reason, p) => {
 //  console.error('Unhandled Rejection at:', p, 'reason:', reason)
   // Send entire app down. Process manager will restart it

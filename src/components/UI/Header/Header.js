@@ -18,6 +18,7 @@ import DropdownMenu from 'components/DropdownMenu'
 import FavoriteIcon from 'icons/Favorite'
 import { Row, Col } from 'components/Grid'
 import { SearchField } from 'components/UI/FormField'
+import Container from 'components/Container'
 import History from '../../../HistoryProvider'
 import TopHeader from './TopHeader'
 
@@ -75,86 +76,85 @@ const Header = (props) => {
     return dispatch(userSignOut())
       .then(() => history.replace('/'))
   }
-  const scrollY = useWindowScroll(60)
   return (
     <HeaderBlock>
-      <Row>
-        <TopHeader />
-      </Row>
-      <Row>
-        <HeaderStyled>
-          <Col span={4}>
-            <Link to="/">
-              <Logo />
-            </Link>
-          </Col>
-          <Col span={4}>
-            <DropdownMenu />
-          </Col>
-          <Col span={9}>
-            <SearchField />
-          </Col>
-          <Col span={4}>
-            {isEmpty(isAuth)
-              ? (
-                <MyProfile>
-                  <Link to="/sign-in" style={{ color: 'white' }}>
-                    <Exit style={{ fill: 'white', marginRight: '5px' }} />
+
+      <TopHeader />
+
+      <Container>
+      <HeaderStyled>
+        <Col span={4}>
+          <Link to="/">
+            <Logo />
+          </Link>
+        </Col>
+        <Col span={4}>
+          <DropdownMenu />
+        </Col>
+        <Col span={9}>
+          <SearchField />
+        </Col>
+        <Col span={4}>
+          {isEmpty(isAuth)
+            ? (
+              <MyProfile>
+                <Link to="/sign-in" style={{ color: 'white' }}>
+                  <Exit style={{ fill: 'white', marginRight: '5px' }} />
                     Вход
-                  </Link>
-                </MyProfile>)
-              : (
-                <MyProfile>
-                  <ProfileIcon />
-                  <Dropdown title="Мой профиль">
-                    <DropdownItem>
-                      <ProfileImageStyled src={ProfileImage} />
-                      <DropdownTexts>+99893 593 58 69</DropdownTexts>
-                    </DropdownItem>
-                    <hr />
-                    <DropdownItem>
-                      <FavoriteIcon />
-                      <Link to="/favourite">
+                </Link>
+              </MyProfile>)
+            : (
+              <MyProfile>
+                <ProfileIcon />
+                <Dropdown title="Мой профиль">
+                  <DropdownItem>
+                    <ProfileImageStyled src={ProfileImage} />
+                    <DropdownTexts>+99893 593 58 69</DropdownTexts>
+                  </DropdownItem>
+                  <hr />
+                  <DropdownItem>
+                    <FavoriteIcon />
+                    <Link to="/favourite">
                     Favourite
-                      </Link>
-                    </DropdownItem>
-                    <hr />
-                    <DropdownItem>
-                      <Location />
-                      <DropdownTexts>Мои заказы</DropdownTexts>
-                    </DropdownItem>
-                    <hr />
-                    <DropdownItem>
-                      <Location />
-                      <Link to="/address">
-                        <DropdownTexts>Мои адреса</DropdownTexts>
-                      </Link>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <Settings />
-                      <Link to="/profile">
-                        <DropdownTexts>Настройки</DropdownTexts>
-                      </Link>
-                    </DropdownItem>
-                    <hr />
-                    <DropdownItem onClick={() => onSignOut()}>
-                      <Enter />
-                      <DropdownTexts>Выход</DropdownTexts>
-                    </DropdownItem>
-                  </Dropdown>
-                </MyProfile>
-              )}
-          </Col>
-          <Col span={2}>
-            <MyProfile>
-              <Link to="/cart" style={{ color: 'white' }}>
-                <ShoppingBag />
+                    </Link>
+                  </DropdownItem>
+                  <hr />
+                  <DropdownItem>
+                    <Location />
+                    <DropdownTexts>Мои заказы</DropdownTexts>
+                  </DropdownItem>
+                  <hr />
+                  <DropdownItem>
+                    <Location />
+                    <Link to="/address">
+                      <DropdownTexts>Мои адреса</DropdownTexts>
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Settings />
+                    <Link to="/profile">
+                      <DropdownTexts>Настройки</DropdownTexts>
+                    </Link>
+                  </DropdownItem>
+                  <hr />
+                  <DropdownItem onClick={() => onSignOut()}>
+                    <Enter />
+                    <DropdownTexts>Выход</DropdownTexts>
+                  </DropdownItem>
+                </Dropdown>
+              </MyProfile>
+            )}
+        </Col>
+        <Col span={2}>
+          <MyProfile>
+            <Link to="/cart" style={{ color: 'white' }}>
+              <ShoppingBag />
                 Корзина
-              </Link>
-            </MyProfile>
-          </Col>
-        </HeaderStyled>
-      </Row>
+            </Link>
+          </MyProfile>
+        </Col>
+      </HeaderStyled>
+      </Container>
     </HeaderBlock>
   )
 }
