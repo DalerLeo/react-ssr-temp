@@ -9,15 +9,15 @@ const SkeletCardBlock = styled.div`
 const SkeletCard = styled.div`
     background-color: #FFF;
     height: 396px;
-    width: 25%;
+    width: 33%;
     border-right: 1px solid #e1e1e1;
   border-bottom: 1px solid #e1e1e1;
     border-top-left-radius: 5px;
-  &:nth-child(4) {
+  &:nth-child(3) {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
   }
-  &:nth-child(4n) {
+  &:nth-child(3n) {
     border-right: none;
   }
 `

@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { path, find, propEq, prop } from 'ramda'
 import Header from 'components/UI/Header'
 import ContainerUI from 'components/StyledElems/Container'
+import { ChevronButton } from 'components/UI/Button'
 import ProductCard from 'components/Cards/ProductCard'
 import Pagination from 'components/Pagination'
 import Skelet from 'components/UI/Skelet/Skelet'
@@ -42,7 +43,6 @@ const Categories = (props) => {
   const items = path(['results'], productCategoryData)
   const count = path(['data', 'count'], productCategoryData)
   const loading = path(['loading'], productCategoryData)
-
   return (
     <div>
       <Header />
@@ -56,6 +56,16 @@ const Categories = (props) => {
             <Row>
               <h1>{categoryName}</h1>
             </Row>
+            <Row gutter={20}>
+              <Col span={3}>
+                <ChevronButton />
+              </Col>
+              <Col span={4}>
+                <ChevronButton />
+              </Col>
+              <Col span={14} />
+            </Row>
+            <br />
             <Row>
               {loading ? <Skelet count={9} />
                 : (

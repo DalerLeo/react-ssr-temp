@@ -4,19 +4,42 @@ import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { path, find, propEq, pathOr } from 'ramda'
 import equals from 'fast-deep-equal'
-import CartButton from 'components/UI/Button/CartButton'
+import { Button } from 'components/UI/Button'
 import { getDataFromState, getPrimaryImage } from 'utils/get'
 import { setItemToCart } from 'components/Cards/storage'
 import { favouriteCreateAction, favouriteDeleteAction } from 'routes/favourite/actions'
 import Comment from 'components/Comment'
 import { Row, Col } from 'components/Grid'
 import Container from 'components/Container'
-import Feature from './Feature'
 import numberFormat from 'utils/numberFormat'
-const FavouriteButton = styled.button` 
-    background-color: ${props => props.favourite ? 'red' : 'none'}
-`
+import Rating from 'components/UI/Rating'
+import SalePrice from 'components/UI/SalePrice'
+import FavoriteIcon from 'icons/Favorite'
+import payme from 'images/payme.png'
+import click from 'images/click.png'
+import uzcard from 'images/uzcard.png'
+import Feature from './Feature'
 
+const FavouriteButton = styled.button`
+    background-color: ${props => props.favourite ? 'red' : 'none'};
+    border: 1px solid #818591;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 14px 37px;
+    margin-top: 10px;
+    margin-left: 16px;
+    display: flex;
+    outline: 0;
+    cursor: pointer;
+`
+const FavIconText = styled.div`
+  margin-left: 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 129.96%;
+  color: #818591;
+`
 const ContainerUI = styled(Container)`
   margin-top: 30px;
 `
@@ -33,10 +56,8 @@ const Price = styled.div`
   line-height: 129.96%;
   margin-top: 36px;
   margin-bottom: 28px;
-/* identical to box height, or 39px */
-
-
-color: #28A97C;
+  color: #28A97C;
+  margin-right: 30px;
 `
 
 const H2 = styled.h2`
@@ -53,15 +74,69 @@ const Img = styled.img`
   background: #fff;
   border-radius: 6px;
 `
-
+const Artikul = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 129.96%;
+  color: #818591;
+  margin-bottom: 7px;
+`
+const ImageOptions = styled.img`
+  width: 52px;
+  height: 52px;
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid #28A97C;
+  border-radius: 3px;
+  padding: 5px;
+  margin-bottom: 10px;
+`
+const FlexBlock = styled.div`
+  display: flex;
+  align-items: center;
+`
+const CommentsCount = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 129.96%;
+  color: #818591; 
+  margin-left: 27px;
+`
+const BrendTitle = styled.div`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 129.96%;
+  color: #2E384C;
+`
+const BrendName = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 129.96%;
+  color: #2E384C;
+`
+const Payment = styled.div`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 129.96%;
+  color: #2E384C;
+`
+const PaymentImage = styled.img`
+  margin-right: 20px;
+  cursor: pointer;
+`
 const Product = (props) => {
   const { productData, onSubmit, commentList } = props
 
   const dispatch = useDispatch()
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
   const datas = pathOr([], ['data'], cartList)
-
   const data = path(['data'], productData)
+
   const name = path(['name'], data)
   const price = path(['price'], data)
   const country = path(['country', 'name'], data)
@@ -72,7 +147,7 @@ const Product = (props) => {
   const filterProduct = find(propEq('id', id))(datas)
   const amount = pathOr(0, ['amount'], filterProduct)
   const isFavourite = path(['data', 'isFavourite'], productData)
-
+  const images = path(['images'], data)
   const image = getPrimaryImage(data)
 
   const onChange = value => {
@@ -89,14 +164,44 @@ const Product = (props) => {
   return (
     <ContainerUI>
       <Row gutter={20}>
+        <Col span={1}>
+          {images.map((img, key) => {
+            return <ImageOptions key={key} src={img.image} alt="product images" />
+          })}
+        </Col>
         <Col span={12}>
           <Img src={image} alt="Product Image" />
         </Col>
-        <Col span={12}>
+        <Col span={11}>
+          <Artikul>артикул: 264723648212</Artikul>
           <Title>{name}</Title>
-          <Price>{numberFormat(price, 'сум')}</Price>
-          <CartButton amount={amount} onChange={onChange} />
-          <FavouriteButton favourite={favourite} onClick={onFavourite}>Favourite</FavouriteButton>
+          <br />
+          <FlexBlock>
+            <Rating />
+            <CommentsCount>3 отзыва</CommentsCount>
+          </FlexBlock>
+          <FlexBlock>
+            <Price>{numberFormat(price, 'сум')}</Price>
+            <SalePrice />
+          </FlexBlock>
+          <FlexBlock>
+            <Button amount={amount} onChange={onChange}> В корзину</Button>
+            <FavouriteButton favourite={favourite} onClick={onFavourite}>
+              <FavoriteIcon />
+              <FavIconText>В избранное</FavIconText>
+            </FavouriteButton>
+          </FlexBlock>
+          <br />
+          <BrendTitle>Бренд (производитель)</BrendTitle>
+          <BrendName>ООО «Петелинка»</BrendName>
+          <br />
+          <Payment>Оплата</Payment>
+          <br />
+          <FlexBlock>
+            <PaymentImage src={payme} alt="payme" />
+            <PaymentImage src={click} alt="click" />
+            <PaymentImage src={uzcard} alt="uzcard" />
+          </FlexBlock>
         </Col>
       </Row>
       <H2>Описание товара</H2>
