@@ -38,28 +38,35 @@ const StyledCheckMark = styled(CheckMark)`
   }
 `
 
+
 const StyledInput = styled(SwitchInput)`
+  :checked ~ span {
+    color: red;
+  }
+
   :checked + ${StyledCheckMark}:after {
     transform: rotate(45deg) scale(1);
   }
 `
 const SwitchContainer = styled(SwitchContainerUI)`
   ${props =>
-    !props.label &&
-    css`
+  !props.label &&
+  css`
       margin-bottom: 0;
       width: 18px;
       height: 18px;
       padding-left: 18px;
     `}
 `
+
 const Checkbox = ({ onChange, ...props }) => {
   const onChecked = ev => onChange && onChange(ev.target.checked, ev)
   return (
     <SwitchContainer disabled={props.disabled} label={props.label} {...props}>
-      {props.label}
+
       <StyledInput {...props} onChange={onChecked} type="checkbox" />
       <StyledCheckMark indeterminate={props.indeterminate} />
+      <span>{props.label}</span>
     </SwitchContainer>
   )
 }

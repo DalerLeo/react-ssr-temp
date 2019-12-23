@@ -1,8 +1,7 @@
 import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
 import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
-import { path } from 'ramda'
-import _ from 'lodash'
+import { path, prop } from 'ramda'
 import { setCookie } from 'utils/cookie'
 
 export const signInAction = (username, password) => {
@@ -35,7 +34,7 @@ export const userSignOut = () => {
       .post(API.LOGOUT)
       .then(response => {
         document.cookie = 'token='
-        return _.get(response, 'data')
+        return prop('data', response)
       })
       .catch(() => {
         document.cookie = 'token='

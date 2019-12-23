@@ -2,7 +2,8 @@ import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
 import { path } from 'ramda'
 import axios from 'utils/axios'
-import sprintf from 'sprintf'
+import { sprintf } from 'sprintf-js'
+
 
 export const addressListAction = (data, type) => {
   return (dispatch, getState) => {

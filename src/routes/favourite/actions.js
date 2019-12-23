@@ -1,7 +1,7 @@
 import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
 import axios, { getPayloadFromSuccess, getPayloadFromError } from 'utils/axios'
-import sprintf from 'sprintf'
+
 
 export const favoriteListFetch = (data, type) => {
   return (dispatch, getState) => {

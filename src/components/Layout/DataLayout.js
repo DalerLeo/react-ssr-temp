@@ -1,5 +1,4 @@
 import React from 'react'
-import fp from 'lodash/fp'
 import setGlobalNotify from 'utils/setGlobalNotify'
 import { path } from 'ramda'
 
@@ -43,7 +42,6 @@ export default Component => {
     render () {
       const { store: { getState } } = this.props
       const state = getState()
-      const userData = fp.get('user.data', state) || {}
       const isAuth = path(['login', 'data', 'token'], state) || ''
       const data = {
         isAuth

@@ -19,10 +19,12 @@ import {
   head,
   pipe,
   isEmpty,
-  isNil, find, propEq
+  isNil,
+  find,
+  propEq,
+  values
 } from 'ramda'
 import moment from 'moment'
-import fp from 'lodash/fp'
 import { getSearchParam, parseParams } from './urls'
 import { mapParamsToRequest, mapStrToBoolean, decodeURLParams } from './mapper'
 import toSnakeCase from './toSnakeCase'
@@ -204,9 +206,9 @@ export const getItemFromTree = (arr, target) => {
   return null
 }
 
-export const arrayObjToObj = fp.flow(
-  fp.map(fp.values),
-  fp.fromPairs
+export const arrayObjToObj = pipe(
+  map(values),
+  fromPairs
 )
 
 const defArr = []

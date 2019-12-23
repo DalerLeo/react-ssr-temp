@@ -1,6 +1,6 @@
 import React from 'react'
-import fp from 'lodash/fp'
 import PropTypes from 'prop-types'
+import { isEmpty, is } from 'ramda'
 
 class RenderOrNull extends React.Component {
   constructor (props) {
@@ -32,9 +32,9 @@ class RenderOrNull extends React.Component {
 
   render () {
     const { value, children } = this.props
-    if (fp.isArray(value) && !fp.isEmpty(value)) {
+    if (is(Array, value) && !isEmpty(value)) {
       return children
-    } else if (fp.isArray(value) && fp.isEmpty(value)) return null
+    } else if (is(Array, value) && isEmpty(value)) return null
     return this.state.visible && children
   }
 }

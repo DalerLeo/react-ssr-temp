@@ -1,8 +1,8 @@
-import _ from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import useHistory from 'hooks/useHistory'
+import { is } from 'ramda'
 
 const LinkUI = styled.a`
     color: black;
@@ -27,7 +27,7 @@ const isLeftClickEvent = (event) => {
 }
 
 const toString = (to) => {
-  return _.isObject(to) ? `${to.pathname}/?${to.search}` : to
+  return is(Object, to) ? `${to.pathname}/?${to.search}` : to
 }
 
 const isModifiedEvent = (event) => {

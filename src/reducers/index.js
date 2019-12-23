@@ -1,6 +1,5 @@
 import * as actionTypes from 'constants/actionTypes'
 import * as STATE from 'constants/stateNames'
-import { reducer as formReducer } from 'redux-form'
 import { routerReducer } from 'redux-first-routing'
 import { combineReducers } from 'redux'
 import createThunkReducer from 'utils/createThunkReducer'
@@ -8,7 +7,6 @@ import createStandardReducer from 'utils/createStandardReducer'
 import { cartReducer } from './customReducers'
 
 const rootReducer = combineReducers({
-  form: formReducer,
   router: routerReducer,
   lang: createThunkReducer(actionTypes.LANGUAGE),
   [STATE.CART]: cartReducer(),

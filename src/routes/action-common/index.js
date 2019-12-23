@@ -1,11 +1,8 @@
 import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
-import fp from 'lodash/fp'
 import moment from 'moment'
-import axios from 'utils/axios'
-import {setCookie} from 'utils/cookie'
-
-
+import axios, { getPayloadFromSuccess } from 'utils/axios'
+import { setCookie } from 'utils/cookie'
 
 export const countryListAction = (param) => {
   const params = {
@@ -17,14 +14,13 @@ export const countryListAction = (param) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
       .get(API.REGIONS_LIST, { params })
-      .then(fp.get('data'))
+      .then(getPayloadFromSuccess)
     return dispatch({
       payload,
       type: actionTypes.COUNTRY_LIST
     })
   }
 }
-
 
 export const setAppLanguageAction = (lang) => {
   const ONE_YEAR = 365
@@ -44,11 +40,10 @@ export const getNotificationsCount = () => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
       .get(API.NOTIFICATIONS)
-      .then(fp.get('data'))
+      .then(getPayloadFromSuccess)
     return dispatch({
       payload,
       type: actionTypes.NOTIFICATIONS
     })
   }
 }
-

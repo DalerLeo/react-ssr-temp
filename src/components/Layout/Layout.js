@@ -2,7 +2,6 @@ import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import PropTypes from 'prop-types'
 import withStyles from 'isomorphic-style-loader/withStyles'
-import { compose } from 'recompose'
 import toastifyStyles from 'react-toastify/dist/ReactToastify.css'
 import FooterContainer from 'components/Footer/FooterContainer'
 import GlobalLoading from 'components/Utils/GlobalLoading'
@@ -11,7 +10,7 @@ import Header from 'components/UI/Header'
 import GlobalStyles from '../GlobalStyles'
 import s from './Layout.css'
 import DataLayout from './DataLayout'
-
+import {pipe} from 'ramda'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,7 +24,7 @@ const Wrapper = styled.div`
 const Content = styled.div`
   flex-grow: 1;
 `
-const enhance = compose(
+const enhance = pipe(
   DataLayout,
   withStyles(s),
   withStyles(toastifyStyles)

@@ -1,6 +1,6 @@
 import * as API from 'constants/api'
 import * as actionTypes from 'constants/actionTypes'
-import sprintf from 'sprintf'
+import {sprintf} from 'sprintf-js'
 import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 
 export const getStaticPagesList = () => {

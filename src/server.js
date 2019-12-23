@@ -15,15 +15,12 @@ import errorPageStyle from 'routes/error/ErrorPage.css'
 import router from 'router'
 import chunks from './chunk-manifest.json'
 import config from 'config'
-import * as Rx from 'rxjs'
-import {setObservableConfig} from 'recompose'
 import createStore from './store/createStore'
 import queryToParams from './utils/queryToParams'
 import fetch from 'node-fetch'
 import createHistory from 'history/createMemoryHistory'
 import {startListener} from 'redux-first-routing'
 import History from './HistoryProvider'
-import * as sprintf from 'sprintf'
 import { ServerStyleSheet } from 'styled-components'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -31,15 +28,16 @@ import {menuAs} from 'components/UI/MenuBar/actions'
 import toCamelCase from './utils/toCamelCase'
 const SUCCESS = 200
 import {path as rPath} from 'ramda'
-setObservableConfig({
-  // Converts a plain ES observable to an RxJS 5 observable
-  fromESObservable: Rx.Observable.from
-})
 
 process.on('unhandledRejection', (reason, p) => {
-  console.error('Unhandled Rejection at:', p, 'reason:', reason)
+//  console.error('Unhandled Rejection at:', p, 'reason:', reason)
   // Send entire app down. Process manager will restart it
-  process.exit(1)
+  if (__DEV__){
+
+  }
+  else {
+    process.exit(1)
+  }
 })
 
 //

@@ -1,18 +1,3 @@
-import _ from 'lodash'
-import numberWithoutSpaces from 'utils/numberWithoutSpaces'
-
-export const normalizeNumber = (value, prevValue) => {
-  const numberValue = _.toNumber(numberWithoutSpaces(value))
-  if (!value) {
-    return value
-  } else if (_.isNaN(numberValue)) {
-    return prevValue
-  }
-
-  const onlyNums = Number(_.replace(_.replace(value, ',', '.'), / /g, ''))
-  return onlyNums.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-}
-
 export const normalizePhone = value => {
   const firstValue = value.substring(0, 1)
   //  Console.warn(value.substring(0, 1))

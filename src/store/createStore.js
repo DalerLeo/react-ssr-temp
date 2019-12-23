@@ -2,7 +2,6 @@ import { createStore, applyMiddleware } from 'redux'
 import { routerMiddleware } from 'redux-first-routing'
 import thunkMiddleware from 'redux-thunk'
 import promiseMiddleware from 'redux-promise-middleware'
-import { createLogger } from 'redux-logger'
 import rootReducer from '../reducers'
 
 export default (history, initialState, logger) => {
@@ -13,6 +12,7 @@ export default (history, initialState, logger) => {
   ]
 
   if (process.env.NODE_ENV === 'development' && logger) {
+    const createLogger = require('redux-logger').createLogger
     middleware.push(createLogger({ collapsed: (getState, action, logEntry) => !logEntry.error }))
   }
 

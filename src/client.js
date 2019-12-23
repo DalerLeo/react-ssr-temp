@@ -8,15 +8,12 @@ import history, { createPath } from './history';
 import { Provider } from 'react-redux';
 import { updateMeta } from './DOMUtils';
 import router from './router';
-import * as Rx from 'rxjs';
-import { setObservableConfig } from 'recompose';
 import smoothScrollTo from 'utils/smoothScrollTo';
 import createStore from './store/createStore';
 import { startListener } from 'redux-first-routing';
 import { getCartItems } from 'utils/storage';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {getCookie} from 'utils/cookie'
 
 const initialState = {
   ...window.initialState,
@@ -29,10 +26,6 @@ const store = createStore(history, initialState, true);
 // Listen changes in route
 startListener(history, store);
 
-setObservableConfig({
-  // Converts a plain ES observable to an RxJS 5 observable
-  fromESObservable: Rx.Observable.from,
-});
 // Global (context) variables that can be easily accessed from any React component
 // https://facebook.github.io/react/docs/context.html
 
