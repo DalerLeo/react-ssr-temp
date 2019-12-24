@@ -70,9 +70,15 @@ const CartInfo = props => {
           <div>{sumAll} сум</div>
         </PriceBlockItem>
       </PriceBlock>
-
-        <SubmitButton type='submit'>Оформить заказ</SubmitButton>
-
+      {order
+        ? (
+          <SubmitButton type="submit">Оформить заказ</SubmitButton>
+        )
+        : (
+          <Link to="/order">
+            <SubmitButton>Оформить заказ</SubmitButton>
+          </Link>
+        )}
     </CartInfoBlock>
   )
 }

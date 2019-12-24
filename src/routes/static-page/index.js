@@ -6,6 +6,7 @@ import StaticPageContainer from './StaticPageContainer'
 async function action (props) {
   const { store, isServer, params } = props
   return {
+    chunk: ['static-page'],
     title: 'Статичная страница',
     component: (
       <Layout {...props} store={store}>

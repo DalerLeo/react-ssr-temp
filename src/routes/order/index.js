@@ -9,7 +9,7 @@ async function action (props) {
 
   store.dispatch(addressListAction())
   return {
-    chunk: ['cart'],
+    chunk: ['order'],
     title: 'Корзина',
     component: (
       <Layout {...props}>

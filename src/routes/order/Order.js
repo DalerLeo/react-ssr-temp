@@ -108,7 +108,7 @@ const Order = props => {
                   </AddressInfo>
                 </Col>
                 <Col span={8}>
-                  <CartInfo sumAll={sumAll} />
+                  <CartInfo sumAll={sumAll} order={true}/>
                 </Col>
               </Row>
             </form>

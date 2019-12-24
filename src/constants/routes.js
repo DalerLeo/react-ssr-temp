@@ -79,7 +79,7 @@ export const PROFILE = '/profile'
 
 export const ADDRESS = '/address'
 
-export const SINGLE_PRODUCT = '/product/:id'
+export const PRODUCT = '/product/:id'
 
 export const FAVOURITE = '/favourite'
 

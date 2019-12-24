@@ -7,7 +7,6 @@ async function action (props) {
   if (isServer) {
   }
   return {
-    chunk: ['cart'],
     title: 'Корзина',
     component: (
       <Layout {...props} home={true}>

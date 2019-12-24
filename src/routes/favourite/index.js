@@ -10,7 +10,7 @@ async function action (props) {
 
   store.dispatch(favoriteListFetch())
   return {
-    chunk: ['cart'],
+    chunk: ['favourite'],
     title: 'Корзина',
     component: (
       <Layout {...props} home={true}>

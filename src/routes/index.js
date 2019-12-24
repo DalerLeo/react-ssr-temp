@@ -19,19 +19,19 @@ const routes = {
     },
     {
       path: ROUTE.CART,
-      load: () => import(/* webpackChunkName: 'cart' */ './cart')
+      action: require('./cart').default
+    },
+    {
+      path: ROUTE.SIGN_IN,
+      action: require('./sign-in').default
+    },
+    {
+      path: ROUTE.PRODUCT,
+      action: require('./product').default
     },
     {
       path: ROUTE.FAVOURITE,
       load: () => import(/* webpackChunkName: 'favourite' */ './favourite')
-    },
-    {
-      path: ROUTE.SIGN_IN,
-      load: () => import(/* webpackChunkName: 'sign-in' */ './sign-in')
-    },
-    {
-      path: ROUTE.DELIVERY,
-      load: () => import(/* webpackChunkName: 'delivery' */ './delivery')
     },
     {
       path: ROUTE.PROFILE,
@@ -44,10 +44,6 @@ const routes = {
     {
       path: ROUTE.ORDER,
       load: () => import(/* webpackChunkName: 'order' */ './order')
-    },
-    {
-      path: ROUTE.SINGLE_PRODUCT,
-      load: () => import(/* webpackChunkName: 'product' */ './product')
     },
     {
       path: ROUTE.STATIC_PAGE_URL,
@@ -74,7 +70,7 @@ const routes = {
     props.store.dispatch(setLoader(false))
 
     // Provide default values for title, description etc.
-    route.title = `${route.title || 'Untitled Page'} - MyJob.uz`
+    route.title = `${route.title || 'Untitled Page'} - Lochin`
     route.description = route.description || ''
 
     return route
