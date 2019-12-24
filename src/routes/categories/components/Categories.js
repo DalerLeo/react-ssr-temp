@@ -13,8 +13,7 @@ import { getItemFromTree } from 'utils/get'
 import Filter from './Filter'
 
 const Container = styled(ContainerUI)`
-   display: flex;
-   justify-content: center;
+   
 `
 const ColUI = styled(Col)`
   min-width: ${props => props.minWidth}px;

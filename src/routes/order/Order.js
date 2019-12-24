@@ -40,9 +40,7 @@ const Order = props => {
     onSubmit
   } = props
 
-
   const addressList = pathOr(EMPTY_ARR, ['data'], addresses)
-
 
   return (
     <Container>
@@ -108,7 +106,7 @@ const Order = props => {
                   </AddressInfo>
                 </Col>
                 <Col span={8}>
-                  <CartInfo sumAll={sumAll} order={true}/>
+                  <CartInfo sumAll={sumAll} order={true} />
                 </Col>
               </Row>
             </form>

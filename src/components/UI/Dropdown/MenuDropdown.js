@@ -4,14 +4,11 @@ import styled from 'styled-components'
 const DropdownContent = styled.div`
     display: none;
     position: absolute;
-    left: -40px;
-    top: 75px;
+    left: -260px;
+    top: 74px;
     background-color: #fff;
     color: black;
-    border-radius: 7px;
-    min-width: 250px;
-    width: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    min-width: 1200px;
     padding: 12px 16px;
     z-index: 1;
 `
@@ -28,9 +25,16 @@ const DropdownStyled = styled.div`
 `
 const StyledTitle = styled.div`
     margin-top: 25px;
+    color: #FFFFFF;
 `
-
-const Dropdown = (props) => {
+const WrapContent = styled.div`
+    height: 570px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+`
+const MenuDropdown = (props) => {
   const { title, children } = props
   return (
     <DropdownStyled>
@@ -38,10 +42,12 @@ const Dropdown = (props) => {
         {title}
       </StyledTitle>
       <DropdownContent>
-        {children}
+        <WrapContent>
+          {children}
+        </WrapContent>
       </DropdownContent>
     </DropdownStyled>
   )
 }
 
-export default Dropdown
+export default MenuDropdown

@@ -130,7 +130,7 @@ const Cart = props => {
                     </IncrementButton>
                   </GroupButton>
                   <div>
-                    {price}
+                    {Math.floor(price)} сум
                   </div>
                   <DeleteButton onClick={() => onDelete(id)}>
                     <DeleteIcon />

@@ -1,3 +1,7 @@
 import Dropdown from './Dropdown'
+import MenuDropdown from './MenuDropdown'
 
-export default Dropdown
+export {
+  Dropdown,
+  MenuDropdown
+}
