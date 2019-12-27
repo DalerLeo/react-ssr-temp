@@ -18,15 +18,16 @@ const Overlay = styled.div`
 `
 
 const Modal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
     width: 500px;
-    position: absolute;
-    top: -50%;
-    left: 35%;
+    
     margin: 0px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 7px;
-    transform: translateY(100%);
     transition: transform 0.2s ease;
     z-index: 9999;
 `

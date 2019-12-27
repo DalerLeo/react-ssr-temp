@@ -22,6 +22,10 @@ const routes = {
       action: require('./cart').default
     },
     {
+      path: ROUTE.MY_ORDER,
+      action: require('./my-order').default
+    },
+    {
       path: ROUTE.SIGN_IN,
       action: require('./sign-in').default
     },

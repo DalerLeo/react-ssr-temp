@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
-import Container from 'components/StyledElems/Container'
 import styled from 'styled-components'
 import { path, isEmpty, find, propEq } from 'ramda'
 import MinusIcon from 'icons/Minus'
@@ -10,27 +9,33 @@ import DeleteIcon from 'icons/Delete'
 import NoImage from 'images/NoImage.png'
 import NoProductImage from 'images/empty-template-cart.png'
 import { setItemToCart } from 'components/Cards/storage'
+import { Row, Col } from 'components/Grid'
+import SalePrice from '../UI/SalePrice'
 
 const Card = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #FFF;
-  width: 714px;
-  height: 80px;
-  margin-bottom: 15px;
-  border-radius: 7px;
-  box-shadow: 1px 1px 2px 1px rgba(156,150,156,1);
+  background: #FFFFFF;
+  border-radius: 5px;
 `
 const ProductName = styled.div`
-  padding: 0 20px;
-  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
   line-height: 129.96%;
-  width: 350px;
+  color: #242F3B;
+  mix-blend-mode: normal;
+  flex: none;
+  order: 0;
+  align-self: center;
+  margin: 8px;
 `
 
 const GroupButton = styled.div`
-
+  background: #FFFFFF;
+  border: 1px solid #AEB2B7;
+  box-sizing: border-box;
+  border-radius: 7px;
+  padding: 5px 0;
+  margin: 10px 0;
 `
 const DecrementButton = styled.button`
   background-color: transparent;
@@ -38,6 +43,7 @@ const DecrementButton = styled.button`
   border: none;
   cursor: pointer;
   outline: 0;
+  margin-left: 12px;
 `
 const IncrementButton = styled.button`
   background-color: transparent;
@@ -48,9 +54,9 @@ const IncrementButton = styled.button`
 `
 
 const Counter = styled.input`
-  width: 50px;
+  width: 25px;
+  padding-left: 5px;
   border: none;
-  padding-left: 20px;
   outline: 0;
 `
 const DeleteButton = styled.button`
@@ -58,13 +64,13 @@ const DeleteButton = styled.button`
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  margin-right: 20px;
+  margin: 15px 10px;
   outline: 0;
 `
 const Img = styled.img`
-    width: 50px;
+    width: 86px;
     height: 100%;
-    margin-left: 30px;
+    margin-left: 20px;
 `
 
 const ContentPosition = styled.div`
@@ -73,7 +79,7 @@ const ContentPosition = styled.div`
 const NoProductImg = styled.img`
   display: flex;
   margin: auto;
-  width: 300px;
+  width: 200px;
   height: 100%;
 `
 const CartText = styled.h2`
@@ -82,7 +88,36 @@ const CartText = styled.h2`
   justify-content: center;
   margin: 20px 0 0 20px;
 `
-
+const ProductArticul = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 129.96%;
+  color: #818591;
+  flex: none;
+  order: 1;
+  align-self: flex-start;
+  margin: 0px 6px;
+`
+const StyledPrice = styled.div`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 129.96%;
+  color: #28A97C;
+  mix-blend-mode: normal;
+  margin-top: 8px;
+`
+const Line = styled.div`
+  width: 95%;
+  margin: 0 auto;
+`
+const ProductRow = styled.div`
+  padding: 33px 0;
+  border-bottom: 1px solid #E7E8EA;
+  width: 95%;
+  margin: 0 auto;
+`
 const Cart = props => {
   const { onDelete, products = [] } = props
   const dispatch = useDispatch()
@@ -95,52 +130,64 @@ const Cart = props => {
 
   return (
     <div>
-      <Container>
-        {isEmpty(products) ? (
-          <ContentPosition>
-            <NoProductImg src={NoProductImage} alt="No Product" />
-            <CartText>The cart is empty</CartText>
-          </ContentPosition>
-        ) : (
-          <div>
-            {products.map((product, key) => {
-              const images = path(['images'], product)
-              const isPrimary = find(propEq('isPrimary', true))(images)
-              const image = path(['image'], isPrimary)
-              const name = path(['name'], product)
-              const id = path(['id'], product)
-              const price = path(['price'], product)
-              const amount = path(['amount'], product)
-              return (
-                <Card key={key}>
-                  <div>
+      {isEmpty(products) ? (
+        <ContentPosition>
+          <NoProductImg src={NoProductImage} alt="No Product" />
+          <CartText>The cart is empty</CartText>
+        </ContentPosition>
+      ) : (
+        <Card>
+          {products.map((product, key) => {
+            const images = path(['images'], product)
+            const isPrimary = find(propEq('isPrimary', true))(images)
+            const image = path(['image'], isPrimary)
+            const name = path(['name'], product)
+            const id = path(['id'], product)
+            const price = path(['price'], product)
+            const amount = path(['amount'], product)
+            return (
+              <ProductRow key={key}>
+                <Row>
+                  <Col span={2}>
                     <Img
                       src={typeof image === 'undefined' ? NoImage : image}
                       alt="image"
                     />
-                  </div>
-                  <ProductName>{name}</ProductName>
-                  <GroupButton>
-                    <DecrementButton onClick={() => onSubtract(product, amount)}>
-                      <MinusIcon />
-                    </DecrementButton>
-                    <Counter type="number" value={amount} />
-                    <IncrementButton onClick={() => onAdd(product, amount)}>
-                      <PlusIcon />
-                    </IncrementButton>
-                  </GroupButton>
-                  <div>
-                    {Math.floor(price)} сум
-                  </div>
-                  <DeleteButton onClick={() => onDelete(id)}>
-                    <DeleteIcon />
-                  </DeleteButton>
-                </Card>
-              )
-            })}
-          </div>
-        )}
-      </Container>
+                  </Col>
+                  <Col span={12}>
+                    <ProductName>{name}</ProductName>
+                    <ProductArticul>#264723648212</ProductArticul>
+                  </Col>
+                  <Col span={4}>
+                    <GroupButton>
+                      <DecrementButton onClick={() => onSubtract(product, amount)}>
+                        <MinusIcon />
+                      </DecrementButton>
+                      <Counter type="text" value={amount} />
+                      <IncrementButton onClick={() => onAdd(product, amount)}>
+                        <PlusIcon />
+                      </IncrementButton>
+                    </GroupButton>
+                  </Col>
+                  <Col span={1} />
+                  <Col span={4}>
+                    <StyledPrice>
+                      {Math.floor(price)} сум
+                    </StyledPrice>
+                    <SalePrice>25000</SalePrice>
+                  </Col>
+                  <Col span={1}>
+                    <DeleteButton onClick={() => onDelete(id)}>
+                      <DeleteIcon />
+                    </DeleteButton>
+                  </Col>
+                </Row>
+                <Line />
+              </ProductRow>
+            )
+          })}
+        </Card>
+      )}
     </div>
   )
 }

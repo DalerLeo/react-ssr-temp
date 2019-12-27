@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { curry, path } from 'ramda'
 
 const Wrapper = styled.div`
-  margin: -10px;
+  margin-left: -10px;
 `
 const Block = styled.div`
     width: calc(50% - 20px);
@@ -13,7 +13,8 @@ const Block = styled.div`
     border-radius: 7px;
     cursor: pointer;
     padding: 10px 20px;
-    margin-bottom: 20px;
+    min-height: 87px;
+    vertical-align: top;
 `
 const TitleFlex = styled.div`
     display: flex;
@@ -48,13 +49,14 @@ const OrderSelectField = (props) => {
         const isActive = input.value && input.value.id === item.id
         const toggleItem = isActive ? EMPTY_OBJ : item
         const price = path(['price'], item)
+        const icon = path(['icon'], item)
         return (
-
           <Block
             isActive={isActive}
             key={item.id}
             onClick={onChange(toggleItem)}
           >
+            {icon.length > 0 ? <img src={icon} alt="icon" /> : ''}
             <TitleFlex>
               <Title>{item.name}</Title>
               <Prise>{price} {price && 'сум'}</Prise>
