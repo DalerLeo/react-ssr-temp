@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { path, prop } from 'ramda'
 import Header from 'components/UI/Header'
-import ContainerUI from 'components/StyledElems/Container'
+import Container from 'components/StyledElems/Container'
 import { ChevronButton } from 'components/UI/Button'
 import ProductCard from 'components/Cards/ProductCard'
 import Pagination from 'components/Pagination'
@@ -12,12 +12,6 @@ import { Row, Col } from 'components/Grid'
 import { getItemFromTree } from 'utils/get'
 import Filter from './Filter'
 
-const Container = styled(ContainerUI)`
-   
-`
-const ColUI = styled(Col)`
-  min-width: ${props => props.minWidth}px;
-`
 const ProductListBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -45,12 +39,11 @@ const Categories = (props) => {
     <div>
       <Header />
       <Container>
-        <Row>
-          <ColUI span={5} minWidth="250">
+        <Row gutter={50}>
+          <Col span={5} minWidth="250">
             <Filter {...filterData} />
-          </ColUI>
-          <ColUI span={1} minWidth="50" />
-          <ColUI span={18} minWidth="900">
+          </Col>
+          <Col span={18}>
             <Row>
               <h1>{categoryName}</h1>
             </Row>
@@ -79,7 +72,7 @@ const Categories = (props) => {
             <Pages>
               <Pagination count={count} pageSize={12} />
             </Pages>
-          </ColUI>
+          </Col>
         </Row>
       </Container>
     </div>

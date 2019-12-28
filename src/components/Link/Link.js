@@ -40,6 +40,7 @@ const Link = props => {
     children,
     smooth,
     style,
+    beforeRedirect,
     ...otherProps
   } = props
 
@@ -62,6 +63,7 @@ const Link = props => {
     if (smooth) {
       history.push(to, { smooth })
     } else {
+      beforeRedirect && beforeRedirect()
       history.push(to)
     }
     return null

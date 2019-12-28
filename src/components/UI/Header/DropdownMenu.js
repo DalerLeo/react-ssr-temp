@@ -1,24 +1,22 @@
+import * as STATE from 'constants/stateNames'
 import React, { useState } from 'react'
-import { pathOr, find, propEq, path } from 'ramda'
+import { pathOr, path } from 'ramda'
 import styled from 'styled-components'
 import Link from 'components/Link'
-import { MenuDropdown } from 'components/UI/Dropdown'
-import MenuModal from 'components/UI/MenuModal'
-import useFetchList from 'hooks/useFetchList'
 import MenuBarIcon from 'icons/MenuBar'
-import { menuAs } from '../UI/MenuBar/actions'
+import { useSelector } from 'react-redux'
+import { getDataFromState } from '../../../utils/get'
+import MenuDropdown from './MenuDropdown'
 
 const DropdownBlock = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  padding-left: 50px;
 `
 const DropdownItem = styled.div`
-  display: flex;
   margin-bottom: 20px;
   width: 20%;
-  text-overflow: ellipsis;
-  position: ${props => props.open ? 'relative' : 'unset'};
   align-items: center;
 `
 const DropdownTexts = styled.div`
@@ -33,7 +31,8 @@ const DropdownTexts = styled.div`
 `
 const DropdownSubText = styled.div`
   font-size: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
+  line-height: 130%;
 `
 const LogoStyled = styled.div`
     margin-top: -5px;
@@ -44,42 +43,38 @@ const LogoStyled = styled.div`
 `
 const defArray = []
 const Header = (props) => {
-  const menuData = useFetchList({
-    action: menuAs,
-    stateName: 'menuAs'
-  })
+  const menuData = useSelector(getDataFromState(STATE.MENU_AS))
   const [open, setMenuOpen] = useState(false)
   const lists = pathOr(defArray, ['results'], menuData)
-  // const subCategories = find(propEq('id', open))(lists)
 
   return (
-    <DropdownBlock onMouseLeave={() => setMenuOpen(false)}>
+    <DropdownBlock
+      onMouseLeave={() => setMenuOpen(false)}
+      onMouseEnter={() => setMenuOpen(true)}
+    >
       <LogoStyled>
         <MenuBarIcon />
       </LogoStyled>
-      <MenuDropdown title="Каталог товаров">
+      <MenuDropdown open={open} title="Каталог товаров">
         {lists.map((list, key) => {
           const parentId = path(['id'], list)
           const subMenu = path(['children'], list)
           return (
             <DropdownItem
-              key={key}
-              open={open === list.id}
-              onMouseEnter={() => setMenuOpen(list.id)}
+              key={parentId}
             >
-              <div>
-                <Link to={`/categories/${parentId}`}>
-                  <DropdownTexts>{list.name}</DropdownTexts>
-                </Link>
-                {subMenu.map((sub, key1) => {
-                  const subId = path(['id'], sub)
-                  return (
-                    <Link key={key1} to={`/categories/${subId}`}>
-                      <DropdownSubText>{sub.name}</DropdownSubText>
-                    </Link>
-                  )
-                })}
-              </div>
+              <Link to={`/categories/${parentId}`} beforeRedirect={() => setMenuOpen(false)}>
+                <DropdownTexts>{list.name}</DropdownTexts>
+              </Link>
+              {subMenu.map((sub) => {
+                const subId = path(['id'], sub)
+                return (
+                  <Link key={subId} to={`/categories/${subId}`} beforeRedirect={() => setMenuOpen(false)}>
+                    <DropdownSubText>{sub.name}</DropdownSubText>
+                  </Link>
+                )
+              })}
+
             </DropdownItem>
           )
         })}

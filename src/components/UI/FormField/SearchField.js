@@ -3,11 +3,13 @@ import styled from 'styled-components'
 
 const SearchBlock = styled.div`
   display: flex;
+  width: calc(100% - 685px);
+  padding-left: 30px
 `
 
 const SearchFieldInput = styled.input`
   height: 50px;
-  width: 70%;
+  width: 100%;
   border: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;

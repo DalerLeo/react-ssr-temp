@@ -40,10 +40,8 @@ const InputWrapper = styled.div`
 const InputNumber = styled.div`
     font-size: 15px;
     line-height: 1.67;
-    color: #8492B0;
     padding: 10px 15px;
-    background-color: #f1f3f9;
-    border: solid 1px #e4e5ec;
+    background-color: ${props => props.theme.colors.primary.hover};
     border-right: none;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
