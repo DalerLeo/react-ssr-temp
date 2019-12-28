@@ -33,7 +33,6 @@ const HeaderStyled = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  width: 1200px;
   margin: auto;
 `
 
@@ -57,8 +56,7 @@ const DropdownItem = styled.div`
   // position: ${props => props.open ? 'relative' : 'unset'};
   align-items: center;
   :hover{
-    background: #EAFAF1;
-    color: green;
+    color: #EAFAF1;
     border-radius: 7px;
   }
 `
@@ -117,13 +115,17 @@ const Header = (props) => {
                     <DropdownItem>
                       <FavoriteIcon />
                       <Link to="/favourite">
-                    Favourite
+                        <DropdownTexts>
+                          Избранные товары
+                        </DropdownTexts>
                       </Link>
                     </DropdownItem>
                     <hr />
                     <DropdownItem>
                       <Location />
-                      <DropdownTexts>Мои заказы</DropdownTexts>
+                      <DropdownTexts>
+                        <Link to="/my-order">Мои заказы</Link>
+                      </DropdownTexts>
                     </DropdownItem>
                     <hr />
                     <DropdownItem>

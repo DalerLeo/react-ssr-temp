@@ -38,10 +38,9 @@ const StyledCheckMark = styled(CheckMark)`
   }
 `
 
-
 const StyledInput = styled(SwitchInput)`
   :checked ~ span {
-    color: red;
+    color: #2EBB8A;
   }
 
   :checked + ${StyledCheckMark}:after {
@@ -50,7 +49,7 @@ const StyledInput = styled(SwitchInput)`
 `
 const SwitchContainer = styled(SwitchContainerUI)`
   ${props =>
-  !props.label &&
+    !props.label &&
   css`
       margin-bottom: 0;
       width: 18px;

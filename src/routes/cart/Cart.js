@@ -1,10 +1,20 @@
 import React from 'react'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { pathOr, takeLast } from 'ramda'
 import { CartUI, CartInfo } from 'components/Cart'
 import { Col, Row } from 'components/Grid'
 import Container from 'components/Container'
 
+const Title = styled.div`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 119.46%;
+  color: #2E384C;
+  mix-blend-mode: normal;
+  margin: 10px 0;
+`
 const Cart = props => {
   const {
     onDelete,
@@ -34,10 +44,13 @@ const Cart = props => {
   return (
     <Container>
       <Row>
-        <Col span={16}>
+        <Title>Корзина</Title>
+      </Row>
+      <Row gutter={24}>
+        <Col span={18}>
           <CartUI products={products} onDelete={onDelete} />
         </Col>
-        <Col span={8}>
+        <Col span={6}>
           <CartInfo totalPrice={totalPrice} totalAmount={totalAmount} productAmount={productAmount} />
         </Col>
       </Row>

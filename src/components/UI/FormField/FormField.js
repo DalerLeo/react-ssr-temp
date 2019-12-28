@@ -7,13 +7,16 @@ const InputWrapper = styled.div`
   flex-direction: column;
 `
 const InputField = styled.input`
-  height: 40px;
-  width: 100%;
-  background-color: white;
-  border: 1px solid green;
-  border-radius: 7px;
+  background: #FDFDFD;
+  border: 1px solid #DBDBDD;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 57px;
+  padding: 0 15px;
   outline: 0;
-  padding: 10px;
+  :disabled {
+    background: #f2f2f2;
+  }
 `
 const Label = styled.label`
   font-size: 15px;

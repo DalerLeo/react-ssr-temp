@@ -4,16 +4,30 @@ import PropTypes from 'prop-types'
 import DeliveryIcon from 'images/delivery.svg'
 import WalletIcon from 'images/wallet.svg'
 import Link from 'components/Link'
-import { path } from 'ramda'
+import Payme from 'images/payme.png'
+import Click from 'images/click.png'
+import Uzcard from 'images/uzcard.png'
 
 const CartInfoBlock = styled.div`
-  padding: 20px 20px;
-  border: 1px solid lightgrey;
+  background: #FFF;
+  padding: 25px 20px;
   border-radius: 7px;
   position: fixed;
+  width: 290px;
 `
 const CartInfoItem = styled.div`
-  margin-bottom: 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 164.57%;
+  color: #2E384C;
+`
+const CartInfoItem1 = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 18px;
+  color: #818591;
 `
 const ImgInfo = styled.img`
   width: 30px;
@@ -24,6 +38,8 @@ const DeliveryBlock = styled.div`
 `
 const WalletBlock = styled.div`
   margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
 `
 const PriceBlock = styled.div`
   margin-top: 30px;
@@ -33,43 +49,61 @@ const PriceBlockItem = styled.div`
   justify-content: space-between;
   margin-bottom: 10px;
 `
+const PriceTotalBlock = styled(PriceBlockItem)`
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 164.57%;
+    color: #2E384C;
+`
 const SubmitButton = styled.button`
   width: 100%;
-  background-color: #C7F9DD;
-  color: #13885F;
+  color: #FFF;
   outline: 0;
   border: none;
-  border-radius: 7px;
   padding: 15px;
   cursor: pointer;
+  background: #2EBB8A;
+  border-radius: 4px;
+`
+const Line = styled.div`
+  border-bottom: 1px solid #EAEAEC;
+  margin-bottom: 15px;
 `
 const CartInfo = props => {
   const { totalPrice, order, totalAmount, productAmount } = props
   return (
     <CartInfoBlock>
       <DeliveryBlock>
-        <CartInfoItem><ImgInfo src={DeliveryIcon} />Бесплатная доставка по Ташкенту</CartInfoItem>
-        <CartInfoItem>Дата доставки: с 05 по 06 дек.</CartInfoItem>
+        <CartInfoItem>Любая форма оплаты</CartInfoItem>
+        <CartInfoItem1>Картой онлайн или наличными при получении</CartInfoItem1>
       </DeliveryBlock>
       <WalletBlock>
-        <CartInfoItem><ImgInfo src={WalletIcon} />Любая форма оплаты</CartInfoItem>
-        <CartInfoItem>Картой онлайн или наличными при получении</CartInfoItem>
+        <img src={Payme} alt="payme" />
+        <img src={Click} alt="payme" />
+        <img src={Uzcard} alt="payme" />
       </WalletBlock>
-      <hr />
+      <Line />
       <PriceBlock>
         <PriceBlockItem>
           <div>Товары({productAmount})</div>
           <div>{totalAmount} сум</div>
         </PriceBlockItem>
         <PriceBlockItem>
-          <div>Доставка</div>
-          <div>{0} сум</div>
+          <div>Скидка на товары({productAmount})</div>
+          <div> - {totalAmount} сум</div>
         </PriceBlockItem>
         <PriceBlockItem>
+          <div>Доставка</div>
+          <div>0.00 сум</div>
+        </PriceBlockItem>
+        <Line />
+        <PriceTotalBlock>
           <div>Итого</div>
           <div>{totalPrice} сум</div>
-        </PriceBlockItem>
+        </PriceTotalBlock>
       </PriceBlock>
+
       {order
         ? (
           <SubmitButton type="submit">Оформить заказ</SubmitButton>

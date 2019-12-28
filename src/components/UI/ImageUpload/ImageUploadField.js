@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { prop } from 'ramda'
+import Person from 'images/person.png'
 import AddPhoto from '../../../icons/Edit'
 import useFileUploads from './useFileUploads'
 
@@ -22,10 +23,10 @@ const ImageField = styled('div')`
   cursor: pointer;
   display: flex;
   justify-content: center;
-  height: 160px;
+  height: 78px;
   transition: 200ms;
   overflow: hidden;
-  width: 160px;
+  width: 78px;
   &:hover {
     border-color: green;
   }
@@ -73,8 +74,7 @@ const ImageUploadField = props => {
             <Image url={src} />
           ) : (
             <Placeholder>
-              <AddPhoto />
-              <div>{loading ? 'Загрузка...' : 'Загрузить'}</div>
+              <div>{loading ? 'Загрузка...' : <img src={Person} alt="person" />}</div>
             </Placeholder>
           )}
         </ImageField>
