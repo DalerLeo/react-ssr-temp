@@ -44,7 +44,7 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `
 const CartInfo = props => {
-  const { sumAll, order } = props
+  const { totalPrice, order, totalAmount, productAmount } = props
   return (
     <CartInfoBlock>
       <DeliveryBlock>
@@ -58,16 +58,16 @@ const CartInfo = props => {
       <hr />
       <PriceBlock>
         <PriceBlockItem>
-          <div>Товары</div>
-          <div>0 сум</div>
+          <div>Товары({productAmount})</div>
+          <div>{totalAmount} сум</div>
         </PriceBlockItem>
         <PriceBlockItem>
           <div>Доставка</div>
-          <div>{sumAll} сум</div>
+          <div>{0} сум</div>
         </PriceBlockItem>
         <PriceBlockItem>
           <div>Итого</div>
-          <div>{sumAll} сум</div>
+          <div>{totalPrice} сум</div>
         </PriceBlockItem>
       </PriceBlock>
       {order
