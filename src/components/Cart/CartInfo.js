@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import DeliveryIcon from 'images/delivery.svg'
 import WalletIcon from 'images/wallet.svg'
 import Link from 'components/Link'
-import Payme from 'images/payme.png'
-import Click from 'images/click.png'
-import Uzcard from 'images/uzcard.png'
+import Payme from 'icons/Payme.svg'
+import Click from 'icons/Click.svg'
+import Cash from 'icons/Cash.svg'
 
 const CartInfoBlock = styled.div`
   background: #FFF;
@@ -79,9 +79,9 @@ const CartInfo = props => {
         <CartInfoItem1>Картой онлайн или наличными при получении</CartInfoItem1>
       </DeliveryBlock>
       <WalletBlock>
-        <img src={Payme} alt="payme" />
-        <img src={Click} alt="payme" />
-        <img src={Uzcard} alt="payme" />
+        <img src={Payme} alt="Payme" />
+        <img src={Click} alt="Click" />
+        <img src={Cash} alt="Cash" />
       </WalletBlock>
       <Line />
       <PriceBlock>

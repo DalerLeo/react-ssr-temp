@@ -30,12 +30,13 @@ const ProductName = styled.div`
 `
 
 const GroupButton = styled.div`
+  display: flex;
   background: #FFFFFF;
   border: 1px solid #AEB2B7;
   box-sizing: border-box;
   border-radius: 7px;
-  padding: 5px 0;
-  margin: 10px 0;
+  padding: 13px 0;
+  margin-top: 15px;
 `
 const DecrementButton = styled.button`
   background-color: transparent;
@@ -64,13 +65,14 @@ const DeleteButton = styled.button`
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  margin: 15px 10px;
+  margin: 28px 10px;
   outline: 0;
 `
 const Img = styled.img`
-    width: 86px;
-    height: 100%;
-    margin-left: 20px;
+  height: 86px;
+  width: auto;
+  max-width: 86px;
+  margin-left: 20px;
 `
 
 const ContentPosition = styled.div`
@@ -106,17 +108,16 @@ const StyledPrice = styled.div`
   line-height: 129.96%;
   color: #28A97C;
   mix-blend-mode: normal;
-  margin-top: 8px;
-`
-const Line = styled.div`
-  width: 95%;
-  margin: 0 auto;
+  margin-top: 20px;
 `
 const ProductRow = styled.div`
-  padding: 33px 0;
+  padding: 24px 0;
   border-bottom: 1px solid #E7E8EA;
   width: 95%;
   margin: 0 auto;
+  :nth-last-child(1){
+    border-bottom: none;
+  }
 `
 const Cart = props => {
   const { onDelete, products = [] } = props
@@ -148,13 +149,13 @@ const Cart = props => {
             return (
               <ProductRow key={key}>
                 <Row>
-                  <Col span={2}>
+                  <Col span={4}>
                     <Img
                       src={typeof image === 'undefined' ? NoImage : image}
                       alt="image"
                     />
                   </Col>
-                  <Col span={12}>
+                  <Col span={10}>
                     <ProductName>{name}</ProductName>
                     <ProductArticul>#264723648212</ProductArticul>
                   </Col>
@@ -174,7 +175,7 @@ const Cart = props => {
                     <StyledPrice>
                       {Math.floor(price)} сум
                     </StyledPrice>
-                    <SalePrice>25000</SalePrice>
+                    {/* <SalePrice>25000</SalePrice> */}
                   </Col>
                   <Col span={1}>
                     <DeleteButton onClick={() => onDelete(id)}>
@@ -182,7 +183,6 @@ const Cart = props => {
                     </DeleteButton>
                   </Col>
                 </Row>
-                <Line />
               </ProductRow>
             )
           })}
