@@ -7,11 +7,11 @@ import ShoppingBag from 'icons/ShoppingBag'
 
 import { userSignOut } from 'routes/sign-in/actions'
 import { useDispatch } from 'react-redux'
-import DropdownMenu from './DropdownMenu'
 import { SearchField } from 'components/UI/FormField'
 import DisplayFlex from 'components/StyledElems/DisplayFlex'
 import Cont from 'components/Container'
 import History from '../../../HistoryProvider'
+import Catalog from './Catalog'
 import TopHeader from './TopHeader'
 import AuthMenu from './AuthMenu'
 
@@ -58,7 +58,7 @@ const Header = (props) => {
           <Link to="/">
             <Logo />
           </Link>
-          <DropdownMenu />
+          <Catalog />
           <SearchField />
           <AuthMenu isAuth={isAuth} onSignOut={onSignOut} />
           <CartLink to="/cart">

@@ -28,6 +28,7 @@ const DropdownStyled = styled.div`
 `
 const StyledTitle = styled.div`
     margin-top: 25px;
+    color: #fff;
 `
 
 const Dropdown = (props) => {

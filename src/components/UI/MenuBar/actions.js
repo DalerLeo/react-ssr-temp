@@ -5,7 +5,7 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 export const menuAs = () => {
   return (dispatch, getState) => {
     const params = {
-      page_size: 9,
+      page_size: 20,
       parent: 0
     }
 
