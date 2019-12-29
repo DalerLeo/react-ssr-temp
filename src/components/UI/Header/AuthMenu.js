@@ -3,7 +3,6 @@ import { isEmpty } from 'ramda'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Link from '../../Link'
-import Exit from '../../../icons/ArrowRight'
 import ProfileIcon from '../../../icons/Profile'
 import { Dropdown } from '../Dropdown'
 import ProfileImage from '../../../images/Profile.png'
@@ -53,11 +52,8 @@ const AutMenu = props => {
 
   return isEmpty(isAuth)
     ? (
-      <ProfileLink>
-        <Link to="/sign-in">
-          <Exit style={{ fill: 'white', marginRight: '5px' }} />
+      <ProfileLink to="/sign-in">
           Вход
-        </Link>
       </ProfileLink>)
     : (
       <ProfileLink>

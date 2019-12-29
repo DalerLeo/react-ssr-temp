@@ -50,6 +50,10 @@ const routes = {
       load: () => import(/* webpackChunkName: 'order' */ './order')
     },
     {
+      path: ROUTE.ORDER_DETAIL,
+      load: () => import(/* webpackChunkName: 'orderDetail' */ './order-detail')
+    },
+    {
       path: ROUTE.STATIC_PAGE_URL,
       children: [
         {

@@ -50,7 +50,6 @@
     "serialize-javascript": "^1.4.0",
     "slick-carousel": "^1.8.1",
     "source-map-support": "^0.5.16",
-    "sprintf": "^0.1.5",
     "sprintf-js": "^1.1.2",
     "styled-components": "^4.3.2",
     "universal-router": "^8.1.0"

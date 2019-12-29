@@ -84,4 +84,7 @@ export const PRODUCT = '/product/:id'
 export const FAVOURITE = '/favourite'
 
 export const ORDER = '/order'
+export const ORDER_DETAIL = '/order/:id'
+export const ORDER_DETAIL_URL = '/order/%d'
+
 export const MY_ORDER = '/my-order'

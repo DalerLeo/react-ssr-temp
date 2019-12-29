@@ -219,15 +219,19 @@ const Order = props => {
                         </FieldWrap>
                       </Col>
                     </Row>
-                    {addressList.map(address => (
-                      <Address
-                        key={address.id}
-                        isActive={address.id === path(['address', 'id'], values)}
-                        onClick={() => form.change('address', address)}
-                      >
-                        {address.address}
-                      </Address>
-                    ))}
+                    {addressList.map(address => {
+                      const addr = { ...address, client: address.client.id }
+                      const addrId = path(['address', 'id'], values)
+                      return (
+                        <Address
+                          key={address.id}
+                          isActive={address.id === addrId}
+                          onClick={() => form.change('address', addr)}
+                        >
+                          {address.address}
+                        </Address>
+                      )
+                    })}
                   </AddressInfo>
 
                   <Line />

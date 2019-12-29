@@ -7,6 +7,7 @@ async function action (props) {
   if (isServer) {
   }
 
+  console.warn(props)
   store.dispatch(addressListAction())
   return {
     chunk: ['order'],
