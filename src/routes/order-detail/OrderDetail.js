@@ -10,7 +10,7 @@ span {
   color: ${props => props.theme.colors.primary.default}
 }
 `
-const MyOrder = (props) => {
+const OrderDetail = (props) => {
   const { data, loading } = props
   return (
     <Container>
@@ -21,4 +21,4 @@ const MyOrder = (props) => {
   )
 }
 
-export default MyOrder
+export default OrderDetail

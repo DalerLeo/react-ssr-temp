@@ -6,7 +6,7 @@ import { orderDetailAction } from './actions'
 async function action (props) {
   const { store, isServer, params } = props
   const id = Number(params.id)
-  store.dispatch(orderDetailAction(id))
+  await store.dispatch(orderDetailAction(id))
   if (isServer) {
   }
 
