@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { path } from 'ramda'
 import Container from 'components/Container'
 import { Row, Col } from 'components/Grid'
 import ProfileUI from './ProfileUI'
@@ -24,16 +25,21 @@ const SubTitle = styled.div`
   margin-bottom: 20px;
 `
 const Profile = (props) => {
-  const { userData } = props
+  const { userData, listAddress, onDelete, activateMailingAction, deactivateMailingAction, onPhotoUpdate } = props
+  const userId = path(['initialValues', 'id'], userData)
   return (
     <Container>
       <Row>
         <Col span={12}>
           <Title>Настройки</Title>
           <SubTitle>Личные данные</SubTitle>
-          <ProfileUI {...userData} />
+          <ProfileUI {...userData} listAddress={listAddress} onDelete={onDelete} onPhotoUpdate={onPhotoUpdate} />
           <SubTitle>SMS рассылка</SubTitle>
-          <Sms />
+          <Sms
+            activateMailingAction={activateMailingAction}
+            deactivateMailingAction={deactivateMailingAction}
+            userId={userId}
+          />
         </Col>
         <Col span={12} />
       </Row>

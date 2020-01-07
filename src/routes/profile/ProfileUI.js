@@ -5,7 +5,10 @@ import { Container } from 'components/StyledElems'
 import { Button } from 'components/UI/Button'
 import ImageUpload from 'components/UI/ImageUpload/ImageUploadField'
 import { FormField } from 'components/UI/FormField'
-import { prop } from 'ramda'
+import { prop, path, pathOr } from 'ramda'
+import DeleteIcon from 'icons/Delete'
+import { useDispatch } from 'react-redux'
+import { updateClientAction } from './actions'
 
 const FieldWrapper = styled.div`
   margin-bottom: 20px;
@@ -50,6 +53,12 @@ const Line = styled.div`
   width: 100%;
   margin: 30px 0;
 `
+
+const Line1 = styled.div`
+  border-bottom: 1px solid #EAEAEC;
+  width: 100%;
+  margin-top: 15px;
+`
 const Address = styled.div`
   font-style: normal;
   font-weight: 600;
@@ -62,6 +71,8 @@ const AdressInfoBlock = styled.div`
   padding: 14px 0;
 `
 const AddressInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -79,19 +90,28 @@ const AddPhoneNameInfo = styled.div`
   color: #818591;
   margin-right: 16px;
 `
+const DeleteButton = styled.div`
+  cursor: pointer;
+`
 const Profile = (props) => {
-  const { onSubmit, initialValues } = props
-  const [open, setOpen] = useState(false)
+  const { initialValues, onDelete, listAddress, onPhotoUpdate } = props
+
+  const phoneNumber = path(['phoneNumber'], initialValues)
+  const addressList = pathOr([], ['data'], listAddress)
+
+  // Const [open, setOpen] = useState(false)
+
   return (
     <Form
-      onSubmit={onSubmit}
+      onSubmit={() => null}
       initialValues={initialValues}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <FieldWrapper>
             <Field
-              name="image"
+              name="photo"
               component={ImageUpload}
+              onSuccess={onPhotoUpdate}
             />
           </FieldWrapper>
           <UserInfo>
@@ -100,32 +120,30 @@ const Profile = (props) => {
           </UserInfo>
           <UserInfo>
             <UserNamePhone>Телефон</UserNamePhone>
-            <UserNamePhoneValue>+998977333006</UserNamePhoneValue>
+            <UserNamePhoneValue>{phoneNumber}</UserNamePhoneValue>
           </UserInfo>
           <Line />
           <Address>Адрес доставки</Address>
-          <Line />
-          <AdressInfoBlock>
-            <AddressInfo>Ташкент, Kichik xalka yo‘li, Bogibuston 2-tor kochasi, д. 33, кв 27</AddressInfo>
-            <AddPhoneNameBlock>
-              <AddPhoneNameInfo>998977333006</AddPhoneNameInfo>
-              <AddPhoneNameInfo>Набеев Руслан</AddPhoneNameInfo>
-            </AddPhoneNameBlock>
-          </AdressInfoBlock>
-          <AdressInfoBlock>
-            <AddressInfo>Ташкент, Kichik xalka yo‘li, Bogibuston 2-tor kochasi, д. 33, кв 27</AddressInfo>
-            <AddPhoneNameBlock>
-              <AddPhoneNameInfo>998977333006</AddPhoneNameInfo>
-              <AddPhoneNameInfo>Набеев Руслан</AddPhoneNameInfo>
-            </AddPhoneNameBlock>
-          </AdressInfoBlock>
-          <AdressInfoBlock>
-            <AddressInfo>Ташкент, Kichik xalka yo‘li, Bogibuston 2-tor kochasi, д. 33, кв 27</AddressInfo>
-            <AddPhoneNameBlock>
-              <AddPhoneNameInfo>998977333006</AddPhoneNameInfo>
-              <AddPhoneNameInfo>Набеев Руслан</AddPhoneNameInfo>
-            </AddPhoneNameBlock>
-          </AdressInfoBlock>
+          <Line1 />
+          {addressList.map((address, key) => {
+            const add = path(['address'], address)
+            const phone = path(['phone'], address)
+            const contactPerson = path(['contactPerson'], address)
+            return (
+              <AdressInfoBlock key={key}>
+                <AddressInfo>
+                  <div>{add}</div>
+                  <DeleteButton onClick={() => onDelete(address.id)}>
+                    <DeleteIcon />
+                  </DeleteButton>
+                </AddressInfo>
+                <AddPhoneNameBlock>
+                  <AddPhoneNameInfo>{phone}</AddPhoneNameInfo>
+                  <AddPhoneNameInfo>{contactPerson}</AddPhoneNameInfo>
+                </AddPhoneNameBlock>
+              </AdressInfoBlock>
+            )
+          })}
           {/* <FieldWrapper>
             {prop('phoneNumber', initialValues)}
           </FieldWrapper>

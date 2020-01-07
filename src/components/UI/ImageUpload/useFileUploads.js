@@ -16,7 +16,8 @@ const useFileUploads = params => {
   const [state, dispatch] = useReducer(reducer, init)
   const {
     formats,
-    input
+    input,
+    onSuccess
   } = params
 
   const onChange = (ev) => {
@@ -42,6 +43,7 @@ const useFileUploads = params => {
       .then(response => {
         dispatch({ loading: false, error: null })
         input.onChange(response.data)
+        onSuccess && onSuccess(response.data)
         return response
       })
       .catch(newError => {

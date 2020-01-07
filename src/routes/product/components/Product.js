@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { path, find, propEq, pathOr } from 'ramda'
 import equals from 'fast-deep-equal'
-import { Button } from 'components/UI/Button'
+import { CartButton, Button } from 'components/UI/Button'
 import { getDataFromState, getPrimaryImage } from 'utils/get'
 import { setItemToCart } from 'components/Cards/storage'
 import { favouriteCreateAction, favouriteDeleteAction } from 'routes/favourite/actions'
@@ -15,9 +15,9 @@ import numberFormat from 'utils/numberFormat'
 import Rating from 'components/UI/Rating'
 import SalePrice from 'components/UI/SalePrice'
 import FavoriteIcon from 'icons/Favorite'
-import payme from 'images/payme.png'
-import click from 'images/click.png'
-import uzcard from 'images/uzcard.png'
+import payme from 'icons/Payme.svg'
+import click from 'icons/Click.svg'
+import uzcard from 'icons/Cash.svg'
 import ProductsTitle from 'components/UI/ProductsTitle'
 import ProductCardList from 'components/Cards/ProductCardList'
 import useFetchList from 'hooks/useFetchList'
@@ -25,7 +25,7 @@ import { getProductList } from '../actions'
 import Feature from './Feature'
 
 const FavouriteButton = styled.button`
-    background-color: ${props => props.favourite ? 'red' : 'none'};
+    background-color: ${props => props.favourite ? '#C7F9DD' : 'none'};
     border: 1px solid #818591;
     box-sizing: border-box;
     border-radius: 3px;
@@ -36,7 +36,7 @@ const FavouriteButton = styled.button`
     outline: 0;
     cursor: pointer;
     > svg {
-      fill: ${props => props.favourite ? 'black' : 'none'};
+      fill: ${props => props.favourite ? '#13885F' : 'none'};
     }
 `
 const FavIconText = styled.div`
@@ -47,8 +47,14 @@ const FavIconText = styled.div`
   line-height: 129.96%;
   color: #818591;
 `
-const ContainerUI = styled(Container)`
-  margin-top: 30px;
+const Wrapper = styled.div`
+    background-color: white;
+`
+const ContainerUI = styled.div`
+  margin: 0 auto;
+  max-width: 1170px;
+  background-color: white;
+  padding: 20px 0;
 `
 const Title = styled.h1`
   margin: 0;
@@ -117,6 +123,7 @@ const BrendTitle = styled.div`
   font-size: 15px;
   line-height: 129.96%;
   color: #2E384C;
+  margin-bottom: 16px;
 `
 const BrendName = styled.div`
   font-style: normal;
@@ -124,6 +131,7 @@ const BrendName = styled.div`
   font-size: 15px;
   line-height: 129.96%;
   color: #2E384C;
+  margin-bottom: 35px;
 `
 const Payment = styled.div`
   font-style: normal;
@@ -131,16 +139,28 @@ const Payment = styled.div`
   font-size: 15px;
   line-height: 129.96%;
   color: #2E384C;
+  margin-bottom: 18px;
 `
 const PaymentImage = styled.img`
   margin-right: 20px;
   cursor: pointer;
 `
+const PopularListBlock = styled.div`
+    background-color: #FAFAFA;
+    padding: 40px 130px;
+`
 const ProductListBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
 `
-
+const PopularProduct = styled.div`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 23px;
+  line-height: 164.57%;
+  color: #2E384C;
+  margin-bottom: 20px;
+`
 const Descr = styled.pre`
   font-family: inherit;
   white-space: pre-wrap;
@@ -152,12 +172,11 @@ const Product = (props) => {
     stateName: STATE.PRODUCT_LIST
   })
   const { productData, onSubmit, commentList } = props
-
   const dispatch = useDispatch()
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
+
   const datas = pathOr([], ['data'], cartList)
   const data = path(['data'], productData)
-
   const name = path(['name'], data)
   const price = path(['price'], data)
   const country = path(['country', 'name'], data)
@@ -166,6 +185,7 @@ const Product = (props) => {
   const description = path(['description'], data)
   const id = path(['id'], data)
   const filterProduct = find(propEq('id', id))(datas)
+  console.warn('111', filterProduct)
   const amount = pathOr(0, ['amount'], filterProduct)
   const isFavourite = path(['data', 'isFavourite'], productData)
   const images = path(['images'], data)
@@ -183,67 +203,80 @@ const Product = (props) => {
   }
 
   return (
-    <ContainerUI>
-      <Row gutter={20}>
-        <Col span={1}>
-          {images.map((img, key) => {
-            return <ImageOptions key={key} src={img.image} alt="product images" />
-          })}
-        </Col>
-        <Col span={12}>
-          <Img src={image} alt="Product Image" />
-        </Col>
-        <Col span={11}>
-          <Artikul>артикул: 264723648212</Artikul>
-          <Title>{name}</Title>
-          <br />
-          <FlexBlock>
-            <Rating />
-            <CommentsCount>3 отзыва</CommentsCount>
-          </FlexBlock>
-          <FlexBlock>
-            <Price>{numberFormat(price, 'сум')}</Price>
-            <SalePrice />
-          </FlexBlock>
-          <FlexBlock>
-            <Button amount={amount} onChange={onChange}> В корзину</Button>
-            <FavouriteButton favourite={favourite} onClick={onFavourite}>
-              <FavoriteIcon />
-              <FavIconText>В избранное</FavIconText>
-            </FavouriteButton>
-          </FlexBlock>
-          <br />
-          <BrendTitle>Бренд (производитель)</BrendTitle>
-          <BrendName>ООО «Петелинка»</BrendName>
-          <br />
-          <Payment>Оплата</Payment>
-          <br />
-          <FlexBlock>
-            <PaymentImage src={payme} alt="payme" />
-            <PaymentImage src={click} alt="click" />
-            <PaymentImage src={uzcard} alt="uzcard" />
-          </FlexBlock>
-        </Col>
-      </Row>
-      <H2>Описание товара</H2>
-      <Descr>{description}</Descr>
-      <H2>Основное</H2>
-      <Feature label="Страна-изготовитель">{country}</Feature>
-      <Feature label="Бренд">{brand}</Feature>
-      {productOptions.map(option => {
-        const label = path(['optionsValue', 'option', 'name'], option)
-        const value = path(['optionsValue', 'value'], option)
-        return (
-          <Feature key={option.id} label={label}>{value}</Feature>
-        )
-      })}
-      <ProductsTitle title="Новинки" pagination={true} />
-      <ProductListBlock>
-        <ProductCardList productData={popularData} column={4} />
-      </ProductListBlock>
-      <br />
-      <Comment onSubmit={onSubmit} commentList={commentList} />
-    </ContainerUI>
+    <Wrapper>
+      <ContainerUI>
+        <Row gutter={20}>
+          <Col span={1}>
+            {images.map((img, key) => {
+              return <ImageOptions key={key} src={img.image} alt="product images" />
+            })}
+          </Col>
+          <Col span={12}>
+            <Img src={image} alt="Product Image" />
+          </Col>
+          <Col span={11}>
+            <Artikul>артикул: 264723648212</Artikul>
+            <Title>{name}</Title>
+            <br />
+            <FlexBlock>
+              <Rating />
+              <CommentsCount>3 отзыва</CommentsCount>
+            </FlexBlock>
+            <FlexBlock>
+              <Price>{numberFormat(price, 'сум')}</Price>
+              <SalePrice />
+            </FlexBlock>
+            <FlexBlock>
+              {filterProduct == null ? (
+                <Button
+                  onClick={value => {
+                    dispatch(setItemToCart(1, data))
+                  }}
+                >
+                В корзину
+                </Button>) : (<CartButton amount={amount} onChange={onChange} />)}
+
+              <FavouriteButton favourite={favourite} onClick={onFavourite}>
+                <FavoriteIcon />
+                <FavIconText>В избранное</FavIconText>
+              </FavouriteButton>
+            </FlexBlock>
+            <br />
+            <BrendTitle>Бренд (производитель)</BrendTitle>
+            <BrendName>ООО «Петелинка»</BrendName>
+            <Payment>Оплата</Payment>
+            <FlexBlock>
+              <PaymentImage src={payme} alt="payme" />
+              <PaymentImage src={click} alt="click" />
+              <PaymentImage src={uzcard} alt="uzcard" />
+            </FlexBlock>
+          </Col>
+        </Row>
+        <H2>Описание товара</H2>
+        <Descr>{description}</Descr>
+        <H2>Основное</H2>
+        <Feature label="Страна-изготовитель">{country}</Feature>
+        <Feature label="Бренд">{brand}</Feature>
+        {productOptions.map(option => {
+          const label = path(['optionsValue', 'option', 'name'], option)
+          const value = path(['optionsValue', 'value'], option)
+          return (
+            <Feature key={option.id} label={label}>{value}</Feature>
+          )
+        })}
+        <ProductsTitle title="Новинки" />
+      </ContainerUI>
+      <PopularListBlock>
+        <PopularProduct>Популярные товары</PopularProduct>
+        <ProductListBlock>
+          <ProductCardList productData={popularData} column={4} />
+        </ProductListBlock>
+      </PopularListBlock>
+      <ContainerUI>
+        <br />
+        <Comment onSubmit={onSubmit} commentList={commentList} />
+      </ContainerUI>
+    </Wrapper>
   )
 }
 

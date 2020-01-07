@@ -1,119 +1,94 @@
 import React from 'react'
-import propTypes from 'prop-types'
 import styled from 'styled-components'
-import Slider from 'react-slick'
-import ProductsTitle from '../ProductsTitle'
-import ArrowLeft from '../../../icons/ArrowLeft'
-import ArrowRight from '../../../icons/ArrowRight'
 import img1 from 'images/popular.png'
+import img2 from 'images/fruits.png'
 
-const PopularStyled = styled.div`
+const PopularCategoryBlock = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+const CategoryItem = styled.div`
+  width: 15%;
+  cursor: pointer;
+  
+`
+const CategoryImage = styled.div`
   width: 170px;
   height: 170px;
-  border-radius: 50%;
   background-color: #F2F2F2;
-  margin-left: 25px;
-  &:nth-child(1){
-    margin-left: 0;
+  border-radius: 50%;
+  position: relative;
+`
+const Image = styled.img`
+  position: absolute;
+  top: 15%;
+  left: 10%;
+`
+const CategoryName = styled.div`
+  font-size: 18px;
+  line-height: 129.96%;
+  text-align: center;
+  color: #2E384C;
+  mix-blend-mode: normal;
+  margin-top: 25px;
+  :hover{
+    color: #13885F;
   }
 `
-const PopularImage = styled.img`
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 20px;
-    max-width: 140px;
-    max-height: 140px;
-`
-const SampleNextArrow = (props) => {
-  const { className, style, onClick } = props
+const PopularCategories = (props) => {
   return (
-    <div
-      className={className}
-      style={{ ...style,
-        display: 'block',
-        height: '38px',
-        width: '38px',
-        borderRadius: '50%',
-        position: 'absolute',
-        top: '-40px',
-        right: '0',
-        Zindex: '100',
-        background: 'white'
-      }}
-      onClick={onClick}
-    >
-      <ArrowRight style={{ position: 'absolute', left: '35%', top: '30%' }} />
-    </div>
-  )
-}
 
-const SamplePrevArrow = (props) => {
-  const { className, style, onClick } = props
-  return (
-    <div
-      className={className}
-      style={{ ...style,
-        display: 'block',
-        height: '38px',
-        width: '38px',
-        borderRadius: '50%',
-        position: 'absolute',
-        top: '-40px',
-        left: '92%',
-        Zindex: '200',
-        background: 'white'
-      }}
-      onClick={onClick}
-    >
-      <ArrowLeft style={{ position: 'absolute', left: '25%', top: '30%' }} />
-    </div>
+    <PopularCategoryBlock>
+      <CategoryItem>
+        <CategoryImage>
+          <Image src={img1} alt="categories" />
+        </CategoryImage>
+        <CategoryName>
+        Овощи
+        </CategoryName>
+      </CategoryItem>
+      <CategoryItem>
+        <CategoryImage>
+          <Image src={img2} alt="categories" />
+        </CategoryImage>
+        <CategoryName>
+        Фрукты
+        </CategoryName>
+      </CategoryItem>
+      <CategoryItem>
+        <CategoryImage>
+          <Image src={img1} alt="categories" />
+        </CategoryImage>
+        <CategoryName>
+        Мясные продукты
+        </CategoryName>
+      </CategoryItem>
+      <CategoryItem>
+        <CategoryImage>
+          <Image src={img1} alt="categories" />
+        </CategoryImage>
+        <CategoryName>
+        Детское питание
+        </CategoryName>
+      </CategoryItem>
+      <CategoryItem>
+        <CategoryImage>
+          <Image src={img1} alt="categories" />
+        </CategoryImage>
+        <CategoryName>
+        Бакалея
+        </CategoryName>
+      </CategoryItem>
+      <CategoryItem>
+        <CategoryImage>
+          <Image src={img1} alt="categories" />
+        </CategoryImage>
+        <CategoryName>
+        Полуфабрикаты
+        </CategoryName>
+      </CategoryItem>
+    </PopularCategoryBlock>
   )
-}
-const PopularCategories = () => {
-  var settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
-  }
-  return (
-    <div>
-      <ProductsTitle title="Популярные категории"/>
-      <Slider {...settings}>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-      </Slider>
-    </div>
-  )
-}
-
-PopularCategories.propTypes = {
-  className: propTypes.string,
-  style: propTypes.string,
-  onClick: propTypes.func
 }
 
 export default PopularCategories

@@ -38,7 +38,6 @@ const MyOrderList = (props) => {
   return (
     <div>
       {data.map((item, key) => {
-        console.warn('item', item)
         const totalPrice = path(['totalPrice'], item)
         const productItem = pathOr([], ['orderProducts'], item)
         return (

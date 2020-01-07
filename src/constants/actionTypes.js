@@ -144,6 +144,8 @@ export const SIGN_IN = 'SIGN_IN'
 export const DELIVERY = 'DELIVERY'
 
 export const PROFILE = 'PROFILE'
+export const ACTIVATE_MAILING = 'ACTIVATE_MAILING'
+export const DEACTIVATE_MAILING = 'DEACTIVATE_MAILING'
 
 export const ADDRESS_CREATE = 'ADDRESS_CREATE'
 export const ADDRESS_LIST = 'ADDRESS_LIST'
@@ -158,3 +160,5 @@ export const FILTER_LIST = 'FILTER_LIST'
 export const COMMENT_CREATE = 'COMMENT_CREATE'
 export const COMMENT_LIST = 'COMMENT_LIST'
 export const COMMENT_ITEM = 'COMMENT_ITEM'
+
+export const CLIENT_UPDATE = 'CLIENT_UPDATE'

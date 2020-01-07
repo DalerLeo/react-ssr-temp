@@ -54,12 +54,12 @@ const Placeholder = styled('div')`
 
 const ImageUploadField = props => {
   const {
-
     label,
     input: { name, value },
+    onSuccess
   } = props
 
-  const [state, onChange] = useFileUploads({ input: props.input })
+  const [state, onChange] = useFileUploads({ input: props.input, onSuccess })
   const { loading, error } = state
 
   const inputId = `imageInput-${name}`

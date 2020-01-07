@@ -1,15 +1,18 @@
+import * as STATE from 'constants/stateNames'
 import React from 'react'
-import { isEmpty } from 'ramda'
+import { isEmpty, path } from 'ramda'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import MyOrder from 'icons/myOrders'
+import SignOut from 'icons/SignOut'
+import useFetchList from 'hooks/useFetchList'
 import Link from '../../Link'
 import ProfileIcon from '../../../icons/Profile'
 import { Dropdown } from '../Dropdown'
 import ProfileImage from '../../../images/Profile.png'
 import FavoriteIcon from '../../../icons/Favorite'
-import Location from '../../../icons/Locations'
 import Settings from '../../../icons/Settings'
-import Enter from '../../../icons/ArrowLeft'
+import { getProductList } from './actions'
 
 const ProfileLink = styled(Link)`
   margin-left: 30px;
@@ -32,6 +35,7 @@ const DropdownItem = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  margin-bottom: 10px;
   // position: ${props => props.open ? 'relative' : 'unset'};
   align-items: center;
   :hover{
@@ -40,15 +44,48 @@ const DropdownItem = styled.div`
   }
 `
 const DropdownTexts = styled.div`
-  margin-left: 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 129.96%;
+  color: #242F3B;
+  mix-blend-mode: normal;
+  margin-left: 9px;
+  margin-bottom: 5px;
 `
 const StyledProfileIcon = styled.div`
   margin-top: 23px;
   margin-right: 8px;
 `
-
+const UserName = styled.div`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 129.96%;
+  color: #242F3B;
+  mix-blend-mode: normal;
+`
+const UserPhone = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 129.96%;
+  color: #818591;
+`
+const UserBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+`
 const AutMenu = props => {
   const { isAuth, onSignOut } = props
+
+  const userInfo = useFetchList({
+    action: getProductList,
+    stateName: STATE.USER_INFO
+  })
+
+  const userPhone = path(['data', 'phoneNumber'], userInfo)
 
   return isEmpty(isAuth)
     ? (
@@ -63,40 +100,44 @@ const AutMenu = props => {
         <Dropdown title="Мой профиль">
           <DropdownItem>
             <ProfileImageStyled src={ProfileImage} />
-            <DropdownTexts>+99893 593 58 69</DropdownTexts>
+            <UserBlock>
+              <UserName>Набеев Руслан</UserName>
+              <UserPhone>{userPhone}</UserPhone>
+            </UserBlock>
           </DropdownItem>
           <hr />
           <DropdownItem>
-            <FavoriteIcon />
-            <Link to="/favourite">
-              <DropdownTexts>
-                Избранные товары
-              </DropdownTexts>
-            </Link>
-          </DropdownItem>
-          <hr />
-          <DropdownItem>
-            <Location />
+            <MyOrder />
             <DropdownTexts>
               <Link to="/my-order">Мои заказы</Link>
             </DropdownTexts>
           </DropdownItem>
+          <DropdownItem>
+            <FavoriteIcon />
+            <DropdownTexts>
+              <Link to="/favourite">
+                Избранные товары
+              </Link>
+            </DropdownTexts>
+          </DropdownItem>
           <hr />
           <DropdownItem>
+            <Settings />
+            <DropdownTexts>
+              <Link to="/profile">
+                Настройки
+              </Link>
+            </DropdownTexts>
+          </DropdownItem>
+          {/* <DropdownItem>
             <Location />
             <Link to="/address">
               <DropdownTexts>Мои адреса</DropdownTexts>
             </Link>
-          </DropdownItem>
-          <DropdownItem>
-            <Settings />
-            <Link to="/profile">
-              <DropdownTexts>Настройки</DropdownTexts>
-            </Link>
-          </DropdownItem>
+          </DropdownItem> */}
           <hr />
           <DropdownItem onClick={onSignOut}>
-            <Enter />
+            <SignOut />
             <DropdownTexts>Выход</DropdownTexts>
           </DropdownItem>
         </Dropdown>

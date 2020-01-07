@@ -6,7 +6,7 @@ const Ul = styled.ul`
     background: #FDFDFD;
     border: 1px solid #EAEAEC;
     border-radius: 5px;
-    padding: 5px;
+    padding: 5px 5px 5px 0;
 `
 const Li = styled.li`
     display: inline-block;
@@ -18,7 +18,7 @@ const Lbb = styled.label`
     font-size: 16px;
     line-height: 164.57%;
     color: #818591;
-    margin-left: -5px;
+    margin-left: -6px;
 `
 const Inn = styled.input`
     visibility:hidden;
@@ -35,7 +35,7 @@ const RadioButtonStyled = (props) => {
 
     <Ul>
       <Li>
-        <Inn type="radio" value="1" name="radio" id="radio1" />
+        <Inn type="radio" value="1" name="radio" id="radio1" checked={true} />
         <Lbb for="radio1">Рус</Lbb>
       </Li>
       <Li>

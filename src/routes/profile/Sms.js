@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ToggleButton, RadioButton } from 'components/UI/Button'
+import { useDispatch } from 'react-redux'
 
 const SmsBlock = styled.div`
     display: flex;
@@ -18,6 +19,21 @@ const Line = styled.div`
     margin: 14px 0;
 `
 const Sms = (props) => {
+  const { activateMailingAction, deactivateMailingAction, userId } = props
+
+  const [checked, setChecked] = useState(true)
+
+  const dispatch = useDispatch()
+
+  const onSubscriptionChange = () => {
+    if (checked) {
+      dispatch(activateMailingAction(userId))
+    } else {
+      dispatch(deactivateMailingAction(userId))
+    }
+    setChecked(!checked)
+  }
+
   return (
     <div>
       <SmsBlock>
@@ -27,7 +43,7 @@ const Sms = (props) => {
       <Line />
       <SmsBlock>
         <SmsLanguage>Отправлять SMS рассылки</SmsLanguage>
-        <ToggleButton />
+        <ToggleButton onChange={onSubscriptionChange} />
       </SmsBlock>
     </div>
   )

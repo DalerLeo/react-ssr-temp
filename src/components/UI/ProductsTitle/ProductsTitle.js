@@ -7,15 +7,7 @@ import ArrowRight from '../../../icons/ArrowRight'
 const ProductsTitlePosotion = styled.div`
     display: flex;
     justify-content: space-between;
-`
-const ProductsTitleStyled = styled.div`
-  font-style: normal;
-  font-weight: bold;
-  font-size: 23px;
-  line-height: 164.57%;
-  color: #2E384C;
-  margin-top: 20px;
-  margin-bottom: 20px;
+    
 `
 const NextPrevButtonsBlock = styled.div`
     display: flex;
@@ -32,12 +24,9 @@ const NextPrevButton = styled.button`
     margin-left: 10px;
 `
 const ProductsTitle = (props) => {
-  const { title, pagination } = props
+  const { pagination } = props
   return (
     <ProductsTitlePosotion>
-      <ProductsTitleStyled>
-        {title}
-      </ProductsTitleStyled>
       {pagination &&
       <NextPrevButtonsBlock>
         <NextPrevButton>
@@ -51,7 +40,6 @@ const ProductsTitle = (props) => {
   )
 }
 ProductsTitle.propTypes = {
-  title: propTypes.string,
   pagination: propTypes.bool
 }
 

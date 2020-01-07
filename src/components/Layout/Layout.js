@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;
   background: #f9fafb;
-  padding-top: 120px;
+  padding-top: 100px;
 `
 
 const Content = styled.div`
