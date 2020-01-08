@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Form, Field } from 'react-final-form'
 import { OrderSelectField, FormField } from 'components/UI/FormField'
-import Container from 'components/Container'
+import Container from 'components/StyledElems/Container'
 import { Col, Row } from 'components/Grid'
-import { pathOr, add, path } from 'ramda'
+import { pathOr, path, takeLast } from 'ramda'
 import LocationIcon from 'icons/Location'
-import Modal from 'components/UI/Modal'
 import { YMaps, Map, GeoObject, Placemark } from 'react-yandex-maps'
-import CartInfo from '../../components/Cart/CartInfo'
+import Link from 'components/Link'
+import OrderInfo from '../../components/Cart/OrderInfo'
 import SelectAddress from './components/SelectAddress'
 
 const FieldWrap = styled.div`
@@ -24,7 +24,7 @@ const MainTitle = styled.div`
   line-height: 119.46%;
   color: #2E384C;
   mix-blend-mode: normal;
-  margin-bottom: 25px;
+  margin: 25px 0;
 `
 const Title = styled.div`
   font-style: normal;
@@ -35,16 +35,6 @@ const Title = styled.div`
   margin: 10px 0;
 `
 
-const Address = styled.div`
-  padding: 4px 10px;
-  border-radius: 4px;
-  border: 1px #efefef solid;
-  display: inline-block;
-  margin-right: 10px;
-  background: #fff;
-  cursor: pointer;
-  border-color: ${props => props.isActive && props.theme.colors.primary.default};
-`
 const Line = styled.div`
   border-bottom: 1px solid #EAEAEC;
   width: 95%;
@@ -94,27 +84,68 @@ const NumBlock = styled.div`
   margin-bottom: 20px;
   cursor: pointer;
 `
+const SubmitButton = styled.button`
+  width: 75%;
+  color: #FFF;
+  outline: 0;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  background: #2EBB8A;
+  border-radius: 4px;
+  margin: 35px 0 14px 0;
+`
+const AgreeStatement = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 18px;
+  color: #818591;
+  margin-bottom: 60px;
+`
 const EMPTY_ARR = []
 const Order = props => {
   const {
     data,
     addresses,
     paymentTypes,
-    onSubmit
+    onSubmit,
+    products
   } = props
 
   const [isRadio, setIsRadio] = useState(true)
   const [numDisabled, setNumDisabled] = useState(true)
   const addressList = pathOr(EMPTY_ARR, ['data'], addresses)
 
+  const productAmount = products.length
+  let sumall = 0
+  let summ = 0
+
+  const totalPr = products.map((product) => {
+    const productPrice = Number(pathOr(0, ['price'], product))
+    const amount = pathOr(0, ['amount'], product)
+    const totalProdPrice = productPrice * amount
+    sumall += totalProdPrice
+    return sumall
+  })
+
+  const totalAm = products.map((product) => {
+    const productPrice = Number(pathOr(0, ['price'], product))
+    summ += productPrice
+    return summ
+  })
+
+  const totalAmount = takeLast(1, totalAm)
+  const priceWithoutDel = takeLast(1, totalPr)
   return (
     <Container>
       <MainTitle>Оформление заказа</MainTitle>
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit, values, form }) => {
-          const deliveryPrice = pathOr(0, ['delivery', 'price'], values)
-          const sumAll = add(deliveryPrice, 0)
+          const deliveryPrice = pathOr(0, ['dealType', 'price'], values)
+
+          const totalPrice = Number(priceWithoutDel) + Number(deliveryPrice)
 
           return (
             <form onSubmit={handleSubmit}>
@@ -124,7 +155,7 @@ const Order = props => {
                   <AddressInfo>
                     {isRadio ? (
                       <div>
-                        <SelectAddress addressList={addressList} />
+                        <SelectAddress addressList={addressList} values={values} form={form} />
                         <ChangeAddress onClick={() => setIsRadio(!isRadio)}>Указать другой адрес</ChangeAddress>
                       </div>
                     ) : (
@@ -143,59 +174,13 @@ const Order = props => {
                           <LocationBlock>
                             <LocationIcon />
                             <LocationText>Указать на карте</LocationText>
-                            <Modal>
-                              <YMaps>
-                                <Map
-                                  defaultState={{
-                                    center: [41.311151, 69.279737],
-                                    zoom: 11,
-                                  }}
-                                >
-                                  <GeoObject
-                                    // The geometry description.
-                                    geometry={{
-                                      type: 'Point',
-                                      coordinates: [55.8, 37.8],
-                                    }}
-                                    // Properties.
-                                    properties={{
-                                      // The placemark content.
-                                      iconContent: 'Я тащусь',
-                                      hintContent: 'Ну давай уже тащи',
-                                    }}
-                                    // Options.
-                                    options={{
-                                      // The placemark's icon will stretch to fit its contents.
-                                      preset: 'islands#blackStretchyIcon',
-                                      // The placemark can be moved.
-                                      draggable: true,
-                                    }}
-                                  />
-                                  {/* <Placemark
-                                    geometry={{
-                                      coordinates: [55.751574, 37.573856]
-                                    }}
-                                    properties={{
-                                      hintContent: 'Собственный значок метки',
-                                      balloonContent: 'Это красивая метка'
-                                    }}
-                                    options={{
-                                      iconLayout: 'default#image',
-                                      iconImageHref: 'images/myIcon.gif',
-                                      iconImageSize: [30, 42],
-                                      iconImageOffset: [-3, -42]
-                                    }}
-                                  /> */}
-                                </Map>
-                              </YMaps>
-                            </Modal>
                           </LocationBlock>
                         </Col>
                       </Row>
                     )}
                     <Title>Контактные данные</Title>
                     <Row>
-                      <Col span={11}>
+                      <Col span={7}>
                         <FieldWrap>
                           <Field
                             name="address.phone"
@@ -208,8 +193,8 @@ const Order = props => {
                           <ShowNumber>Изменить номер</ShowNumber><ForCarrier>(для курьера)</ForCarrier>
                         </NumBlock>
                       </Col>
-                      <Col span={2} />
-                      <Col span={11}>
+                      <Col span={1} />
+                      <Col span={10}>
                         <FieldWrap>
                           <Field
                             name="address.contactPerson"
@@ -218,20 +203,8 @@ const Order = props => {
                           />
                         </FieldWrap>
                       </Col>
+                      <Col span={6} />
                     </Row>
-                    {addressList.map(address => {
-                      const addr = { ...address, client: address.client.id }
-                      const addrId = path(['address', 'id'], values)
-                      return (
-                        <Address
-                          key={address.id}
-                          isActive={address.id === addrId}
-                          onClick={() => form.change('address', addr)}
-                        >
-                          {address.address}
-                        </Address>
-                      )
-                    })}
                   </AddressInfo>
 
                   <Line />
@@ -258,9 +231,22 @@ const Order = props => {
                       />
                     </AddressInfo>
                   </Row>
+                  <Row>
+                    <SubmitButton type="submit">Оформить заказ</SubmitButton>
+                  </Row>
+                  <Row>
+                    <AgreeStatement>
+                    Нажав «Перейти к оплате», вы соглашаетесь с условиями использования сервиса «LOCHIN».
+                    </AgreeStatement>
+                  </Row>
                 </Col>
                 <Col span={6}>
-                  <CartInfo sumAll={sumAll} order={true} />
+                  <OrderInfo
+                    totalAmount={totalAmount}
+                    totalPrice={totalPrice}
+                    productAmount={productAmount}
+                    deliveryPrice={deliveryPrice}
+                  />
                 </Col>
               </Row>
             </form>

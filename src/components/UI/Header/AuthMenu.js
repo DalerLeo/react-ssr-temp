@@ -86,6 +86,7 @@ const AutMenu = props => {
   })
 
   const userPhone = path(['data', 'phoneNumber'], userInfo)
+  const fullName = path(['data', 'fullName'], userInfo)
 
   return isEmpty(isAuth)
     ? (
@@ -101,7 +102,7 @@ const AutMenu = props => {
           <DropdownItem>
             <ProfileImageStyled src={ProfileImage} />
             <UserBlock>
-              <UserName>Набеев Руслан</UserName>
+              <UserName>{fullName}</UserName>
               <UserPhone>{userPhone}</UserPhone>
             </UserBlock>
           </DropdownItem>
