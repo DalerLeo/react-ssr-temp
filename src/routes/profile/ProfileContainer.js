@@ -18,19 +18,21 @@ const ProfileContainer = props => {
   const dispatch = useDispatch()
   const { data: user } = useSelector(getDataFromState(STATE.USER_INFO), equals)
 
-  
   const userData = {
     initialValues: user
   }
   const userId = path(['initialValues', 'id'], userData)
   const phoneNumber = path(['initialValues', 'phoneNumber'], userData)
-  const isMailing = path(['initialValues', 'isMailing'], userData)
-
-  console.warn(userData)
+  const isMailing = path(['initialValues', 'languageNews'], userData)
 
   const onPhotoUpdate = (value) => {
-    const imgId = path(['photo', 'id'], value)
+    const imgId = path(['id'], value)
     return dispatch(updateClientAction(userId, { photo: imgId, phoneNumber, isMailing }))
+  }
+  const onFullnameUpdate = (value) => {
+    const fullName = path(['fullName'], value)
+    const imgId = path(['photo', 'id'], value)
+    return dispatch(updateClientAction(userId, { photo: imgId, full_name: fullName, isMailing }))
   }
   const onDelete = (id) => dispatch(addressDeleteAction(id))
     .then(() => dispatch(addressListAction()))
@@ -46,6 +48,7 @@ const ProfileContainer = props => {
       listAddress={listAddress}
       onDelete={onDelete}
       onPhotoUpdate={onPhotoUpdate}
+      onFullnameUpdate={onFullnameUpdate}
       activateMailingAction={activateMailingAction}
       deactivateMailingAction={deactivateMailingAction}
     />

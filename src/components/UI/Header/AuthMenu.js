@@ -87,6 +87,7 @@ const AutMenu = props => {
 
   const userPhone = path(['data', 'phoneNumber'], userInfo)
   const fullName = path(['data', 'fullName'], userInfo)
+  const photo = path(['data', 'photo', 'file'], userInfo)
 
   return isEmpty(isAuth)
     ? (
@@ -100,7 +101,7 @@ const AutMenu = props => {
         </StyledProfileIcon>
         <Dropdown title="Мой профиль">
           <DropdownItem>
-            <ProfileImageStyled src={ProfileImage} />
+            <ProfileImageStyled src={typeof photo === 'undefined' ? ProfileImage : photo} />
             <UserBlock>
               <UserName>{fullName}</UserName>
               <UserPhone>{userPhone}</UserPhone>
