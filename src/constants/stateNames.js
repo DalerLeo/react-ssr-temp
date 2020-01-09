@@ -27,4 +27,5 @@ export const PRODUCT_CATEGORY_LIST = 'productCategoryList'
 export const COMMENT_CREATE = 'commentCreate'
 export const COMMENT_LIST = 'commentList'
 
-export const CLIENT_UPDATE = 'CLIENT_UPDATE'
+export const CLIENT_UPDATE = 'clientUpdate'
+export const DELIVERY_TYPE_LIST = 'deliveryTypeList'

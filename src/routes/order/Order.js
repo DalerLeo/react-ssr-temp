@@ -73,17 +73,16 @@ const MaxWidth = styled.div`
 const EMPTY_ARR = []
 const Order = props => {
   const {
-    data,
     addresses,
     paymentTypes,
     onSubmit,
-    products
+    products,
+    deliveryList
   } = props
 
   const [isRadio, setIsRadio] = useState(true)
   const addressList = pathOr(EMPTY_ARR, ['data'], addresses)
 
-  console.warn(addressList)
   const onToggle = () => setIsRadio(!isRadio)
   const productAmount = products.length
   let sumall = 0
@@ -148,31 +147,25 @@ const Order = props => {
                         </>
                       )}
                     </AddressInfo>
+                    <Line />
+                    <Title>Способ доставки</Title>
+                    <AddressInfo>
+                      <Field
+                        name="deliveryType"
+                        data={deliveryList}
+                        component={OrderSelectField}
+                      />
+                    </AddressInfo>
+                    <Line />
 
-                    <Line />
-                    <Row>
-                      <Title>Способ доставки</Title>
-                    </Row>
-                    <Row>
-                      <AddressInfo>
-                        <Field
-                          name="dealType"
-                          data={data}
-                          component={OrderSelectField}
-                        />
-                      </AddressInfo>
-                    </Row>
-                    <Line />
-                    <Row>
-                      <AddressInfo>
-                        <Title>Способ оплаты</Title>
-                        <Field
-                          name="paymentType"
-                          data={paymentTypes}
-                          component={OrderSelectField}
-                        />
-                      </AddressInfo>
-                    </Row>
+                    <AddressInfo>
+                      <Title>Способ оплаты</Title>
+                      <Field
+                        name="paymentType"
+                        data={paymentTypes}
+                        component={OrderSelectField}
+                      />
+                    </AddressInfo>
                     <SubmitButton type="submit">Оформить заказ</SubmitButton>
                     <AgreeStatement>
                     Нажав «Перейти к оплате», вы соглашаетесь с условиями использования сервиса «LOCHIN».

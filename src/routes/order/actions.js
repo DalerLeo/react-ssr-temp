@@ -12,7 +12,7 @@ export const orderCreateAction = (data, products) => {
   return (dispatch, getState) => {
     const requestData = {
       address: toSnakeCase(path(['address'], data)),
-      deal_type: path(['dealType', 'id'], data),
+      delivery_type: path(['deliveryType', 'id'], data),
       payment_type: path(['paymentType', 'id'], data),
       order_products: map(getProduct, products)
     }
@@ -43,6 +43,22 @@ export const addressListAction = (data, type) => {
     return dispatch({
       payload,
       type: actionTypes.ADDRESS_LIST
+    })
+  }
+}
+export const deliveryTypeListAction = (data, type) => {
+  return (dispatch, getState) => {
+    const params = {
+      page_size: 150
+    }
+    const payload = axios({ dispatch, getState })
+      .get(API.DELIVERY_TYPE_LIST, { params })
+      .then(response => {
+        return path(['data', 'results'], response)
+      })
+    return dispatch({
+      payload,
+      type: actionTypes.DELIVERY_TYPE_LIST
     })
   }
 }

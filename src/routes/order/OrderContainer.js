@@ -1,6 +1,6 @@
 import * as STATE from 'constants/stateNames'
 import * as ROUTE from 'constants/routes'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getDataFromState } from 'utils/get'
 import PaymeIcon from 'icons/Payme.svg'
@@ -10,7 +10,7 @@ import { sprintf } from 'sprintf-js'
 import equals from 'fast-deep-equal'
 import { pathOr } from 'ramda'
 import Order from './Order'
-import { orderCreateAction } from './actions'
+import { orderCreateAction, deliveryTypeListAction } from './actions'
 
 const data = [
   {
@@ -48,13 +48,19 @@ const EMPTY_ARR = []
 
 const OrderContainer = props => {
   const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(deliveryTypeListAction())
+  }, [dispatch])
 
-  const { data: products } = useSelector(getDataFromState(STATE.CART))
-  const addresses = useSelector(getDataFromState(STATE.ADDRESS_LIST))
+  const { data: products } = useSelector(getDataFromState(STATE.CART), equals)
+  const addresses = useSelector(getDataFromState(STATE.ADDRESS_LIST), equals)
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
+  const deliveryData = useSelector(getDataFromState(STATE.DELIVERY_TYPE_LIST), equals)
 
+  const deliveryList = pathOr(EMPTY_ARR, ['data'], deliveryData)
   const cartProducts = pathOr(EMPTY_ARR, ['data'], cartList)
 
+  console.warn(deliveryList)
   const history = useHistory()
 
   const onSubmit = (values) => {
@@ -64,6 +70,7 @@ const OrderContainer = props => {
   }
   return (
     <Order
+      deliveryList={deliveryList}
       data={data}
       addresses={addresses}
       paymentTypes={paymentTypes}

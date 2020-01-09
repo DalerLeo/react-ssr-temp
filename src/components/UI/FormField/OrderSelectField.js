@@ -1,15 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import { curry, path } from 'ramda'
+import numberFormat from 'utils/numberFormat'
 
 const Wrapper = styled.div`
     margin-left: -10px;
 `
 const Block = styled.div`
+    background: #fff;
     width: calc(50% - 20px);
     margin: 0 10px;
     display: inline-block;
-    border: 1px solid ${props => props.isActive ? 'green' : 'lightgrey'};
+    border: 1px solid ${props => props.isActive ? props.theme.colors.primary.default : '#DBDBDD'};
     border-radius: 7px;
     cursor: pointer;
     padding: 10px 20px;
@@ -48,7 +50,7 @@ const OrderSelectField = (props) => {
       {data.map((item, key) => {
         const isActive = input.value && input.value.id === item.id
         const toggleItem = isActive ? EMPTY_OBJ : item
-        const price = path(['price'], item)
+        const price = path(['price'], item) && numberFormat(path(['price'], item))
         const icon = path(['icon'], item)
         return (
           <Block
@@ -56,13 +58,13 @@ const OrderSelectField = (props) => {
             key={item.id}
             onClick={onChange(toggleItem)}
           >
-            {icon.length > 0 ? <img src={icon} alt="icon" /> : ''}
+            {icon && icon.length > 0 ? <img src={icon} alt="icon" /> : null}
             <TitleFlex>
               <Title>{item.name}</Title>
               <Prise>{price} {price && 'сум'}</Prise>
             </TitleFlex>
             <SubTitle>
-              {item.info}
+              {item.info || item.description}
             </SubTitle>
           </Block>
         )

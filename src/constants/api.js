@@ -72,3 +72,6 @@ export const FILTER_LIST = `/${FILTER}/`
 const COMMENT = `${MAIN}/comments/`
 export const COMMENT_CREATE = `${COMMENT}`
 export const COMMENT_LIST = `${COMMENT}`
+
+const DELIVERY_TYPE = `${MAIN}/delivery-type/`
+export const DELIVERY_TYPE_LIST = `${DELIVERY_TYPE}`

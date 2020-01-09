@@ -20,10 +20,6 @@ const rootReducer = combineReducers({
   [STATE.ORDER_CREATE]: createThunkReducer(actionTypes.ORDER_CREATE),
   [STATE.ORDER_LIST]: createThunkReducer(actionTypes.ORDER_LIST),
   [STATE.ORDER_ITEM]: createThunkReducer(actionTypes.ORDER_ITEM),
-  article: combineReducers({
-    list: createThunkReducer(actionTypes.ARTICLE_LIST),
-    item: createThunkReducer(actionTypes.ARTICLE_ITEM)
-  }),
   comment: combineReducers({
     list: createThunkReducer(actionTypes.COMMENT_LIST),
     item: createThunkReducer(actionTypes.COMMENT_ITEM),
@@ -44,6 +40,7 @@ const rootReducer = combineReducers({
   [STATE.COMMENT_LIST]: createThunkReducer(actionTypes.COMMENT_LIST),
   [STATE.ACTIVATE_MAILING]: createThunkReducer(actionTypes.ACTIVATE_MAILING),
   [STATE.DEACTIVATE_MAILING]: createThunkReducer(actionTypes.DEACTIVATE_MAILING),
+  [STATE.DELIVERY_TYPE_LIST]: createThunkReducer(actionTypes.DELIVERY_TYPE_LIST),
 })
 
 export default rootReducer
