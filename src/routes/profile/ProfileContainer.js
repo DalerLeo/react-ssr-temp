@@ -46,7 +46,7 @@ const ProfileContainer = props => {
 
   const onPicUpdate = value => {
     const photo = path(['id'], value)
-    return dispatch(clientPartiallyUpdateAction(clientId, {photo}))
+    return dispatch(clientPartiallyUpdateAction(clientId, { photo }))
   }
 
   return (

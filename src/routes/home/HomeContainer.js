@@ -4,14 +4,17 @@ import { useSelector } from 'react-redux'
 import equals from 'fast-deep-equal'
 import { getDataFromState } from 'utils/get'
 import { pathOr } from 'ramda'
+import useFetchList from '../../hooks/useFetchList'
 import Home from './Home'
+import { getProductList } from './actions'
 
 const HomeContainer = props => {
-  const cartList = useSelector(getDataFromState(STATE.CART), equals)
+  const productData = useFetchList({
+    action: getProductList,
+    stateName: STATE.PRODUCT_LIST
+  })
 
-  const products = pathOr([], ['data'], cartList)
-
-  return <Home products={products} />
+  return <Home productData={productData} />
 }
 
 export default HomeContainer

@@ -24,7 +24,7 @@ const NextPrevButton = styled.button`
     margin-left: 10px;
 `
 const ProductsTitle = (props) => {
-  const { pagination } = props
+  const { pagination, title } = props
   return (
     <ProductsTitlePosotion>
       {pagination &&

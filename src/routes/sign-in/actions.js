@@ -3,7 +3,6 @@ import * as actionTypes from 'constants/actionTypes'
 import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 import { path, prop } from 'ramda'
 import { setCookie } from 'utils/cookie'
-
 export const signInAction = (username, password) => {
   return (dispatch, getState) => {
     const phoneNumber = '+998' + username
@@ -24,6 +23,20 @@ export const signInAction = (username, password) => {
     return dispatch({
       payload,
       type: actionTypes.LOGIN
+    })
+  }
+}
+
+export const userInfoCheckToken = (token) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .get(API.CHECK_TOKEN + token)
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload,
+      type: actionTypes.USER_INFO
     })
   }
 }

@@ -44,6 +44,7 @@ const CartLink = styled(Link)`
 const Header = (props) => {
   const { isAuth } = props
 
+  console.warn(isAuth)
   const history = useContext(History)
   const dispatch = useDispatch()
   const onSignOut = () => {

@@ -17,6 +17,7 @@ export const CART = 'cart'
 export const ORDER_CREATE = 'orderCreate'
 export const ORDER_LIST = 'orderList'
 export const ORDER_ITEM = 'orderItem'
+export const REGISTER = 'register'
 
 export const LOGIN = 'login'
 export const FILTER_LIST = 'filterList'

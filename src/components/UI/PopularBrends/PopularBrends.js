@@ -2,10 +2,11 @@ import React from 'react'
 import propTypes from 'prop-types'
 import styled from 'styled-components'
 import Slider from 'react-slick'
+import img1 from 'images/popular.png'
 import ProductsTitle from '../ProductsTitle'
 import ArrowLeft from '../../../icons/ArrowLeft'
 import ArrowRight from '../../../icons/ArrowRight'
-import img1 from 'images/popular.png'
+import {SectionTitle} from 'components/StyledElems'
 
 const PopularStyled = styled.div`
   width: 170px;
@@ -30,7 +31,8 @@ const SampleNextArrow = (props) => {
   return (
     <div
       className={className}
-      style={{ ...style,
+      style={{
+        ...style,
         display: 'block',
         height: '38px',
         width: '38px',
@@ -53,7 +55,8 @@ const SamplePrevArrow = (props) => {
   return (
     <div
       className={className}
-      style={{ ...style,
+      style={{
+        ...style,
         display: 'block',
         height: '38px',
         width: '38px',
@@ -82,29 +85,48 @@ const PopularBrends = () => {
   }
   return (
     <div>
-      <ProductsTitle title="Популярные категории"/>
+      <SectionTitle>Популярные бренды</SectionTitle>
       <Slider {...settings}>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
-        <PopularStyled>
-          <PopularImage src={img1} alt="image"/>
-        </PopularStyled>
+        <div>
+          <PopularStyled>
+            <PopularImage src={img1} alt="image" />
+          </PopularStyled>
+        </div>
+        <div>
+          <PopularStyled>
+            <PopularImage src={img1} alt="image" />
+          </PopularStyled>
+        </div>
+        <div>
+          <PopularStyled>
+            <PopularImage src={img1} alt="image" />
+          </PopularStyled>
+        </div>
+        <div>
+          <PopularStyled>
+            <PopularImage src={img1} alt="image" />
+          </PopularStyled>
+        </div>
+        <div>
+          <PopularStyled>
+            <PopularImage src={img1} alt="image" />
+          </PopularStyled>
+        </div>
+        <div>
+          <PopularStyled>
+            <PopularImage src={img1} alt="image" />
+          </PopularStyled>
+        </div>
+        <div>
+          <PopularStyled>
+            <PopularImage src={img1} alt="image" />
+          </PopularStyled>
+        </div>
+        <div>
+          <PopularStyled>
+            <PopularImage src={img1} alt="image" />
+          </PopularStyled>
+        </div>
       </Slider>
     </div>
   )

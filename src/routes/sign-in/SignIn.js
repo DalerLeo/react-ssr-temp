@@ -93,17 +93,20 @@ const LoginContainer = styled.div`
 `
 
 const Loading = styled.div`
-    display: ${props => props.loading ? 'block' : 'none'}
 `
 
-const LoginForm = props => {
-  const { onRegister, onLogin } = props
+const SignIn = (props) => {
+  const { onRegister, onLogin, registerData } = props
+
+  const loading = registerData.loading
   const [openLogin, setOpenLogin] = useState(false)
-  const [loading, setLoading] = useState(false)
   const [form, setValues] = useState({
     phoneNumber: '',
     password: ''
   })
+
+  const handleLogin = () => onLogin(form.password, form.phoneNumber)
+
   const updateField = event => {
     setValues({
       ...form,
@@ -113,45 +116,10 @@ const LoginForm = props => {
 
   useEffect(() => {
     if (form.phoneNumber.length === 9) {
-      setLoading(true)
       onRegister(form.phoneNumber).then(() => setOpenLogin(true))
-      openLogin ? setLoading(false) : setLoading(true)
     }
-  }, [form.phoneNumber, onRegister, openLogin])
+  }, [form.phoneNumber])
 
-  return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <InputWrapper>
-        <InputNumber>
-            +998
-        </InputNumber>
-        <InputMessage
-          name="phoneNumber"
-          type="number"
-          placeholder="Введите номер телефона"
-          value={form.username}
-          onChange={updateField}
-        />
-      </InputWrapper>
-      <Loading loading={loading}><Preloader /></Loading>
-      <LoginContainer openLogin={openLogin}>
-        <InputWrapper>
-          <InputPassword
-            name="password"
-            type="number"
-            placeholder="Введите пароль полученный через SMS"
-            value={form.password}
-            onChange={updateField}
-          />
-        </InputWrapper>
-        <SubmitButton type="button" onClick={() => onLogin(form.password, form.phoneNumber)}>Отправить</SubmitButton>
-      </LoginContainer>
-    </form>
-  )
-}
-
-const SignIn = (props) => {
-  const { onRegister, onLogin } = props
   return (
     <div>
       <TopHeaderStyled>
@@ -168,7 +136,33 @@ const SignIn = (props) => {
             Номер телефона
         </PhoneNumber>
         <InputWrapper>
-          <LoginForm onRegister={onRegister} onLogin={onLogin} />
+          <form onSubmit={(ev) => ev.preventDefault()}>
+            <InputWrapper>
+              <InputNumber>
+                +998
+              </InputNumber>
+              <InputMessage
+                name="phoneNumber"
+                type="number"
+                placeholder="Введите номер телефона"
+                value={form.username}
+                onChange={updateField}
+              />
+            </InputWrapper>
+            {loading && <Loading><Preloader /></Loading>}
+            <LoginContainer openLogin={openLogin}>
+              <InputWrapper>
+                <InputPassword
+                  name="password"
+                  type="number"
+                  placeholder="Введите пароль полученный через SMS"
+                  value={form.password}
+                  onChange={updateField}
+                />
+              </InputWrapper>
+              <SubmitButton type="button" onClick={handleLogin}>Отправить</SubmitButton>
+            </LoginContainer>
+          </form>
         </InputWrapper>
       </Container>
     </div>
