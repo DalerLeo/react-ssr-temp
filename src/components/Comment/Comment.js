@@ -6,6 +6,8 @@ import ProfileImage from 'images/Profile.png'
 import person1 from 'images/person-1.png'
 import { Row, Col } from 'components/Grid'
 import { pathOr, path } from 'ramda'
+import NoMessage from 'images/leadership.png'
+import { dateTimeFormat } from 'utils/dateFormat'
 
 const Title = styled.div`
   font-style: normal;
@@ -78,14 +80,22 @@ const SendButton = styled.button`
   outline: 0;
   cursor: pointer;
 `
+const NoImageBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+`
+const NoMessageImage = styled.img`
+  height: 200px;
+  width: 20%;
+`
 const Comment = (props) => {
   const { onSubmit, commentList, userInfo } = props
   const commentPreview = pathOr([], ['results'], commentList)
   const [open, setOpen] = useState(false)
-  const data = path(['data'], userInfo)
-  const name = path(['fullName'], data)
-  const image = path(['photo', 'file'], data)
-  console.warn(userInfo)
+  const image = path(['data', 'photo', 'file'], userInfo)
+  const isEmptyMessage = path(['results'], commentList)
+  console.warn(isEmptyMessage.lenght !== 0)
   return (
     <div>
       {
@@ -99,7 +109,7 @@ const Comment = (props) => {
                     <form onSubmit={handleSubmit}>
                       <Row gutter={24}>
                         <Col span={2}>
-                          <ProfileImageStyled src={image} />
+                          <ProfileImageStyled src={typeof image === 'undefined' ? ProfileImage : image} />
                         </Col>
                         <Col span={22}>
                           <Field
@@ -124,35 +134,46 @@ const Comment = (props) => {
             </RowUI>
           )
       }
-      {commentPreview.map((commentSingle, key) => {
-        return (
-          <div key={key}>
-            <Row>
-              <Col span={2}>
-                <ProfileImageStyled src={image} />
-              </Col>
-              <Col span={22}>
+      {isEmptyMessage.length === 0 ? (
+        <NoImageBlock>
+          <NoMessageImage src={NoMessage} alt="no message" />
+        </NoImageBlock>
+      ) : (
+        <div>
+          {commentPreview.map((commentSingle, key) => {
+            const createdDate = path(['createdDate'], commentSingle)
+            const name = path(['client', 'fullName'], commentSingle)
+            const image1 = path(['client', 'photo', 'file'], commentSingle)
+
+            return (
+              <div key={key}>
                 <Row>
-                  <CommentDate>
-                    24 May 2018
-                  </CommentDate>
-                </Row>
-                <Row>
-                  <CommentName>
-                    {name}
-                  </CommentName>
+                  <Col span={2}>
+                    <ProfileImageStyled src={typeof image === 'undefined' ? ProfileImage : image1} />
+                  </Col>
+                  <Col span={22}>
+                    <Row>
+                      <CommentDate>
+                        {dateTimeFormat(createdDate)}
+                      </CommentDate>
+                    </Row>
+                    <Row>
+                      <CommentName>
+                        {name}
+                      </CommentName>
+                    </Row>
+                    <br />
+                    <Row>
+                      {commentSingle.comment}
+                    </Row>
+                  </Col>
                 </Row>
                 <br />
-                <Row>
-                  {commentSingle.comment}
-                </Row>
-              </Col>
-            </Row>
-            <br />
-          </div>
-        )
-      })}
-
+              </div>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }

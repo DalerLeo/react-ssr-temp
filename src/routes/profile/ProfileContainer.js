@@ -25,7 +25,7 @@ const ProfileContainer = props => {
 
   const onFullnameUpdate = (value) => {
     const fullName = path(['fullName'], value)
-    return dispatch(clientPartiallyUpdateAction(clientId, { fullName }))
+    return dispatch(clientPartiallyUpdateAction(clientId, { full_name: fullName }))
   }
   const onDelete = (id) => dispatch(addressDeleteAction(id))
     .then(() => dispatch(addressListAction()))
@@ -42,7 +42,7 @@ const ProfileContainer = props => {
 
   const onLangUpdate = value => {
     const languageNews = value.target.value
-    return dispatch(clientPartiallyUpdateAction(clientId, { languageNews }))
+    return dispatch(clientPartiallyUpdateAction(clientId, { language_news: languageNews }))
   }
   return (
     <Profile

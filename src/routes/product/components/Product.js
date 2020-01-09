@@ -23,6 +23,7 @@ import ProductCardList from 'components/Cards/ProductCardList'
 import useFetchList from 'hooks/useFetchList'
 import { getProductList } from '../actions'
 import Feature from './Feature'
+import NoImage from '../../../images/NoImage.png';
 
 const FavouriteButton = styled.button`
     background-color: ${props => props.favourite ? '#C7F9DD' : 'none'};
@@ -216,7 +217,7 @@ const Product = (props) => {
             })}
           </Col>
           <Col span={12}>
-            <Img src={image} alt="Product Image" />
+            <Img src={typeof image === 'undefined' ? NoImage : image} alt="Product Image" />
           </Col>
           <Col span={11}>
             <Artikul>артикул: 264723648212</Artikul>

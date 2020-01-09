@@ -29,6 +29,7 @@ const ProfileLink = styled(Link)`
 const ProfileImageStyled = styled.img`
   max-width: 34px;
   max-height: 34px;
+  border-radius: 50%;
 `
 const DropdownItem = styled.div`
   display: flex;
