@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ToggleButton, RadioButton } from 'components/UI/Button'
 import { useDispatch } from 'react-redux'
+import { path } from 'ramda'
 
 const SmsBlock = styled.div`
     display: flex;
@@ -16,13 +17,14 @@ const SmsLanguage = styled.div`
 `
 const Line = styled.div`
     border-bottom: 1px solid #EAEAEC;
-    margin: 14px 0;
+    margin: 10px 0;
 `
 const Sms = (props) => {
-  const { activateMailingAction, deactivateMailingAction, userId } = props
+
+  const { activateMailingAction, deactivateMailingAction, userId, onLangUpdate, initialValues } = props
 
   const [checked, setChecked] = useState(true)
-
+  const newsLang = path(['languageNews'], initialValues)
   const dispatch = useDispatch()
 
   const onSubscriptionChange = () => {
@@ -38,7 +40,7 @@ const Sms = (props) => {
     <div>
       <SmsBlock>
         <SmsLanguage>Язык SMS рассылки</SmsLanguage>
-        <RadioButton />
+        <RadioButton onChange={onLangUpdate} newsLang={newsLang} />
       </SmsBlock>
       <Line />
       <SmsBlock>

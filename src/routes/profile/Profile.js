@@ -6,6 +6,9 @@ import { Row, Col } from 'components/Grid'
 import ProfileUI from './ProfileUI'
 import Sms from './Sms'
 
+const RowUI = styled(Row)`
+  margin-bottom: 60px;
+`
 const Title = styled.div`
   font-style: normal;
   font-weight: bold;
@@ -31,14 +34,14 @@ const Profile = (props) => {
     onDelete,
     activateMailingAction,
     deactivateMailingAction,
-    onPhotoUpdate,
     onFullnameUpdate,
-    onPicUpdate
+    onPicUpdate,
+    onLangUpdate
   } = props
   const userId = path(['initialValues', 'id'], userData)
   return (
     <Container>
-      <Row>
+      <RowUI>
         <Col span={12}>
           <Title>Настройки</Title>
           <SubTitle>Личные данные</SubTitle>
@@ -47,18 +50,19 @@ const Profile = (props) => {
             {...userData}
             listAddress={listAddress}
             onDelete={onDelete}
-            onPhotoUpdate={onPhotoUpdate}
             onFullnameUpdate={onFullnameUpdate}
           />
           <SubTitle>SMS рассылка</SubTitle>
           <Sms
+            {...userData}
             activateMailingAction={activateMailingAction}
             deactivateMailingAction={deactivateMailingAction}
             userId={userId}
+            onLangUpdate={onLangUpdate}
           />
         </Col>
         <Col span={12} />
-      </Row>
+      </RowUI>
     </Container>
   )
 }

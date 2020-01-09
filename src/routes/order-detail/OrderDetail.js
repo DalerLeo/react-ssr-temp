@@ -6,7 +6,8 @@ import { Row, Col } from 'components/Grid'
 import OrderProductList from './components/OrderProductList'
 
 const RowMargin = styled(Row)`
-  margin-bottom: 20px;  
+  margin-bottom: 20px;
+  margin-top: 10px;  
 `
 const OrderId = styled.div`
   font-weight: 600;
@@ -63,6 +64,14 @@ const PriceValue = styled.div`
   color: #249E74;
   mix-blend-mode: normal;
 `
+const H1 = styled.div`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 164.57%;
+  color: #2E384C;
+  margin-bottom: 24px;
+`
 const OrderDetail = (props) => {
   const { data, loading } = props
   const orderId = path(['id'], data)
@@ -73,6 +82,7 @@ const OrderDetail = (props) => {
   const paymentType = path(['paymentType'], data)
   const totalPrice = path(['totalPrice'], data)
   const orderProducts = pathOr([], ['orderProducts'], data)
+
   return (
     <Container>
       <h1>Готово!</h1>
@@ -91,7 +101,7 @@ const OrderDetail = (props) => {
           <DetailNames>Данные получателя</DetailNames>
         </Col>
         <Col span={8}>
-          <DetailValue>+{phone}, {name}</DetailValue>
+          <DetailValue>{phone}, {name}</DetailValue>
         </Col>
         <Col span={12} />
       </RowMargin>
@@ -128,28 +138,13 @@ const OrderDetail = (props) => {
         </Col>
         <Col span={12} />
       </Row>
-      {/* <Row>
+      <RowMargin>
         <Col span={12}>
           <Line />
         </Col>
         <Col span={12} />
-      </Row>
-      <Row>
-        <Col span={6}>
-          <DetailNames>Дата доставки</DetailNames>
-        </Col>
-        <Col span={6}>
-          <DetailValue>31 янв 2019г.</DetailValue>
-        </Col>
-        <Col span={6} />
-      </Row>
-      <Row>
-        <Col span={12}>
-          <Line />
-        </Col>
-        <Col span={12} />
-      </Row> */}
-      <h1>Заказанные товары</h1>
+      </RowMargin>
+      <H1>Заказанные товары</H1>
       <OrderProductList orderProducts={orderProducts} />
     </Container>
   )
