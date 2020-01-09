@@ -122,7 +122,8 @@ const Profile = (props) => {
     onDelete,
     listAddress,
     onPhotoUpdate,
-    onFullnameUpdate
+    onFullnameUpdate,
+    onPicUpdate
   } = props
 
   const phoneNumber = path(['phoneNumber'], initialValues)
@@ -139,7 +140,7 @@ const Profile = (props) => {
             <Field
               name="photo"
               component={ImageUpload}
-              onSuccess={onPhotoUpdate}
+              onSuccess={onPicUpdate}
             />
           </FieldWrapper>
           <UserInfo>
