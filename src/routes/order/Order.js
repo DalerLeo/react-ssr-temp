@@ -1,19 +1,15 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Form, Field } from 'react-final-form'
-import { OrderSelectField, FormField } from 'components/UI/FormField'
+import { OrderSelectField } from 'components/UI/FormField'
 import Container from 'components/StyledElems/Container'
 import { Col, Row } from 'components/Grid'
-import { pathOr, path, takeLast } from 'ramda'
-import LocationIcon from 'icons/Location'
-import { YMaps, Map, GeoObject, Placemark } from 'react-yandex-maps'
-import Link from 'components/Link'
+import { pathOr, takeLast, length } from 'ramda'
+import YandexMapField from 'components/UI/FormField/Map/YandexMapField'
+import Fields from 'components/UI/FormField/Fields'
 import OrderInfo from '../../components/Cart/OrderInfo'
 import SelectAddress from './components/SelectAddress'
 
-const FieldWrap = styled.div`
-  margin-bottom: 20px;
-`
 const AddressInfo = styled.div`
   margin-right: 20px;
 `
@@ -40,20 +36,7 @@ const Line = styled.div`
   width: 95%;
   margin: 20px 0;
 `
-const LocationBlock = styled.div`
-  margin-top: 25px;
-  display: flex;
-  cursor: pointer;
-`
-const LocationText = styled.div`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 129.96%;
-  text-align: center;
-  color: #2E384C;
-  margin-left: 5px;
-`
+
 const ChangeAddress = styled.div`
   font-style: normal;
   font-weight: 500;
@@ -63,27 +46,7 @@ const ChangeAddress = styled.div`
   cursor: pointer;
   margin: 20px 0;
 `
-const ShowNumber = styled.div`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 129.96%;
-  text-align: right;
-  color: #2EBB8A;
-`
-const ForCarrier = styled.div`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 129.96%;
-  text-align: right;
-  color: #818591;
-`
-const NumBlock = styled.div`
-  display: flex;
-  margin-bottom: 20px;
-  cursor: pointer;
-`
+
 const SubmitButton = styled.button`
   width: 75%;
   color: #FFF;
@@ -103,6 +66,10 @@ const AgreeStatement = styled.div`
   color: #818591;
   margin-bottom: 60px;
 `
+
+const MaxWidth = styled.div`
+  max-width: 750px;
+`
 const EMPTY_ARR = []
 const Order = props => {
   const {
@@ -114,9 +81,10 @@ const Order = props => {
   } = props
 
   const [isRadio, setIsRadio] = useState(true)
-  const [numDisabled, setNumDisabled] = useState(true)
   const addressList = pathOr(EMPTY_ARR, ['data'], addresses)
 
+  console.warn(addressList)
+  const onToggle = () => setIsRadio(!isRadio)
   const productAmount = products.length
   let sumall = 0
   let summ = 0
@@ -151,94 +119,65 @@ const Order = props => {
             <form onSubmit={handleSubmit}>
               <Row>
                 <Col span={18}>
-                  <Title>Адрес доставки</Title>
-                  <AddressInfo>
-                    {isRadio ? (
-                      <div>
-                        <SelectAddress addressList={addressList} values={values} form={form} />
-                        <ChangeAddress onClick={() => setIsRadio(!isRadio)}>Указать другой адрес</ChangeAddress>
-                      </div>
-                    ) : (
-                      <Row>
-                        <Col span={12}>
-                          <FieldWrap>
-                            <Field
-                              name="address.address"
-                              component={FormField}
-                              placeholder="Введите или выберите на карте адрес доставки"
-                            />
-                          </FieldWrap>
-                        </Col>
-                        <Col span={1} />
-                        <Col span={11}>
-                          <LocationBlock>
-                            <LocationIcon />
-                            <LocationText>Указать на карте</LocationText>
-                          </LocationBlock>
-                        </Col>
-                      </Row>
-                    )}
-                    <Title>Контактные данные</Title>
-                    <Row>
-                      <Col span={7}>
-                        <FieldWrap>
-                          <Field
-                            name="address.phone"
-                            component={FormField}
-                            placeholder="Номер телефона"
-                            disabled={numDisabled}
-                          />
-                        </FieldWrap>
-                        <NumBlock onClick={() => setNumDisabled(!numDisabled)}>
-                          <ShowNumber>Изменить номер</ShowNumber><ForCarrier>(для курьера)</ForCarrier>
-                        </NumBlock>
-                      </Col>
-                      <Col span={1} />
-                      <Col span={10}>
-                        <FieldWrap>
-                          <Field
-                            name="address.contactPerson"
-                            component={FormField}
-                            placeholder="Имя"
-                          />
-                        </FieldWrap>
-                      </Col>
-                      <Col span={6} />
-                    </Row>
-                  </AddressInfo>
+                  <MaxWidth>
+                    <Title>Адрес доставки</Title>
+                    <AddressInfo>
+                      {isRadio ? (
+                        <div>
+                          <SelectAddress addressList={addressList} values={values} form={form} />
+                          <ChangeAddress onClick={onToggle}>Указать другой адрес</ChangeAddress>
+                        </div>
+                      ) : (
+                        <>
+                          <Fields
+                            names={[
+                              'address.location',
+                              'address.address',
+                              'address.phone',
+                              'address.contactPerson',
+                              'address.referencePoint'
+                            ]}
+                          >
+                            {(fields) => {
+                              return <YandexMapField fields={fields} />
+                            }}
+                          </Fields>
+                          <ChangeAddress onClick={onToggle}>
+                            Есть сохраненные адреса: {length(addressList)}
+                          </ChangeAddress>
+                        </>
+                      )}
+                    </AddressInfo>
 
-                  <Line />
-                  <Row>
-                    <Title>Способ доставки</Title>
-                  </Row>
-                  <Row>
-                    <AddressInfo>
-                      <Field
-                        name="dealType"
-                        data={data}
-                        component={OrderSelectField}
-                      />
-                    </AddressInfo>
-                  </Row>
-                  <Line />
-                  <Row>
-                    <AddressInfo>
-                      <Title>Способ оплаты</Title>
-                      <Field
-                        name="paymentType"
-                        data={paymentTypes}
-                        component={OrderSelectField}
-                      />
-                    </AddressInfo>
-                  </Row>
-                  <Row>
+                    <Line />
+                    <Row>
+                      <Title>Способ доставки</Title>
+                    </Row>
+                    <Row>
+                      <AddressInfo>
+                        <Field
+                          name="dealType"
+                          data={data}
+                          component={OrderSelectField}
+                        />
+                      </AddressInfo>
+                    </Row>
+                    <Line />
+                    <Row>
+                      <AddressInfo>
+                        <Title>Способ оплаты</Title>
+                        <Field
+                          name="paymentType"
+                          data={paymentTypes}
+                          component={OrderSelectField}
+                        />
+                      </AddressInfo>
+                    </Row>
                     <SubmitButton type="submit">Оформить заказ</SubmitButton>
-                  </Row>
-                  <Row>
                     <AgreeStatement>
                     Нажав «Перейти к оплате», вы соглашаетесь с условиями использования сервиса «LOCHIN».
                     </AgreeStatement>
-                  </Row>
+                  </MaxWidth>
                 </Col>
                 <Col span={6}>
                   <OrderInfo

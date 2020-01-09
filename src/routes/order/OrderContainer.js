@@ -44,6 +44,8 @@ const paymentTypes = [
   }
 ]
 
+const EMPTY_ARR = []
+
 const OrderContainer = props => {
   const dispatch = useDispatch()
 
@@ -51,10 +53,10 @@ const OrderContainer = props => {
   const addresses = useSelector(getDataFromState(STATE.ADDRESS_LIST))
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
 
-  const Cartproducts = pathOr([], ['data'], cartList)
+  const cartProducts = pathOr(EMPTY_ARR, ['data'], cartList)
 
   const history = useHistory()
-  
+
   const onSubmit = (values) => {
     dispatch(orderCreateAction(values, products))
       .then(({ value }) =>
@@ -66,7 +68,7 @@ const OrderContainer = props => {
       addresses={addresses}
       paymentTypes={paymentTypes}
       onSubmit={onSubmit}
-      products={Cartproducts}
+      products={cartProducts}
     />
   )
 }

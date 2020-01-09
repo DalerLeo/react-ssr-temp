@@ -6,7 +6,7 @@ import AnimationWrapper from '../AnimationWrapper'
 import CloseIcon from './CloseIcon'
 
 const StyledModal = styled('div')`
-  color: ${props => props.theme.color.textColor};
+  color: black;
   margin: 50px;
 `
 
@@ -55,7 +55,7 @@ const ModalWrapper = styled('div')`
 `
 
 const ModalContent = styled('div')`
-  background-color: ${props => props.theme.color.cardBackground};
+  background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 10px 15px rgba(35, 38, 41, 0.5);
   position: relative;

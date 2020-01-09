@@ -44,7 +44,7 @@ export const userInfoCheckToken = (token) => {
 export const userSignOut = () => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .post(API.LOGOUT)
+      .delete(API.LOGOUT)
       .then(response => {
         document.cookie = 'token='
         return prop('data', response)
