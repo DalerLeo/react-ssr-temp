@@ -12,7 +12,6 @@ const FavouriteBlock = styled.div`
 const Favourite = props => {
   const { favouriteList } = props
   const favouriteProducts = path(['results'], favouriteList)
-  console.warn(favouriteProducts.length)
   return (
     <div>
       <Container>

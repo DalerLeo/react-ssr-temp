@@ -35,7 +35,7 @@ const PriceStyled = styled.div`
 `
 const ImageStyled = styled.img`
     height: 89px;
-    width: 124px;
+    width: 100px;
 `
 const Line = styled.div`
     border: 0.5px solid #E7E8EA;
@@ -68,8 +68,8 @@ const OrderProductList = (props) => {
           return (
             <div key={key}>
               <Row>
-                <Col span={5}><ImageStyled src={typeof image === 'undefined' ? NoImage : image} alt="product" /></Col>
-                <Col span={13}><NameStyled>{name} <IdStyled>#{id}</IdStyled></NameStyled></Col>
+                <Col span={4}><ImageStyled src={typeof image === 'undefined' ? NoImage : image} alt="product" /></Col>
+                <Col span={14}><NameStyled>{name} <IdStyled>#{id}</IdStyled></NameStyled></Col>
                 <Col span={3}><AmountStyled>{amount} шт.</AmountStyled></Col>
                 <Col span={3}><PriceStyled>{price} сум</PriceStyled></Col>
               </Row>
