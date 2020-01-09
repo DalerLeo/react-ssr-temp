@@ -5,7 +5,7 @@ import TextArea from 'components/UI/FormField/TextArea'
 import ProfileImage from 'images/Profile.png'
 import person1 from 'images/person-1.png'
 import { Row, Col } from 'components/Grid'
-import { pathOr } from 'ramda'
+import { pathOr, path } from 'ramda'
 
 const Title = styled.div`
   font-style: normal;
@@ -79,10 +79,13 @@ const SendButton = styled.button`
   cursor: pointer;
 `
 const Comment = (props) => {
-  const { onSubmit, commentList } = props
+  const { onSubmit, commentList, userInfo } = props
   const commentPreview = pathOr([], ['results'], commentList)
   const [open, setOpen] = useState(false)
-
+  const data = path(['data'], userInfo)
+  const name = path(['fullName'], data)
+  const image = path(['photo', 'file'], data)
+  console.warn(userInfo)
   return (
     <div>
       {
@@ -96,7 +99,7 @@ const Comment = (props) => {
                     <form onSubmit={handleSubmit}>
                       <Row gutter={24}>
                         <Col span={2}>
-                          <ProfileImageStyled src={person1} />
+                          <ProfileImageStyled src={image} />
                         </Col>
                         <Col span={22}>
                           <Field
@@ -126,7 +129,7 @@ const Comment = (props) => {
           <div key={key}>
             <Row>
               <Col span={2}>
-                <ProfileImageStyled src={person1} />
+                <ProfileImageStyled src={image} />
               </Col>
               <Col span={22}>
                 <Row>
@@ -136,7 +139,7 @@ const Comment = (props) => {
                 </Row>
                 <Row>
                   <CommentName>
-                    Олег Газманов
+                    {name}
                   </CommentName>
                 </Row>
                 <br />

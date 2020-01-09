@@ -152,6 +152,8 @@ const PopularListBlock = styled.div`
 const ProductListBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 20px auto;
 `
 const PopularProduct = styled.div`
   font-style: normal;
@@ -159,7 +161,9 @@ const PopularProduct = styled.div`
   font-size: 23px;
   line-height: 164.57%;
   color: #2E384C;
-  margin-bottom: 20px;
+  
+  max-width: 1200px;
+  margin: 0 auto;
 `
 const Descr = styled.pre`
   font-family: inherit;
@@ -171,7 +175,8 @@ const Product = (props) => {
     action: getProductList,
     stateName: STATE.PRODUCT_LIST
   })
-  const { productData, onSubmit, commentList } = props
+  const { productData, onSubmit, commentList, userInfo } = props
+
   const dispatch = useDispatch()
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
 
@@ -185,7 +190,6 @@ const Product = (props) => {
   const description = path(['description'], data)
   const id = path(['id'], data)
   const filterProduct = find(propEq('id', id))(datas)
-  console.warn('111', filterProduct)
   const amount = pathOr(0, ['amount'], filterProduct)
   const isFavourite = path(['data', 'isFavourite'], productData)
   const images = path(['images'], data)
@@ -274,7 +278,7 @@ const Product = (props) => {
       </PopularListBlock>
       <ContainerUI>
         <br />
-        <Comment onSubmit={onSubmit} commentList={commentList} />
+        <Comment onSubmit={onSubmit} commentList={commentList} userInfo={userInfo} />
       </ContainerUI>
     </Wrapper>
   )
