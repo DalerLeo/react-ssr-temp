@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { path, prop } from 'ramda'
-import Header from 'components/UI/Header'
 import Container from 'components/StyledElems/Container'
 import { ChevronButton } from 'components/UI/Button'
 import ProductCard from 'components/Cards/ProductCard'
@@ -15,7 +14,7 @@ import Filter from './Filter'
 const ProductListBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: calc(100%)
+  width: 100%
 `
 
 const Pages = styled.div`
@@ -37,7 +36,6 @@ const Categories = (props) => {
   const loading = path(['loading'], productCategoryData)
   return (
     <div>
-      <Header />
       <Container>
         <Row gutter={50}>
           <Col span={5} minWidth="250">

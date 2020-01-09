@@ -1,95 +1,76 @@
-import * as STATE from 'constants/stateNames'
 import React from 'react'
 import styled from 'styled-components'
 import { path } from 'ramda'
 import ProductCardList from 'components/Cards/ProductCardList'
-import Container from 'components/Container'
-import PopularCategories from 'components/UI/PopularCategories'
+import SectionTitle from 'components/StyledElems/SectionTitle'
+import ContainerUI from 'components/Container'
 import PopularBrends from 'components/UI/PopularBrends'
 import AddBanner from 'components/UI/AddBanner'
-import ShowMore from 'components/UI/ShowMore'
 import Carusel from 'components/UI/Carusel'
 import ProductsTitle from 'components/UI/ProductsTitle'
 import Skeleton from 'components/UI/Skelet'
-import { Col, Row } from 'components/Grid'
-import useFetchList from '../../hooks/useFetchList'
-import { getProductList } from './actions'
+import PropTypes from 'prop-types'
 
+const Container = styled(ContainerUI)`
+  padding-bottom: 60px;
+`
 const ProductListBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 50px;
 `
 const HeaderMenu = styled.div`
-  margin-top: 24px;
+  margin: 24px 0 88px;
   display: flex;
 `
-const ProductsTitleStyled = styled.div`
-  font-style: normal;
-  font-weight: bold;
-  font-size: 23px;
-  line-height: 164.57%;
-  color: #2E384C;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`
+
 const PopularBlock = styled.div`
-  margin: 70px 0 0 20px;
+  margin: 50px 0 50px 0px;
 `
 const Home = props => {
-  const { products } = props
+  const { productData } = props
 
-  const productData = useFetchList({
-    action: getProductList,
-    stateName: STATE.PRODUCT_LIST
-  })
   const loading = path(['loading'], productData)
 
   return (
     <Container>
       <HeaderMenu>
-        {/* <MenuBar /> */}
         <Carusel />
       </HeaderMenu>
-      <Row>
-        <ProductsTitleStyled>
+
+      <SectionTitle>
           Популярные товары
-        </ProductsTitleStyled>
-      </Row>
-      <Row>
-        {loading ? <Skeleton count={9} col={4} /> : <ProductsTitle />}
-      </Row>
-      <Row>
-        <ProductListBlock>
-          <ProductCardList productData={productData} products={products} column={4} />
-        </ProductListBlock>
-      </Row>
-      <Row>
-        <ProductsTitleStyled>
+      </SectionTitle>
+      {loading ? <Skeleton count={9} col={4} /> : <ProductsTitle />}
+
+      <ProductListBlock>
+        <ProductCardList productData={productData} column={4} />
+      </ProductListBlock>
+
+      <SectionTitle>
           Новинки
-        </ProductsTitleStyled>
-      </Row>
-      <Row>
-        <ProductListBlock>
-          <ProductCardList productData={productData} products={products} column={4} />
-        </ProductListBlock>
-      </Row>
-      <PopularBlock>
-        <PopularCategories />
-      </PopularBlock>
+      </SectionTitle>
+
+      <ProductListBlock>
+        <ProductCardList productData={productData} column={4} />
+      </ProductListBlock>
       <AddBanner />
       <PopularBlock>
         <PopularBrends />
       </PopularBlock>
-      <ProductsTitleStyled>
+      <SectionTitle>
           Лучшие товары за месяц
-      </ProductsTitleStyled>
+      </SectionTitle>
       <ProductsTitle />
       <ProductListBlock>
-        <ProductCardList productData={productData} products={products} column={4} />
+        <ProductCardList productData={productData} column={4} />
       </ProductListBlock>
-      <ShowMore />
     </Container>
   )
+}
+
+Home.propTypes = {
+  productData: PropTypes.object
 }
 
 export default Home

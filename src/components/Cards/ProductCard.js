@@ -21,13 +21,15 @@ const StyledCard = styled.div`
   position: relative;
   background-color: #FFF;
   height: 396px;
-  width: ${props => props.column === 3 ? '33%' : '25%'};
+  width: ${props => props.column === 3 ? 'calc(100% / 3)' : '25%'};
   border-right: 1px solid #e1e1e1;
-  border-bottom: 1px solid #e1e1e1;
-  border-top-left-radius: 5px;
+  border-top: 1px solid #e1e1e1;
+  :nth-child(-n+${props => props.column === 3 ? 3 : 4}){
+    border-top: 0;
+  }
   &:nth-child(${props => props.column === 3 ? 3 : 4}) {
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+//    border-top-right-radius: 5px;
+//    border-top-left-radius: 5px;
   }
   &:nth-child(${props => props.column === 3 ? 3 : 4}n) {
     border-right: none;

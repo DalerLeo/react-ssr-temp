@@ -19,7 +19,7 @@ const ProfileLink = styled(Link)`
   display: flex;
   font-size: 16px;
   line-height: 164.57%;
-  color: #FFFFFF;
+  color: #FFFFFF!important;
   cursor: pointer;
   :hover {
     color: #FFFFFF;    
