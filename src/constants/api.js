@@ -54,6 +54,9 @@ export const CLIENT = `${MAIN}/client`
 export const CLIENT_UPDATE = `${CLIENT}/%d/`
 export const CLIENT_DETAIL = `${CLIENT}/%d/`
 
+export const ACTIVATE_MAILING = `${CLIENT}/%d/activate_mailing/`
+export const DEACTIVATE_MAILING = `${CLIENT}/%d/deactivate_mailing/`
+
 export const ADDRESS_CREATE = `${MAIN}/client-address/`
 export const ADDRESS_LIST = `${MAIN}/client-address/`
 export const ADDRESS_DELETE = `${MAIN}/client-address/%d/`

@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { path } from 'ramda'
+import { path, pathOr, find, propEq } from 'ramda'
 import { Col, Row } from 'components/Grid'
+import NoImage from 'images/NoImage.png'
 
 const NameStyled = styled.div`
     font-style: normal;
@@ -34,7 +35,7 @@ const PriceStyled = styled.div`
 `
 const ImageStyled = styled.img`
     height: 89px;
-    width: auto;
+    width: 124px;
 `
 const Line = styled.div`
     border: 0.5px solid #E7E8EA;
@@ -61,12 +62,14 @@ const OrderProductList = (props) => {
           const amount = path(['amount'], orderProductsItem)
           const name = path(['product', 'name'], orderProductsItem)
           const id = path(['product', 'id'], orderProductsItem)
-          console.warn('123', orderProductsItem)
+          const images = pathOr([], ['product', 'images'], orderProductsItem)
+          const isPrimary = find(propEq('isPrimary', true))(images)
+          const image = path(['image'], isPrimary)
           return (
             <div key={key}>
               <Row>
-                <Col span={4}><ImageStyled src="https://megaroll75.ru/wp-content/uploads/2018/09/coca-cola-15litro-1.jpg" alt="product" /></Col>
-                <Col span={14}><NameStyled>{name} <IdStyled>#{id}</IdStyled></NameStyled></Col>
+                <Col span={5}><ImageStyled src={typeof image === 'undefined' ? NoImage : image} alt="product" /></Col>
+                <Col span={13}><NameStyled>{name} <IdStyled>#{id}</IdStyled></NameStyled></Col>
                 <Col span={3}><AmountStyled>{amount} шт.</AmountStyled></Col>
                 <Col span={3}><PriceStyled>{price} сум</PriceStyled></Col>
               </Row>

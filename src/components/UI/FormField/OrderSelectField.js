@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { curry, path } from 'ramda'
 
 const Wrapper = styled.div`
-  margin-left: -10px;
+    margin-left: -10px;
 `
 const Block = styled.div`
     width: calc(50% - 20px);

@@ -56,22 +56,13 @@ const PriceTotalBlock = styled(PriceBlockItem)`
     line-height: 164.57%;
     color: #2E384C;
 `
-const SubmitButton = styled.button`
-  width: 100%;
-  color: #FFF;
-  outline: 0;
-  border: none;
-  padding: 15px;
-  cursor: pointer;
-  background: #2EBB8A;
-  border-radius: 4px;
-`
+
 const Line = styled.div`
   border-bottom: 1px solid #EAEAEC;
   margin-bottom: 15px;
 `
 const CartInfo = props => {
-  const { totalPrice, order, totalAmount, productAmount, deliveryPrice } = props
+  const { totalPrice, totalAmount, productAmount, deliveryPrice } = props
   return (
     <CartInfoBlock>
       <DeliveryBlock>
@@ -104,15 +95,6 @@ const CartInfo = props => {
         </PriceTotalBlock>
       </PriceBlock>
 
-      {order
-        ? (
-          <SubmitButton type="submit">Оформить заказ</SubmitButton>
-        )
-        : (
-          <Link to="/order">
-            <SubmitButton>Оформить заказ</SubmitButton>
-          </Link>
-        )}
     </CartInfoBlock>
   )
 }

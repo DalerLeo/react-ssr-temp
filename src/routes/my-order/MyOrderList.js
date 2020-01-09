@@ -12,7 +12,7 @@ const ProductCard = styled.div`
     margin-right: 10px;
     border-radius: 7px;
     border: 1px solid lightgrey;
-    width: 900px;
+    width: 800px;
     margin-bottom: 10px;
 `
 const ProductDetail = styled.div`
@@ -35,10 +35,10 @@ const ProductTitle = styled.div`
 const MyOrderList = (props) => {
   const { myOrderList } = props
   const data = pathOr([], ['data'], myOrderList)
+  console.warn(data)
   return (
     <div>
       {data.map((item, key) => {
-        console.warn('item', item)
         const totalPrice = path(['totalPrice'], item)
         const productItem = pathOr([], ['orderProducts'], item)
         return (

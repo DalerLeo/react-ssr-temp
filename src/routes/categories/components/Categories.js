@@ -58,7 +58,7 @@ const Categories = (props) => {
             </Row>
             <br />
             <Row>
-              {loading ? <Skelet count={9} />
+              {loading ? <Skelet count={9} col={3} />
                 : (
                   <ProductListBlock>
                     {items.map((item, key) => {

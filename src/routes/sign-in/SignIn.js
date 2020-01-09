@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Button } from 'components/UI/Button'
 import TopHeader from 'components/UI/Header/TopHeader'
 import Logo from 'icons/Logo'
+import Preloader from 'components/UI/PreLoader'
 
 const TopHeaderStyled = styled.div`
     margin-top: -120px;
@@ -132,7 +133,7 @@ const LoginForm = props => {
           onChange={updateField}
         />
       </InputWrapper>
-      <Loading loading={loading}>Loading...</Loading>
+      <Loading loading={loading}><Preloader /></Loading>
       <LoginContainer openLogin={openLogin}>
         <InputWrapper>
           <InputPassword

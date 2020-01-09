@@ -13,7 +13,7 @@ const Title = styled.div`
   line-height: 119.46%;
   color: #2E384C;
   mix-blend-mode: normal;
-  margin: 10px 0;
+  margin: 30px 0;
 `
 const Cart = props => {
   const {

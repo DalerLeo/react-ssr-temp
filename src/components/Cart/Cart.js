@@ -15,6 +15,7 @@ import SalePrice from '../UI/SalePrice'
 const Card = styled.div`
   background: #FFFFFF;
   border-radius: 5px;
+  margin-bottom: 30px;
 `
 const ProductName = styled.div`
   font-style: normal;

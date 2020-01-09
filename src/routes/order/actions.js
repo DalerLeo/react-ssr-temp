@@ -2,6 +2,7 @@ import * as actionTypes from 'constants/actionTypes'
 import { path, map, prop } from 'ramda'
 import axios from '../../utils/axios'
 import * as API from '../../constants/api'
+import toSnakeCase from '../../utils/toSnakeCase'
 
 const getProduct = product => ({
   product: prop('id', product),
@@ -10,7 +11,7 @@ const getProduct = product => ({
 export const orderCreateAction = (data, products) => {
   return (dispatch, getState) => {
     const requestData = {
-      address: path(['address'], data),
+      address: toSnakeCase(path(['address'], data)),
       deal_type: path(['dealType', 'id'], data),
       payment_type: path(['paymentType', 'id'], data),
       order_products: map(getProduct, products)

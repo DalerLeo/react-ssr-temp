@@ -7,6 +7,8 @@ import PaymeIcon from 'icons/Payme.svg'
 import CashIcon from 'icons/Cash.svg'
 import useHistory from 'hooks/useHistory'
 import { sprintf } from 'sprintf-js'
+import equals from 'fast-deep-equal'
+import { pathOr } from 'ramda'
 import Order from './Order'
 import { orderCreateAction } from './actions'
 
@@ -15,13 +17,14 @@ const data = [
     id: '0',
     name: 'Бесплатная доставка',
     info: 'Стандартная бесплатная доставка в течении 2х дней.',
+    price: '',
     icon: ''
   },
   {
     id: '1',
     name: 'Сверхсрочная доставка',
     info: 'Ну очень быстрая доставка. Доставит сам Флэш.',
-    price: '22000',
+    price: 22000,
     icon: ''
   }
 ]
@@ -46,7 +49,12 @@ const OrderContainer = props => {
 
   const { data: products } = useSelector(getDataFromState(STATE.CART))
   const addresses = useSelector(getDataFromState(STATE.ADDRESS_LIST))
+  const cartList = useSelector(getDataFromState(STATE.CART), equals)
+
+  const Cartproducts = pathOr([], ['data'], cartList)
+
   const history = useHistory()
+  
   const onSubmit = (values) => {
     dispatch(orderCreateAction(values, products))
       .then(({ value }) =>
@@ -58,6 +66,7 @@ const OrderContainer = props => {
       addresses={addresses}
       paymentTypes={paymentTypes}
       onSubmit={onSubmit}
+      products={Cartproducts}
     />
   )
 }

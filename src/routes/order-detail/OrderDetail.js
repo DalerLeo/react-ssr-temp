@@ -5,6 +5,9 @@ import styled from 'styled-components'
 import { Row, Col } from 'components/Grid'
 import OrderProductList from './components/OrderProductList'
 
+const RowMargin = styled(Row)`
+  margin-bottom: 20px;  
+`
 const OrderId = styled.div`
   font-weight: 600;
   font-size: 20px;
@@ -21,7 +24,6 @@ const DetailNames = styled.div`
   line-height: 129.96%;
   color: #818591;
   mix-blend-mode: normal;
-  margin-bottom: 20px;
 `
 const DetailValue = styled.div`
   display: flex;
@@ -75,7 +77,7 @@ const OrderDetail = (props) => {
     <Container>
       <h1>Готово!</h1>
       <OrderId>Заказ <span>№{orderId}</span> оформлен</OrderId>
-      <Row>
+      <RowMargin>
         <Col span={4}>
           <DetailNames>Адрес доставки</DetailNames>
         </Col>
@@ -83,8 +85,8 @@ const OrderDetail = (props) => {
           <DetailValue>{address}</DetailValue>
         </Col>
         <Col span={12} />
-      </Row>
-      <Row>
+      </RowMargin>
+      <RowMargin>
         <Col span={4}>
           <DetailNames>Данные получателя</DetailNames>
         </Col>
@@ -92,14 +94,14 @@ const OrderDetail = (props) => {
           <DetailValue>+{phone}, {name}</DetailValue>
         </Col>
         <Col span={12} />
-      </Row>
-      <Row>
+      </RowMargin>
+      <RowMargin>
         <Col span={12}>
           <Line />
         </Col>
         <Col span={12} />
-      </Row>
-      <Row>
+      </RowMargin>
+      <RowMargin>
         <Col span={4}>
           <DetailNames>Тариф доставки</DetailNames>
         </Col>
@@ -107,8 +109,8 @@ const OrderDetail = (props) => {
           <DeliveryValue>{deliveryType}</DeliveryValue>
         </Col>
         <Col span={12} />
-      </Row>
-      <Row>
+      </RowMargin>
+      <RowMargin>
         <Col span={4}>
           <DetailNames>Способ оплаты</DetailNames>
         </Col>
@@ -116,7 +118,7 @@ const OrderDetail = (props) => {
           <DetailValue>{paymentType}<InReceive paymentType={paymentType}>(при получении)</InReceive></DetailValue>
         </Col>
         <Col span={12} />
-      </Row>
+      </RowMargin>
       <Row>
         <Col span={4}>
           <DetailNames>Сумма заказа</DetailNames>

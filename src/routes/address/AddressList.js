@@ -26,6 +26,7 @@ const DeleteButton = styled.button`
 const AddressList = (props) => {
   const { listAddress, onDelete } = props
   const datas = pathOr([], ['data'], listAddress)
+  
   return (
     <Addresses>
       {datas.map((data, key) => (

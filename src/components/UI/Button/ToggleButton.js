@@ -47,7 +47,7 @@ const CheckBox = styled.input`
 const ToggleButton = (props) => {
   return (
     <CheckBoxWrapper>
-      <CheckBox id="checkbox" type="checkbox" />
+      <CheckBox id="checkbox" type="checkbox" {...props} />
       <CheckBoxLabel htmlFor="checkbox" />
     </CheckBoxWrapper>
   )

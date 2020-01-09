@@ -9,15 +9,15 @@ const SkeletCardBlock = styled.div`
 const SkeletCard = styled.div`
     background-color: #FFF;
     height: 396px;
-    width: 33%;
+    width: ${props => props.col === 4 ? '25%' : '33%'};
     border-right: 1px solid #e1e1e1;
   border-bottom: 1px solid #e1e1e1;
     border-top-left-radius: 5px;
-  &:nth-child(3) {
+  &:nth-child(${props => props.col}) {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
   }
-  &:nth-child(3n) {
+  &:nth-child(${props => props.col}n) {
     border-right: none;
   }
 `
@@ -135,12 +135,12 @@ const SkeletButton = styled.div`
     }
 `
 const Skelet = (props) => {
-  const { count } = props
+  const { count, col } = props
   const number = range(1, count)
   return (
     <SkeletCardBlock>
       {number.map((num, key) => (
-        <SkeletCard key={key}>
+        <SkeletCard key={key} col={col}>
           <SkeletImage />
           <SkeletPriceBlock>
             <SkeletPrice />

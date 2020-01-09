@@ -66,6 +66,7 @@ const defArr = []
 const ProductCard = props => {
   const { item, column } = props
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
+
   const products = pathOr(defArr, ['data'], cartList)
   const dispatch = useDispatch()
   const name = path(['name'], item)

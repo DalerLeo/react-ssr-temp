@@ -28,18 +28,35 @@ const SubTitleAddress = styled.span`
 const SubTitleBlock = styled.div`
 
 `
+const Address = styled.input`
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px #efefef solid;
+  display: inline-block;
+  margin-right: 10px;
+  background: #fff;
+  cursor: pointer;
+  border-color: ${props => props.isActive && props.theme.colors.primary.default};
+`
+
 const SelectAddress = (props) => {
-  const { addressList } = props
+  const { addressList, values, form } = props
   return (
     <RadioBlock>
-      {addressList.map((addressItem, key) => {
-        const phone = path(['phone'], addressItem)
-        const contactPerson = path(['contactPerson'], addressItem)
-        const address = path(['address'], addressItem)
+      {addressList.map(address => {
+        const addr = { ...address, client: address.client.id }
+        const addrId = path(['address', 'id'], values)
+        const phone = path(['phone'], address)
+        const contactPerson = path(['contactPerson'], address)
+        const addres = path(['address'], address)
         return (
-          <RadioBlockItem key={key}>
-            <input type="radio" name="address" value="first-add" />
-            <TitleAddress>{address}</TitleAddress>
+          <RadioBlockItem key={address.id}>
+            <input
+              type="radio" name="address"
+              isActive={address.id === addrId}
+              onClick={() => form.change('address', addr)}
+            />
+            <TitleAddress>{addres}</TitleAddress>
             <SubTitleBlock>
               <SubTitleAddress>{phone}</SubTitleAddress>
               <SubTitleAddress>{contactPerson}</SubTitleAddress>

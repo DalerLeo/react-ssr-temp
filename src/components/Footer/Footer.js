@@ -7,7 +7,6 @@ import Logo from 'images/Logo.png'
 const Wrapper = styled.div`
 position: relative;
 z-index: 3;
-margin-top: 26px;
 padding-top: 36px;
   padding-bottom: 40px;
   background-color: ${props => '#efefef'};
