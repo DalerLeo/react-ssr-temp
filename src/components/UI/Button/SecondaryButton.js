@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-const SecondaryButton = styled.button`
+const SecondaryButton = styled.button.attrs(props => ({
+  type: props.type || 'button',
+}))`
     background: #EAEBED;
     border-radius: 4px;
     border: 0;
