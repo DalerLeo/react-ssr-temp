@@ -16,6 +16,18 @@ export const updateClientAction = (id, data) => {
     })
   }
 }
+export const clientPartiallyUpdateAction = (id, data) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .patch(sprintf(API.CLIENT_UPDATE, id), data)
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+    return dispatch({
+      payload: payload,
+      type: actionTypes.USER_INFO
+    })
+  }
+}
 
 export const addressListAction = (data, type) => {
   return (dispatch, getState) => {

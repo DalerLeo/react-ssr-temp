@@ -7,6 +7,7 @@ import equals from 'fast-deep-equal'
 import useFetchList from '../../hooks/useFetchList'
 import Profile from './Profile'
 import {
+  clientPartiallyUpdateAction,
   updateClientAction,
   addressListAction,
   addressDeleteAction,
@@ -21,6 +22,7 @@ const ProfileContainer = props => {
   const userData = {
     initialValues: user
   }
+  const clientId = path(['id'], user)
   const userId = path(['initialValues', 'id'], userData)
   const phoneNumber = path(['initialValues', 'phoneNumber'], userData)
   const isMailing = path(['initialValues', 'languageNews'], userData)
@@ -42,8 +44,14 @@ const ProfileContainer = props => {
     stateName: STATE.ADDRESS_LIST
   })
 
+  const onPicUpdate = value => {
+    const photo = path(['id'], value)
+    return dispatch(clientPartiallyUpdateAction(clientId, {photo}))
+  }
+
   return (
     <Profile
+      onPicUpdate={onPicUpdate}
       userData={userData}
       listAddress={listAddress}
       onDelete={onDelete}

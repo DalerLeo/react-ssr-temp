@@ -32,7 +32,8 @@ const Profile = (props) => {
     activateMailingAction,
     deactivateMailingAction,
     onPhotoUpdate,
-    onFullnameUpdate
+    onFullnameUpdate,
+    onPicUpdate
   } = props
   const userId = path(['initialValues', 'id'], userData)
   return (
@@ -42,6 +43,7 @@ const Profile = (props) => {
           <Title>Настройки</Title>
           <SubTitle>Личные данные</SubTitle>
           <ProfileUI
+            onPicUpdate={onPicUpdate}
             {...userData}
             listAddress={listAddress}
             onDelete={onDelete}
