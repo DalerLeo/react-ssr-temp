@@ -32,15 +32,16 @@ const Inn = styled.input`
     }
 `
 const RadioButtonStyled = (props) => {
-  return (
+  const { newsLang } = props
 
+  return (
     <Ul>
       <Li>
-        <Inn type="radio" value="1" name="radio" id="radio1" checked={true} />
+        <Inn type="radio" value="ru" name="radio" id="radio1" {...props} checked={newsLang === 'ru'} />
         <Lbb for="radio1">Рус</Lbb>
       </Li>
       <Li>
-        <Inn type="radio" value="2" name="radio" id="radio2" />
+        <Inn type="radio" value="uz" name="radio" id="radio2" {...props} checked={newsLang === 'uz'} />
         <Lbb for="radio2">O‘zb</Lbb>
       </Li>
     </Ul>

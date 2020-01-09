@@ -8,7 +8,6 @@ import useFetchList from '../../hooks/useFetchList'
 import Profile from './Profile'
 import {
   clientPartiallyUpdateAction,
-  updateClientAction,
   addressListAction,
   addressDeleteAction,
   activateMailingAction,
@@ -23,18 +22,10 @@ const ProfileContainer = props => {
     initialValues: user
   }
   const clientId = path(['id'], user)
-  const userId = path(['initialValues', 'id'], userData)
-  const phoneNumber = path(['initialValues', 'phoneNumber'], userData)
-  const isMailing = path(['initialValues', 'languageNews'], userData)
 
-  const onPhotoUpdate = (value) => {
-    const imgId = path(['id'], value)
-    return dispatch(updateClientAction(userId, { photo: imgId, phoneNumber, isMailing }))
-  }
   const onFullnameUpdate = (value) => {
     const fullName = path(['fullName'], value)
-    const imgId = path(['photo', 'id'], value)
-    return dispatch(updateClientAction(userId, { photo: imgId, full_name: fullName, isMailing }))
+    return dispatch(clientPartiallyUpdateAction(clientId, { fullName }))
   }
   const onDelete = (id) => dispatch(addressDeleteAction(id))
     .then(() => dispatch(addressListAction()))
@@ -46,19 +37,23 @@ const ProfileContainer = props => {
 
   const onPicUpdate = value => {
     const photo = path(['id'], value)
-    return dispatch(clientPartiallyUpdateAction(clientId, {photo}))
+    return dispatch(clientPartiallyUpdateAction(clientId, { photo }))
   }
 
+  const onLangUpdate = value => {
+    const languageNews = value.target.value
+    return dispatch(clientPartiallyUpdateAction(clientId, { languageNews }))
+  }
   return (
     <Profile
       onPicUpdate={onPicUpdate}
       userData={userData}
       listAddress={listAddress}
       onDelete={onDelete}
-      onPhotoUpdate={onPhotoUpdate}
       onFullnameUpdate={onFullnameUpdate}
       activateMailingAction={activateMailingAction}
       deactivateMailingAction={deactivateMailingAction}
+      onLangUpdate={onLangUpdate}
     />
   )
 }

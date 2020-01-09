@@ -121,7 +121,6 @@ const Profile = (props) => {
     initialValues,
     onDelete,
     listAddress,
-    onPhotoUpdate,
     onFullnameUpdate,
     onPicUpdate
   } = props
