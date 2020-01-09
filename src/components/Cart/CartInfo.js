@@ -12,7 +12,7 @@ const CartInfoBlock = styled.div`
   background: #FFF;
   padding: 25px 20px;
   border-radius: 7px;
-  position: fixed;
+  
   width: 290px;
 `
 const CartInfoItem = styled.div`

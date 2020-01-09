@@ -12,14 +12,19 @@ const FavouriteBlock = styled.div`
 const Favourite = props => {
   const { favouriteList } = props
   const favouriteProducts = path(['results'], favouriteList)
+  console.warn(favouriteProducts.length)
   return (
     <div>
       <Container>
-        <FavouriteBlock>
-          {favouriteProducts.map((favouriteProduct, key) => (
-            <FavouriteCard item={favouriteProduct.product} key={key} column={4} />
-          ))}
-        </FavouriteBlock>
+        <h1>Избранные товары</h1>
+        {favouriteProducts.length === 0 ? (<h2>Нет избранных товаров</h2>)
+          : (
+            <FavouriteBlock>
+              {favouriteProducts.map((favouriteProduct, key) => (
+                <FavouriteCard item={favouriteProduct.product} key={key} column={4} />
+              ))}
+            </FavouriteBlock>
+          )}
       </Container>
     </div>
   )

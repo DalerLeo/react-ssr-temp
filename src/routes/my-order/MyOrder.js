@@ -15,7 +15,12 @@ const MyOrder = (props) => {
     <Container>
       <h1>Мои заказы</h1>
       <CardContainer>
-        <MyOrderList myOrderList={myOrderList} />
+        {
+          myOrderList.length === 0
+            ? (<h2>Нет заказов</h2>)
+            : (<MyOrderList myOrderList={myOrderList} />)
+        }
+
       </CardContainer>
     </Container>
   )
