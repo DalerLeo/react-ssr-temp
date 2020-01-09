@@ -1,30 +1,13 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { path, pathOr } from 'ramda'
 import { Form, Field } from 'react-final-form'
-import { Container } from 'components/StyledElems'
-import { Button } from 'components/UI/Button'
 import ImageUpload from 'components/UI/ImageUpload/ImageUploadField'
-import { FormField } from 'components/UI/FormField'
-import { prop, path, pathOr } from 'ramda'
 import DeleteIcon from 'icons/Delete'
-import { useDispatch } from 'react-redux'
-import { updateClientAction } from './actions'
+import Tick from 'icons/tick.svg'
 
 const FieldWrapper = styled.div`
   margin-bottom: 20px;
-`
-
-const ChangePassword = styled.div`
-  display: ${props => props.open ? 'block' : 'none'};
-`
-const PasswordButtonBlock = styled.div`
-  display: flex;
-`
-const PasswordButton = styled.button`
-  margin-left: ${props => props.open ? '0' : '15px'};
-`
-const SpanPassword = styled.span`
-  display: ${props => props.open ? 'none' : 'block'};
 `
 const UserInfo = styled.div`
   display: flex;
@@ -93,17 +76,62 @@ const AddPhoneNameInfo = styled.div`
 const DeleteButton = styled.div`
   cursor: pointer;
 `
+const EditName = styled.div`
+  margin-left: 10px;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129.96%;
+
+  text-align: right;
+  color: #249E74;
+`
+const NameField = styled.input`
+  margin-top: -2px;
+  padding: 5px 10px;
+  background: white;
+  margin-left: 50px;
+  outline: 0;
+  border: none;
+  border: 1px solid green;
+
+  border-radius: 4px;
+  :disabled {
+    background: transparent;
+    cursor: default;
+    border: none
+  } 
+`
+const StyledIcon = styled.img`
+  height: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+`
+const Btn = styled.button`
+  background: transparent;
+  border: none;
+`
+const NameFinalField = props => {
+  const { input, open } = props
+  return <NameField {...input} disabled={open} />
+}
 const Profile = (props) => {
-  const { initialValues, onDelete, listAddress, onPhotoUpdate } = props
+  const {
+    initialValues,
+    onDelete,
+    listAddress,
+    onPhotoUpdate,
+    onFullnameUpdate
+  } = props
 
   const phoneNumber = path(['phoneNumber'], initialValues)
   const addressList = pathOr([], ['data'], listAddress)
-
-  // Const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
 
   return (
     <Form
-      onSubmit={() => null}
+      onSubmit={(value) => onFullnameUpdate(value).then(() => setOpen(!open))}
       initialValues={initialValues}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
@@ -116,7 +144,23 @@ const Profile = (props) => {
           </FieldWrapper>
           <UserInfo>
             <UserNamePhone>Имя и фамилия</UserNamePhone>
-            <UserNamePhoneValue>Руслан Набеев</UserNamePhoneValue>
+            <Field
+              type="text"
+              placeholder="Имя Фамилия"
+              open={open}
+              component={NameFinalField}
+              name="fullName"
+            />
+            {
+              open ? (
+                <EditName onClick={() => setOpen(!open)}>Изменить</EditName>
+              ) : (
+                <Btn type="submit">
+                  <StyledIcon src={Tick} alt="123" />
+                </Btn>
+              )
+            }
+
           </UserInfo>
           <UserInfo>
             <UserNamePhone>Телефон</UserNamePhone>
@@ -144,41 +188,6 @@ const Profile = (props) => {
               </AdressInfoBlock>
             )
           })}
-          {/* <FieldWrapper>
-            {prop('phoneNumber', initialValues)}
-          </FieldWrapper>
-          <FieldWrapper>
-            <Field
-              label="Full Name"
-              name="fullName"
-              component={FormField}
-              placeholder="Name"
-            />
-          </FieldWrapper>
-          <h3>Пароль</h3>
-          <PasswordButtonBlock>
-            <SpanPassword open={open}>•••••••••</SpanPassword>
-            <PasswordButton open={open} onClick={() => setOpen(!open)}>{open ? 'Отменить' : 'Изменить'}</PasswordButton>
-          </PasswordButtonBlock>
-          <ChangePassword open={open}>
-            <FieldWrapper>
-              <Field
-                name="password"
-                type="password"
-                component={FormField}
-                placeholder="Введите Пароль"
-              />
-            </FieldWrapper>
-            <FieldWrapper>
-              <Field
-                name="confirmPassword"
-                type="password"
-                component={FormField}
-                placeholder="Повторите Пароль"
-              />
-            </FieldWrapper>
-            <Button>Сохранить</Button>
-          </ChangePassword> */}
         </form>
       )}
     />

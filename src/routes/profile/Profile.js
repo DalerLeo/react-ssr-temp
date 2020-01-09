@@ -25,7 +25,15 @@ const SubTitle = styled.div`
   margin-bottom: 20px;
 `
 const Profile = (props) => {
-  const { userData, listAddress, onDelete, activateMailingAction, deactivateMailingAction, onPhotoUpdate } = props
+  const {
+    userData,
+    listAddress,
+    onDelete,
+    activateMailingAction,
+    deactivateMailingAction,
+    onPhotoUpdate,
+    onFullnameUpdate
+  } = props
   const userId = path(['initialValues', 'id'], userData)
   return (
     <Container>
@@ -33,7 +41,13 @@ const Profile = (props) => {
         <Col span={12}>
           <Title>Настройки</Title>
           <SubTitle>Личные данные</SubTitle>
-          <ProfileUI {...userData} listAddress={listAddress} onDelete={onDelete} onPhotoUpdate={onPhotoUpdate} />
+          <ProfileUI
+            {...userData}
+            listAddress={listAddress}
+            onDelete={onDelete}
+            onPhotoUpdate={onPhotoUpdate}
+            onFullnameUpdate={onFullnameUpdate}
+          />
           <SubTitle>SMS рассылка</SubTitle>
           <Sms
             activateMailingAction={activateMailingAction}
