@@ -60,7 +60,6 @@ const OrderContainer = props => {
   const deliveryList = pathOr(EMPTY_ARR, ['data'], deliveryData)
   const cartProducts = pathOr(EMPTY_ARR, ['data'], cartList)
 
-  console.warn(deliveryList)
   const history = useHistory()
 
   const onSubmit = (values) => {
@@ -71,7 +70,6 @@ const OrderContainer = props => {
   return (
     <Order
       deliveryList={deliveryList}
-      data={data}
       addresses={addresses}
       paymentTypes={paymentTypes}
       onSubmit={onSubmit}

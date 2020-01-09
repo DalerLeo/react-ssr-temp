@@ -110,7 +110,7 @@ const Order = props => {
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit, values, form }) => {
-          const deliveryPrice = pathOr(0, ['dealType', 'price'], values)
+          const deliveryPrice = pathOr(0, ['deliveryType', 'price'], values)
 
           const totalPrice = Number(priceWithoutDel) + Number(deliveryPrice)
 

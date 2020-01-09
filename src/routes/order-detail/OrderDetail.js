@@ -4,6 +4,7 @@ import { path, pathOr } from 'ramda'
 import styled from 'styled-components'
 import { Row, Col } from 'components/Grid'
 import OrderProductList from './components/OrderProductList'
+import {PAYMENT_TYPE} from 'constants/backend'
 
 const RowMargin = styled(Row)`
   margin-bottom: 20px;
@@ -125,7 +126,7 @@ const OrderDetail = (props) => {
           <DetailNames>Способ оплаты</DetailNames>
         </Col>
         <Col span={8}>
-          <DetailValue>{paymentType}<InReceive paymentType={paymentType}>(при получении)</InReceive></DetailValue>
+          <DetailValue>{PAYMENT_TYPE[paymentType]}</DetailValue>
         </Col>
         <Col span={12} />
       </RowMargin>

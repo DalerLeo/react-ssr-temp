@@ -16,6 +16,12 @@ import {
 
 const ProfileContainer = props => {
   const dispatch = useDispatch()
+
+  const listAddress = useFetchList({
+    action: addressListAction,
+    stateName: STATE.ADDRESS_LIST
+  })
+
   const { data: user } = useSelector(getDataFromState(STATE.USER_INFO), equals)
 
   const userData = {
@@ -27,13 +33,9 @@ const ProfileContainer = props => {
     const fullName = path(['fullName'], value)
     return dispatch(clientPartiallyUpdateAction(clientId, { full_name: fullName }))
   }
+
   const onDelete = (id) => dispatch(addressDeleteAction(id))
     .then(() => dispatch(addressListAction()))
-
-  const listAddress = useFetchList({
-    action: addressListAction,
-    stateName: STATE.ADDRESS_LIST
-  })
 
   const onPicUpdate = value => {
     const photo = path(['id'], value)

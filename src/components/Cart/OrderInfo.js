@@ -7,7 +7,7 @@ import Link from 'components/Link'
 import Payme from 'icons/Payme.svg'
 import Click from 'icons/Click.svg'
 import Cash from 'icons/Cash.svg'
-
+import numberFormat from 'utils/numberFormat'
 const CartInfoBlock = styled.div`
   background: #FFF;
   padding: 25px 20px;
@@ -86,7 +86,7 @@ const CartInfo = props => {
         </PriceBlockItem>
         <PriceBlockItem>
           <div>Доставка</div>
-          <div>{Number.isInteger(deliveryPrice) ? deliveryPrice : '0'} сум</div>
+          <div>{numberFormat(deliveryPrice)} сум</div>
         </PriceBlockItem>
         <Line />
         <PriceTotalBlock>

@@ -25,6 +25,7 @@ const Sms = (props) => {
 
   const [checked, setChecked] = useState(true)
   const newsLang = path(['languageNews'], initialValues)
+  const isMailing = path(['isMailing'], initialValues)
   const dispatch = useDispatch()
 
   const onSubscriptionChange = () => {
