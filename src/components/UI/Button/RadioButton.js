@@ -7,6 +7,7 @@ const Ul = styled.ul`
     border: 1px solid #EAEAEC;
     border-radius: 5px;
     padding: 5px 5px 5px 0;
+    margin-top: -10px;
 `
 const Li = styled.li`
     display: inline-block;

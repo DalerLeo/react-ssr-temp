@@ -16,7 +16,7 @@ const SmsLanguage = styled.div`
 `
 const Line = styled.div`
     border-bottom: 1px solid #EAEAEC;
-    margin: 14px 0;
+    margin: 10px 0;
 `
 const Sms = (props) => {
   const { activateMailingAction, deactivateMailingAction, userId } = props
