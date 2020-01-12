@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Button } from 'components/UI/Button'
-import TopHeader from 'components/UI/Header/TopHeader'
 import Logo from 'icons/Logo'
 import Preloader from 'components/UI/PreLoader'
 
@@ -28,10 +27,12 @@ const Enter = styled.div`
     margin-left: -24%;
 `
 const PhoneNumber = styled.div`
-    margin-top: 50px;
-    display: block;
-    text-align: center;
-    margin-left: -22%;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 119.46%;
+  color: #2E384C;
+  mix-blend-mode: normal;
 `
 const InputWrapper = styled.div`
     margin-top: 20px;
@@ -118,22 +119,13 @@ const SignIn = (props) => {
     if (form.phoneNumber.length === 9) {
       onRegister(form.phoneNumber).then(() => setOpenLogin(true))
     }
-  }, [form.phoneNumber])
+  }, [form.phoneNumber, onRegister])
 
   return (
     <div>
-      <TopHeaderStyled>
-        <TopHeader />
-        <SignInStyled>
-          <Logo />
-        </SignInStyled>
-      </TopHeaderStyled>
       <Container>
-        <Enter>
-            Вход
-        </Enter>
         <PhoneNumber>
-            Номер телефона
+          Авторизация
         </PhoneNumber>
         <InputWrapper>
           <form onSubmit={(ev) => ev.preventDefault()}>
@@ -144,7 +136,7 @@ const SignIn = (props) => {
               <InputMessage
                 name="phoneNumber"
                 type="number"
-                placeholder="Введите номер телефона"
+                placeholder="Номер телефона"
                 value={form.username}
                 onChange={updateField}
               />

@@ -1,5 +1,5 @@
 import * as STATE from 'constants/stateNames'
-import React from 'react'
+import React, { useState } from 'react'
 import { path } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { getDataFromState } from 'utils/get'
@@ -46,6 +46,16 @@ const ProfileContainer = props => {
     const languageNews = value.target.value
     return dispatch(clientPartiallyUpdateAction(clientId, { language_news: languageNews }))
   }
+  const [checked, setChecked] = useState(true)
+
+  const onSubscriptionChange = () => {
+    if (checked) {
+      dispatch(activateMailingAction(clientId))
+    } else {
+      dispatch(deactivateMailingAction(clientId))
+    }
+    setChecked(!checked)
+  }
   return (
     <Profile
       onPicUpdate={onPicUpdate}
@@ -53,8 +63,7 @@ const ProfileContainer = props => {
       listAddress={listAddress}
       onDelete={onDelete}
       onFullnameUpdate={onFullnameUpdate}
-      activateMailingAction={activateMailingAction}
-      deactivateMailingAction={deactivateMailingAction}
+      onSubscriptionChange={onSubscriptionChange}
       onLangUpdate={onLangUpdate}
     />
   )

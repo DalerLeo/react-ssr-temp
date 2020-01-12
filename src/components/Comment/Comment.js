@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { Field, Form } from 'react-final-form'
 import TextArea from 'components/UI/FormField/TextArea'
 import ProfileImage from 'images/Profile.png'
-import person1 from 'images/person-1.png'
 import { Row, Col } from 'components/Grid'
 import { pathOr, path } from 'ramda'
 import NoMessage from 'images/leadership.png'
 import { dateTimeFormat } from 'utils/dateFormat'
+import Link from 'components/Link'
 
 const Title = styled.div`
   font-style: normal;
@@ -89,91 +89,109 @@ const NoMessageImage = styled.img`
   height: 200px;
   width: 20%;
 `
+const LoginRedirect = styled.h2`
+  display: flex;
+  justify-content: center;
+  margin-bottom 30px;
+`
+const SignInText = styled.span`
+  color: #13885F
+`
 const Comment = (props) => {
-  const { onSubmit, commentList, userInfo } = props
+  const { onSubmit, commentList, userInfo, token } = props
   const commentPreview = pathOr([], ['results'], commentList)
   const [open, setOpen] = useState(false)
   const image = path(['data', 'photo', 'file'], userInfo)
   const isEmptyMessage = path(['results'], commentList)
-  console.warn(isEmptyMessage.lenght !== 0)
+  const tokenToCheck = path(['data', 'token'], token)
+  const hasToken = typeof tokenToCheck === 'undefined'
   return (
     <div>
       {
         open
-          ? (
-            <CommentFormBlock open={open}>
-              <Form
-                onSubmit={onSubmit}
-                render={({ handleSubmit }) => {
-                  return (
-                    <form onSubmit={handleSubmit}>
-                      <Row gutter={24}>
-                        <Col span={2}>
-                          <ProfileImageStyled src={typeof image === 'undefined' ? ProfileImage : image} />
-                        </Col>
-                        <Col span={22}>
-                          <Field
-                            name="comment"
-                            component={TextArea}
-                          />
-                        </Col>
-                      </Row>
-                      <ButtonBlock>
-                        <CancelButton onClick={() => setOpen(!open)}>Отмена</CancelButton>
-                        <SendButton type="submit">Отправить</SendButton>
-                      </ButtonBlock>
-                    </form>
-                  )
-                }}
-              />
-            </CommentFormBlock>
-          ) : (
+          ? hasToken
+            ? (
+              <LoginRedirect>
+                Вы не зарегистрырованы:&nbsp;
+                <Link to="/sign-in"> <SignInText> Регистрация</SignInText></Link>
+              </LoginRedirect>
+            )
+            : (
+              <CommentFormBlock open={open}>
+                <Form
+                  onSubmit={onSubmit}
+                  render={({ handleSubmit }) => {
+                    return (
+                      <form onSubmit={handleSubmit}>
+                        <Row gutter={24}>
+                          <Col span={2}>
+                            <ProfileImageStyled src={typeof image === 'undefined' ? ProfileImage : image} />
+                          </Col>
+                          <Col span={22}>
+                            <Field
+                              name="comment"
+                              component={TextArea}
+                            />
+                          </Col>
+                        </Row>
+                        <ButtonBlock>
+                          <CancelButton onClick={() => setOpen(!open)}>Отмена</CancelButton>
+                          <SendButton type="submit">Отправить</SendButton>
+                        </ButtonBlock>
+                      </form>
+                    )
+                  }}
+                />
+              </CommentFormBlock>)
+          : (
             <RowUI>
               <Title>Отзывы</Title>
               <CreateComment onClick={() => setOpen(!open)}>Написать отзыв</CreateComment>
             </RowUI>
           )
       }
-      {isEmptyMessage.length === 0 ? (
-        <NoImageBlock>
-          <NoMessageImage src={NoMessage} alt="no message" />
-        </NoImageBlock>
-      ) : (
-        <div>
-          {commentPreview.map((commentSingle, key) => {
-            const createdDate = path(['createdDate'], commentSingle)
-            const name = path(['client', 'fullName'], commentSingle)
-            const image1 = path(['client', 'photo', 'file'], commentSingle)
+      {isEmptyMessage.length === 0
+        ? (
+          <NoImageBlock>
+            <NoMessageImage src={NoMessage} alt="no message" />
+          </NoImageBlock>
+        )
+        : (
+          <div>
+            {commentPreview.map((commentSingle, key) => {
+              const createdDate = path(['createdDate'], commentSingle)
+              const name = path(['client', 'fullName'], commentSingle)
+              const image1 = path(['client', 'photo', 'file'], commentSingle)
 
-            return (
-              <div key={key}>
-                <Row>
-                  <Col span={2}>
-                    <ProfileImageStyled src={typeof image === 'undefined' ? ProfileImage : image1} />
-                  </Col>
-                  <Col span={22}>
-                    <Row>
-                      <CommentDate>
-                        {dateTimeFormat(createdDate)}
-                      </CommentDate>
-                    </Row>
-                    <Row>
-                      <CommentName>
-                        {name}
-                      </CommentName>
-                    </Row>
-                    <br />
-                    <Row>
-                      {commentSingle.comment}
-                    </Row>
-                  </Col>
-                </Row>
-                <br />
-              </div>
-            )
-          })}
-        </div>
-      )}
+              return (
+                <div key={key}>
+                  <Row>
+                    <Col span={2}>
+                      <ProfileImageStyled src={typeof image === 'undefined' ? ProfileImage : image1} />
+                    </Col>
+                    <Col span={22}>
+                      <Row>
+                        <CommentDate>
+                          {dateTimeFormat(createdDate)}
+                        </CommentDate>
+                      </Row>
+                      <Row>
+                        <CommentName>
+                          {name}
+                        </CommentName>
+                      </Row>
+                      <br />
+                      <Row>
+                        {commentSingle.comment}
+                      </Row>
+                    </Col>
+                  </Row>
+                  <br />
+                </div>
+              )
+            })}
+          </div>
+        )}
     </div>
   )
 }

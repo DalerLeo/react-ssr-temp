@@ -17,7 +17,9 @@ const AddressContainer = props => {
 
   const products = pathOr([], ['data'], cartList)
 
-  return <Cart products={products} onDelete={onDelete} />
+  const token = useSelector(getDataFromState('login'), equals)
+
+  return <Cart products={products} onDelete={onDelete} token={token} />
 }
 
 export default AddressContainer

@@ -14,6 +14,7 @@ import equals from 'fast-deep-equal'
 import Link from 'components/Link/Link'
 import { favouriteCreateAction, favouriteDeleteAction } from 'routes/favourite/actions'
 import FavoriteIcon from 'icons/Favorite'
+import Tooltip from 'components/UI/Tooltip'
 import SalePrice from '../UI/SalePrice/SalePrice'
 import { setItemToCart } from './storage'
 
@@ -63,6 +64,7 @@ const FavouriteButton = styled.div`
       fill: ${props => props.favourite && props.theme.colors.primary.default};
     }
 `
+
 const defArr = []
 
 const ProductCard = props => {
@@ -95,7 +97,7 @@ const ProductCard = props => {
   return (
     <StyledCard column={column}>
       <FavouriteButton favourite={favourite} onClick={onFavourite}>
-        <FavoriteIcon />
+        <Tooltip favourite={favourite} onClick={onFavourite} />
       </FavouriteButton>
       <Link to={'/product/' + id}>
         <ImagePosition>

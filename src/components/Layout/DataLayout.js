@@ -45,7 +45,6 @@ export default Component => {
       const isAuth = path(['login', 'data', 'token'], state) || ''
       const data = {
         isAuth
-
       }
       return (
         <Component

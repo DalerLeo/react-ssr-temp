@@ -18,7 +18,8 @@ const Title = styled.div`
 const Cart = props => {
   const {
     onDelete,
-    products
+    products,
+    token
   } = props
 
   const productAmount = products.length
@@ -51,7 +52,7 @@ const Cart = props => {
           <CartUI products={products} onDelete={onDelete} />
         </Col>
         <Col span={6}>
-          <CartInfo totalPrice={totalPrice} totalAmount={totalAmount} productAmount={productAmount} />
+          <CartInfo totalPrice={totalPrice} totalAmount={totalAmount} productAmount={productAmount} token={token} />
         </Col>
       </Row>
     </Container>

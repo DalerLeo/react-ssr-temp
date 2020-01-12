@@ -78,7 +78,7 @@ const CartInfo = props => {
       <PriceBlock>
         <PriceBlockItem>
           <div>Товары({productAmount})</div>
-          <div>{totalAmount} сум</div>
+          <div>{totalPrice - Number(deliveryPrice)} сум</div>
         </PriceBlockItem>
         <PriceBlockItem>
           <div>Скидка на товары(0)</div>
