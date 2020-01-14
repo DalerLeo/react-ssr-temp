@@ -22,7 +22,6 @@ export default Component => {
     componentDidMount () {
       const { store: { getState, dispatch } } = this.props
       // Dispatch(menuAs())
-      console.warn('DDDDDDDDDD')
     }
 
     actionSuccess () {
