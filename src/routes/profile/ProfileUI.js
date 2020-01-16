@@ -5,6 +5,7 @@ import { Form, Field } from 'react-final-form'
 import ImageUpload from 'components/UI/ImageUpload/ImageUploadField'
 import DeleteIcon from 'icons/Delete'
 import Tick from 'icons/tick.svg'
+import PreLoader from 'components/UI/PreLoader'
 
 const FieldWrapper = styled.div`
   margin-bottom: 20px;
@@ -112,6 +113,11 @@ const Btn = styled.button`
   background: transparent;
   border: none;
 `
+const PreloaderBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`
 const NameFinalField = props => {
   const { input, open } = props
   return <NameField {...input} disabled={open} />
@@ -128,7 +134,7 @@ const Profile = (props) => {
   const phoneNumber = path(['phoneNumber'], initialValues)
   const addressList = pathOr([], ['data'], listAddress)
   const [open, setOpen] = useState(true)
-
+  const loading = path(['listAddress', 'loading'], props)
   return (
     <Form
       onSubmit={(value) => onFullnameUpdate(value).then(() => setOpen(!open))}
@@ -169,25 +175,28 @@ const Profile = (props) => {
           <Line />
           <Address>Адрес доставки</Address>
           <Line1 />
-          {addressList.map((address, key) => {
-            const add = path(['address'], address)
-            const phone = path(['phone'], address)
-            const contactPerson = path(['contactPerson'], address)
-            return (
-              <AdressInfoBlock key={key}>
-                <AddressInfo>
-                  <div>{add}</div>
-                  <DeleteButton onClick={() => onDelete(address.id)}>
-                    <DeleteIcon />
-                  </DeleteButton>
-                </AddressInfo>
-                <AddPhoneNameBlock>
-                  <AddPhoneNameInfo>{phone}</AddPhoneNameInfo>
-                  <AddPhoneNameInfo>{contactPerson}</AddPhoneNameInfo>
-                </AddPhoneNameBlock>
-              </AdressInfoBlock>
-            )
-          })}
+          {loading ? <PreloaderBlock><PreLoader /></PreloaderBlock>
+            : <div>
+              {addressList.map((address, key) => {
+                const addresss = path(['address'], address)
+                const phone = path(['phone'], address)
+                const contactPerson = path(['contactPerson'], address)
+                return (
+                  <AdressInfoBlock key={key}>
+                    <AddressInfo>
+                      <div>{addresss}</div>
+                      <DeleteButton onClick={() => onDelete(address.id)}>
+                        <DeleteIcon />
+                      </DeleteButton>
+                    </AddressInfo>
+                    <AddPhoneNameBlock>
+                      <AddPhoneNameInfo>{phone}</AddPhoneNameInfo>
+                      <AddPhoneNameInfo>{contactPerson}</AddPhoneNameInfo>
+                    </AddPhoneNameBlock>
+                  </AdressInfoBlock>
+                )
+              })}
+            </div>}
         </form>
       )}
     />

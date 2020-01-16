@@ -48,15 +48,16 @@ const MyOrderList = (props) => {
       {data.map((item, key) => {
         const productItem = pathOr([], ['orderProducts'], item)
         const orderId = path(['id'], item)
+        const status = path(['status'], item)
         return (
           <MyOrders key={key}>
             <OrderHeader>
               <OrderId>Заказ № {orderId}</OrderId>
               <OrderStatus>
                 <img src={accept} alt="accept" />
-                <img src={onway} alt="accept" />
-                <img src={reject} alt="accept" />
-                {item.status}
+                <img src={onway} alt="onway" />
+                <img src={reject} alt="reject" />
+                {status}
               </OrderStatus>
             </OrderHeader>
             <Line />

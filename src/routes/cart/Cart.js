@@ -21,7 +21,6 @@ const Cart = props => {
     products,
     token
   } = props
-
   const productAmount = products.length
   let sumall = 0
   let summ = 0

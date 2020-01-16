@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Button } from 'components/UI/Button'
 import Preloader from 'components/UI/PreLoader'
-import Login from 'icons/Login.svg'
-import MaterialField from 'components/UI/FormField/MaterialField'
+import SignInHeader from 'components/UI/Header/SignInHeader'
 import useCompareEffect from '../../hooks/useCompareEffect'
 import Timer from './components/Timer'
 
@@ -70,8 +69,7 @@ const TimerText = styled.div`
   line-height: 18px;
   color: #818591;
 `
-const LoginImage = styled.img`
-`
+
 const TimerBlock = styled.div`
   display: flex;
   justify-content: space-between;
@@ -105,17 +103,17 @@ const Label = styled.label`
     font-size:${props => props.focussing ? 13 : 16}px;
     top:${props => props.focussing ? 3 : 20}px;
 `
-const SignIn = (props) => {
-  const { onRegister, onLogin, registerData } = props
 
-  const loading = registerData.loading
+const SignIn = (props) => {
+  const { onRegister, onLogin, registerData, loginData } = props
+
+  const loadingRegister = registerData.loading
+  const loadingLogin = loginData.loading
   const [openLogin, setOpenLogin] = useState(false)
   const [form, setValues] = useState({
     phoneNumber: '',
     password: ''
   })
-
-  
 
   const updateField = event => {
     setValues({
@@ -144,46 +142,52 @@ const SignIn = (props) => {
     setValue('+998')
   }
   return (
-    <Container>
-      <LoginImage src={Login} alt="logo" />
-      <Wrapper>
-        <Enter>
+    <>
+      <SignInHeader />
+      <Container>
+        <Wrapper>
+          <Enter>
         Авторизация
-        </Enter>
-        <InputWrapper>
-          <form onSubmit={(ev) => ev.preventDefault()}>
-            <InputWrapper>
-              <Group>
-                <TextInput
-                  name="phoneNumber"
-                  onFocus={onFocus}
-                  focussing={focussing}
-                  defaultValue={value}
-                  onChange={updateField}
-                />
-                <Label focussing={focussing}>Номер телефона </Label>
-              </Group>
-            </InputWrapper>
-            {loading && <Loading><Preloader /></Loading>}
-            <LoginContainer openLogin={openLogin}>
+          </Enter>
+          <InputWrapper>
+            <form onSubmit={(ev) => ev.preventDefault()}>
               <InputWrapper>
-                <InputField
-                  name="password"
-                  type="number"
-                  placeholder="Код из SMS"
-                  value={form.password}
-                  onChange={updateField}
-                />
+                <Group>
+                  <TextInput
+                    name="phoneNumber"
+                    onFocus={onFocus}
+                    focussing={focussing}
+                    defaultValue={value}
+                    onChange={updateField}
+                  />
+                  <Label focussing={focussing}>Номер телефона </Label>
+                </Group>
               </InputWrapper>
-              <TimerBlock>
-                <TimerText>Мы отправили SMS с кодом на ваш номер</TimerText>
-                <Timer time={127} />
-              </TimerBlock>
-            </LoginContainer>
-          </form>
-        </InputWrapper>
-      </Wrapper>
-    </Container>
+              {loadingRegister && <Loading><Preloader /></Loading>}
+              <LoginContainer openLogin={openLogin}>
+                <InputWrapper>
+                  <InputField
+                    name="password"
+                    type="number"
+                    placeholder="Код из SMS"
+                    value={form.password}
+                    onChange={updateField}
+                  />
+                </InputWrapper>
+                {loadingLogin
+                  ? <Loading><Preloader /></Loading> : (
+                    <TimerBlock>
+                      <TimerText>Мы отправили SMS с кодом на ваш номер</TimerText>
+                      <Timer time={127} />
+                    </TimerBlock>
+                  )}
+
+              </LoginContainer>
+            </form>
+          </InputWrapper>
+        </Wrapper>
+      </Container>
+    </>
   )
 }
 
