@@ -1,10 +1,8 @@
 import React, { useContext } from 'react'
-
 import styled from 'styled-components'
 import Link from 'components/Link'
 import Logo from 'icons/Logo'
 import ShoppingBag from 'icons/ShoppingBag'
-
 import { userSignOut } from 'routes/sign-in/actions'
 import { useDispatch } from 'react-redux'
 import { SearchField } from 'components/UI/FormField'
@@ -34,7 +32,7 @@ const CartLink = styled(Link)`
   color: #FFFFFF!important;
   cursor: pointer;
   :hover {
-    color: #FFFFFF;    
+    color: #FFFFFF;
   }
   svg {
   margin-right: 8px;
@@ -43,12 +41,14 @@ const CartLink = styled(Link)`
 
 const Header = (props) => {
   const { isAuth } = props
+
   const history = useContext(History)
   const dispatch = useDispatch()
   const onSignOut = () => {
     return dispatch(userSignOut())
       .then(() => history.replace('/'))
   }
+
   return (
     <HeaderBlock>
       <TopHeader />
@@ -57,6 +57,7 @@ const Header = (props) => {
           <Link to="/">
             <Logo />
           </Link>
+
           <Catalog />
           <SearchField />
           <AuthMenu isAuth={isAuth} onSignOut={onSignOut} />

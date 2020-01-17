@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { ToggleButton, RadioButton } from 'components/UI/Button'
-import { useDispatch } from 'react-redux'
 import { path } from 'ramda'
 
 const SmsBlock = styled.div`
@@ -20,7 +19,7 @@ const Line = styled.div`
     margin: 10px 0;
 `
 const Sms = (props) => {
-  const { activateMailingAction, deactivateMailingAction, userId, onLangUpdate, initialValues, onSubscriptionChange } = props
+  const { onLangUpdate, initialValues, onSubscriptionChange } = props
 
   const newsLang = path(['languageNews'], initialValues)
 

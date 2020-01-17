@@ -31,11 +31,13 @@ const ProfileContainer = props => {
 
   const onFullnameUpdate = (value) => {
     const fullName = path(['fullName'], value)
-    return dispatch(clientPartiallyUpdateAction(clientId, { full_name: fullName }))
+    const data = { full_name: fullName }
+    return dispatch(clientPartiallyUpdateAction(clientId, data))
   }
 
-  const onDelete = (id) => dispatch(addressDeleteAction(id))
-    .then(() => dispatch(addressListAction()))
+  const onDelete = (id) =>
+    dispatch(addressDeleteAction(id))
+      .then(() => dispatch(addressListAction()))
 
   const onPicUpdate = value => {
     const photo = path(['id'], value)
@@ -43,8 +45,8 @@ const ProfileContainer = props => {
   }
 
   const onLangUpdate = value => {
-    const languageNews = value.target.value
-    return dispatch(clientPartiallyUpdateAction(clientId, { language_news: languageNews }))
+    const data = { language_news: value.target.value }
+    return dispatch(clientPartiallyUpdateAction(clientId, data))
   }
   const [checked, setChecked] = useState(true)
 
