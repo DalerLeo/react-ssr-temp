@@ -1,7 +1,7 @@
 import * as STATE from 'constants/stateNames'
 import React, { useState } from 'react'
 import { pathOr, path } from 'ramda'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import Link from 'components/Link'
 import MenuBarIcon from 'icons/MenuBar'
 import { useSelector } from 'react-redux'
@@ -12,6 +12,12 @@ const DropdownBlock = styled.div`
   align-items: center;
   flex-wrap: wrap;
   padding-left: 50px;
+  height: 74px;
+  ${props => props.onSearch && css`
+//    width: 0;
+//    overflow: hidden;
+`}
+
 `
 const DropdownItem = styled.div`
   margin-bottom: 20px;
@@ -66,16 +72,18 @@ const WrapContent = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
     height: 1190px
-    
+
 `
 const defArray = []
-const Header = (props) => {
+const Catalog = (props) => {
+  const {onSearch} = props
   const menuData = useSelector(getDataFromState(STATE.MENU_AS))
   const [open, setMenuOpen] = useState(false)
   const lists = pathOr(defArray, ['results'], menuData)
 
   return (
     <DropdownBlock
+      onSearch={onSearch}
       onMouseLeave={() => setMenuOpen(false)}
       onMouseEnter={() => setMenuOpen(true)}
     >
@@ -118,4 +126,4 @@ const Header = (props) => {
     </DropdownBlock>
   )
 }
-export default Header
+export default Catalog

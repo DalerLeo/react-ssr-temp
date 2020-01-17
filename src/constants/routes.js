@@ -80,6 +80,7 @@ export const PROFILE = '/profile'
 export const ADDRESS = '/address'
 
 export const PRODUCT = '/product/:id'
+export const PRODUCT_ITEM_URL = '/product/%d'
 
 export const FAVOURITE = '/favourite'
 
