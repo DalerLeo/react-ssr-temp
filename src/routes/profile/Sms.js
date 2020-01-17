@@ -20,22 +20,9 @@ const Line = styled.div`
     margin: 10px 0;
 `
 const Sms = (props) => {
+  const { activateMailingAction, deactivateMailingAction, userId, onLangUpdate, initialValues, onSubscriptionChange } = props
 
-  const { activateMailingAction, deactivateMailingAction, userId, onLangUpdate, initialValues } = props
-
-  const [checked, setChecked] = useState(true)
   const newsLang = path(['languageNews'], initialValues)
-  const isMailing = path(['isMailing'], initialValues)
-  const dispatch = useDispatch()
-
-  const onSubscriptionChange = () => {
-    if (checked) {
-      dispatch(activateMailingAction(userId))
-    } else {
-      dispatch(deactivateMailingAction(userId))
-    }
-    setChecked(!checked)
-  }
 
   return (
     <div>

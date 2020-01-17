@@ -3,9 +3,10 @@ import * as actionTypes from 'constants/actionTypes'
 import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 import { path, prop } from 'ramda'
 import { setCookie } from 'utils/cookie'
+
 export const signInAction = (username, password) => {
   return (dispatch, getState) => {
-    const phoneNumber = '+998' + username
+    const phoneNumber = username
     const params = {
       username: phoneNumber,
       password
@@ -63,7 +64,7 @@ export const userSignOut = () => {
 export const registerAction = (phone) => {
   return (dispatch, getState) => {
     const params = {
-      username: '+998' + phone
+      username: phone
     }
 
     const payload = axios({ dispatch, getState })

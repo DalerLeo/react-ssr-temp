@@ -10,18 +10,21 @@ const SignInContainer = props => {
   const dispatch = useDispatch()
   const history = useContext(History)
   const registerData = useSelector(getDataFromState(STATE.REGISTER))
+  const loginData = useSelector(getDataFromState(STATE.LOGIN))
+
   const onRegister = (phone) => dispatch(registerAction(phone))
+
   const onLogin = (password, phoneNumber) => {
     return dispatch(signInAction(phoneNumber, password))
       .then(({ value }) => dispatch(userInfoCheckToken(value.token)))
       .then(() => history.replace('/'))
   }
-
   return (
     <SignIn
       onRegister={onRegister}
       onLogin={onLogin}
       registerData={registerData}
+      loginData={loginData}
     />
   )
 }

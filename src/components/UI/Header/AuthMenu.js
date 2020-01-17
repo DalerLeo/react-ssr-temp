@@ -27,8 +27,8 @@ const ProfileLink = styled(Link)`
 `
 
 const ProfileImageStyled = styled.img`
-  max-width: 34px;
-  max-height: 34px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
 `
 const DropdownItem = styled.div`
@@ -89,7 +89,7 @@ const AutMenu = props => {
   const userPhone = path(['data', 'phoneNumber'], userInfo)
   const fullName = path(['data', 'fullName'], userInfo)
   const photo = path(['data', 'photo', 'file'], userInfo)
-
+  
   return isEmpty(isAuth)
     ? (
       <ProfileLink to="/sign-in">
@@ -101,13 +101,16 @@ const AutMenu = props => {
           <ProfileIcon />
         </StyledProfileIcon>
         <Dropdown title="Мой профиль">
-          <DropdownItem>
-            <ProfileImageStyled src={typeof photo === 'undefined' ? ProfileImage : photo} />
-            <UserBlock>
-              <UserName>{fullName}</UserName>
-              <UserPhone>{userPhone}</UserPhone>
-            </UserBlock>
-          </DropdownItem>
+
+          <Link to="/profile">
+            <DropdownItem>
+              <ProfileImageStyled src={typeof photo === 'undefined' ? ProfileImage : photo} />
+              <UserBlock>
+                <UserName>{fullName}</UserName>
+                <UserPhone>{userPhone}</UserPhone>
+              </UserBlock>
+            </DropdownItem>
+          </Link>
           <hr />
           <DropdownItem>
             <MyOrder />

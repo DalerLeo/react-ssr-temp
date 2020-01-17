@@ -2,122 +2,74 @@ import React from 'react'
 import styled from 'styled-components'
 import { pathOr, path } from 'ramda'
 import { Row, Col } from 'components/Grid'
+import accept from 'icons/accept.svg'
+import onway from 'icons/onway.svg'
+import reject from 'icons/reject.svg'
+import MyOrderProducts from './components/MyOrderProducts'
+import MyOrderDetails from './components/MyOrderDetails'
 
 const MyOrders = styled.div`
-    display: flex;
+  background: #FFFFFF;
+  border: 1px solid #EAEAEC;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 15px 30px;
+  width: 1150px;
+  margin-bottom: 32px;
 `
-const ProductCard = styled.div`
-    background-color: #FFF;
-    padding: 20px;
-    margin-right: 10px;
-    border-radius: 7px;
-    border: 1px solid lightgrey;
-    width: 800px;
-    margin-bottom: 10px;
+const OrderHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
-const ProductDetail = styled.div`
-    background-color: #FFF;
-    padding: 20px;
-    margin-right: 10px;
-    border-radius: 7px;
-    border: 1px solid lightgrey;
-    width: 300px;
-    margin-bottom: 10px;
+const OrderId = styled.div`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 164.57%;
+  color: #2E384C;
 `
-const ProductTitle = styled.div`
-    font-style: normal;
-    font-weight: bold;
-    font-size: 13px;
-    line-height: 164.57%;
-    color: #818591;
-    margin-bottom: 10px;
+const OrderStatus = styled.div`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 164.57%;
+  text-align: right;
+  color: #2E384C;
+`
+const Line = styled.div`
+  border-bottom: 1px solid #EAEAEC;
+  margin: 17px  0 35px 0;
 `
 const MyOrderList = (props) => {
   const { myOrderList } = props
   const data = pathOr([], ['data'], myOrderList)
-  console.warn(data)
   return (
     <div>
       {data.map((item, key) => {
-        const totalPrice = path(['totalPrice'], item)
         const productItem = pathOr([], ['orderProducts'], item)
+        const orderId = path(['id'], item)
+        const status = path(['status'], item)
         return (
           <MyOrders key={key}>
-            <ProductCard>
-              <Row>
-                <div>Заказ № {item.dealType} - {item.status}</div>
-              </Row>
-              <br />
-              <Row>
-                <Col span={4}>
-                  <ProductTitle>ФОТО ТОВАРА</ProductTitle>
-                </Col>
-                <Col span={13}>
-                  <ProductTitle>НАИМЕНОВАНИЕ ТОВАРА</ProductTitle>
-                </Col>
-                <Col span={4}>
-                  <ProductTitle>КОЛИЧЕСТВО</ProductTitle>
-                </Col>
-                <Col span={3}>
-                  <ProductTitle>ЦЕНА ЗА 1 ШТ.</ProductTitle>
-                </Col>
-              </Row>
-              {productItem.map((productDetail, key1) => {
-                const productName = path(['product', 'name'], productDetail)
-                const productAmount = path(['amount'], productDetail)
-                const productPrice = path(['price'], productDetail)
-                return (
-                  <>
-                    <Row key={key1}>
-                      <Col span={4}>
-                        <div>image</div>
-                      </Col>
-                      <Col span={13}>
-                        <div>{productName}</div>
-                      </Col>
-                      <Col span={4}>
-                        <div>{productAmount}</div>
-                      </Col>
-                      <Col span={3}>
-                        <div>{productPrice}</div>
-                      </Col>
-                    </Row>
-                    <br />
-                  </>
-                )
-              })}
-            </ProductCard>
-            <ProductDetail>
-              <Row>
-           Бесплатная доставка по Ташкенту
-              </Row>
-              <Row>
-           Дата доставки: с 25 по 26 дек.
-              </Row>
-              <hr />
-              <Row>
-                <Col span={8}>Товары(2)</Col>
-                <Col span={8} />
-                <Col span={8}>5000 сум</Col>
-              </Row>
-              <Row>
-                <Col span={8}> Доставка</Col>
-                <Col span={8} />
-                <Col span={8}>0 сум</Col>
-              </Row>
-              <Row>
-                <Col span={8}> Итого</Col>
-                <Col span={8} />
-                <Col span={8}>{totalPrice} сум</Col>
-              </Row>
-              <Row>
-                <Col span={6} />
-                <Col span={12}>
-                  Детали заказ
-                </Col>
-                <Col span={6} />
-              </Row>
-            </ProductDetail>
+            <OrderHeader>
+              <OrderId>Заказ № {orderId}</OrderId>
+              <OrderStatus>
+                <img src={accept} alt="accept" />
+                <img src={onway} alt="onway" />
+                <img src={reject} alt="reject" />
+                {status}
+              </OrderStatus>
+            </OrderHeader>
+            <Line />
+            <Row>
+              <Col span={10}>
+                <MyOrderProducts productItem={productItem} />
+              </Col>
+              <Col span={2} />
+              <Col span={12}>
+                <MyOrderDetails item={item} />
+              </Col>
+            </Row>
           </MyOrders>
         )
       })}

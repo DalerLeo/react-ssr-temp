@@ -36,7 +36,8 @@ const Profile = (props) => {
     deactivateMailingAction,
     onFullnameUpdate,
     onPicUpdate,
-    onLangUpdate
+    onLangUpdate,
+    onSubscriptionChange
   } = props
   const userId = path(['initialValues', 'id'], userData)
   return (
@@ -59,6 +60,7 @@ const Profile = (props) => {
             deactivateMailingAction={deactivateMailingAction}
             userId={userId}
             onLangUpdate={onLangUpdate}
+            onSubscriptionChange={onSubscriptionChange}
           />
         </Col>
         <Col span={12} />

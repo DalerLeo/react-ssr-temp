@@ -2,12 +2,9 @@ import React from 'react'
 
 const ArrowLeft = ({ color, style, ...defaultPorps }) => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 21.807 36.364"
-      fill={color} style={{ ...style }} width={16} height={16}
-      {...defaultPorps}>
-      <path id="arrow-left" d="M4.242,21.807,18.182,8.251l13.94,13.556,4.242-4.126L18.182,0,0,17.681Z" transform="translate(0 36.364) rotate(-90)"/>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.8346 10H4.16797" stroke="#2E384C" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10.0013 15.8333L4.16797 9.99999L10.0013 4.16666" stroke="#2E384C" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }

@@ -30,7 +30,7 @@ function useDeepCompareMemoize (value) {
 
 function useCompareEffect (callback, dependencies) {
   if (process.env.NODE_ENV !== 'production') {
-    checkDeps(dependencies)
+    //    CheckDeps(dependencies)
   }
   React.useEffect(callback, useDeepCompareMemoize(dependencies))
 }

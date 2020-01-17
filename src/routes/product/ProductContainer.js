@@ -17,6 +17,7 @@ const ProductContainer = props => {
     return id
   }
   const userInfo = useSelector(getDataFromState(STATE.USER_INFO), equals)
+  const token = useSelector(getDataFromState('login'), equals)
 
   const commentList = useFetchList({
     action: commentListFetch,
@@ -42,6 +43,7 @@ const ProductContainer = props => {
       onSubmit={onComment}
       commentList={commentList}
       userInfo={userInfo}
+      token={token}
     />
   )
 }

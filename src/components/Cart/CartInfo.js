@@ -1,12 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
-import DeliveryIcon from 'images/delivery.svg'
-import WalletIcon from 'images/wallet.svg'
 import Link from 'components/Link'
 import Payme from 'icons/Payme.svg'
 import Click from 'icons/Click.svg'
 import Cash from 'icons/Cash.svg'
+import { path } from 'ramda'
 
 const CartInfoBlock = styled.div`
   background: #FFF;
@@ -29,10 +27,7 @@ const CartInfoItem1 = styled.div`
   line-height: 18px;
   color: #818591;
 `
-const ImgInfo = styled.img`
-  width: 30px;
-  margin-right: 10px;
-`
+
 const DeliveryBlock = styled.div`
   margin-bottom: 30px;
 `
@@ -71,7 +66,10 @@ const Line = styled.div`
   margin-bottom: 15px;
 `
 const CartInfo = props => {
-  const { totalPrice, order, totalAmount, productAmount, deliveryPrice } = props
+  const { totalPrice, totalAmount, productAmount, deliveryPrice, token } = props
+  const tokenToCheck = path(['data', 'token'], token)
+  const hasToken = typeof tokenToCheck === 'undefined'
+
   return (
     <CartInfoBlock>
       <DeliveryBlock>
@@ -87,7 +85,7 @@ const CartInfo = props => {
       <PriceBlock>
         <PriceBlockItem>
           <div>Товары({productAmount})</div>
-          <div>{totalAmount} сум</div>
+          <div>{totalPrice} сум</div>
         </PriceBlockItem>
         <PriceBlockItem>
           <div>Скидка на товары(0)</div>
@@ -103,16 +101,17 @@ const CartInfo = props => {
           <div>{totalPrice} сум</div>
         </PriceTotalBlock>
       </PriceBlock>
-
-      {order
-        ? (
-          <SubmitButton type="submit">Оформить заказ</SubmitButton>
-        )
-        : (
+      {
+        hasToken ? (
+          <Link to="/sign-in">
+            <SubmitButton> Регистрация</SubmitButton>
+          </Link>
+        ) : (
           <Link to="/order">
             <SubmitButton>Оформить заказ</SubmitButton>
           </Link>
-        )}
+        )
+      }
     </CartInfoBlock>
   )
 }

@@ -176,7 +176,7 @@ const Product = (props) => {
     action: getProductList,
     stateName: STATE.PRODUCT_LIST
   })
-  const { productData, onSubmit, commentList, userInfo } = props
+  const { productData, onSubmit, commentList, userInfo, token } = props
 
   const dispatch = useDispatch()
   const cartList = useSelector(getDataFromState(STATE.CART), equals)
@@ -279,7 +279,7 @@ const Product = (props) => {
       </PopularListBlock>
       <ContainerUI>
         <br />
-        <Comment onSubmit={onSubmit} commentList={commentList} userInfo={userInfo} />
+        <Comment onSubmit={onSubmit} commentList={commentList} userInfo={userInfo} token={token} />
       </ContainerUI>
     </Wrapper>
   )
