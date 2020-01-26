@@ -46,6 +46,11 @@ export const ORDER_LIST = `${ORDER}/`
 export const ORDER_CREATE = `${ORDER}/`
 export const ORDER_ITEM = `${ORDER}/%d/`
 
+export const AD = 'main/ads'
+export const AD_LIST = `${AD}/`
+export const AD_CREATE = `${AD}/`
+export const AD_ITEM = `${AD}/%s/`
+
 export const MENU_AS = 'main/product_type'
 
 export const REGISTER = `${MAIN}/client/register/`

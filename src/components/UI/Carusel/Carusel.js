@@ -1,27 +1,37 @@
-import React from 'react'
+import { AD_ITEM } from 'constants/api'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Gallery, GalleryImage } from 'react-gesture-gallery'
+import axios, { getPayloadFromSuccess } from 'utils/axios'
+import { useStore } from 'react-redux'
+import { sprintf } from 'sprintf-js'
+import { defaultTo, pipe, prop } from 'ramda'
+import PropTypes from 'prop-types'
 
+const EMPTY_ARR = []
 const CaruselStyled = styled.div`
     border-radius: 10px;
     background: #C7F9DD;
     height: 400px;
     width: 100%;
 `
-const Carusel = () => {
+const Carusel = (props) => {
+  const { section } = props
   const [index, setIndex] = React.useState(0)
+  const [data, setData] = React.useState(EMPTY_ARR)
+  const [error, setErr] = React.useState(false)
+  const store = useStore()
+  useEffect(() => {
+    axios(store).get(sprintf(AD_ITEM, section))
+      .then(getPayloadFromSuccess)
+      .then(pipe(prop('banners'), defaultTo([]), setData))
+      .catch(() => setErr(true))
 
-  const images = [
-    {
-      src: 'https://shop.westerndigital.com/content/dam/store/en-us/assets/products/portable/extreme-pro-usb-3-1-ssd/gallery/extreme-pro-usb-3-1-ssd-front.png.thumb.1280.1280.png'
-    },
-    {
-      src: 'https://shop.westerndigital.com/content/dam/store/en-us/assets/campaign/gift-guide/gg_sd_us_homepage_products.png.thumb.1280.1280.png'
-    },
-    {
-      src: 'http://www.maselko.uz/wp-content/uploads/2016/11/IMG_4535.png'
-    }
-  ]
+  }, EMPTY_ARR)
+
+  if (error) {
+    return null
+  }
 
   return (
     <CaruselStyled>
@@ -31,12 +41,22 @@ const Carusel = () => {
           setIndex(i)
         }}
       >
-        {images.map(img => (
-          <GalleryImage objectFit="cover" style={{ borderRadius: '10px' }} key={img.src} src={img.src}>asasdfasfdf</GalleryImage>
+        {data.map(img => (
+          <GalleryImage
+            objectFit="cover"
+            style={{ borderRadius: '10px' }}
+            key={img.photo.file}
+            src={img.photo.file}
+          >
+            asasdfasfdf
+          </GalleryImage>
         ))}
       </Gallery>
     </CaruselStyled>
   )
 }
 
+Carusel.propTypes = {
+  section: PropTypes.string
+}
 export default Carusel

@@ -5,7 +5,6 @@ import ProductCardList from 'components/Cards/ProductCardList'
 import SectionTitle from 'components/StyledElems/SectionTitle'
 import ContainerUI from 'components/Container'
 import PopularBrends from 'components/UI/PopularBrends'
-import AddBanner from 'components/UI/AddBanner'
 import Carusel from 'components/UI/Carusel'
 import ProductsTitle from 'components/UI/ProductsTitle'
 import Skeleton from 'components/UI/Skelet'
@@ -35,7 +34,7 @@ const Home = props => {
   return (
     <Container>
       <HeaderMenu>
-        <Carusel />
+        <Carusel section="main" />
       </HeaderMenu>
 
       <SectionTitle>
@@ -54,7 +53,8 @@ const Home = props => {
       <ProductListBlock>
         <ProductCardList productData={productData} column={4} />
       </ProductListBlock>
-      <AddBanner />
+      <Carusel section="bottom" />
+
       <PopularBlock>
         <PopularBrends />
       </PopularBlock>
@@ -65,6 +65,7 @@ const Home = props => {
       <ProductListBlock>
         <ProductCardList productData={productData} column={4} />
       </ProductListBlock>
+
     </Container>
   )
 }

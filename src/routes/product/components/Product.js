@@ -24,6 +24,7 @@ import useFetchList from 'hooks/useFetchList'
 import { getProductList } from '../actions'
 import Feature from './Feature'
 import NoImage from '../../../images/NoImage.png';
+import Carusel from "../../../components/UI/Carusel";
 
 const FavouriteButton = styled.button`
     background-color: ${props => props.favourite ? '#C7F9DD' : 'none'};
@@ -115,7 +116,7 @@ const CommentsCount = styled.div`
   font-weight: normal;
   font-size: 15px;
   line-height: 129.96%;
-  color: #818591; 
+  color: #818591;
   margin-left: 27px;
 `
 const BrendTitle = styled.div`
@@ -162,7 +163,7 @@ const PopularProduct = styled.div`
   font-size: 23px;
   line-height: 164.57%;
   color: #2E384C;
-  
+
   max-width: 1200px;
   margin: 0 auto;
 `
@@ -278,6 +279,7 @@ const Product = (props) => {
         </ProductListBlock>
       </PopularListBlock>
       <ContainerUI>
+        <Carusel section="product" />
         <br />
         <Comment onSubmit={onSubmit} commentList={commentList} userInfo={userInfo} token={token} />
       </ContainerUI>
