@@ -279,7 +279,7 @@ const Product = (props) => {
         </ProductListBlock>
       </PopularListBlock>
       <ContainerUI>
-        <Carusel section="product" />
+        <Carusel section="product_bottom" />
         <br />
         <Comment onSubmit={onSubmit} commentList={commentList} userInfo={userInfo} token={token} />
       </ContainerUI>

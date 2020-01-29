@@ -30,3 +30,4 @@ export const COMMENT_LIST = 'commentList'
 
 export const CLIENT_UPDATE = 'clientUpdate'
 export const DELIVERY_TYPE_LIST = 'deliveryTypeList'
+export const LANGUAGE_LIST = 'languageList'

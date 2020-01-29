@@ -17,6 +17,9 @@ export const ARTICLE_LIST = `${ARTICLE}/`
 export const ARTICLE_CREATE = `${ARTICLE}/`
 export const ARTICLE_ITEM = `${ARTICLE}/%d/`
 
+export const LANGUAGE = 'main/language/language'
+export const LANGUAGE_LIST = `${LANGUAGE}/`
+
 export const FAQ = `${MAIN}/faq`
 export const FAQ_LIST = `${FAQ}/`
 

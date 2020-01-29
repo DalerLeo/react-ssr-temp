@@ -41,6 +41,7 @@ const rootReducer = combineReducers({
   [STATE.ACTIVATE_MAILING]: createThunkReducer(actionTypes.ACTIVATE_MAILING),
   [STATE.DEACTIVATE_MAILING]: createThunkReducer(actionTypes.DEACTIVATE_MAILING),
   [STATE.DELIVERY_TYPE_LIST]: createThunkReducer(actionTypes.DELIVERY_TYPE_LIST),
+  [STATE.LANGUAGE_LIST]: createThunkReducer(actionTypes.LANGUAGE_LIST),
 })
 
 export default rootReducer

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const Ul = styled.ul`
     list-style: none;
@@ -32,20 +33,23 @@ const Inn = styled.input`
     }
 `
 const RadioButtonStyled = (props) => {
-  const { newsLang } = props
+  const { newsLang, list } = props
 
   return (
     <Ul>
-      <Li>
-        <Inn type="radio" value="ru" name="radio" id="radio1" {...props} checked={newsLang === 'ru'} />
-        <Lbb for="radio1">Рус</Lbb>
-      </Li>
-      <Li>
-        <Inn type="radio" value="uz" name="radio" id="radio2" {...props} checked={newsLang === 'uz'} />
-        <Lbb for="radio2">O‘zb</Lbb>
-      </Li>
+      {list.map(lang => (
+        <Li key={lang}>
+          <Inn type="radio" value="lang" name="radio" id="radio1" {...props} checked={newsLang === lang} />
+          <Lbb for="radio1">{lang}</Lbb>
+        </Li>
+      ))}
+
     </Ul>
   )
 }
 
+RadioButtonStyled.propTypes = {
+  newsLang: PropTypes.string,
+  list: PropTypes.array
+}
 export default RadioButtonStyled

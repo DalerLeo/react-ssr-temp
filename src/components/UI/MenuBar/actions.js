@@ -20,3 +20,16 @@ export const menuAs = () => {
     })
   }
 }
+export const languageListFetch = () => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .get(API.LANGUAGE_LIST)
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload: payload,
+      type: actionTypes.LANGUAGE_LIST
+    })
+  }
+}

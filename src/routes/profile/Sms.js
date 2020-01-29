@@ -19,7 +19,12 @@ const Line = styled.div`
     margin: 10px 0;
 `
 const Sms = (props) => {
-  const { onLangUpdate, initialValues, onSubscriptionChange } = props
+  const {
+    onLangUpdate,
+    initialValues,
+    onSubscriptionChange,
+    languageList
+  } = props
 
   const newsLang = path(['languageNews'], initialValues)
 
@@ -27,7 +32,7 @@ const Sms = (props) => {
     <div>
       <SmsBlock>
         <SmsLanguage>Язык SMS рассылки</SmsLanguage>
-        <RadioButton onChange={onLangUpdate} newsLang={newsLang} />
+        <RadioButton list={languageList} onChange={onLangUpdate} newsLang={newsLang} />
       </SmsBlock>
       <Line />
       <SmsBlock>

@@ -24,7 +24,7 @@ import History from './HistoryProvider'
 import { ServerStyleSheet } from 'styled-components'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import {menuAs} from 'components/UI/MenuBar/actions'
+import {menuAs, languageListFetch} from 'components/UI/MenuBar/actions'
 import toCamelCase from './utils/toCamelCase'
 const SUCCESS = 200
 import {path as rPath} from 'ramda'
@@ -84,6 +84,7 @@ app.get('*', async (req, res, next) => {
     }
     const dispatch = store.dispatch
     await dispatch(menuAs())
+    await dispatch(languageListFetch())
     let isAuth = false
 
     // Get TOKEN / LANGUAGE from header

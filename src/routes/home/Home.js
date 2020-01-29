@@ -53,7 +53,7 @@ const Home = props => {
       <ProductListBlock>
         <ProductCardList productData={productData} column={4} />
       </ProductListBlock>
-      <Carusel section="bottom" />
+      <Carusel section="main_center" />
 
       <PopularBlock>
         <PopularBrends />
@@ -65,6 +65,7 @@ const Home = props => {
       <ProductListBlock>
         <ProductCardList productData={productData} column={4} />
       </ProductListBlock>
+      <Carusel section="main_bottom" />
 
     </Container>
   )

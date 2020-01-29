@@ -23,6 +23,7 @@ const ProfileContainer = props => {
   })
 
   const { data: user } = useSelector(getDataFromState(STATE.USER_INFO), equals)
+  const { data: { data: languageList } } = useSelector(getDataFromState(STATE.LANGUAGE_LIST), equals)
 
   const userData = {
     initialValues: user
@@ -67,6 +68,7 @@ const ProfileContainer = props => {
       onFullnameUpdate={onFullnameUpdate}
       onSubscriptionChange={onSubscriptionChange}
       onLangUpdate={onLangUpdate}
+      languageList={languageList}
     />
   )
 }
