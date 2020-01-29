@@ -33,14 +33,21 @@ const Inn = styled.input`
     }
 `
 const RadioButtonStyled = (props) => {
-  const { newsLang, list } = props
+  const { newsLang, list, onChange } = props
 
   return (
     <Ul>
       {list.map(lang => (
         <Li key={lang}>
-          <Inn type="radio" value="lang" name="radio" id="radio1" {...props} checked={newsLang === lang} />
-          <Lbb for="radio1">{lang}</Lbb>
+          <Inn
+            type="radio"
+            value="lang"
+            name="radio"
+            id={lang}
+            onClick={ev => onChange(lang)}
+            checked={newsLang === lang}
+          />
+          <Lbb for={lang}>{lang}</Lbb>
         </Li>
       ))}
 
@@ -50,6 +57,7 @@ const RadioButtonStyled = (props) => {
 
 RadioButtonStyled.propTypes = {
   newsLang: PropTypes.string,
+  onChange: PropTypes.func,
   list: PropTypes.array
 }
 export default RadioButtonStyled

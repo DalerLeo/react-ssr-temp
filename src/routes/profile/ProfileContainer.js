@@ -46,7 +46,7 @@ const ProfileContainer = props => {
   }
 
   const onLangUpdate = value => {
-    const data = { language_news: value.target.value }
+    const data = { language: value }
     return dispatch(clientPartiallyUpdateAction(clientId, data))
   }
   const [checked, setChecked] = useState(true)

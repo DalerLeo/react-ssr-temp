@@ -23,10 +23,12 @@ const Sms = (props) => {
     onLangUpdate,
     initialValues,
     onSubscriptionChange,
-    languageList
+    languageList,
+    ...rest
   } = props
 
-  const newsLang = path(['languageNews'], initialValues)
+
+  const newsLang = path(['language'], initialValues)
 
   return (
     <div>
