@@ -22,9 +22,9 @@ import ProductsTitle from 'components/UI/ProductsTitle'
 import ProductCardList from 'components/Cards/ProductCardList'
 import useFetchList from 'hooks/useFetchList'
 import { getProductList } from '../actions'
+import NoImage from '../../../images/NoImage.png'
+import Carusel from '../../../components/UI/Carusel'
 import Feature from './Feature'
-import NoImage from '../../../images/NoImage.png';
-import Carusel from "../../../components/UI/Carusel";
 
 const FavouriteButton = styled.button`
     background-color: ${props => props.favourite ? '#C7F9DD' : 'none'};
@@ -233,14 +233,13 @@ const Product = (props) => {
               <SalePrice />
             </FlexBlock>
             <FlexBlock>
-              {filterProduct == null ? (
-                <Button
-                  onClick={value => {
-                    dispatch(setItemToCart(1, data))
-                  }}
-                >
-                В корзину
-                </Button>) : (<CartButton amount={amount} onChange={onChange} />)}
+              {filterProduct
+                ? (<CartButton amount={amount} onChange={onChange} />)
+                : (
+                  <Button onClick={value => dispatch(setItemToCart(1, data))}>
+                    В корзину
+                  </Button>
+                )}
 
               <FavouriteButton favourite={favourite} onClick={onFavourite}>
                 <FavoriteIcon />
@@ -273,10 +272,12 @@ const Product = (props) => {
         <ProductsTitle title="Новинки" />
       </ContainerUI>
       <PopularListBlock>
-        <PopularProduct>Популярные товары</PopularProduct>
-        <ProductListBlock>
-          <ProductCardList productData={popularData} column={4} />
-        </ProductListBlock>
+        <Container>
+          <PopularProduct>Популярные товары</PopularProduct>
+          <ProductListBlock>
+            <ProductCardList productData={popularData} column={4} />
+          </ProductListBlock>
+        </Container>
       </PopularListBlock>
       <ContainerUI>
         <Carusel section="product_bottom" />

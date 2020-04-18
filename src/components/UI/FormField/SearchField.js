@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import Container from 'components/Container'
 import fetch from 'node-fetch'
-import { pipe, prop } from 'ramda'
+import { isEmpty, pipe, prop } from 'ramda'
 import Link from 'components/Link'
 import { sprintf } from 'sprintf-js'
 import AbortController from 'abort-controller'
@@ -77,10 +77,14 @@ const Product = styled(Link)`
     background: #EFEFF0;
   }
 `
+const FALSE = false
+const EMPTY_ARR = []
+const EMPTY_STR = ''
 const SearchField = (props) => {
-  const [onSearch, setOnSearch] = useState(false)
-  const [products, setProducts] = useState([])
-  const [search, setSearch] = useState('')
+  const [onSearch, setOnSearch] = useState(FALSE)
+  const [loading, setLoading] = useState(FALSE)
+  const [products, setProducts] = useState(EMPTY_ARR)
+  const [search, setSearch] = useState(EMPTY_STR)
   const [prevController, setAbort] = useState(null)
   useEffect(() => {
     if (onSearch) {
@@ -93,11 +97,13 @@ const SearchField = (props) => {
         setAbort(controller)
       }
 
+      setLoading(true)
       fetch(API.API_URL + API.PRODUCT_LIST + '?search=' + search, { signal: controller.signal })
         .then(response => response.json())
         .then(
-          pipe(prop('results'), setProducts),
+          pipe(prop('results'), setProducts, () => setLoading(false)),
           errr => {
+            setLoading(false)
             if (errr.name === 'AbortError') {
             }
           },
@@ -124,6 +130,8 @@ const SearchField = (props) => {
             {products.map(product => (
               <Product to={sprintf(ROUTES.PRODUCT_ITEM_URL, product.id)} key={product.id}>{product.name}</Product>
             ))}
+            {loading && 'Загрузка....'}
+            {!loading && isEmpty(products) && 'Не найдено'}
           </ResultContainer>
         </SearchResults>
       )}

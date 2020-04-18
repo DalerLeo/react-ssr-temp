@@ -4,7 +4,7 @@ import { path } from 'ramda'
 import ProductCardList from 'components/Cards/ProductCardList'
 import SectionTitle from 'components/StyledElems/SectionTitle'
 import ContainerUI from 'components/Container'
-import PopularBrends from 'components/UI/PopularBrends'
+// Import PopularBrends from 'components/UI/PopularBrends'
 import Carusel from 'components/UI/Carusel'
 import ProductsTitle from 'components/UI/ProductsTitle'
 import Skeleton from 'components/UI/Skelet'
@@ -24,7 +24,7 @@ const HeaderMenu = styled.div`
 `
 
 const PopularBlock = styled.div`
-  margin: 50px 0 50px 0px;
+  margin-top: 30px;
 `
 const Home = props => {
   const { productData } = props
@@ -54,13 +54,11 @@ const Home = props => {
         <ProductCardList productData={productData} column={4} />
       </ProductListBlock>
       <Carusel section="main_center" />
-
       <PopularBlock>
-        <PopularBrends />
-      </PopularBlock>
-      <SectionTitle>
+        <SectionTitle>
           Лучшие товары за месяц
-      </SectionTitle>
+        </SectionTitle>
+      </PopularBlock>
       <ProductsTitle />
       <ProductListBlock>
         <ProductCardList productData={productData} column={4} />

@@ -20,12 +20,9 @@ const TooltipContent = styled.div`
 const TooltipStyled = styled.div`
     position: relative;
     display: inline-block;
-    opasity: 0;
-    height: 74px;
     &:hover ${TooltipContent} {
         box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.11);
         display: block;
-        opasity: 1;
         transition: opasity 2s;
     }
 `
