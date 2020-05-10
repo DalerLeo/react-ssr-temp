@@ -2,9 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { map, pathOr, pipe, split, propOr, filter } from 'ramda'
 import PropTypes from 'prop-types'
+import Dropdown from 'react-dropdown'
+import TyreParams from 'icons/TyreParams'
 import FilterTags from './FilterTags'
 import FilterSection from './FilterSection'
 
+const optionss = [
+  'one', 'two', 'three'
+]
+const defaultOption = optionss[0]
 const FilterBlock = styled.div`
   background-color: white;
   display: flex;
@@ -35,8 +41,11 @@ const Filter = props => {
   const brandIds = getIds(queryParams, 'brand')
   const countryIds = getIds(queryParams, 'country')
   const optionIds = getIds(queryParams, 'option')
+  const mappedV = brands.map(brand => ({ label: brand.name, value: brand.id }))
   return (
     <FilterBlock>
+      <TyreParams/>
+      <Dropdown options={mappedV} onChange={console.warn} placeholder="Select an option" />
       <FilterTags
         countries={countries}
         options={options}

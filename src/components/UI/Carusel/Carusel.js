@@ -26,8 +26,7 @@ const Carusel = (props) => {
       .then(getPayloadFromSuccess)
       .then(pipe(prop('banners'), defaultTo([]), setData))
       .catch(() => setErr(true))
-
-  }, EMPTY_ARR)
+  }, [section, store])
 
   if (error) {
     return null

@@ -86,7 +86,9 @@ async function start() {
   clientConfig.module.rules = clientConfig.module.rules.filter(
     x => x.loader !== 'null-loader',
   )
-  clientConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+  clientConfig.plugins.push(new webpack.HotModuleReplacementPlugin({
+    requestTimeout: 20000
+  }))
 
   // Configure server-side hot module replacement
   const serverConfig = webpackConfig.find(config => config.name === 'server')
@@ -96,7 +98,9 @@ async function start() {
   serverConfig.module.rules = serverConfig.module.rules.filter(
     x => x.loader !== 'null-loader',
   )
-  serverConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+  serverConfig.plugins.push(new webpack.HotModuleReplacementPlugin({
+    requestTimeout: 20000
+  }))
 
   // Configure compilation
   await run(clean)

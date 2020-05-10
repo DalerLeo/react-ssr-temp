@@ -43,7 +43,7 @@ const DropdownSubText = styled.div`
 const LogoStyled = styled.div`
     margin-top: -5px;
     padding: 7px;
-    background-color: #29D398;
+    background-color: #4F4F4F;
     border-radius: 5px;
     margin-right: 10px;
 `
@@ -65,7 +65,7 @@ const DropdownStyled = styled.div`
 `
 const StyledTitle = styled.div`
     margin-top: 25px;
-    color: #FFFFFF;
+    color: #4F4F4F;
 `
 const WrapContent = styled.div`
     display: flex;

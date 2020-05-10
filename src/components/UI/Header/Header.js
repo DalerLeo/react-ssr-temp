@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import Link from 'components/Link'
-import Logo from 'icons/Logo'
+import NewLogo from 'icons/NewLogo'
 import ShoppingBag from 'icons/ShoppingBag'
 import { userSignOut } from 'routes/sign-in/actions'
 import { useDispatch } from 'react-redux'
@@ -11,6 +11,7 @@ import Cont from 'components/Container'
 import History from '../../../HistoryProvider'
 import Catalog from './Catalog'
 import TopHeader from './TopHeader'
+import FooterHeader from './FooterHeader'
 import AuthMenu from './AuthMenu'
 
 const HeaderBlock = styled.div`
@@ -18,7 +19,8 @@ const HeaderBlock = styled.div`
   width: 100%;
   z-index: 20;
   top: 0;
-  background-color: #2EBB8A;
+  background-color: #FFD54C;
+  margin-bottom: 52px;
 `
 
 const Container = styled(Cont)`
@@ -29,10 +31,10 @@ const CartLink = styled(Link)`
   display: flex;
   font-size: 16px;
   line-height: 164.57%;
-  color: #FFFFFF!important;
+  color: #333333!important;
   cursor: pointer;
   :hover {
-    color: #FFFFFF;
+    color: #333333;
   }
   svg {
   margin-right: 8px;
@@ -55,7 +57,7 @@ const Header = (props) => {
       <Container>
         <DisplayFlex alignItems="center">
           <Link to="/">
-            <Logo />
+            <NewLogo />
           </Link>
 
           <Catalog />
@@ -67,6 +69,7 @@ const Header = (props) => {
           </CartLink>
         </DisplayFlex>
       </Container>
+      <FooterHeader/>
     </HeaderBlock>
   )
 }
