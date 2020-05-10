@@ -57,7 +57,7 @@ const CategoryButtonTitle = styled.div`
     color: #333333;
 `
 
-const CategoryLeftSide= styled.div`
+const CategoryLeftSide = styled.div`
     padding: 45px;
 `
 const CategoryRightSide= styled.div`
