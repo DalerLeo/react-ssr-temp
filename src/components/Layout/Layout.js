@@ -10,8 +10,10 @@ import GlobalLoading from 'components/Utils/GlobalLoading'
 import styled from 'styled-components'
 import Header from 'components/UI/Header'
 import { pipe } from 'ramda'
+//import dropdownCss from 'react-dropdown/style.css'
 import GlobalStyles from '../GlobalStyles'
 import s from './Layout.css'
+
 import DataLayout from './DataLayout'
 
 const Wrapper = styled.div`
@@ -21,15 +23,16 @@ const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;
   background: #f9fafb;
-  padding-top: 100px;
+  padding-top: 158px;
 `
 
 const Content = styled.div`
   flex-grow: 1;
 `
 const enhance = pipe(
-  DataLayout,
+//  DataLayout,
   withStyles(s),
+//  withStyles(dropdownCss),
   withStyles(toastifyStyles),
   withStyles(slickCss),
   withStyles(slickTheme)
