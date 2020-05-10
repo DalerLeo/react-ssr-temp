@@ -7,7 +7,6 @@ import { path } from 'ramda'
 export const getProduct = (id) => {
   return (dispatch, getState) => {
     const params = {
-      thumbnail_type: 'large'
     }
 
     const payload = axios({ dispatch, getState })
@@ -65,7 +64,6 @@ export const commentCreateAction = (id, comment) => {
 export const getProductList = () => {
   return (dispatch, getState) => {
     const params = {
-      thumbnail_type: 'large',
       page_size: 4
     }
 

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import numberFormat from 'utils/numberFormat'
 
 const PriceStyled = styled.div`
-    color: #2EBB8A;
+    color: #FD511A;
     font-size: 18px;
     line-height: 129.96%;
 `

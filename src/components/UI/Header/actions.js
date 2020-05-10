@@ -5,7 +5,7 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 export const getProductList = () => {
   return (dispatch, getState) => {
     const params = {
-      thumbnail_type: 'large',
+      // thumbnail_type: 'large',
       page_size: 8
     }
 

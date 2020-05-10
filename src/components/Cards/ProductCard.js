@@ -56,7 +56,7 @@ const ButtonPosition = styled.div`
   bottom: 25px;
   left: 20px;
 `
-const FavouriteButton = styled.div` 
+const FavouriteButton = styled.div`
     position: absolute;
     top: 20px;
     right: 20px;
@@ -106,13 +106,13 @@ const ProductCard = props => {
             alt="image"
           />
         </ImagePosition>
+        <ProductContentPosition>
+          <ProductContent content={name} />
+        </ProductContentPosition>
         <PricePosition>
           <Price price={price} />
           {true && <SalePrice>25000</SalePrice>}
         </PricePosition>
-        <ProductContentPosition>
-          <ProductContent content={name} />
-        </ProductContentPosition>
       </Link>
       <ButtonPosition>
         {id === idChecker ? (

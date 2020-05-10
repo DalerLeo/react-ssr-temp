@@ -8,6 +8,7 @@ import { isEmpty, pipe, prop } from 'ramda'
 import Link from 'components/Link'
 import { sprintf } from 'sprintf-js'
 import AbortController from 'abort-controller'
+import SearchLogo from 'icons/SearchLogo'
 
 const SearchBlock = styled.div`
   position: relative;
@@ -35,7 +36,7 @@ const SearchButton = styled.button`
   border: none;
   height: 50px;
   width: 80px;
-  background-color: #29D398;
+  background-color: #4F4F4F;
   color: white;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -119,10 +120,10 @@ const SearchField = (props) => {
         onBlur={onBlur}
         onFocus={onFocus}
         onChange={ev => setSearch(ev.target.value)}
-        placeholder="Я хочу найти..."
+        placeholder="Я хочу купить..."
       />
       <SearchButton>
-            Найти
+        <SearchLogo/>
       </SearchButton>
       {onSearch && (
         <SearchResults>

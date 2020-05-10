@@ -19,10 +19,10 @@ const ProfileLink = styled(Link)`
   display: flex;
   font-size: 16px;
   line-height: 164.57%;
-  color: #FFFFFF!important;
+  color: #333333!important;
   cursor: pointer;
   :hover {
-    color: #FFFFFF;    
+    color: #333333;
   }
 `
 
@@ -89,7 +89,7 @@ const AutMenu = props => {
   const userPhone = path(['data', 'phoneNumber'], userInfo)
   const fullName = path(['data', 'fullName'], userInfo)
   const photo = path(['data', 'photo', 'file'], userInfo)
-  
+
   return isEmpty(isAuth)
     ? (
       <ProfileLink to="/sign-in">

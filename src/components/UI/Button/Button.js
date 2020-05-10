@@ -4,14 +4,15 @@ import styled from 'styled-components'
 const ButtonStyled = styled.button.attrs(props => ({
   type: props.type || 'button',
 }))`
-    background: #C7F9DD;
-    border-radius: 7px;
+    background: #FFFFFF;
+    border: 1px solid #F2C94C;
+    box-sizing: border-box;
+    border-radius: 5px;
     height: 50px;
     width: 200px;
-    border: none;
     outline: 0;
     cursor: pointer;
-    color: #13885F;
+    color: #F2C94C;
     margin-top: 10px;
     float: right;
 `
