@@ -1,5 +1,5 @@
 import * as STATE from 'constants/stateNames'
-import React, { useContext, useCallback, useMemo } from 'react'
+import React, { useContext, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import equals from 'fast-deep-equal'
@@ -7,7 +7,7 @@ import History from '../../HistoryProvider'
 import useFetchList, { getListParams } from '../../hooks/useFetchList'
 import { replaceParamsRoute } from '../../utils/route'
 import { getDataFromState, getParamsFormHistory } from '../../utils/get'
-import { removeItemFromSelect, removeItemFromParams } from '../../utils/urls'
+import { removeItemFromParams } from '../../utils/urls'
 import Categories from './components/Categories'
 import { getProductCategoryList, filterListFetch } from './actions'
 
@@ -16,8 +16,7 @@ const filterMapper = (type) => {
 }
 const getFilterParams = (id) => {
   const changeListener = (history, pickParams) => {
-    const params = getListParams(history, pickParams)
-    return { ...params, type: id }
+    return { type: id }
   }
   return {
     action: filterListFetch,
@@ -41,7 +40,7 @@ const getProductParams = (id) => {
     stateName: STATE.PRODUCT_CATEGORY_LIST,
     mapper,
     changeListener,
-    pickParams: ['brand', 'country', 'option', 'page']
+    pickParams: ['brand', 'country', 'option', 'page', 'ordering']
   }
 }
 
@@ -52,7 +51,7 @@ const CategoriesContainer = props => {
   const history = useContext(History)
   const queryParams = getParamsFormHistory(history)
   const { results: menuItems } = useSelector(getDataFromState(STATE.MENU_AS), equals)
-  const productCategoryData = useFetchList(getProductParams(id))
+  const productData = useFetchList(getProductParams(id))
   const filterData = useFetchList(getFilterParams(id))
 
   const onReset = () => history.push(pathname)
@@ -75,7 +74,7 @@ const CategoriesContainer = props => {
 
   return (
     <Categories
-      productCategoryData={productCategoryData}
+      productData={productData}
       filterData={filterActions}
       menuItems={menuItems}
       id={Number(id)}

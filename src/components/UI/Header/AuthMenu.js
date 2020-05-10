@@ -5,14 +5,12 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import MyOrder from 'icons/myOrders'
 import SignOut from 'icons/SignOut'
-import useFetchList from 'hooks/useFetchList'
 import Link from '../../Link'
 import ProfileIcon from '../../../icons/Profile'
 import { Dropdown } from '../Dropdown'
 import ProfileImage from '../../../images/Profile.png'
 import FavoriteIcon from '../../../icons/Favorite'
 import Settings from '../../../icons/Settings'
-import { getProductList } from './actions'
 
 const ProfileLink = styled(Link)`
   margin-left: 30px;
@@ -81,10 +79,7 @@ const UserBlock = styled.div`
 const AutMenu = props => {
   const { isAuth, onSignOut } = props
 
-  const userInfo = useFetchList({
-    action: getProductList,
-    stateName: STATE.USER_INFO
-  })
+  const userInfo = {}
 
   const userPhone = path(['data', 'phoneNumber'], userInfo)
   const fullName = path(['data', 'fullName'], userInfo)

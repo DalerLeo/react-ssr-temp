@@ -3,14 +3,12 @@ import { ToastContainer } from 'react-toastify'
 import PropTypes from 'prop-types'
 import withStyles from 'isomorphic-style-loader/withStyles'
 import toastifyStyles from 'react-toastify/dist/ReactToastify.css'
-import slickCss from 'slick-carousel/slick/slick.css'
-import slickTheme from 'slick-carousel/slick/slick-theme.css'
 import FooterContainer from 'components/Footer/FooterContainer'
 import GlobalLoading from 'components/Utils/GlobalLoading'
 import styled from 'styled-components'
 import Header from 'components/UI/Header'
 import { pipe } from 'ramda'
-//import dropdownCss from 'react-dropdown/style.css'
+import dropdownCss from 'react-dropdown/style.css'
 import GlobalStyles from '../GlobalStyles'
 import s from './Layout.css'
 
@@ -32,10 +30,8 @@ const Content = styled.div`
 const enhance = pipe(
 //  DataLayout,
   withStyles(s),
-//  withStyles(dropdownCss),
-  withStyles(toastifyStyles),
-  withStyles(slickCss),
-  withStyles(slickTheme)
+  withStyles(dropdownCss),
+  withStyles(toastifyStyles)
 )
 
 const Layout = props => {

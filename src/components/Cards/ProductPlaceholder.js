@@ -1,7 +1,18 @@
-import React from 'react'
 import styled from 'styled-components'
+import React from 'react'
 
-const SkeletButton = styled.div`
+const Card = styled.div`
+  background-color: #FFF;
+  border-left: ${props => props.theme.cardBorder};
+  padding: 12px;
+  width: 25%;
+  :first-child {
+  border-left: none;
+
+  }
+`
+
+const Loader = styled.div`
   border-radius: 8px;
   height: ${({ height = '20px' }) => height};
   max-width: ${props => props.width};
@@ -23,33 +34,16 @@ const SkeletButton = styled.div`
         }
     }
 `
-const Card = styled.div`
-  background-color: #FFF;
-  border-left: ${props => props.theme.cardBorder};
-  padding: 12px;
-  width: ${props => props.column === 3 ? 'calc(100% / 3)' : '25%'};
-  :first-child {
-  border-left: none;
 
-  }
-`
-const CardLoader = props => {
-
-}
-const Skelet = (props) => {
-  const { count, column = 4 } = props
-
+const ProductPlaceholder = props => {
   return (
-    <div>
-      <Card column={column}>
-        <SkeletButton />
-        <SkeletButton />
-        <SkeletButton />
-        <SkeletButton />
-      </Card>
-
-    </div>
+    <Card>
+      <Loader />
+      <Loader />
+      <Loader />
+      <Loader />
+    </Card>
   )
 }
 
-export default Skelet
+export default ProductPlaceholder

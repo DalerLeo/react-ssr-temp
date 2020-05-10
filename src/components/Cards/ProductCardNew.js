@@ -6,31 +6,22 @@ import PropTypes from 'prop-types'
 import { path, find, propEq, pathOr, prop } from 'ramda'
 import { CartButton, Button } from 'components/UI/Button'
 import Image from 'components/UI/Image'
-import Price from 'components/UI/Price'
-import ProductContent from 'components/UI/ProductContent'
 import NoImage from 'images/NoImage.png'
 import { getDataFromState } from 'utils/get'
 import equals from 'fast-deep-equal'
 import Link from 'components/Link/Link'
-import SalePrice from '../UI/SalePrice/SalePrice'
 import { setItemToCart } from './storage'
+import numberFormat from "../../utils/numberFormat";
 
 const StyledCard = styled.div`
   position: relative;
   background-color: #FFF;
-  height: 396px;
+  border-left: ${props => props.theme.cardBorder};
+  padding: 12px;
   width: ${props => props.column === 3 ? 'calc(100% / 3)' : '25%'};
-  border-right: 1px solid #e1e1e1;
-  border-top: 1px solid #e1e1e1;
-  :nth-child(-n+${props => props.column === 3 ? 3 : 4}){
-    border-top: 0;
-  }
-  &:nth-child(${props => props.column === 3 ? 3 : 4}) {
-//    border-top-right-radius: 5px;
-//    border-top-left-radius: 5px;
-  }
-  &:nth-child(${props => props.column === 3 ? 3 : 4}n) {
-    border-right: none;
+  :first-child {
+  border-left: none;
+
   }
 `
 const ImagePosition = styled.div`
@@ -39,19 +30,24 @@ const ImagePosition = styled.div`
   padding-top: 37px;
 `
 const PricePosition = styled.div`
+  margin-top: 12px;
   display: flex;
   justify-content: space-between;
-  margin-left: 20px;
+
+`
+
+const ProductName = styled.div`
+  font-weight: 500;
   margin-top: 24px;
 `
-const ProductContentPosition = styled.div`
-  margin-left: 20px;
-  margin-top: 18px;
-`
 const ButtonPosition = styled.div`
-  position: absolute;
-  bottom: 25px;
-  left: 20px;
+  margin-top: 12px;
+
+`
+const Price = styled.div`
+    color: #FD511A;
+    font-size: 16px;
+    line-height: 129.96%;
 `
 
 const defArr = []
@@ -85,12 +81,9 @@ const ProductCard = props => {
             alt="image"
           />
         </ImagePosition>
-        <ProductContentPosition>
-          <ProductContent content={name} />
-        </ProductContentPosition>
+        <ProductName>{name}</ProductName>
         <PricePosition>
-          <Price price={price} />
-          {true && <SalePrice>25000</SalePrice>}
+          <Price>{numberFormat(price)}</Price>
         </PricePosition>
       </Link>
       <ButtonPosition>

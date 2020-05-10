@@ -7,14 +7,12 @@ const ButtonStyled = styled.button.attrs(props => ({
     background: #FFFFFF;
     border: 1px solid #F2C94C;
     box-sizing: border-box;
-    border-radius: 5px;
-    height: 50px;
-    width: 200px;
+    border-radius: ${props => props.theme.borderRadius};
+    padding: 10px 0;
+    width: 100%;
     outline: 0;
     cursor: pointer;
     color: #F2C94C;
-    margin-top: 10px;
-    float: right;
 `
 
 ButtonStyled.propTypes = {
