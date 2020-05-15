@@ -11,3 +11,6 @@ export const PAYMENT_TYPE_LIST = [
   }
 ]
 export const PAYMENT_TYPE = arrayObjToObj(PAYMENT_TYPE_LIST)
+
+export const BATTERY = 'battery'
+export const TYRE = 'tyre'

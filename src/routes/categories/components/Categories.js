@@ -6,7 +6,6 @@ import Container from 'components/StyledElems/Container'
 import { ChevronButton } from 'components/UI/Button'
 import Pagination from 'components/Pagination'
 import { Row, Col } from 'components/Grid'
-import { getItemFromTree } from 'utils/get'
 import BorderSplitter from 'components/UI/BorderedSplitter/BorderedSplitter'
 import ProductCardListNew from '../../../components/Cards/ProductCardListNew'
 import Filter from './Filter'
@@ -23,11 +22,9 @@ const Categories = (props) => {
   const {
     productData,
     filterData,
-    menuItems,
-    id
+    category
   } = props
 
-  const category = getItemFromTree(menuItems, id)
   const categoryName = prop('name', category)
   const items = path(['results'], productData)
   const count = path(['data', 'count'], productData)
@@ -48,7 +45,7 @@ const Categories = (props) => {
               <Col span={14} />
             </Row>
             <br />
-            <ProductCardListNew list={items} loading={loading}/>
+            <ProductCardListNew list={items} loading={loading} />
             <Pages>
               <Pagination count={count} pageSize={12} />
             </Pages>
@@ -63,7 +60,6 @@ Categories.propTypes = {
   productData: PropTypes.object,
   filterData: PropTypes.object,
   onChange: PropTypes.func,
-  id: PropTypes.number,
-  menuItems: PropTypes.array
+  category: PropTypes.object
 }
 export default Categories
