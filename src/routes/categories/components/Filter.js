@@ -2,21 +2,27 @@ import React from 'react'
 import styled from 'styled-components'
 import { map, pathOr, pipe, split, propOr, filter } from 'ramda'
 import PropTypes from 'prop-types'
-import Dropdown from 'react-dropdown'
 import TyreParams from 'icons/TyreParams'
-import FilterTags from './FilterTags'
+import Select from 'components/Select'
+
+import { TYRE } from '../../../constants/backend'
 import FilterSection from './FilterSection'
 
-const optionss = [
-  'one', 'two', 'three'
-]
-const defaultOption = optionss[0]
 const FilterBlock = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
 `
 
+const Reset = styled.div`
+  border: 1px solid;
+  border-radius: ${props => props.theme.borderRadius};
+  padding: 5px 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  cursor: pointer;
+`
 const emptyStr = ''
 const getIds = (data, key) => pipe(
   propOr(emptyStr, key),
@@ -26,36 +32,37 @@ const getIds = (data, key) => pipe(
 )(data)
 
 const defArr = []
+
+const mapOptions = values => values.map(value => ({ label: value.name, value: value.id }))
 const Filter = props => {
   const {
     data,
     onChange,
     queryParams,
     onReset,
-    onItemReset
+    categoryCode
   } = props
 
+  const optionIds = getIds(queryParams, 'option')
   const brands = pathOr(defArr, ['brands'], data)
   const countries = pathOr(defArr, ['country'], data)
   const options = pathOr(defArr, ['option'], data)
   const brandIds = getIds(queryParams, 'brand')
   const countryIds = getIds(queryParams, 'country')
-  const optionIds = getIds(queryParams, 'option')
-  const mappedV = brands.map(brand => ({ label: brand.name, value: brand.id }))
   return (
     <FilterBlock>
-      <TyreParams/>
-      <Dropdown options={mappedV} onChange={console.warn} placeholder="Select an option" />
-      <FilterTags
-        countries={countries}
-        options={options}
-        brands={brands}
-        brandIds={brandIds}
-        countryIds={countryIds}
-        optionIds={optionIds}
-        onReset={onReset}
-        onItemReset={onItemReset}
-      />
+      {categoryCode === TYRE && <TyreParams />}
+      {options.map(option => (
+        <Select
+          label={option.name}
+          queryIds={optionIds}
+          key={option.id}
+          queryName="option"
+          onChange={onChange}
+          options={mapOptions(option.optionValues.values)}
+        />
+      ))}
+
       <FilterSection
         label="Бранд"
         queryName="brand"
@@ -70,21 +77,9 @@ const Filter = props => {
         list={countries}
         onChange={onChange}
       />
-      {options.map((option, key) => {
-        const optionValues = pathOr(defArr, ['optionValues', 'values'], option)
-        return (
-          <FilterSection
-            key={option.id}
-            label={option.name}
-            queryName="option"
-            list={optionValues}
-            ids={optionIds}
-            onChange={onChange}
-          />
-        )
-      })}
-
+      <Reset onClick={onReset}>Reset</Reset>
     </FilterBlock>
+
   )
 }
 
@@ -92,7 +87,7 @@ Filter.propTypes = {
   data: PropTypes.object,
   onChange: PropTypes.func,
   onReset: PropTypes.func,
-  onItemReset: PropTypes.func,
+  categoryCode: PropTypes.string,
   queryParams: PropTypes.object
 }
 export default Filter

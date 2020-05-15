@@ -22,6 +22,6 @@ export default styled.span`
     props.error &&
     css`
       background: #ffecf1 !important;
-      border-color: #2EBB8A !important;
+      border-color: ${() => props.theme.colors.primary.default};
     `}
 `

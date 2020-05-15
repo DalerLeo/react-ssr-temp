@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { path, find, propEq } from 'ramda'
 import {
   SwitchContainer as SwitchContainerUI,
   SwitchInput,
@@ -12,21 +11,21 @@ const StyledCheckMark = styled(CheckMark)`
   ${props =>
     props.indeterminate &&
     css`
-      border-color: #2EBB8A;
+      border-color: ${() => props.theme.colors.primary.default};;
     `}
   :after {
     border-style: solid;
-    border-color: #2EBB8A;
+    border-color: ${props => props.theme.colors.primary.default};;
     border-width: 0 2px 2px 0;
     height: 7px;
     transform: rotate(45deg) scale(0);
-    left: 7px;
+    left: 6px;
     top: 4px;
-    width: 3px;
+    width: 4px;
     ${props =>
     props.indeterminate &&
       css`
-        background: #2EBB8A;
+        background: ${() => props.theme.colors.primary.default};;
         border: none;
         opacity: 1;
         transform: scale(1);
@@ -40,7 +39,7 @@ const StyledCheckMark = styled(CheckMark)`
 
 const StyledInput = styled(SwitchInput)`
   :checked ~ span {
-    color: #2EBB8A;
+    color: black;
   }
 
   :checked + ${StyledCheckMark}:after {

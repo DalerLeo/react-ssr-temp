@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import hexToRgb from "../utils/hexToRgb";
 
 export default createGlobalStyle`
 
@@ -375,21 +376,39 @@ inherit\` in Safari.
   }
 
 // DropDown
+.Dropdown-root.is-open {
 .Dropdown-control {
- border: none !important;
+  border-color: ${props => props.theme.colors.primary.default} !important;
+}
+}
+.Dropdown-control {
+ border-color: transparent !important;
  background-color: ${props => props.theme.colors.inputBackground} !important;
  border-radius: ${props => props.theme.borderRadius} !important;
+ padding: 9px 52px 9px 10px !important;
+
+ & > .is-selected {
+  color: #333333;
+}
 }
 
 .Dropdown-menu {
+  padding: 6px;
   box-shadow: ${props => props.theme.boxShadow} !important;
   border: none !important;
   top: calc(100% + 5px) !important;
  border-radius: ${props => props.theme.borderRadius} !important;
 
 }
+.Dropdown-placeholder {
+  color: #AEB7C6;
+}
+
 .Dropdown-option {
+    transition: background-color 200ms;
+    border-radius: ${props => props.theme.borderRadius} !important;
   :hover {
+    background-color: ${hexToRgb('#1771E6', 0.05)} !important;
 
   }
 }

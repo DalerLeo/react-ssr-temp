@@ -8,7 +8,7 @@ export default styled.input`
   opacity: 0;
   width: 0;
   :checked + ${CheckMark} {
-    border-color: #2EBB8A;
+    border-color: ${props => props.theme.colors.primary.default};
     :after {
       opacity: 1;
     }

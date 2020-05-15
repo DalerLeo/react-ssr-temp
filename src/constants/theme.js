@@ -1,8 +1,9 @@
 export default {
   colors: {
     inputBackground: '#F1F3F5',
+    label: '#8F9BB0',
     primary: {
-      default: '#2EBB8A',
+      default: '#FFDD2D',
       hover: '#C7F9DD'
     },
     secondary: {

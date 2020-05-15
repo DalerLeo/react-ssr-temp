@@ -1,9 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import InputLabel from '../InputLabel'
 import { SwitchContainer } from '../Switches'
 
+const Label = styled.div`
+  color: #4F4F4F;
+  margin-bottom: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+`
 const Group = styled.div`
   display: flex;
   flex-direction: column;
@@ -12,21 +17,15 @@ const Group = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   margin-right: 10px;
-  margin-bottom: 20px;
-  padding: 0 10px;
 `
 const HeaderBlock = styled.div`
+  margin-top: 14px;
+  padding-top: 10px;
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #EFEFEF;
-  padding: 10px;
 `
-const Count = styled.div`
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 129.96%;
-  color: #979BA5;
-`
+
 const Checkboxes = styled('div')`
   ${props =>
     props.mode === 'inline' &&
@@ -64,10 +63,9 @@ const CheckboxGroup = props => {
   return (
     <div>
       <HeaderBlock>
-        <InputLabel>{label}</InputLabel>
-        <Count>{count}</Count>
+        <Label>{label}</Label>
       </HeaderBlock>
-      <Group {...rest} count={count}>
+      <Group count={count}>
         <Checkboxes mode={mode}>
           {React.Children.map(children, (child, key) => {
             const checkboxProps = child.props

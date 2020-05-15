@@ -3,10 +3,11 @@ import React, { useContext, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import equals from 'fast-deep-equal'
+import { prop } from 'ramda'
 import History from '../../HistoryProvider'
 import useFetchList, { getListParams } from '../../hooks/useFetchList'
 import { replaceParamsRoute } from '../../utils/route'
-import { getDataFromState, getParamsFormHistory } from '../../utils/get'
+import { getDataFromState, getItemFromTree, getParamsFormHistory } from '../../utils/get'
 import { removeItemFromParams } from '../../utils/urls'
 import Categories from './components/Categories'
 import { getProductCategoryList, filterListFetch } from './actions'
@@ -46,7 +47,7 @@ const getProductParams = (id) => {
 
 const SPLITTER = '-'
 const CategoriesContainer = props => {
-  const { id, pathname, query } = props
+  const { id, pathname } = props
 
   const history = useContext(History)
   const queryParams = getParamsFormHistory(history)
@@ -55,37 +56,34 @@ const CategoriesContainer = props => {
   const filterData = useFetchList(getFilterParams(id))
 
   const onReset = () => history.push(pathname)
-  const onItemReset = (key, value) => {
-    const restIds = removeItemFromParams(query, key, value)
-    replaceParamsRoute({ [key]: restIds }, history)
-  }
+
   const onChange = useCallback((name, ids) => {
     const selectedProducts = ids.join(SPLITTER)
     replaceParamsRoute({ [name]: selectedProducts }, history)
-  }, [])
+  }, [history])
+
+  const category = getItemFromTree(menuItems, Number(id))
 
   const filterActions = {
     ...filterData,
     queryParams,
     onChange,
     onReset,
-    onItemReset
+    categoryCode: prop('code', category)
   }
 
   return (
     <Categories
       productData={productData}
       filterData={filterActions}
-      menuItems={menuItems}
-      id={Number(id)}
+      category={category}
     />
   )
 }
 
 CategoriesContainer.propTypes = {
   id: PropTypes.string,
-  pathname: PropTypes.string,
-  query: PropTypes.object
+  pathname: PropTypes.string
 }
 
 export default CategoriesContainer

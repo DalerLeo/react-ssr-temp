@@ -23,7 +23,6 @@ const ProductCardList = (props) => {
     return (
       <List>
         {[1, 2, 3, 4].map(l => (<ProductPlaceholder key={l} />))}
-
       </List>
     )
   }
