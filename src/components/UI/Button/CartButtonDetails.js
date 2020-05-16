@@ -5,15 +5,14 @@ import MinusIcon from 'icons/Minus'
 
 const StyledCartButton = styled.div`
     display: flex;
-      background: #FFDD2D;
+    background: #FFDD2D;
     border: 1px solid #FFDD2D;
     justify-content: space-between;
     border-radius: 7px;
-    height: 46px;
-    width: 100%;
+    height: 55px;
+    width: 187px;
     outline: 0;
     cursor: pointer;
-    margin-top: 10px;
 `
 const MinusButton = styled.button`
     background-color: transparent;
@@ -51,7 +50,7 @@ const CartButton = (props) => {
   }
   return (
     <StyledCartButton>
-      <MinusButton counter={counter} onClick={onSubtract} disabled={counter < 2}>
+      <MinusButton counter={counter} onClick={onSubtract} disabled={counter === 0}>
         <MinusIcon />
       </MinusButton>
       <Counter>

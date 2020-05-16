@@ -11,8 +11,8 @@ const ButtonStyled = styled.button.attrs(props => ({
     box-sizing: border-box;
     border-radius: ${props => props.theme.borderRadius};
     padding: 10px 0;
-    width: 100%;
-    height: 46px;
+    width: 187px;
+    height: 55px;
     outline: 0;
     cursor: pointer;
     color: #333333;
