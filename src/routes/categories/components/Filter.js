@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import { map, pathOr, pipe, split, propOr, filter } from 'ramda'
 import PropTypes from 'prop-types'
 import TyreParams from 'icons/TyreParams'
+import BatteryParams from 'icons/BatteryParams'
 import Select from 'components/Select'
 
-import { TYRE } from '../../../constants/backend'
+import { TYRE, BATTERY } from '../../../constants/backend'
 import FilterSection from './FilterSection'
-
+import ResetIcon from "../../../icons/Reset";
 const FilterBlock = styled.div`
   background-color: white;
   display: flex;
@@ -52,6 +53,7 @@ const Filter = props => {
   return (
     <FilterBlock>
       {categoryCode === TYRE && <TyreParams />}
+      {categoryCode === BATTERY && <BatteryParams />}
       {options.map(option => (
         <Select
           label={option.name}
@@ -77,7 +79,7 @@ const Filter = props => {
         list={countries}
         onChange={onChange}
       />
-      <Reset onClick={onReset}>Reset</Reset>
+      <Reset onClick={onReset}> <ResetIcon/> Сбросить</Reset>
     </FilterBlock>
 
   )

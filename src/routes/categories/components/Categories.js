@@ -33,7 +33,7 @@ const Categories = (props) => {
     <ContainerWrapper>
       <Container>
         <Row gutter={50}>
-          <Col span={5} minWidth="250">
+          <Col span={5}>
             <Filter {...filterData} />
           </Col>
           <Col span={18}>

@@ -1,21 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { SwitchContainer } from '../Switches'
+import Label from '../../StyledElems/Label'
 
-const Label = styled.div`
-  color: #4F4F4F;
-  margin-bottom: 10px;
-  font-weight: 500;
-  text-transform: uppercase;
-`
 const Group = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: ${props => props.count > 7 ? '200px' : 'auto'};
-  overflow-y: scroll;
-  overflow-x: hidden;
   margin-right: 10px;
 `
 const HeaderBlock = styled.div`
@@ -32,13 +23,6 @@ const Checkboxes = styled('div')`
     css`
       display: flex;
       flex-wrap: wrap;
-      margin-bottom: -12px;
-      & ${SwitchContainer} {
-        margin-right: 25px;
-        &:last-child {
-          margin-bottom: 12px;
-        }
-      }
     `}
 `
 
