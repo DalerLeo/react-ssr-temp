@@ -22,6 +22,7 @@ import { getProductList } from '../actions'
 import NoImage from '../../../images/NoImage.png'
 import Carusel from '../../../components/UI/Carusel'
 import Feature from './Feature'
+import ProductImage from './ProductImage'
 
 const FavouriteButton = styled.button`
     background-color: ${props => props.favourite ? '#828282' : '#828282'};
@@ -220,15 +221,11 @@ const Product = (props) => {
     <Wrapper>
       <ContainerUI>
         <Row gutter={20}>
-          <Col span={1}>
-            {images.map((img, key) => {
-              return <ImageOptions key={key} src={img.image.file} alt="product images" />
-            })}
+          <Col span={12}>
+            <ProductImage image={image} images={images} />
+
           </Col>
           <Col span={12}>
-            <Img src={typeof image === 'undefined' ? NoImage : image} alt="Product Image" />
-          </Col>
-          <Col span={11}>
             <Title>{name}</Title>
             <br />
             <FlexBlock>
