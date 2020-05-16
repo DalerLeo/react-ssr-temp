@@ -4,15 +4,12 @@ import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { path, find, propEq, pathOr } from 'ramda'
 import equals from 'fast-deep-equal'
-import { CartButton, Button } from 'components/UI/Button'
+import { CartButtonDetails, ButtonDetails } from 'components/UI/Button'
 import { getDataFromState, getPrimaryImage } from 'utils/get'
 import { setItemToCart } from 'components/Cards/storage'
 import { favouriteCreateAction, favouriteDeleteAction } from 'routes/favourite/actions'
-import Comment from 'components/Comment'
 import { Row, Col } from 'components/Grid'
-import Container from 'components/Container'
 import numberFormat from 'utils/numberFormat'
-import Rating from 'components/UI/Rating'
 import SalePrice from 'components/UI/SalePrice'
 import FavoriteIcon from 'icons/Favorite'
 import payme from 'icons/Payme.svg'
@@ -27,18 +24,19 @@ import Carusel from '../../../components/UI/Carusel'
 import Feature from './Feature'
 
 const FavouriteButton = styled.button`
-    background-color: ${props => props.favourite ? '#C7F9DD' : 'none'};
-    border: 1px solid #818591;
+    background-color: ${props => props.favourite ? '#828282' : '#828282'};
     box-sizing: border-box;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 14px 37px;
-    margin-top: 10px;
+    opacity: 0.8;
+    //margin-top: 10px;
+    height: 55px;
     margin-left: 16px;
     display: flex;
     outline: 0;
     cursor: pointer;
     > svg {
-      fill: ${props => props.favourite ? '#13885F' : 'none'};
+      fill: ${props => props.favourite ? '#FFF' : 'none'};
     }
 `
 const FavIconText = styled.div`
@@ -46,8 +44,11 @@ const FavIconText = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 129.96%;
-  color: #818591;
+  color: #FFFF;
+  line-height: 15px;
+  text-align: center;
+
+
 `
 const Wrapper = styled.div`
     background-color: white;
@@ -59,20 +60,35 @@ const ContainerUI = styled.div`
   padding: 20px 0;
 `
 const Title = styled.h1`
-  margin: 0;
+  margin: 18px 0 0 0 ;
   font-weight: bold;
   font-size: 24px;
   line-height: 124%;
 `
 
-const Price = styled.div`
-  font-weight: bold;
-  font-size: 30px;
+const PriceBorder = styled.div`
+  border-top: 1px solid #E0E0E0;
+  width: 399px;
+  margin-top: 22px;
+  margin-bottom: 25px;
+`
+const PriceTitle = styled.div`
+  font-size: 18px;
   line-height: 129.96%;
-  margin-top: 36px;
+  color: #828282;
+`
+
+const Price = styled.div`
+  margin-top: 15px;
   margin-bottom: 28px;
-  color: #28A97C;
+  color: #333333;
   margin-right: 30px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 129.96%;
+  mix-blend-mode: normal;
+
 `
 
 const H2 = styled.h2`
@@ -89,14 +105,6 @@ const Img = styled.img`
   background: #fff;
   border-radius: 6px;
 `
-const Artikul = styled.div`
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 129.96%;
-  color: #818591;
-  margin-bottom: 7px;
-`
 const ImageOptions = styled.img`
   width: 52px;
   height: 52px;
@@ -111,37 +119,36 @@ const FlexBlock = styled.div`
   display: flex;
   align-items: center;
 `
-const CommentsCount = styled.div`
+const CategoryTitle = styled.div`
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
-  line-height: 129.96%;
-  color: #818591;
-  margin-left: 27px;
+  margin-left: 7px;
+  background: #F2F2F2;
+  border-radius: 5px;
+  width: 80px;
+  height: 27px;
+  font-size: 13px;
+  line-height: 11px;
+  text-align: center;
+  color: #828282;
+  padding-top: 5px;
 `
-const BrendTitle = styled.div`
-  font-style: normal;
-  font-weight: bold;
-  font-size: 15px;
-  line-height: 129.96%;
-  color: #2E384C;
-  margin-bottom: 16px;
-`
-const BrendName = styled.div`
+const Category = styled.div`
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
-  line-height: 129.96%;
-  color: #2E384C;
-  margin-bottom: 35px;
+  font-size: 13px;
+  line-height: 11px;
+  text-align: center;
+  color: #828282;
 `
+
 const Payment = styled.div`
   font-style: normal;
-  font-weight: bold;
-  font-size: 15px;
   line-height: 129.96%;
-  color: #2E384C;
   margin-bottom: 18px;
+  font-weight: normal;
+  font-size: 18px;
+  color: #828282;
 `
 const PaymentImage = styled.img`
   margin-right: 20px;
@@ -159,8 +166,8 @@ const ProductListBlock = styled.div`
 `
 const PopularProduct = styled.div`
   font-style: normal;
-  font-weight: bold;
-  font-size: 23px;
+  font-weight: normal;
+  font-size: 30px;
   line-height: 164.57%;
   color: #2E384C;
 
@@ -195,7 +202,8 @@ const Product = (props) => {
   const amount = pathOr(0, ['amount'], filterProduct)
   const isFavourite = path(['data', 'isFavourite'], productData)
   const images = path(['images'], data)
-  const image = getPrimaryImage(data)
+  const image = path(['images', '0', 'image', 'file'], data)
+  // Const image = getPrimaryImage(data)
 
   const onChange = value => {
     dispatch(setItemToCart(value, data))
@@ -214,31 +222,34 @@ const Product = (props) => {
         <Row gutter={20}>
           <Col span={1}>
             {images.map((img, key) => {
-              return <ImageOptions key={key} src={img.image} alt="product images" />
+              return <ImageOptions key={key} src={img.image.file} alt="product images" />
             })}
           </Col>
           <Col span={12}>
             <Img src={typeof image === 'undefined' ? NoImage : image} alt="Product Image" />
           </Col>
           <Col span={11}>
-            <Artikul>артикул: 264723648212</Artikul>
             <Title>{name}</Title>
             <br />
             <FlexBlock>
-              <Rating />
-              <CommentsCount>3 отзыва</CommentsCount>
+              <Category>Категория:</Category>
+              <CategoryTitle>Баллоны</CategoryTitle>
             </FlexBlock>
+            <PriceBorder />
+            <PriceTitle>
+              Цена:
+            </PriceTitle>
             <FlexBlock>
               <Price>{numberFormat(price, 'сум')}</Price>
               <SalePrice />
             </FlexBlock>
             <FlexBlock>
               {filterProduct
-                ? (<CartButton amount={amount} onChange={onChange} />)
+                ? (<CartButtonDetails amount={amount} onChange={onChange} />)
                 : (
-                  <Button onClick={value => dispatch(setItemToCart(1, data))}>
+                  <ButtonDetails onClick={value => dispatch(setItemToCart(1, data))}>
                     В корзину
-                  </Button>
+                  </ButtonDetails>
                 )}
 
               <FavouriteButton favourite={favourite} onClick={onFavourite}>
@@ -246,10 +257,10 @@ const Product = (props) => {
                 <FavIconText>В избранное</FavIconText>
               </FavouriteButton>
             </FlexBlock>
+            <PriceBorder />
+
             <br />
-            <BrendTitle>Бренд (производитель)</BrendTitle>
-            <BrendName>ООО «Петелинка»</BrendName>
-            <Payment>Оплата</Payment>
+            <Payment>Способ оплаты : </Payment>
             <FlexBlock>
               <PaymentImage src={payme} alt="payme" />
               <PaymentImage src={click} alt="click" />
@@ -262,28 +273,22 @@ const Product = (props) => {
         <H2>Основное</H2>
         <Feature label="Страна-изготовитель">{country}</Feature>
         <Feature label="Бренд">{brand}</Feature>
-        {productOptions.map(option => {
-          const label = path(['optionsValue', 'option', 'name'], option)
-          const value = path(['optionsValue', 'value'], option)
-          return (
-            <Feature key={option.id} label={label}>{value}</Feature>
-          )
-        })}
+        {/* {productOptions.map(option => { */}
+        {/*  Const label = path(['optionsValue', 'option', 'name'], option) */}
+        {/*  Const value = path(['optionsValue', 'value'], option) */}
+        {/*  Return ( */}
+        {/*    <Feature key={option.id} label={label}>{value}</Feature> */}
+        {/*  ) */}
+        {/* })} */}
         <ProductsTitle title="Новинки" />
       </ContainerUI>
       <PopularListBlock>
-        <Container>
-          <PopularProduct>Популярные товары</PopularProduct>
-          <ProductListBlock>
-            <ProductCardList productData={popularData} column={4} />
-          </ProductListBlock>
-        </Container>
+        <PopularProduct>Рекомендованные товары</PopularProduct>
+        <ProductListBlock>
+          <ProductCardList productData={popularData} column={4} />
+        </ProductListBlock>
       </PopularListBlock>
-      <ContainerUI>
-        <Carusel section="product_bottom" />
-        <br />
-        <Comment onSubmit={onSubmit} commentList={commentList} userInfo={userInfo} token={token} />
-      </ContainerUI>
+
     </Wrapper>
   )
 }

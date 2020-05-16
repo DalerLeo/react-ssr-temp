@@ -26,6 +26,9 @@ const HeaderBlock = styled.div`
 const Container = styled(Cont)`
   position: relative;
 `
+const TestDiv = styled.div`
+  width: 20%;
+`
 const CartLink = styled(Link)`
   margin-left: 30px;
   display: flex;
@@ -60,7 +63,6 @@ const Header = (props) => {
             <NewLogo />
           </Link>
 
-          <Catalog />
           <SearchField />
           <AuthMenu isAuth={isAuth} onSignOut={onSignOut} />
           <CartLink to="/cart">
@@ -69,7 +71,7 @@ const Header = (props) => {
           </CartLink>
         </DisplayFlex>
       </Container>
-      <FooterHeader/>
+      <FooterHeader />
     </HeaderBlock>
   )
 }

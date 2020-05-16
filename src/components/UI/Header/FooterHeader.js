@@ -56,13 +56,13 @@ const FooterHeader = () => {
         <TopHeaderStyled>
           <LeftSide>
             <MenuTitle>
-              Главная
+              <Link to="/">Главная</Link>
             </MenuTitle>
             <MenuTitle>
-              Аккумуляторы
+              <Link to="/categories/4">Аккумуляторы</Link>
             </MenuTitle>
             <MenuTitle>
-              Шины
+              <Link to="/categories/3">Шины</Link>
             </MenuTitle>
             <MenuTitle>
               Прайлист
@@ -72,8 +72,7 @@ const FooterHeader = () => {
             </MenuTitle>
 
           </LeftSide>
-          <RightSide>
-          </RightSide>
+          <RightSide />
         </TopHeaderStyled>
       </Container>
     </TopHeaderWidth>

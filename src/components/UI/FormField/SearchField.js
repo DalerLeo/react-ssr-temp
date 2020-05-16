@@ -12,14 +12,14 @@ import SearchLogo from 'icons/SearchLogo'
 
 const SearchBlock = styled.div`
   position: relative;
-  width: calc(100% - 685px);
-  padding-left: 30px;
+  width: calc(100% - 513px);
+  padding-left: 150px;
   display: flex;
   transition: width 200ms, margin-left 200ms;
 
   ${props => props.onSearch && css`
-    width: calc(100% - 685px + 200px);
-    margin-left: -200px;
+    //width: calc(100% - 685px + 200px);
+    //margin-left: -200px;
 `}
 `
 
@@ -123,7 +123,7 @@ const SearchField = (props) => {
         placeholder="Я хочу купить..."
       />
       <SearchButton>
-        <SearchLogo/>
+        <SearchLogo />
       </SearchButton>
       {onSearch && (
         <SearchResults>

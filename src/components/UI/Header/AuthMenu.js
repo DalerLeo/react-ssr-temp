@@ -13,7 +13,7 @@ import FavoriteIcon from '../../../icons/Favorite'
 import Settings from '../../../icons/Settings'
 
 const ProfileLink = styled(Link)`
-  margin-left: 30px;
+  margin-left: 60px;
   display: flex;
   font-size: 16px;
   line-height: 164.57%;

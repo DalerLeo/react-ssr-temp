@@ -2,14 +2,14 @@ import React from 'react'
 import Container from 'components/Container'
 import styled from 'styled-components'
 import { Col, Row } from 'components/Grid'
-import Logo from 'images/Logo.png'
+import NewLogo from 'icons/NewLogo'
 
 const Wrapper = styled.div`
 position: relative;
 z-index: 3;
 padding-top: 36px;
   padding-bottom: 40px;
-  background-color: ${props => '#efefef'};
+  background-color: ${props => '#FFFFFF'};
 `
 const FooterTitle = styled.div`
   padding: 5px;
@@ -27,8 +27,8 @@ const Footer = props => {
       <Container>
         <Row>
           <Col>
-            <FooterTitle><img src={Logo} alt="Logo" /></FooterTitle>
-            <FooterSubTitle>© 2019 ООО «Lochin» </FooterSubTitle>
+            <FooterTitle><NewLogo /></FooterTitle>
+            <FooterSubTitle>© 2020 ООО «Avto» </FooterSubTitle>
             <FooterSubTitle>Все права защищены</FooterSubTitle>
           </Col>
           <Col>

@@ -5,7 +5,7 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
 export const getProductList = () => {
   return (dispatch, getState) => {
     const params = {
-      page_size: 8
+      page_size: 4
     }
 
     const payload = axios({ dispatch, getState })
