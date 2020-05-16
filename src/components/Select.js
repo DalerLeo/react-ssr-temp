@@ -1,17 +1,9 @@
 import Dropdown from 'react-dropdown'
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { intersection, prop, pipe, equals, not, filter, append, propEq, find } from 'ramda'
+import Label from './StyledElems/Label'
 
-const Label = styled.div`
-  color: ${props => props.theme.colors.label};
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  margin-top: 14px;
-  font-size: 13px;
-  font-weight: 500;
-`
 const Select = props => {
   const { options, label, onChange, queryName, queryIds } = props
   const listIds = options.map(prop('value'))

@@ -1,6 +1,14 @@
-import { createGlobalStyle } from 'styled-components'
-import hexToRgb from "../utils/hexToRgb";
+import { createGlobalStyle, keyframes } from 'styled-components'
+import hexToRgb from '../utils/hexToRgb'
 
+const motion = props => keyframes`
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+`
 export default createGlobalStyle`
 
   /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -378,10 +386,11 @@ inherit\` in Safari.
 // DropDown
 .Dropdown-root.is-open {
 .Dropdown-control {
-  border-color: ${props => props.theme.colors.primary.default} !important;
+  border-color: ${props => props.theme.colors.secondary.default} !important;
 }
 }
 .Dropdown-control {
+ transition: all 300ms!important;
  border-color: transparent !important;
  background-color: ${props => props.theme.colors.inputBackground} !important;
  border-radius: ${props => props.theme.borderRadius} !important;
@@ -393,11 +402,12 @@ inherit\` in Safari.
 }
 
 .Dropdown-menu {
+    animation: ${p => motion(p)} .4s alternate;
   padding: 6px;
   box-shadow: ${props => props.theme.boxShadow} !important;
   border: none !important;
   top: calc(100% + 5px) !important;
- border-radius: ${props => props.theme.borderRadius} !important;
+  border-radius: ${props => props.theme.borderRadius} !important;
 
 }
 .Dropdown-placeholder {

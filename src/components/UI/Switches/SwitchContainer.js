@@ -15,7 +15,7 @@ export default styled.label`
     margin-bottom: 0;
   }
   :hover ${CheckMark} {
-    border-color: ${props => props.theme.colors.primary.default};
+    border-color: ${props => props.theme.colors.secondary.default};
   }
   ${props =>
     props.disabled &&

@@ -10,7 +10,7 @@ import Pages from './Pages'
 const Wrap = styled.div`
   display: inline-block;
   padding: 4px;
-  background: #C7F9DD;
+  background: #fff;
   border-radius: 10px;
 `
 
@@ -18,32 +18,38 @@ export const Page = styled.button`
   display: inline-block;
   width: 40px;
   height: 40px;
-  border: none;
-  border-radius: 6px;
+  border-radius: ${props => props.theme.borderRadius};
+  border: 1px solid;
+  border-color: ${props => props.theme.colors.secondary.default};
   background-color: transparent;
   cursor: pointer;
+  color: ${props => props.theme.colors.secondary.default};
   position: relative;
+  margin-right: 8px;
+
   ${props => props.isActive && css`
-    background-color: #2EBB8A;
-    color: #fff;
+    background-color: ${() => props.theme.colors.primary.default};
+//    border-color: ${() => props.theme.colors.primary.default};
+
     font-weight: 600;
   `}
   :last-child {
+    margin-right: 0;
     :after {
     display: none;
     }
   }
   :after {
-    content: ' ';
+//    content: ' ';
     position: absolute;
     top: 50%;
     right: -1px;
     height: 24px;
     width: 1px;
-    background-color: ${props => props.isActive ? '#C7F9DD' : '#2EBB8A'};
+    background-color: ${props => props.isActive ? 'transparent' : props.theme.colors.secondary.default};
     transform: translateY(-50%);
   }
-  
+
 `
 
 const Container = styled.div`

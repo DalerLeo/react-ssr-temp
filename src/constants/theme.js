@@ -7,7 +7,7 @@ export default {
       hover: '#C7F9DD'
     },
     secondary: {
-      default: '',
+      default: '#4F4F4F',
       hover: ''
     }
   },
